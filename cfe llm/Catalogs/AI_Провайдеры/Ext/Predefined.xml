@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<PredefinedData xmlns="http://v8.1c.ru/8.3/xcf/predef" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CatalogPredefinedItems" version="2.20">
+	<Item id="3e0d8f2e-d0b3-46a8-b825-322c6aea193b">
+		<Name>LMStudio</Name>
+		<Code>000000002</Code>
+		<Description>LM studio</Description>
+		<IsFolder>false</IsFolder>
+	</Item>
+	<Item id="75bcc6e4-b549-4b32-9f5a-818c340fd528">
+		<Name>Ollama</Name>
+		<Code>000000003</Code>
+		<Description>Ollama</Description>
+		<IsFolder>false</IsFolder>
+	</Item>
+	<Item id="e8ede8ec-e76f-428d-9cac-1e2bd576d9b1">
+		<Name>OpenAI</Name>
+		<Code>000000001</Code>
+		<Description>Open AI</Description>
+		<IsFolder>false</IsFolder>
+	</Item>
+	<Item id="af30c0ba-88ea-447a-86ce-b3e2bfdd0035">
+		<Name>Yandex</Name>
+		<Code>000000004</Code>
+		<Description>Yandex</Description>
+		<IsFolder>false</IsFolder>
+	</Item>
+</PredefinedData>

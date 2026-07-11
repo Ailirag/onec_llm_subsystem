@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<InputField name="Код" id="1">
+			<DataPath>Объект.Code</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="КодКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="Наименование" id="4">
+			<DataPath>Объект.Description</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="НаименованиеКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<InputField name="ИдентификаторДляЛогики" id="21">
+			<DataPath>Объект.ИдентификаторДляЛогики</DataPath>
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ИдентификаторДляЛогикиКонтекстноеМеню" id="22"/>
+			<ExtendedTooltip name="ИдентификаторДляЛогикиРасширеннаяПодсказка" id="23"/>
+		</InputField>
+		<UsualGroup name="ГруппкаПоказателей" id="19">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группка показателей</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Группка показателей</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппкаПоказателейРасширеннаяПодсказка" id="20"/>
+			<ChildItems>
+				<InputField name="Температура" id="10">
+					<DataPath>Объект.Температура</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ТемператураКонтекстноеМеню" id="11"/>
+					<ExtendedTooltip name="ТемператураРасширеннаяПодсказка" id="12"/>
+				</InputField>
+				<InputField name="МаксТокенов" id="13">
+					<DataPath>Объект.МаксТокенов</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="МаксТокеновКонтекстноеМеню" id="14"/>
+					<ExtendedTooltip name="МаксТокеновРасширеннаяПодсказка" id="15"/>
+				</InputField>
+				<InputField name="ФорматОтвета" id="16">
+					<DataPath>1/0:8beb5640-1123-4dc7-9636-233fa8d7574f</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ФорматОтветаКонтекстноеМеню" id="17"/>
+					<ExtendedTooltip name="ФорматОтветаРасширеннаяПодсказка" id="18"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<CheckBoxField name="ИзвлекатьОтветВСтруктуру" id="149">
+			<DataPath>Объект.ИзвлекатьОтветВСтруктуру</DataPath>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="ИзвлекатьОтветВСтруктуруКонтекстноеМеню" id="150"/>
+			<ExtendedTooltip name="ИзвлекатьОтветВСтруктуруРасширеннаяПодсказка" id="151"/>
+		</CheckBoxField>
+		<UsualGroup name="Группа1" id="46">
+			<Group>AlwaysHorizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="Группа1РасширеннаяПодсказка" id="47"/>
+			<ChildItems>
+				<Pages name="ГруппаСтраницы" id="48">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа страницы</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Группа страницы</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="ГруппаСтраницыРасширеннаяПодсказка" id="49"/>
+					<ChildItems>
+						<Page name="ГруппаСистемнаяИнструкция" id="142">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Инструкция</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа системная инструкция</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ExtendedTooltip name="ГруппаСистемнаяИнструкцияРасширеннаяПодсказка" id="143"/>
+							<ChildItems>
+								<InputField name="СистемнаяИнструкция" id="7">
+									<DataPath>Объект.СистемнаяИнструкция</DataPath>
+									<TitleLocation>None</TitleLocation>
+									<EditMode>EnterOnInput</EditMode>
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<MultiLine>true</MultiLine>
+									<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+									<ContextMenu name="СистемнаяИнструкцияКонтекстноеМеню" id="8"/>
+									<ExtendedTooltip name="СистемнаяИнструкцияРасширеннаяПодсказка" id="9"/>
+								</InputField>
+							</ChildItems>
+						</Page>
+						<Page name="ГруппаURL" id="109">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>URL (web search)</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа URL</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ExtendedTooltip name="ГруппаURLРасширеннаяПодсказка" id="110"/>
+							<ChildItems>
+								<LabelDecoration name="ДекорацияURL" id="133">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Title formatted="true">
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>&lt;color #ff6600&gt;Нужно ли использовать web поиск и нужно ли его ограничивать конкретным списком URL&lt;/&gt;</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="ДекорацияURLКонтекстноеМеню" id="134"/>
+									<ExtendedTooltip name="ДекорацияURLРасширеннаяПодсказка" id="135"/>
+								</LabelDecoration>
+								<UsualGroup name="Группа2" id="147">
+									<Group>AlwaysHorizontal</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="Группа2РасширеннаяПодсказка" id="148"/>
+									<ChildItems>
+										<CheckBoxField name="НуженВебПоиск" id="24">
+											<DataPath>Объект.НуженВебПоиск</DataPath>
+											<CheckBoxType>Auto</CheckBoxType>
+											<ContextMenu name="НуженВебПоискКонтекстноеМеню" id="25"/>
+											<ExtendedTooltip name="НуженВебПоискРасширеннаяПодсказка" id="26"/>
+											<Events>
+												<Event name="OnChange">НуженВебПоискПриИзменении</Event>
+											</Events>
+										</CheckBoxField>
+										<InputField name="ОкноКонтекстаВебПоиска" id="144">
+											<DataPath>Объект.ОкноКонтекстаВебПоиска</DataPath>
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<MaxWidth>15</MaxWidth>
+											<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+											<ContextMenu name="ОкноКонтекстаВебПоискаКонтекстноеМеню" id="145"/>
+											<ExtendedTooltip name="ОкноКонтекстаВебПоискаРасширеннаяПодсказка" id="146"/>
+										</InputField>
+									</ChildItems>
+								</UsualGroup>
+								<Table name="URLДляПоиска" id="111">
+									<AutoInsertNewRow>true</AutoInsertNewRow>
+									<EnableStartDrag>true</EnableStartDrag>
+									<EnableDrag>true</EnableDrag>
+									<DataPath>Объект.URLДляПоиска</DataPath>
+									<RowFilter xsi:nil="true"/>
+									<ContextMenu name="URLДляПоискаКонтекстноеМеню" id="112"/>
+									<AutoCommandBar name="URLДляПоискаКоманднаяПанель" id="113"/>
+									<ExtendedTooltip name="URLДляПоискаРасширеннаяПодсказка" id="114"/>
+									<SearchStringAddition name="URLДляПоискаСтрокаПоиска" id="115">
+										<AdditionSource>
+											<Item>URLДляПоиска</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="URLДляПоискаСтрокаПоискаКонтекстноеМеню" id="116"/>
+										<ExtendedTooltip name="URLДляПоискаСтрокаПоискаРасширеннаяПодсказка" id="117"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="URLДляПоискаСостояниеПросмотра" id="118">
+										<AdditionSource>
+											<Item>URLДляПоиска</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="URLДляПоискаСостояниеПросмотраКонтекстноеМеню" id="119"/>
+										<ExtendedTooltip name="URLДляПоискаСостояниеПросмотраРасширеннаяПодсказка" id="120"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="URLДляПоискаУправлениеПоиском" id="121">
+										<AdditionSource>
+											<Item>URLДляПоиска</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="URLДляПоискаУправлениеПоискомКонтекстноеМеню" id="122"/>
+										<ExtendedTooltip name="URLДляПоискаУправлениеПоискомРасширеннаяПодсказка" id="123"/>
+									</SearchControlAddition>
+									<ChildItems>
+										<LabelField name="URLДляПоискаНомерСтроки" id="124">
+											<DataPath>Объект.URLДляПоиска.LineNumber</DataPath>
+											<Visible>false</Visible>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="URLДляПоискаНомерСтрокиКонтекстноеМеню" id="125"/>
+											<ExtendedTooltip name="URLДляПоискаНомерСтрокиРасширеннаяПодсказка" id="126"/>
+										</LabelField>
+										<InputField name="URLДляПоискаURL" id="127">
+											<DataPath>Объект.URLДляПоиска.URL</DataPath>
+											<EditMode>EnterOnInput</EditMode>
+											<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+											<ContextMenu name="URLДляПоискаURLКонтекстноеМеню" id="128"/>
+											<ExtendedTooltip name="URLДляПоискаURLРасширеннаяПодсказка" id="129"/>
+										</InputField>
+									</ChildItems>
+								</Table>
+							</ChildItems>
+						</Page>
+						<Page name="ГруппаДопКонтекст" id="50">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Доп. контекст</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа доп контекст</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ExtendedTooltip name="ГруппаДопКонтекстРасширеннаяПодсказка" id="51"/>
+							<ChildItems>
+								<LabelDecoration name="ДекорацияДопКонтекст" id="130">
+									<AutoMaxWidth>false</AutoMaxWidth>
+									<Title formatted="true">
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>&lt;color #ff6600&gt;Дополнительный контекст - используется как добавочные сообщения пользователя, в которых может храниться какая либо информация (RAG на минималках).&lt;/&gt;
+
+&lt;color #ff6600&gt;Справочник AI_ДополнительныйКонтекст можно обогащать с помощью алгоритмов, ссылаясь на конкретный элемент используя реквизит "Идентификатор для логики"&lt;/&gt;</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="ДекорацияДопКонтекстКонтекстноеМеню" id="131"/>
+									<ExtendedTooltip name="ДекорацияДопКонтекстРасширеннаяПодсказка" id="132"/>
+								</LabelDecoration>
+								<Table name="ДополнительныйКонтекст" id="27">
+									<AutoInsertNewRow>true</AutoInsertNewRow>
+									<EnableStartDrag>true</EnableStartDrag>
+									<EnableDrag>true</EnableDrag>
+									<DataPath>Объект.ДополнительныйКонтекст</DataPath>
+									<RowFilter xsi:nil="true"/>
+									<ContextMenu name="ДополнительныйКонтекстКонтекстноеМеню" id="28"/>
+									<AutoCommandBar name="ДополнительныйКонтекстКоманднаяПанель" id="29"/>
+									<ExtendedTooltip name="ДополнительныйКонтекстРасширеннаяПодсказка" id="30"/>
+									<SearchStringAddition name="ДополнительныйКонтекстСтрокаПоиска" id="31">
+										<AdditionSource>
+											<Item>ДополнительныйКонтекст</Item>
+											<Type>SearchStringRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="ДополнительныйКонтекстСтрокаПоискаКонтекстноеМеню" id="32"/>
+										<ExtendedTooltip name="ДополнительныйКонтекстСтрокаПоискаРасширеннаяПодсказка" id="33"/>
+									</SearchStringAddition>
+									<ViewStatusAddition name="ДополнительныйКонтекстСостояниеПросмотра" id="34">
+										<AdditionSource>
+											<Item>ДополнительныйКонтекст</Item>
+											<Type>ViewStatusRepresentation</Type>
+										</AdditionSource>
+										<ContextMenu name="ДополнительныйКонтекстСостояниеПросмотраКонтекстноеМеню" id="35"/>
+										<ExtendedTooltip name="ДополнительныйКонтекстСостояниеПросмотраРасширеннаяПодсказка" id="36"/>
+									</ViewStatusAddition>
+									<SearchControlAddition name="ДополнительныйКонтекстУправлениеПоиском" id="37">
+										<AdditionSource>
+											<Item>ДополнительныйКонтекст</Item>
+											<Type>SearchControl</Type>
+										</AdditionSource>
+										<ContextMenu name="ДополнительныйКонтекстУправлениеПоискомКонтекстноеМеню" id="38"/>
+										<ExtendedTooltip name="ДополнительныйКонтекстУправлениеПоискомРасширеннаяПодсказка" id="39"/>
+									</SearchControlAddition>
+									<ChildItems>
+										<LabelField name="ДополнительныйКонтекстНомерСтроки" id="40">
+											<DataPath>Объект.ДополнительныйКонтекст.LineNumber</DataPath>
+											<EditMode>EnterOnInput</EditMode>
+											<ContextMenu name="ДополнительныйКонтекстНомерСтрокиКонтекстноеМеню" id="41"/>
+											<ExtendedTooltip name="ДополнительныйКонтекстНомерСтрокиРасширеннаяПодсказка" id="42"/>
+										</LabelField>
+										<InputField name="ДополнительныйКонтекстКонтекст" id="43">
+											<DataPath>Объект.ДополнительныйКонтекст.Контекст</DataPath>
+											<EditMode>EnterOnInput</EditMode>
+											<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+											<ContextMenu name="ДополнительныйКонтекстКонтекстКонтекстноеМеню" id="44"/>
+											<ExtendedTooltip name="ДополнительныйКонтекстКонтекстРасширеннаяПодсказка" id="45"/>
+										</InputField>
+									</ChildItems>
+								</Table>
+							</ChildItems>
+						</Page>
+						<Page name="ГруппаRAG" id="52">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>RAG</v8:content>
+								</v8:item>
+							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа RAG</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ExtendedTooltip name="ГруппаRAGРасширеннаяПодсказка" id="53"/>
+							<ChildItems>
+								<UsualGroup name="ПодгруппаRAG" id="85">
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Подгруппа RAG</v8:content>
+										</v8:item>
+									</Title>
+									<ToolTip>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Подгруппа RAG</v8:content>
+										</v8:item>
+									</ToolTip>
+									<Group>Vertical</Group>
+									<Representation>None</Representation>
+									<ShowTitle>false</ShowTitle>
+									<ExtendedTooltip name="ПодгруппаRAGРасширеннаяПодсказка" id="86"/>
+									<ChildItems>
+										<LabelDecoration name="ДекорацияДопКонтекст1" id="136">
+											<AutoMaxWidth>false</AutoMaxWidth>
+											<Title formatted="true">
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>&lt;color #ff6600&gt;Нужно ли использовать векторные коллекции для обогащения запроса к модели контекстом схожих векторов&lt;/&gt;</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="ДекорацияДопКонтекст1КонтекстноеМеню" id="137"/>
+											<ExtendedTooltip name="ДекорацияДопКонтекст1РасширеннаяПодсказка" id="138"/>
+										</LabelDecoration>
+										<Table name="RAGКоллекции" id="54">
+											<AutoInsertNewRow>true</AutoInsertNewRow>
+											<EnableStartDrag>true</EnableStartDrag>
+											<EnableDrag>true</EnableDrag>
+											<DataPath>Объект.RAGКоллекции</DataPath>
+											<RowFilter xsi:nil="true"/>
+											<ContextMenu name="RAGКоллекцииКонтекстноеМеню" id="55"/>
+											<AutoCommandBar name="RAGКоллекцииКоманднаяПанель" id="56"/>
+											<ExtendedTooltip name="RAGКоллекцииРасширеннаяПодсказка" id="57"/>
+											<SearchStringAddition name="RAGКоллекцииСтрокаПоиска" id="58">
+												<AdditionSource>
+													<Item>RAGКоллекции</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="RAGКоллекцииСтрокаПоискаКонтекстноеМеню" id="59"/>
+												<ExtendedTooltip name="RAGКоллекцииСтрокаПоискаРасширеннаяПодсказка" id="60"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="RAGКоллекцииСостояниеПросмотра" id="61">
+												<AdditionSource>
+													<Item>RAGКоллекции</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="RAGКоллекцииСостояниеПросмотраКонтекстноеМеню" id="62"/>
+												<ExtendedTooltip name="RAGКоллекцииСостояниеПросмотраРасширеннаяПодсказка" id="63"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="RAGКоллекцииУправлениеПоиском" id="64">
+												<AdditionSource>
+													<Item>RAGКоллекции</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="RAGКоллекцииУправлениеПоискомКонтекстноеМеню" id="65"/>
+												<ExtendedTooltip name="RAGКоллекцииУправлениеПоискомРасширеннаяПодсказка" id="66"/>
+											</SearchControlAddition>
+											<ChildItems>
+												<LabelField name="RAGКоллекцииНомерСтроки" id="67">
+													<DataPath>Объект.RAGКоллекции.LineNumber</DataPath>
+													<Visible>false</Visible>
+													<EditMode>EnterOnInput</EditMode>
+													<ContextMenu name="RAGКоллекцииНомерСтрокиКонтекстноеМеню" id="68"/>
+													<ExtendedTooltip name="RAGКоллекцииНомерСтрокиРасширеннаяПодсказка" id="69"/>
+												</LabelField>
+												<CheckBoxField name="RAGКоллекцииИспользовать" id="70">
+													<DataPath>Объект.RAGКоллекции.Использовать</DataPath>
+													<EditMode>EnterOnInput</EditMode>
+													<CheckBoxType>Auto</CheckBoxType>
+													<ContextMenu name="RAGКоллекцииИспользоватьКонтекстноеМеню" id="71"/>
+													<ExtendedTooltip name="RAGКоллекцииИспользоватьРасширеннаяПодсказка" id="72"/>
+												</CheckBoxField>
+												<InputField name="RAGКоллекцииКоллекция" id="73">
+													<DataPath>Объект.RAGКоллекции.Коллекция</DataPath>
+													<EditMode>EnterOnInput</EditMode>
+													<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+													<ContextMenu name="RAGКоллекцииКоллекцияКонтекстноеМеню" id="74"/>
+													<ExtendedTooltip name="RAGКоллекцииКоллекцияРасширеннаяПодсказка" id="75"/>
+												</InputField>
+												<InputField name="RAGКоллекцииЛимитФрагментовQdrant" id="76">
+													<DataPath>Объект.RAGКоллекции.ЛимитФрагментовQdrant</DataPath>
+													<EditMode>EnterOnInput</EditMode>
+													<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+													<ContextMenu name="RAGКоллекцииЛимитФрагментовQdrantКонтекстноеМеню" id="77"/>
+													<ExtendedTooltip name="RAGКоллекцииЛимитФрагментовQdrantРасширеннаяПодсказка" id="78"/>
+												</InputField>
+												<InputField name="RAGКоллекцииВесКоллекции" id="79">
+													<DataPath>Объект.RAGКоллекции.ВесКоллекции</DataPath>
+													<EditMode>EnterOnInput</EditMode>
+													<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+													<ContextMenu name="RAGКоллекцииВесКоллекцииКонтекстноеМеню" id="80"/>
+													<ExtendedTooltip name="RAGКоллекцииВесКоллекцииРасширеннаяПодсказка" id="81"/>
+												</InputField>
+												<InputField name="RAGКоллекцииМинПорогСхожестиВектора" id="82">
+													<DataPath>Объект.RAGКоллекции.МинПорогСхожестиВектора</DataPath>
+													<EditMode>EnterOnInput</EditMode>
+													<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+													<ContextMenu name="RAGКоллекцииМинПорогСхожестиВектораКонтекстноеМеню" id="83"/>
+													<ExtendedTooltip name="RAGКоллекцииМинПорогСхожестиВектораРасширеннаяПодсказка" id="84"/>
+												</InputField>
+											</ChildItems>
+										</Table>
+										<Table name="RAGРазрешения" id="87">
+											<TitleLocation>Top</TitleLocation>
+											<AutoInsertNewRow>true</AutoInsertNewRow>
+											<EnableStartDrag>true</EnableStartDrag>
+											<EnableDrag>true</EnableDrag>
+											<DataPath>Объект.RAGРазрешения</DataPath>
+											<RowFilter xsi:nil="true"/>
+											<ContextMenu name="RAGРазрешенияКонтекстноеМеню" id="88"/>
+											<AutoCommandBar name="RAGРазрешенияКоманднаяПанель" id="89"/>
+											<ExtendedTooltip name="RAGРазрешенияРасширеннаяПодсказка" id="90"/>
+											<SearchStringAddition name="RAGРазрешенияСтрокаПоиска" id="91">
+												<AdditionSource>
+													<Item>RAGРазрешения</Item>
+													<Type>SearchStringRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="RAGРазрешенияСтрокаПоискаКонтекстноеМеню" id="92"/>
+												<ExtendedTooltip name="RAGРазрешенияСтрокаПоискаРасширеннаяПодсказка" id="93"/>
+											</SearchStringAddition>
+											<ViewStatusAddition name="RAGРазрешенияСостояниеПросмотра" id="94">
+												<AdditionSource>
+													<Item>RAGРазрешения</Item>
+													<Type>ViewStatusRepresentation</Type>
+												</AdditionSource>
+												<ContextMenu name="RAGРазрешенияСостояниеПросмотраКонтекстноеМеню" id="95"/>
+												<ExtendedTooltip name="RAGРазрешенияСостояниеПросмотраРасширеннаяПодсказка" id="96"/>
+											</ViewStatusAddition>
+											<SearchControlAddition name="RAGРазрешенияУправлениеПоиском" id="97">
+												<AdditionSource>
+													<Item>RAGРазрешения</Item>
+													<Type>SearchControl</Type>
+												</AdditionSource>
+												<ContextMenu name="RAGРазрешенияУправлениеПоискомКонтекстноеМеню" id="98"/>
+												<ExtendedTooltip name="RAGРазрешенияУправлениеПоискомРасширеннаяПодсказка" id="99"/>
+											</SearchControlAddition>
+											<ChildItems>
+												<LabelField name="RAGРазрешенияНомерСтроки" id="100">
+													<DataPath>Объект.RAGРазрешения.LineNumber</DataPath>
+													<Visible>false</Visible>
+													<EditMode>EnterOnInput</EditMode>
+													<ContextMenu name="RAGРазрешенияНомерСтрокиКонтекстноеМеню" id="101"/>
+													<ExtendedTooltip name="RAGРазрешенияНомерСтрокиРасширеннаяПодсказка" id="102"/>
+												</LabelField>
+												<InputField name="RAGРазрешенияРазрешение" id="103">
+													<DataPath>Объект.RAGРазрешения.Разрешение</DataPath>
+													<EditMode>EnterOnInput</EditMode>
+													<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+													<ContextMenu name="RAGРазрешенияРазрешениеКонтекстноеМеню" id="104"/>
+													<ExtendedTooltip name="RAGРазрешенияРазрешениеРасширеннаяПодсказка" id="105"/>
+												</InputField>
+												<InputField name="RAGРазрешенияВидРазрешения" id="106">
+													<EditMode>EnterOnInput</EditMode>
+													<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+													<ContextMenu name="RAGРазрешенияВидРазрешенияКонтекстноеМеню" id="107"/>
+													<ExtendedTooltip name="RAGРазрешенияВидРазрешенияРасширеннаяПодсказка" id="108"/>
+												</InputField>
+												<LabelField name="RAGРазрешенияРазрешениеТипРазрешения" id="139">
+													<DataPath>Объект.RAGРазрешения.Разрешение.ТипРазрешения</DataPath>
+													<EditMode>EnterOnInput</EditMode>
+													<ContextMenu name="RAGРазрешенияРазрешениеТипРазрешенияКонтекстноеМеню" id="140"/>
+													<ExtendedTooltip name="RAGРазрешенияРазрешениеТипРазрешенияРасширеннаяПодсказка" id="141"/>
+												</LabelField>
+											</ChildItems>
+										</Table>
+									</ChildItems>
+								</UsualGroup>
+							</ChildItems>
+						</Page>
+					</ChildItems>
+				</Pages>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.AI_Агенты</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+</Form>

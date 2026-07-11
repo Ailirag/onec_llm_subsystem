@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
+	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<InputField name="Код" id="1">
+			<DataPath>Объект.Code</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="КодКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3"/>
+		</InputField>
+		<InputField name="Наименование" id="4">
+			<DataPath>Объект.Description</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="НаименованиеКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6"/>
+		</InputField>
+		<InputField name="Владелец" id="7">
+			<DataPath>Объект.Owner</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ВладелецКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ВладелецРасширеннаяПодсказка" id="9"/>
+		</InputField>
+		<InputField name="ОписаниеКоллекции" id="10">
+			<DataPath>Объект.ОписаниеКоллекции</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ОписаниеКоллекцииКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="ОписаниеКоллекцииРасширеннаяПодсказка" id="12"/>
+		</InputField>
+		<InputField name="ТипКоллекции" id="13">
+			<DataPath>Объект.ТипКоллекции</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ТипКоллекцииКонтекстноеМеню" id="14"/>
+			<ExtendedTooltip name="ТипКоллекцииРасширеннаяПодсказка" id="15"/>
+		</InputField>
+		<CheckBoxField name="КоллекцияИнициализирована" id="16">
+			<DataPath>Объект.КоллекцияИнициализирована</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<CheckBoxType>Auto</CheckBoxType>
+			<ContextMenu name="КоллекцияИнициализированаКонтекстноеМеню" id="17"/>
+			<ExtendedTooltip name="КоллекцияИнициализированаРасширеннаяПодсказка" id="18"/>
+		</CheckBoxField>
+		<InputField name="_Overlap" id="19">
+			<DataPath>Объект._Overlap</DataPath>
+			<EditMode>EnterOnInput</EditMode>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="_OverlapКонтекстноеМеню" id="20"/>
+			<ExtendedTooltip name="_OverlapРасширеннаяПодсказка" id="21"/>
+		</InputField>
+		<InputField name="ТипДляПодстановки" id="41">
+			<DataPath>ТипДляПодстановки</DataPath>
+			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<ContextMenu name="ТипДляПодстановкиКонтекстноеМеню" id="42"/>
+			<ExtendedTooltip name="ТипДляПодстановкиРасширеннаяПодсказка" id="43"/>
+			<Events>
+				<Event name="OnChange">ТипДляПодстановкиПриИзменении</Event>
+			</Events>
+		</InputField>
+		<Table name="ТипыДанныхКоллекции" id="22">
+			<Representation>List</Representation>
+			<AutoInsertNewRow>true</AutoInsertNewRow>
+			<EnableStartDrag>true</EnableStartDrag>
+			<EnableDrag>true</EnableDrag>
+			<DataPath>Объект.ТипыДанныхКоллекции</DataPath>
+			<CommandSet>
+				<ExcludedCommand>Add</ExcludedCommand>
+				<ExcludedCommand>Change</ExcludedCommand>
+				<ExcludedCommand>Copy</ExcludedCommand>
+			</CommandSet>
+			<RowFilter xsi:nil="true"/>
+			<ContextMenu name="ТипыДанныхКоллекцииКонтекстноеМеню" id="23"/>
+			<AutoCommandBar name="ТипыДанныхКоллекцииКоманднаяПанель" id="24"/>
+			<ExtendedTooltip name="ТипыДанныхКоллекцииРасширеннаяПодсказка" id="25"/>
+			<SearchStringAddition name="ТипыДанныхКоллекцииСтрокаПоиска" id="26">
+				<AdditionSource>
+					<Item>ТипыДанныхКоллекции</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТипыДанныхКоллекцииСтрокаПоискаКонтекстноеМеню" id="27"/>
+				<ExtendedTooltip name="ТипыДанныхКоллекцииСтрокаПоискаРасширеннаяПодсказка" id="28"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ТипыДанныхКоллекцииСостояниеПросмотра" id="29">
+				<AdditionSource>
+					<Item>ТипыДанныхКоллекции</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ТипыДанныхКоллекцииСостояниеПросмотраКонтекстноеМеню" id="30"/>
+				<ExtendedTooltip name="ТипыДанныхКоллекцииСостояниеПросмотраРасширеннаяПодсказка" id="31"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ТипыДанныхКоллекцииУправлениеПоиском" id="32">
+				<AdditionSource>
+					<Item>ТипыДанныхКоллекции</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ТипыДанныхКоллекцииУправлениеПоискомКонтекстноеМеню" id="33"/>
+				<ExtendedTooltip name="ТипыДанныхКоллекцииУправлениеПоискомРасширеннаяПодсказка" id="34"/>
+			</SearchControlAddition>
+			<Events>
+				<Event name="BeforeAddRow">ТипыДанныхКоллекцииПередНачаломДобавления</Event>
+			</Events>
+			<ChildItems>
+				<LabelField name="ТипыДанныхКоллекцииНомерСтроки" id="35">
+					<DataPath>Объект.ТипыДанныхКоллекции.LineNumber</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ContextMenu name="ТипыДанныхКоллекцииНомерСтрокиКонтекстноеМеню" id="36"/>
+					<ExtendedTooltip name="ТипыДанныхКоллекцииНомерСтрокиРасширеннаяПодсказка" id="37"/>
+				</LabelField>
+				<InputField name="ТипыДанныхКоллекцииНаименованиеТипаСтрокой" id="38">
+					<DataPath>Объект.ТипыДанныхКоллекции.НаименованиеТипаСтрокой</DataPath>
+					<EditMode>EnterOnInput</EditMode>
+					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+					<ContextMenu name="ТипыДанныхКоллекцииНаименованиеТипаСтрокойКонтекстноеМеню" id="39"/>
+					<ExtendedTooltip name="ТипыДанныхКоллекцииНаименованиеТипаСтрокойРасширеннаяПодсказка" id="40"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="1">
+			<Type>
+				<v8:Type>cfg:CatalogObject.AI_RAGКоллекции</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+		<Attribute name="ТипДляПодстановки" id="2">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Тип для подстановки</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:TypeDescription</v8:Type>
+			</Type>
+		</Attribute>
+	</Attributes>
+</Form>
