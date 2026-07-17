@@ -652,8 +652,11 @@
 		|.attachments{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;padding-top:9px;border-top:1px solid rgba(120,130,142,.25)}
 		|.attachment{display:inline-flex;gap:5px;align-items:center;max-width:100%;padding:4px 7px;border:1px solid #cbd3db;border-radius:6px;background:rgba(255,255,255,.62);color:#37414c;font-size:11px;overflow-wrap:anywhere}
 		|.tools{align-self:flex-start;width:min(84%,980px);padding:10px 12px;border-left:3px solid #5c8d70;background:#f1f7f3;color:#293b31}
-		|.tools-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px;font-weight:650}
-		|.tool-count{color:#63766a;font-size:11px;font-weight:400}
+		|.tools-header{display:flex;align-items:center;gap:8px;margin:0;font-weight:650;cursor:pointer;list-style:none;user-select:none}
+		|.tools-header::-webkit-details-marker{display:none}
+		|.tools-header:before{content:'›';font-size:18px;line-height:13px;transition:transform .12s ease}.tools[open]>.tools-header:before{transform:rotate(90deg)}
+		|.tools-content{margin-top:6px}
+		|.tool-count{margin-left:auto;color:#63766a;font-size:11px;font-weight:400}
 		|.tool{margin-top:6px;border-top:1px solid #cfddd4;padding-top:6px}
 		|.tool summary{display:flex;gap:7px;align-items:center;cursor:pointer;list-style:none;color:#30483a}
 		|.tool summary::-webkit-details-marker{display:none}
@@ -668,7 +671,7 @@
 		|@keyframes spin{to{transform:rotate(360deg)}}
 		|.empty-state{margin:auto;color:#7a838d;text-align:center}
 		|@media(max-width:700px){.chat{padding:10px 8px 18px}.message,.tools{max-width:96%;width:auto}.message.system{max-width:100%}.bubble{padding-left:10px}.content table{display:block;overflow-x:auto}}
-		|@media(prefers-reduced-motion:reduce){.spinner{animation:none}.tool summary:before{transition:none}}";
+		|@media(prefers-reduced-motion:reduce){.spinner{animation:none}.tools-header:before,.tool summary:before{transition:none}}";
 
 КонецФункции
 
@@ -764,11 +767,12 @@
 	Если ШагиАгента.Количество() = 0 И Не ОперацияВыполняется Тогда
 		Возврат "";
 	КонецЕсли;
-	HTML = "<section class='tools'>";
-	Если ШагиАгента.Количество() > 0 Тогда
-		HTML = HTML + СтрШаблон(
-			"<div class='tools-header'><span>Вызовы инструментов</span>"
-			+ "<span class='tool-count'>%1</span></div>",
+	ЕстьШаги = ШагиАгента.Количество() > 0;
+	Если ЕстьШаги Тогда
+		HTML = СтрШаблон(
+			"<details class='tools' open><summary class='tools-header'>"
+			+ "<span>Вызовы инструментов</span><span class='tool-count'>%1</span>"
+			+ "</summary><div class='tools-content'>",
 			ШагиАгента.Количество());
 		Для Каждого Шаг Из ШагиАгента Цикл
 			КлассСтатуса = "pending";
@@ -803,10 +807,15 @@
 				ЭкранироватьHTML(Длительность),
 				ТелоИнструмента);
 		КонецЦикла;
+	Иначе
+		HTML = "<section class='tools'>";
 	КонецЕсли;
 	Если ОперацияВыполняется Тогда
 		HTML = HTML + "<div class='activity'><span class='spinner'></span><span>"
 			+ ЭкранироватьHTML(СтатусОперации) + "</span></div>";
+	КонецЕсли;
+	Если ЕстьШаги Тогда
+		Возврат HTML + "</div></details>";
 	КонецЕсли;
 	Возврат HTML + "</section>";
 
