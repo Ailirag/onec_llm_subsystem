@@ -31,14 +31,14 @@
 					<v8:content>Провайдеры</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment />
 			<Hierarchical>false</Hierarchical>
 			<HierarchyType>HierarchyFoldersAndItems</HierarchyType>
 			<LimitLevelCount>false</LimitLevelCount>
 			<LevelCount>2</LevelCount>
 			<FoldersOnTop>true</FoldersOnTop>
 			<UseStandardCommands>true</UseStandardCommands>
-			<Owners/>
+			<Owners />
 			<SubordinationUse>ToItems</SubordinationUse>
 			<CodeLength>9</CodeLength>
 			<DescriptionLength>25</DescriptionLength>
@@ -48,7 +48,7 @@
 			<CheckUnique>true</CheckUnique>
 			<Autonumbering>true</Autonumbering>
 			<DefaultPresentation>AsDescription</DefaultPresentation>
-			<Characteristics/>
+			<Characteristics />
 			<PredefinedDataUpdate>Auto</PredefinedDataUpdate>
 			<EditType>InDialog</EditType>
 			<QuickChoice>false</QuickChoice>
@@ -61,25 +61,25 @@
 			<FullTextSearchOnInputByString>DontUse</FullTextSearchOnInputByString>
 			<ChoiceDataGetModeOnInputByString>Directly</ChoiceDataGetModeOnInputByString>
 			<DefaultObjectForm>Catalog.AI_Провайдеры.Form.ФормаЭлемента</DefaultObjectForm>
-			<DefaultFolderForm/>
-			<DefaultListForm/>
-			<DefaultChoiceForm/>
-			<DefaultFolderChoiceForm/>
-			<AuxiliaryObjectForm/>
-			<AuxiliaryFolderForm/>
-			<AuxiliaryListForm/>
-			<AuxiliaryChoiceForm/>
-			<AuxiliaryFolderChoiceForm/>
+			<DefaultFolderForm />
+			<DefaultListForm />
+			<DefaultChoiceForm />
+			<DefaultFolderChoiceForm />
+			<AuxiliaryObjectForm />
+			<AuxiliaryFolderForm />
+			<AuxiliaryListForm />
+			<AuxiliaryChoiceForm />
+			<AuxiliaryFolderChoiceForm />
 			<IncludeHelpInContents>false</IncludeHelpInContents>
-			<BasedOn/>
-			<DataLockFields/>
+			<BasedOn />
+			<DataLockFields />
 			<DataLockControlMode>Managed</DataLockControlMode>
 			<FullTextSearch>Use</FullTextSearch>
-			<ObjectPresentation/>
-			<ExtendedObjectPresentation/>
-			<ListPresentation/>
-			<ExtendedListPresentation/>
-			<Explanation/>
+			<ObjectPresentation />
+			<ExtendedObjectPresentation />
+			<ListPresentation />
+			<ExtendedListPresentation />
+			<Explanation />
 			<CreateOnInput>Use</CreateOnInput>
 			<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 			<DataHistory>DontUse</DataHistory>
@@ -96,30 +96,30 @@
 							<v8:content>Активен</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 					<Type>
 						<v8:Type>xs:boolean</v8:Type>
 					</Type>
 					<PasswordMode>false</PasswordMode>
-					<Format/>
-					<EditFormat/>
-					<ToolTip/>
+					<Format />
+					<EditFormat />
+					<ToolTip />
 					<MarkNegatives>false</MarkNegatives>
-					<Mask/>
+					<Mask />
 					<MultiLine>false</MultiLine>
 					<ExtendedEdit>false</ExtendedEdit>
-					<MinValue xsi:nil="true"/>
-					<MaxValue xsi:nil="true"/>
+					<MinValue xsi:nil="true" />
+					<MaxValue xsi:nil="true" />
 					<FillFromFillingValue>false</FillFromFillingValue>
-					<FillValue xsi:nil="true"/>
+					<FillValue xsi:nil="true" />
 					<FillChecking>DontCheck</FillChecking>
 					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
-					<ChoiceParameterLinks/>
-					<ChoiceParameters/>
+					<ChoiceParameterLinks />
+					<ChoiceParameters />
 					<QuickChoice>Auto</QuickChoice>
 					<CreateOnInput>Auto</CreateOnInput>
-					<ChoiceForm/>
-					<LinkByType/>
+					<ChoiceForm />
+					<LinkByType />
 					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 					<Use>ForItem</Use>
 					<Indexing>DontIndex</Indexing>
@@ -136,30 +136,30 @@
 							<v8:content>APIКлюч</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 					<Type>
 						<v8:Type>v8:ValueStorage</v8:Type>
 					</Type>
 					<PasswordMode>false</PasswordMode>
-					<Format/>
-					<EditFormat/>
-					<ToolTip/>
+					<Format />
+					<EditFormat />
+					<ToolTip />
 					<MarkNegatives>false</MarkNegatives>
-					<Mask/>
+					<Mask />
 					<MultiLine>false</MultiLine>
 					<ExtendedEdit>false</ExtendedEdit>
-					<MinValue xsi:nil="true"/>
-					<MaxValue xsi:nil="true"/>
+					<MinValue xsi:nil="true" />
+					<MaxValue xsi:nil="true" />
 					<FillFromFillingValue>false</FillFromFillingValue>
-					<FillValue xsi:nil="true"/>
+					<FillValue xsi:nil="true" />
 					<FillChecking>DontCheck</FillChecking>
 					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
-					<ChoiceParameterLinks/>
-					<ChoiceParameters/>
+					<ChoiceParameterLinks />
+					<ChoiceParameters />
 					<QuickChoice>Auto</QuickChoice>
 					<CreateOnInput>Auto</CreateOnInput>
-					<ChoiceForm/>
-					<LinkByType/>
+					<ChoiceForm />
+					<LinkByType />
 					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 					<Use>ForItem</Use>
 					<Indexing>DontIndex</Indexing>
@@ -176,7 +176,7 @@
 							<v8:content>Макс количество потоков</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 					<Type>
 						<v8:Type>xs:decimal</v8:Type>
 						<v8:NumberQualifiers>
@@ -186,25 +186,25 @@
 						</v8:NumberQualifiers>
 					</Type>
 					<PasswordMode>false</PasswordMode>
-					<Format/>
-					<EditFormat/>
-					<ToolTip/>
+					<Format />
+					<EditFormat />
+					<ToolTip />
 					<MarkNegatives>false</MarkNegatives>
-					<Mask/>
+					<Mask />
 					<MultiLine>false</MultiLine>
 					<ExtendedEdit>false</ExtendedEdit>
-					<MinValue xsi:nil="true"/>
-					<MaxValue xsi:nil="true"/>
+					<MinValue xsi:nil="true" />
+					<MaxValue xsi:nil="true" />
 					<FillFromFillingValue>false</FillFromFillingValue>
-					<FillValue xsi:nil="true"/>
+					<FillValue xsi:nil="true" />
 					<FillChecking>DontCheck</FillChecking>
 					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
-					<ChoiceParameterLinks/>
-					<ChoiceParameters/>
+					<ChoiceParameterLinks />
+					<ChoiceParameters />
 					<QuickChoice>Auto</QuickChoice>
 					<CreateOnInput>Auto</CreateOnInput>
-					<ChoiceForm/>
-					<LinkByType/>
+					<ChoiceForm />
+					<LinkByType />
 					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 					<Use>ForItem</Use>
 					<Indexing>DontIndex</Indexing>
@@ -221,30 +221,30 @@
 							<v8:content>Провайдер источник API</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 					<Type>
 						<v8:Type>cfg:CatalogRef.AI_Провайдеры</v8:Type>
 					</Type>
 					<PasswordMode>false</PasswordMode>
-					<Format/>
-					<EditFormat/>
-					<ToolTip/>
+					<Format />
+					<EditFormat />
+					<ToolTip />
 					<MarkNegatives>false</MarkNegatives>
-					<Mask/>
+					<Mask />
 					<MultiLine>false</MultiLine>
 					<ExtendedEdit>false</ExtendedEdit>
-					<MinValue xsi:nil="true"/>
-					<MaxValue xsi:nil="true"/>
+					<MinValue xsi:nil="true" />
+					<MaxValue xsi:nil="true" />
 					<FillFromFillingValue>false</FillFromFillingValue>
-					<FillValue xsi:nil="true"/>
+					<FillValue xsi:nil="true" />
 					<FillChecking>DontCheck</FillChecking>
 					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
-					<ChoiceParameterLinks/>
-					<ChoiceParameters/>
+					<ChoiceParameterLinks />
+					<ChoiceParameters />
 					<QuickChoice>Auto</QuickChoice>
 					<CreateOnInput>Auto</CreateOnInput>
-					<ChoiceForm/>
-					<LinkByType/>
+					<ChoiceForm />
+					<LinkByType />
 					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 					<Use>ForItem</Use>
 					<Indexing>DontIndex</Indexing>
@@ -271,25 +271,25 @@
 						</v8:NumberQualifiers>
 					</Type>
 					<PasswordMode>false</PasswordMode>
-					<Format/>
-					<EditFormat/>
-					<ToolTip/>
+					<Format />
+					<EditFormat />
+					<ToolTip />
 					<MarkNegatives>false</MarkNegatives>
-					<Mask/>
+					<Mask />
 					<MultiLine>false</MultiLine>
 					<ExtendedEdit>false</ExtendedEdit>
-					<MinValue xsi:nil="true"/>
-					<MaxValue xsi:nil="true"/>
+					<MinValue xsi:nil="true" />
+					<MaxValue xsi:nil="true" />
 					<FillFromFillingValue>false</FillFromFillingValue>
-					<FillValue xsi:nil="true"/>
+					<FillValue xsi:nil="true" />
 					<FillChecking>DontCheck</FillChecking>
 					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
-					<ChoiceParameterLinks/>
-					<ChoiceParameters/>
+					<ChoiceParameterLinks />
+					<ChoiceParameters />
 					<QuickChoice>Auto</QuickChoice>
 					<CreateOnInput>Auto</CreateOnInput>
-					<ChoiceForm/>
-					<LinkByType/>
+					<ChoiceForm />
+					<LinkByType />
 					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 					<Use>ForItem</Use>
 					<Indexing>DontIndex</Indexing>
@@ -306,7 +306,7 @@
 							<v8:content>Лимит токенов в сутки</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 					<Type>
 						<v8:Type>xs:decimal</v8:Type>
 						<v8:NumberQualifiers>
@@ -316,25 +316,25 @@
 						</v8:NumberQualifiers>
 					</Type>
 					<PasswordMode>false</PasswordMode>
-					<Format/>
-					<EditFormat/>
-					<ToolTip/>
+					<Format />
+					<EditFormat />
+					<ToolTip />
 					<MarkNegatives>false</MarkNegatives>
-					<Mask/>
+					<Mask />
 					<MultiLine>false</MultiLine>
 					<ExtendedEdit>false</ExtendedEdit>
-					<MinValue xsi:nil="true"/>
-					<MaxValue xsi:nil="true"/>
+					<MinValue xsi:nil="true" />
+					<MaxValue xsi:nil="true" />
 					<FillFromFillingValue>false</FillFromFillingValue>
-					<FillValue xsi:nil="true"/>
+					<FillValue xsi:nil="true" />
 					<FillChecking>DontCheck</FillChecking>
 					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
-					<ChoiceParameterLinks/>
-					<ChoiceParameters/>
+					<ChoiceParameterLinks />
+					<ChoiceParameters />
 					<QuickChoice>Auto</QuickChoice>
 					<CreateOnInput>Auto</CreateOnInput>
-					<ChoiceForm/>
-					<LinkByType/>
+					<ChoiceForm />
+					<LinkByType />
 					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 					<Use>ForItem</Use>
 					<Indexing>DontIndex</Indexing>
@@ -342,6 +342,47 @@
 					<DataHistory>Use</DataHistory>
 				</Properties>
 			</Attribute>
+			<Attribute uuid="9a631a4f-e533-433a-8468-82d204b61464">
+				<Properties>
+					<Name>МодельАнализаВложений</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Модель анализа вложений</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment />
+					<Type>
+						<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:CatalogRef.AI_Модели</v8:Type>
+					</Type>
+					<PasswordMode>false</PasswordMode>
+					<Format />
+					<EditFormat />
+					<ToolTip />
+					<MarkNegatives>false</MarkNegatives>
+					<Mask />
+					<MultiLine>false</MultiLine>
+					<ExtendedEdit>false</ExtendedEdit>
+					<MinValue xsi:nil="true" />
+					<MaxValue xsi:nil="true" />
+					<FillFromFillingValue>false</FillFromFillingValue>
+					<FillValue xsi:nil="true" />
+					<FillChecking>DontCheck</FillChecking>
+					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+					<ChoiceParameterLinks />
+					<ChoiceParameters />
+					<QuickChoice>Auto</QuickChoice>
+					<CreateOnInput>Auto</CreateOnInput>
+					<ChoiceForm />
+					<LinkByType />
+					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
+					<Use>ForItem</Use>
+					<Indexing>DontIndex</Indexing>
+					<FullTextSearch>Use</FullTextSearch>
+					<DataHistory>Use</DataHistory>
+				</Properties>
+			</Attribute>
+			<Form>ВыборМоделей</Form>
 			<TabularSection uuid="e0645b27-48b6-40f3-a237-771222cd349c">
 				<InternalInfo>
 					<xr:GeneratedType name="CatalogTabularSection.AI_Провайдеры.АдресаСервисов" category="TabularSection">
@@ -361,8 +402,8 @@
 							<v8:content>Адреса сервисов</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
-					<ToolTip/>
+					<Comment />
+					<ToolTip />
 					<FillChecking>ShowError</FillChecking>
 					<Use>ForItem</Use>
 					<LineNumberLength>9</LineNumberLength>
@@ -377,7 +418,7 @@
 									<v8:content>Базовый URL</v8:content>
 								</v8:item>
 							</Synonym>
-							<Comment/>
+							<Comment />
 							<Type>
 								<v8:Type>xs:string</v8:Type>
 								<v8:StringQualifiers>
@@ -386,23 +427,23 @@
 								</v8:StringQualifiers>
 							</Type>
 							<PasswordMode>false</PasswordMode>
-							<Format/>
-							<EditFormat/>
-							<ToolTip/>
+							<Format />
+							<EditFormat />
+							<ToolTip />
 							<MarkNegatives>false</MarkNegatives>
-							<Mask/>
+							<Mask />
 							<MultiLine>false</MultiLine>
 							<ExtendedEdit>false</ExtendedEdit>
-							<MinValue xsi:nil="true"/>
-							<MaxValue xsi:nil="true"/>
+							<MinValue xsi:nil="true" />
+							<MaxValue xsi:nil="true" />
 							<FillChecking>DontCheck</FillChecking>
 							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
-							<ChoiceParameterLinks/>
-							<ChoiceParameters/>
+							<ChoiceParameterLinks />
+							<ChoiceParameters />
 							<QuickChoice>Auto</QuickChoice>
 							<CreateOnInput>Auto</CreateOnInput>
-							<ChoiceForm/>
-							<LinkByType/>
+							<ChoiceForm />
+							<LinkByType />
 							<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 							<Indexing>DontIndex</Indexing>
 							<FullTextSearch>Use</FullTextSearch>
@@ -418,28 +459,28 @@
 									<v8:content>Тип</v8:content>
 								</v8:item>
 							</Synonym>
-							<Comment/>
+							<Comment />
 							<Type>
 								<v8:Type>cfg:EnumRef.AI_ТипAPI</v8:Type>
 							</Type>
 							<PasswordMode>false</PasswordMode>
-							<Format/>
-							<EditFormat/>
-							<ToolTip/>
+							<Format />
+							<EditFormat />
+							<ToolTip />
 							<MarkNegatives>false</MarkNegatives>
-							<Mask/>
+							<Mask />
 							<MultiLine>false</MultiLine>
 							<ExtendedEdit>false</ExtendedEdit>
-							<MinValue xsi:nil="true"/>
-							<MaxValue xsi:nil="true"/>
+							<MinValue xsi:nil="true" />
+							<MaxValue xsi:nil="true" />
 							<FillChecking>DontCheck</FillChecking>
 							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
-							<ChoiceParameterLinks/>
-							<ChoiceParameters/>
+							<ChoiceParameterLinks />
+							<ChoiceParameters />
 							<QuickChoice>Auto</QuickChoice>
 							<CreateOnInput>Auto</CreateOnInput>
-							<ChoiceForm/>
-							<LinkByType/>
+							<ChoiceForm />
+							<LinkByType />
 							<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 							<Indexing>DontIndex</Indexing>
 							<FullTextSearch>Use</FullTextSearch>
@@ -455,7 +496,7 @@
 									<v8:content>Описание</v8:content>
 								</v8:item>
 							</Synonym>
-							<Comment/>
+							<Comment />
 							<Type>
 								<v8:Type>xs:string</v8:Type>
 								<v8:StringQualifiers>
@@ -464,23 +505,23 @@
 								</v8:StringQualifiers>
 							</Type>
 							<PasswordMode>false</PasswordMode>
-							<Format/>
-							<EditFormat/>
-							<ToolTip/>
+							<Format />
+							<EditFormat />
+							<ToolTip />
 							<MarkNegatives>false</MarkNegatives>
-							<Mask/>
+							<Mask />
 							<MultiLine>false</MultiLine>
 							<ExtendedEdit>false</ExtendedEdit>
-							<MinValue xsi:nil="true"/>
-							<MaxValue xsi:nil="true"/>
+							<MinValue xsi:nil="true" />
+							<MaxValue xsi:nil="true" />
 							<FillChecking>DontCheck</FillChecking>
 							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
-							<ChoiceParameterLinks/>
-							<ChoiceParameters/>
+							<ChoiceParameterLinks />
+							<ChoiceParameters />
 							<QuickChoice>Auto</QuickChoice>
 							<CreateOnInput>Auto</CreateOnInput>
-							<ChoiceForm/>
-							<LinkByType/>
+							<ChoiceForm />
+							<LinkByType />
 							<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 							<Indexing>DontIndex</Indexing>
 							<FullTextSearch>Use</FullTextSearch>

@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Профили доступа агентов к данным</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1" />
+	<ChildItems>
+		<UsualGroup name="ГруппаШапка" id="1">
+			<Group>Vertical</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаШапкаРасширеннаяПодсказка" id="2" />
+			<ChildItems>
+				<UsualGroup name="ГруппаКодНаименование" id="3">
+					<Group>Horizontal</Group>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ГруппаКодНаименованиеРасширеннаяПодсказка" id="4" />
+					<ChildItems>
+						<InputField name="Наименование" id="5">
+							<DataPath>Объект.Description</DataPath>
+							<ContextMenu name="НаименованиеКонтекстноеМеню" id="6" />
+							<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="7" />
+						</InputField>
+						<InputField name="Код" id="8">
+							<DataPath>Объект.Code</DataPath>
+							<ContextMenu name="КодКонтекстноеМеню" id="9" />
+							<ExtendedTooltip name="КодРасширеннаяПодсказка" id="10" />
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<CheckBoxField name="РазрешитьВыполнениеЗапросов" id="11">
+					<DataPath>Объект.РазрешитьВыполнениеЗапросов</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<TitleLocation>Right</TitleLocation>
+					<ContextMenu name="РазрешитьВыполнениеЗапросовКонтекстноеМеню" id="12" />
+					<ExtendedTooltip name="РазрешитьВыполнениеЗапросовРасширеннаяПодсказка" id="13" />
+				</CheckBoxField>
+				<InputField name="МаксимумШагов" id="14">
+					<DataPath>Объект.МаксимумШагов</DataPath>
+					<ContextMenu name="МаксимумШаговКонтекстноеМеню" id="15" />
+					<ExtendedTooltip name="МаксимумШаговРасширеннаяПодсказка" id="16" />
+				</InputField>
+				<InputField name="МаксимумЗапросовКДанным" id="17">
+					<DataPath>Объект.МаксимумЗапросовКДанным</DataPath>
+					<ContextMenu name="МаксимумЗапросовКДаннымКонтекстноеМеню" id="18" />
+					<ExtendedTooltip name="МаксимумЗапросовКДаннымРасширеннаяПодсказка" id="19" />
+				</InputField>
+				<InputField name="МаксимумСтрокРезультата" id="20">
+					<DataPath>Объект.МаксимумСтрокРезультата</DataPath>
+					<ContextMenu name="МаксимумСтрокРезультатаКонтекстноеМеню" id="21" />
+					<ExtendedTooltip name="МаксимумСтрокРезультатаРасширеннаяПодсказка" id="22" />
+				</InputField>
+				<InputField name="МаксимальнаяДлинаЗапроса" id="23">
+					<DataPath>Объект.МаксимальнаяДлинаЗапроса</DataPath>
+					<ContextMenu name="МаксимальнаяДлинаЗапросаКонтекстноеМеню" id="24" />
+					<ExtendedTooltip name="МаксимальнаяДлинаЗапросаРасширеннаяПодсказка" id="25" />
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаПодбораМетаданных" id="72">
+			<Group>AlwaysHorizontal</Group>
+			<ExtendedTooltip name="ГруппаПодбораМетаданныхРасширеннаяПодсказка" id="73" />
+			<ChildItems>
+				<Button name="ПодобратьОбъектыМетаданных" id="74">
+					<CommandName>Form.Command.ПодобратьОбъектыМетаданных</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Подобрать объекты</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.Select</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<Representation>PictureAndText</Representation>
+					<ExtendedTooltip name="ПодобратьОбъектыМетаданныхРасширеннаяПодсказка" id="75" />
+				</Button>
+				<Button name="ПодобратьОграниченныеПоля" id="76">
+					<CommandName>Form.Command.ПодобратьОграниченныеПоля</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Подобрать поля</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.Select</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<Representation>PictureAndText</Representation>
+					<ExtendedTooltip name="ПодобратьОграниченныеПоляРасширеннаяПодсказка" id="77" />
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<Table name="РазрешенныеОбъекты" id="26">
+			<DataPath>Объект.РазрешенныеОбъекты</DataPath>
+			<ContextMenu name="РазрешенныеОбъектыКонтекстноеМеню" id="27" />
+			<AutoCommandBar name="РазрешенныеОбъектыКоманднаяПанель" id="28" />
+			<ExtendedTooltip name="РазрешенныеОбъектыРасширеннаяПодсказка" id="29" />
+			<SearchStringAddition name="РазрешенныеОбъектыСтрокаПоиска" id="30">
+				<AdditionSource>
+					<Item>РазрешенныеОбъекты</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="РазрешенныеОбъектыСтрокаПоискаКонтекстноеМеню" id="31" />
+				<ExtendedTooltip name="РазрешенныеОбъектыСтрокаПоискаРасширеннаяПодсказка" id="32" />
+			</SearchStringAddition>
+			<ViewStatusAddition name="РазрешенныеОбъектыСостояниеПросмотра" id="33">
+				<AdditionSource>
+					<Item>РазрешенныеОбъекты</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="РазрешенныеОбъектыСостояниеПросмотраКонтекстноеМеню" id="34" />
+				<ExtendedTooltip name="РазрешенныеОбъектыСостояниеПросмотраРасширеннаяПодсказка" id="35" />
+			</ViewStatusAddition>
+			<SearchControlAddition name="РазрешенныеОбъектыУправлениеПоиском" id="36">
+				<AdditionSource>
+					<Item>РазрешенныеОбъекты</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="РазрешенныеОбъектыУправлениеПоискомКонтекстноеМеню" id="37" />
+				<ExtendedTooltip name="РазрешенныеОбъектыУправлениеПоискомРасширеннаяПодсказка" id="38" />
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="РазрешенныеОбъектыНомерСтроки" id="39">
+					<DataPath>Объект.РазрешенныеОбъекты.LineNumber</DataPath>
+					<ContextMenu name="РазрешенныеОбъектыНомерСтрокиКонтекстноеМеню" id="40" />
+					<ExtendedTooltip name="РазрешенныеОбъектыНомерСтрокиРасширеннаяПодсказка" id="41" />
+				</LabelField>
+				<InputField name="РазрешенныеОбъектыПолноеИмя" id="42">
+					<DataPath>Объект.РазрешенныеОбъекты.ПолноеИмя</DataPath>
+					<ContextMenu name="РазрешенныеОбъектыПолноеИмяКонтекстноеМеню" id="43" />
+					<ExtendedTooltip name="РазрешенныеОбъектыПолноеИмяРасширеннаяПодсказка" id="44" />
+				</InputField>
+				<CheckBoxField name="РазрешенныеОбъектыТребоватьПериод" id="45">
+					<DataPath>Объект.РазрешенныеОбъекты.ТребоватьПериод</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<TitleLocation>Right</TitleLocation>
+					<ContextMenu name="РазрешенныеОбъектыТребоватьПериодКонтекстноеМеню" id="46" />
+					<ExtendedTooltip name="РазрешенныеОбъектыТребоватьПериодРасширеннаяПодсказка" id="47" />
+				</CheckBoxField>
+			</ChildItems>
+		</Table>
+		<Table name="ОграниченныеПоля" id="48">
+			<DataPath>Объект.ОграниченныеПоля</DataPath>
+			<ContextMenu name="ОграниченныеПоляКонтекстноеМеню" id="49" />
+			<AutoCommandBar name="ОграниченныеПоляКоманднаяПанель" id="50" />
+			<ExtendedTooltip name="ОграниченныеПоляРасширеннаяПодсказка" id="51" />
+			<SearchStringAddition name="ОграниченныеПоляСтрокаПоиска" id="52">
+				<AdditionSource>
+					<Item>ОграниченныеПоля</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ОграниченныеПоляСтрокаПоискаКонтекстноеМеню" id="53" />
+				<ExtendedTooltip name="ОграниченныеПоляСтрокаПоискаРасширеннаяПодсказка" id="54" />
+			</SearchStringAddition>
+			<ViewStatusAddition name="ОграниченныеПоляСостояниеПросмотра" id="55">
+				<AdditionSource>
+					<Item>ОграниченныеПоля</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ОграниченныеПоляСостояниеПросмотраКонтекстноеМеню" id="56" />
+				<ExtendedTooltip name="ОграниченныеПоляСостояниеПросмотраРасширеннаяПодсказка" id="57" />
+			</ViewStatusAddition>
+			<SearchControlAddition name="ОграниченныеПоляУправлениеПоиском" id="58">
+				<AdditionSource>
+					<Item>ОграниченныеПоля</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ОграниченныеПоляУправлениеПоискомКонтекстноеМеню" id="59" />
+				<ExtendedTooltip name="ОграниченныеПоляУправлениеПоискомРасширеннаяПодсказка" id="60" />
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="ОграниченныеПоляНомерСтроки" id="61">
+					<DataPath>Объект.ОграниченныеПоля.LineNumber</DataPath>
+					<ContextMenu name="ОграниченныеПоляНомерСтрокиКонтекстноеМеню" id="62" />
+					<ExtendedTooltip name="ОграниченныеПоляНомерСтрокиРасширеннаяПодсказка" id="63" />
+				</LabelField>
+				<InputField name="ОграниченныеПоляПолноеИмяОбъекта" id="64">
+					<DataPath>Объект.ОграниченныеПоля.ПолноеИмяОбъекта</DataPath>
+					<ContextMenu name="ОграниченныеПоляПолноеИмяОбъектаКонтекстноеМеню" id="65" />
+					<ExtendedTooltip name="ОграниченныеПоляПолноеИмяОбъектаРасширеннаяПодсказка" id="66" />
+				</InputField>
+				<InputField name="ОграниченныеПоляИмяПоля" id="67">
+					<DataPath>Объект.ОграниченныеПоля.ИмяПоля</DataPath>
+					<ContextMenu name="ОграниченныеПоляИмяПоляКонтекстноеМеню" id="68" />
+					<ExtendedTooltip name="ОграниченныеПоляИмяПоляРасширеннаяПодсказка" id="69" />
+				</InputField>
+			</ChildItems>
+		</Table>
+		<UsualGroup name="ГруппаДополнительныеРеквизиты" id="70">
+			<Group>Vertical</Group>
+			<ExtendedTooltip name="ГруппаДополнительныеРеквизитыРасширеннаяПодсказка" id="71" />
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="72">
+			<Type>
+				<v8:Type>cfg:CatalogObject.AI_ПрофилиДоступаКДанным</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ПодобратьОбъектыМетаданных" id="1">
+			<Action>ПодобратьОбъектыМетаданных</Action>
+		</Command>
+		<Command name="ПодобратьОграниченныеПоля" id="2">
+			<Action>ПодобратьОграниченныеПоля</Action>
+		</Command>
+	</Commands>
+</Form>

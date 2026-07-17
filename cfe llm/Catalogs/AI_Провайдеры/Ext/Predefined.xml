@@ -24,4 +24,10 @@
 		<Description>Yandex</Description>
 		<IsFolder>false</IsFolder>
 	</Item>
+	<Item id="02eee1fd-596f-47f2-93da-244692172ba2">
+		<Name>ZAI</Name>
+		<Code>000000005</Code>
+		<Description>Z.AI</Description>
+		<IsFolder>false</IsFolder>
+	</Item>
 </PredefinedData>

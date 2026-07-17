@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Выбор моделей провайдера</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<ChildItems>
+			<Button name="ЗагрузитьВыбранные" id="1">
+				<Type>CommandBarButton</Type>
+				<DefaultButton>true</DefaultButton>
+				<CommandName>Form.Command.ЗагрузитьВыбранные</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Загрузить выбранные</v8:content>
+					</v8:item>
+				</Title>
+				<ExtendedTooltip name="ЗагрузитьВыбранныеРасширеннаяПодсказка" id="2"/>
+			</Button>
+			<Button name="Закрыть" id="3">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Close</CommandName>
+				<ExtendedTooltip name="ЗакрытьРасширеннаяПодсказка" id="4"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ГруппаСведений" id="5">
+			<Group>HorizontalIfPossible</Group>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаСведенийРасширеннаяПодсказка" id="6"/>
+			<ChildItems>
+				<InputField name="Провайдер" id="7">
+					<DataPath>Провайдер</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Провайдер</v8:content>
+						</v8:item>
+					</Title>
+					<ReadOnly>true</ReadOnly>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="ПровайдерКонтекстноеМеню" id="8"/>
+					<ExtendedTooltip name="ПровайдерРасширеннаяПодсказка" id="9"/>
+				</InputField>
+				<InputField name="Источник" id="10">
+					<DataPath>Источник</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Источник списка</v8:content>
+						</v8:item>
+					</Title>
+					<ReadOnly>true</ReadOnly>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="ИсточникКонтекстноеМеню" id="11"/>
+					<ExtendedTooltip name="ИсточникРасширеннаяПодсказка" id="12"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<CommandBar name="ПанельВыбора" id="13">
+			<ExtendedTooltip name="ПанельВыбораРасширеннаяПодсказка" id="14"/>
+			<ChildItems>
+				<Button name="ВыбратьВсе" id="15">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ВыбратьВсе</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выбрать все</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ВыбратьВсеРасширеннаяПодсказка" id="16"/>
+				</Button>
+				<Button name="СнятьВсе" id="17">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.СнятьВсе</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Снять все</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СнятьВсеРасширеннаяПодсказка" id="18"/>
+				</Button>
+			</ChildItems>
+		</CommandBar>
+		<Table name="Модели" id="19">
+			<Representation>List</Representation>
+			<CommandBarLocation>None</CommandBarLocation>
+			<Height>22</Height>
+			<DataPath>Модели</DataPath>
+			<SearchStringLocation>None</SearchStringLocation>
+			<ContextMenu name="МоделиКонтекстноеМеню" id="20"/>
+			<AutoCommandBar name="МоделиКоманднаяПанель" id="21"/>
+			<ExtendedTooltip name="МоделиРасширеннаяПодсказка" id="22"/>
+			<SearchStringAddition name="МоделиСтрокаПоиска" id="23">
+				<AdditionSource>
+					<Item>Модели</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="МоделиСтрокаПоискаКонтекстноеМеню" id="24"/>
+				<ExtendedTooltip name="МоделиСтрокаПоискаРасширеннаяПодсказка" id="25"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="МоделиСостояниеПросмотра" id="26">
+				<AdditionSource>
+					<Item>Модели</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="МоделиСостояниеПросмотраКонтекстноеМеню" id="27"/>
+				<ExtendedTooltip name="МоделиСостояниеПросмотраРасширеннаяПодсказка" id="28"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="МоделиУправлениеПоиском" id="29">
+				<AdditionSource>
+					<Item>Модели</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="МоделиУправлениеПоискомКонтекстноеМеню" id="30"/>
+				<ExtendedTooltip name="МоделиУправлениеПоискомРасширеннаяПодсказка" id="31"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<CheckBoxField name="Выбрана" id="32">
+					<DataPath>Модели.Выбрана</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выбрать</v8:content>
+						</v8:item>
+					</Title>
+					<TitleLocation>Right</TitleLocation>
+					<CheckBoxType>Auto</CheckBoxType>
+					<ContextMenu name="ВыбранаКонтекстноеМеню" id="33"/>
+					<ExtendedTooltip name="ВыбранаРасширеннаяПодсказка" id="34"/>
+				</CheckBoxField>
+				<InputField name="КодAPI" id="35">
+					<DataPath>Модели.КодAPI</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Код API</v8:content>
+						</v8:item>
+					</Title>
+					<ReadOnly>true</ReadOnly>
+					<Width>24</Width>
+					<ContextMenu name="КодAPIКонтекстноеМеню" id="36"/>
+					<ExtendedTooltip name="КодAPIРасширеннаяПодсказка" id="37"/>
+				</InputField>
+				<InputField name="Описание" id="38">
+					<DataPath>Модели.Описание</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Назначение модели</v8:content>
+						</v8:item>
+					</Title>
+					<ReadOnly>true</ReadOnly>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="ОписаниеКонтекстноеМеню" id="39"/>
+					<ExtendedTooltip name="ОписаниеРасширеннаяПодсказка" id="40"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Провайдер" id="41">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Провайдер</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>cfg:CatalogRef.AI_Провайдеры</v8:Type>
+			</Type>
+		</Attribute>
+		<Attribute name="Источник" id="42">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Источник</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>100</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="Модели" id="43">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Модели</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Выбрана" id="44">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="КодAPI" id="45">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>50</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Описание" id="46">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>150</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ВыбратьВсе" id="47">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выбрать все</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ВыбратьВсе</Action>
+		</Command>
+		<Command name="СнятьВсе" id="48">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Снять все</v8:content>
+				</v8:item>
+			</Title>
+			<Action>СнятьВсе</Action>
+		</Command>
+		<Command name="ЗагрузитьВыбранные" id="49">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Загрузить выбранные</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ЗагрузитьВыбранные</Action>
+		</Command>
+	</Commands>
+</Form>

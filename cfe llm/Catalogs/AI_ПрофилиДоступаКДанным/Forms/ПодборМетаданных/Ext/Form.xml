@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Подбор метаданных</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<Width>110</Width>
+	<Height>32</Height>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="ДобавитьВыбранное" id="1">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.ДобавитьВыбранное</CommandName>
+				<Title>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Добавить выбранное</v8:content>
+					</v8:item>
+				</Title>
+				<DefaultButton>true</DefaultButton>
+				<Picture>
+					<xr:Ref>StdPicture.Select</xr:Ref>
+					<xr:LoadTransparent>true</xr:LoadTransparent>
+				</Picture>
+				<ExtendedTooltip name="ДобавитьВыбранноеРасширеннаяПодсказка" id="2"/>
+			</Button>
+			<Button name="Закрыть" id="3">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Close</CommandName>
+				<ExtendedTooltip name="ЗакрытьРасширеннаяПодсказка" id="4"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ГруппаПоиска" id="5">
+			<Group>AlwaysHorizontal</Group>
+			<ExtendedTooltip name="ГруппаПоискаРасширеннаяПодсказка" id="6"/>
+			<ChildItems>
+				<InputField name="СтрокаПоиска" id="7">
+					<DataPath>СтрокаПоиска</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Поиск</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="СтрокаПоискаКонтекстноеМеню" id="8"/>
+					<ExtendedTooltip name="СтрокаПоискаРасширеннаяПодсказка" id="9"/>
+					<Events>
+						<Event name="TextEditEnd">СтрокаПоискаЗавершениеВводаТекста</Event>
+					</Events>
+				</InputField>
+				<Button name="Найти" id="10">
+					<CommandName>Form.Command.Найти</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Найти</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.Find</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<Representation>PictureAndText</Representation>
+					<ExtendedTooltip name="НайтиРасширеннаяПодсказка" id="11"/>
+				</Button>
+			</ChildItems>
+		</UsualGroup>
+		<CommandBar name="ПанельВыбора" id="12">
+			<ExtendedTooltip name="ПанельВыбораРасширеннаяПодсказка" id="13"/>
+			<ChildItems>
+				<Button name="ВыбратьВсе" id="14">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.ВыбратьВсе</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выбрать все</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="ВыбратьВсеРасширеннаяПодсказка" id="15"/>
+				</Button>
+				<Button name="СнятьВсе" id="16">
+					<Type>CommandBarButton</Type>
+					<CommandName>Form.Command.СнятьВсе</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Снять все</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СнятьВсеРасширеннаяПодсказка" id="17"/>
+				</Button>
+			</ChildItems>
+		</CommandBar>
+		<Table name="ДанныеПодбора" id="18">
+			<DataPath>ДанныеПодбора</DataPath>
+			<ChangeRowSet>false</ChangeRowSet>
+			<Height>22</Height>
+			<ContextMenu name="ДанныеПодбораКонтекстноеМеню" id="19"/>
+			<AutoCommandBar name="ДанныеПодбораКоманднаяПанель" id="20"/>
+			<ExtendedTooltip name="ДанныеПодбораРасширеннаяПодсказка" id="21"/>
+			<SearchStringAddition name="ДанныеПодбораСтрокаПоиска" id="22">
+				<AdditionSource>
+					<Item>ДанныеПодбора</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ДанныеПодбораСтрокаПоискаКонтекстноеМеню" id="23"/>
+				<ExtendedTooltip name="ДанныеПодбораСтрокаПоискаРасширеннаяПодсказка" id="24"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="ДанныеПодбораСостояниеПросмотра" id="25">
+				<AdditionSource>
+					<Item>ДанныеПодбора</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="ДанныеПодбораСостояниеПросмотраКонтекстноеМеню" id="26"/>
+				<ExtendedTooltip name="ДанныеПодбораСостояниеПросмотраРасширеннаяПодсказка" id="27"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="ДанныеПодбораУправлениеПоиском" id="28">
+				<AdditionSource>
+					<Item>ДанныеПодбора</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="ДанныеПодбораУправлениеПоискомКонтекстноеМеню" id="29"/>
+				<ExtendedTooltip name="ДанныеПодбораУправлениеПоискомРасширеннаяПодсказка" id="30"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<CheckBoxField name="ДанныеПодбораВыбрано" id="31">
+					<DataPath>ДанныеПодбора.Выбрано</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<TitleLocation>Right</TitleLocation>
+					<ContextMenu name="ДанныеПодбораВыбраноКонтекстноеМеню" id="32"/>
+					<ExtendedTooltip name="ДанныеПодбораВыбраноРасширеннаяПодсказка" id="33"/>
+				</CheckBoxField>
+				<InputField name="ДанныеПодбораПолноеИмяОбъекта" id="34">
+					<DataPath>ДанныеПодбора.ПолноеИмяОбъекта</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Объект</v8:content>
+						</v8:item>
+					</Title>
+					<ReadOnly>true</ReadOnly>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="ДанныеПодбораПолноеИмяОбъектаКонтекстноеМеню" id="35"/>
+					<ExtendedTooltip name="ДанныеПодбораПолноеИмяОбъектаРасширеннаяПодсказка" id="36"/>
+				</InputField>
+				<InputField name="ДанныеПодбораИмяПоля" id="37">
+					<DataPath>ДанныеПодбора.ИмяПоля</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Поле</v8:content>
+						</v8:item>
+					</Title>
+					<ReadOnly>true</ReadOnly>
+					<ContextMenu name="ДанныеПодбораИмяПоляКонтекстноеМеню" id="38"/>
+					<ExtendedTooltip name="ДанныеПодбораИмяПоляРасширеннаяПодсказка" id="39"/>
+				</InputField>
+				<InputField name="ДанныеПодбораПредставление" id="40">
+					<DataPath>ДанныеПодбора.Представление</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Представление</v8:content>
+						</v8:item>
+					</Title>
+					<ReadOnly>true</ReadOnly>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="ДанныеПодбораПредставлениеКонтекстноеМеню" id="41"/>
+					<ExtendedTooltip name="ДанныеПодбораПредставлениеРасширеннаяПодсказка" id="42"/>
+				</InputField>
+				<InputField name="ДанныеПодбораВид" id="43">
+					<DataPath>ДанныеПодбора.Вид</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Вид</v8:content>
+						</v8:item>
+					</Title>
+					<ReadOnly>true</ReadOnly>
+					<ContextMenu name="ДанныеПодбораВидКонтекстноеМеню" id="44"/>
+					<ExtendedTooltip name="ДанныеПодбораВидРасширеннаяПодсказка" id="45"/>
+				</InputField>
+				<CheckBoxField name="ДанныеПодбораТребоватьПериод" id="46">
+					<DataPath>ДанныеПодбора.ТребоватьПериод</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Требовать период</v8:content>
+						</v8:item>
+					</Title>
+					<CheckBoxType>Auto</CheckBoxType>
+					<TitleLocation>Right</TitleLocation>
+					<ContextMenu name="ДанныеПодбораТребоватьПериодКонтекстноеМеню" id="47"/>
+					<ExtendedTooltip name="ДанныеПодбораТребоватьПериодРасширеннаяПодсказка" id="48"/>
+				</CheckBoxField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Режим" id="49">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Режим</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>20</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="СтрокаПоиска" id="50">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Строка поиска</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>200</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="РазрешенныеОбъекты" id="51">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Разрешенные объекты</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="ПолноеИмя" id="52">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>200</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+		<Attribute name="ДанныеПодбора" id="53">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Данные подбора</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>v8:ValueTable</v8:Type>
+			</Type>
+			<Columns>
+				<Column name="Выбрано" id="54">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+				<Column name="ПолноеИмяОбъекта" id="55">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>200</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ИмяПоля" id="56">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>100</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Представление" id="57">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>300</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="Вид" id="58">
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>100</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+				</Column>
+				<Column name="ТребоватьПериод" id="59">
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+				</Column>
+			</Columns>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="Найти" id="60">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Найти</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ВыполнитьПоиск</Action>
+		</Command>
+		<Command name="ВыбратьВсе" id="61">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выбрать все</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ВыбратьВсе</Action>
+		</Command>
+		<Command name="СнятьВсе" id="62">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Снять все</v8:content>
+				</v8:item>
+			</Title>
+			<Action>СнятьВсе</Action>
+		</Command>
+		<Command name="ДобавитьВыбранное" id="63">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Добавить выбранное</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ДобавитьВыбранное</Action>
+		</Command>
+	</Commands>
+</Form>

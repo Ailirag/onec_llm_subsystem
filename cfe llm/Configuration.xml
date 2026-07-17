@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
 	<Configuration uuid="e19600ea-58c6-4d43-8a38-374e4e4b0bc6">
 		<InternalInfo>
@@ -40,7 +40,7 @@
 					<v8:content>LLM</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment />
 			<ConfigurationExtensionPurpose>Patch</ConfigurationExtensionPurpose>
 			<KeepMappingToExtendedConfigurationObjectsByIDs>true</KeepMappingToExtendedConfigurationObjectsByIDs>
 			<NamePrefix>Нейро_</NamePrefix>
@@ -53,14 +53,14 @@
 			<DefaultRoles>
 				<xr:Item xsi:type="xr:MDObjectRef">Role.AI_ПолныеПрава</xr:Item>
 			</DefaultRoles>
-			<Vendor/>
-			<Version/>
+			<Vendor />
+			<Version />
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
-			<BriefInformation/>
-			<DetailedInformation/>
-			<Copyright/>
-			<VendorInformationAddress/>
-			<ConfigurationInformationAddress/>
+			<BriefInformation />
+			<DetailedInformation />
+			<Copyright />
+			<VendorInformationAddress />
+			<ConfigurationInformationAddress />
 			<InterfaceCompatibilityMode>Taxi</InterfaceCompatibilityMode>
 		</Properties>
 		<ChildObjects>
@@ -72,6 +72,7 @@
 			<Role>AI_ПолныеПрава</Role>
 			<Role>AI_ПользовательLLM</Role>
 			<Role>AI_КонсольЗапросов</Role>
+			<Role>AI_АнализДанныхАгентом</Role>
 			<CommonTemplate>AI_ОписаниеРешения_ОписаниеОбъектов</CommonTemplate>
 			<CommonTemplate>AI_ОписаниеРешения_ПоследовательностьВызовов</CommonTemplate>
 			<CommonModule>OPI_BuildHash</CommonModule>
@@ -92,6 +93,14 @@
 			<CommonModule>AI_LMStudio</CommonModule>
 			<CommonModule>AI_TODO</CommonModule>
 			<CommonModule>AI_ОбслуживаниеСервер</CommonModule>
+			<CommonModule>AI_ZAI</CommonModule>
+			<CommonModule>AI_МетаданныеСервер</CommonModule>
+			<CommonModule>AI_ПолитикиАгента</CommonModule>
+			<CommonModule>AI_БезопасныеЗапросы</CommonModule>
+			<CommonModule>AI_ИнструментыАгента</CommonModule>
+			<CommonModule>AI_АгентскиеОперации</CommonModule>
+			<CommonModule>AI_АгентскиеОперацииСервер</CommonModule>
+			<CommonModule>AI_Вложения</CommonModule>
 			<EventSubscription>AI_RAG_ПередЗаписью</EventSubscription>
 			<EventSubscription>AI_КонтрольУникальностиИдентификатораЛогики</EventSubscription>
 			<ScheduledJob>AI_ОбработкаОчередиЗапросов</ScheduledJob>
@@ -112,12 +121,18 @@
 			<Catalog>AI_RAGКоллекции</Catalog>
 			<Catalog>AI_RAGВидыРазрешений</Catalog>
 			<Catalog>Контрагенты</Catalog>
+			<Catalog>AI_ПрофилиДоступаКДанным</Catalog>
+			<Catalog>AI_ВложенияДиалогов</Catalog>
 			<Enum>AI_ТипAPI</Enum>
 			<Enum>AI_ФорматыОтветов</Enum>
 			<Enum>AI_РольСообщения</Enum>
 			<Enum>AI_ТипыРазрешенийRAG</Enum>
 			<Enum>AI_РазмерКонтекстногоОкнаВебПоиска</Enum>
 			<Enum>AI_СтатусОчереди</Enum>
+			<Enum>AI_СтатусАгентскойОперации</Enum>
+			<Enum>AI_ВозможностьМодели</Enum>
+			<Enum>AI_СпособПередачиВложения</Enum>
+			<Enum>AI_СтатусВложения</Enum>
 			<DataProcessor>AI_Клиент</DataProcessor>
 			<DataProcessor>OPI_HTTPКлиент</DataProcessor>
 			<DataProcessor>AI_Песочница</DataProcessor>
@@ -129,6 +144,10 @@
 			<InformationRegister>AI_ОчередьВекторизации</InformationRegister>
 			<InformationRegister>AI_ИдентификаторыЧанков</InformationRegister>
 			<InformationRegister>AI_ОчередьПодготовкиКВекторизации</InformationRegister>
+			<InformationRegister>AI_АгентскиеОперации</InformationRegister>
+			<InformationRegister>AI_ШагиАгентскихОпераций</InformationRegister>
+			<InformationRegister>AI_ВозможностиМоделей</InformationRegister>
+			<InformationRegister>AI_ВложенияАгентскихОпераций</InformationRegister>
 		</ChildObjects>
 	</Configuration>
 </MetaDataObject>
