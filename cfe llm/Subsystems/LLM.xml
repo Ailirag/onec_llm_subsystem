@@ -74,6 +74,9 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_ВозможностьМодели</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_СпособПередачиВложения</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_СтатусВложения</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_MCPСерверы</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_MCPИнструменты</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_ПрофилиMCP</xr:Item>
 			</Content>
 		</Properties>
 		<ChildObjects>

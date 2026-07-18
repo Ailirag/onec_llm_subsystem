@@ -73,6 +73,7 @@
 			<Role>AI_ПользовательLLM</Role>
 			<Role>AI_КонсольЗапросов</Role>
 			<Role>AI_АнализДанныхАгентом</Role>
+			<Role>AI_АдминистраторMCP</Role>
 			<CommonTemplate>AI_ОписаниеРешения_ОписаниеОбъектов</CommonTemplate>
 			<CommonTemplate>AI_ОписаниеРешения_ПоследовательностьВызовов</CommonTemplate>
 			<CommonModule>OPI_BuildHash</CommonModule>
@@ -101,6 +102,10 @@
 			<CommonModule>AI_АгентскиеОперации</CommonModule>
 			<CommonModule>AI_АгентскиеОперацииСервер</CommonModule>
 			<CommonModule>AI_Вложения</CommonModule>
+			<CommonModule>AI_MCPТранспортHTTP</CommonModule>
+			<CommonModule>AI_MCPКлиент</CommonModule>
+			<CommonModule>AI_MCPРеестрИнструментов</CommonModule>
+			<CommonModule>AI_MCPСекреты</CommonModule>
 			<EventSubscription>AI_RAG_ПередЗаписью</EventSubscription>
 			<EventSubscription>AI_КонтрольУникальностиИдентификатораЛогики</EventSubscription>
 			<ScheduledJob>AI_ОбработкаОчередиЗапросов</ScheduledJob>
@@ -123,6 +128,9 @@
 			<Catalog>Контрагенты</Catalog>
 			<Catalog>AI_ПрофилиДоступаКДанным</Catalog>
 			<Catalog>AI_ВложенияДиалогов</Catalog>
+			<Catalog>AI_MCPСерверы</Catalog>
+			<Catalog>AI_MCPИнструменты</Catalog>
+			<Catalog>AI_ПрофилиMCP</Catalog>
 			<Enum>AI_ТипAPI</Enum>
 			<Enum>AI_ФорматыОтветов</Enum>
 			<Enum>AI_РольСообщения</Enum>
@@ -133,6 +141,8 @@
 			<Enum>AI_ВозможностьМодели</Enum>
 			<Enum>AI_СпособПередачиВложения</Enum>
 			<Enum>AI_СтатусВложения</Enum>
+			<Enum>AI_ТипАвторизацииMCP</Enum>
+			<Enum>AI_РежимВыполненияMCP</Enum>
 			<DataProcessor>AI_Клиент</DataProcessor>
 			<DataProcessor>OPI_HTTPКлиент</DataProcessor>
 			<DataProcessor>AI_Песочница</DataProcessor>
@@ -148,6 +158,7 @@
 			<InformationRegister>AI_ШагиАгентскихОпераций</InformationRegister>
 			<InformationRegister>AI_ВозможностиМоделей</InformationRegister>
 			<InformationRegister>AI_ВложенияАгентскихОпераций</InformationRegister>
+			<InformationRegister>AI_СекретыMCP</InformationRegister>
 		</ChildObjects>
 	</Configuration>
 </MetaDataObject>

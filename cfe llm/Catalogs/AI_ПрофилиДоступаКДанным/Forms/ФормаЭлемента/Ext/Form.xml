@@ -86,7 +86,7 @@
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Подобрать поля</v8:content>
+							<v8:content>Запретить поля</v8:content>
 						</v8:item>
 					</Title>
 					<Picture>
@@ -95,6 +95,21 @@
 					</Picture>
 					<Representation>PictureAndText</Representation>
 					<ExtendedTooltip name="ПодобратьОграниченныеПоляРасширеннаяПодсказка" id="77" />
+				</Button>
+				<Button name="РазрешитьВсеПоля" id="78">
+					<CommandName>Form.Command.РазрешитьВсеПоля</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Разрешить все поля</v8:content>
+						</v8:item>
+					</Title>
+					<Picture>
+						<xr:Ref>StdPicture.Delete</xr:Ref>
+						<xr:LoadTransparent>true</xr:LoadTransparent>
+					</Picture>
+					<Representation>PictureAndText</Representation>
+					<ExtendedTooltip name="РазрешитьВсеПоляРасширеннаяПодсказка" id="79" />
 				</Button>
 			</ChildItems>
 		</UsualGroup>
@@ -147,6 +162,17 @@
 				</CheckBoxField>
 			</ChildItems>
 		</Table>
+		<LabelDecoration name="ОписаниеЗапрещенныхПолей" id="80">
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Запрещенные поля. Пусто = доступны все поля.</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="ОписаниеЗапрещенныхПолейКонтекстноеМеню" id="81" />
+			<ExtendedTooltip name="ОписаниеЗапрещенныхПолейРасширеннаяПодсказка" id="82" />
+		</LabelDecoration>
 		<Table name="ОграниченныеПоля" id="48">
 			<DataPath>Объект.ОграниченныеПоля</DataPath>
 			<ContextMenu name="ОграниченныеПоляКонтекстноеМеню" id="49" />
@@ -214,6 +240,9 @@
 		</Command>
 		<Command name="ПодобратьОграниченныеПоля" id="2">
 			<Action>ПодобратьОграниченныеПоля</Action>
+		</Command>
+		<Command name="РазрешитьВсеПоля" id="3">
+			<Action>РазрешитьВсеПоля</Action>
 		</Command>
 	</Commands>
 </Form>

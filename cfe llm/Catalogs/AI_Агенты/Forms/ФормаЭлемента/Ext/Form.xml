@@ -88,6 +88,19 @@
 			<ContextMenu name="ПрофильДоступаКДаннымКонтекстноеМеню" id="156" />
 			<ExtendedTooltip name="ПрофильДоступаКДаннымРасширеннаяПодсказка" id="157" />
 		</InputField>
+		<InputField name="ПрофильMCP" id="158">
+			<DataPath>Объект.ПрофильMCP</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Профиль внешних MCP-инструментов</v8:content>
+				</v8:item>
+			</Title>
+			<ClearButton>true</ClearButton>
+			<HorizontalStretch>true</HorizontalStretch>
+			<ContextMenu name="ПрофильMCPКонтекстноеМеню" id="159" />
+			<ExtendedTooltip name="ПрофильMCPРасширеннаяПодсказка" id="160" />
+		</InputField>
 		<UsualGroup name="Группа1" id="46">
 			<Group>AlwaysHorizontal</Group>
 			<Representation>None</Representation>

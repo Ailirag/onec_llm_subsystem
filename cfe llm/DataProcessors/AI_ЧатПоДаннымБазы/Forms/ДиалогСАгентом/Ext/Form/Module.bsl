@@ -561,9 +561,22 @@
 Процедура ЛентаДиалогаДокументСформирован(Элемент)
 
 	Попытка
-		Элемент.Документ.defaultView.scrollTo(
-			0,
-			Элемент.Документ.body.scrollHeight);
+		РежимПрокрутки = Строка(
+			Элемент.Документ.body.getAttribute("data-scroll-mode"));
+		Если РежимПрокрутки = "preserve" Тогда
+			ПозицияПрокрутки = Число(
+				Элемент.Документ.body.getAttribute("data-scroll-top"));
+			Элемент.Документ.defaultView.scrollTo(0, ПозицияПрокрутки);
+		Иначе
+			ЯкорьКонца = Элемент.Документ.getElementById("chat-end");
+			Если ЯкорьКонца <> Неопределено Тогда
+				ЯкорьКонца.scrollIntoView(Ложь);
+			Иначе
+				Элемент.Документ.defaultView.scrollTo(
+					0,
+					Элемент.Документ.body.scrollHeight);
+			КонецЕсли;
+		КонецЕсли;
 	Исключение
 		Попытка
 			Элемент.Документ.body.scrollTop = Элемент.Документ.body.scrollHeight;
@@ -576,7 +589,8 @@
 &НаКлиенте
 Процедура ОбновитьHTMLДиалога()
 
-	НовыйHTML = СформироватьHTMLДиалога();
+	ПараметрыПрокрутки = ПолучитьПараметрыПрокруткиДиалога();
+	НовыйHTML = СформироватьHTMLДиалога(ПараметрыПрокрутки);
 	Если HTMLДиалога <> НовыйHTML Тогда
 		HTMLДиалога = НовыйHTML;
 	КонецЕсли;
@@ -584,12 +598,60 @@
 КонецПроцедуры
 
 &НаКлиенте
-Функция СформироватьHTMLДиалога()
+Функция ПолучитьПараметрыПрокруткиДиалога()
+
+	Параметры = Новый Структура(
+		"Режим,Позиция,ИнструментыРазвернуты",
+		"end",
+		0,
+		Истина);
+	Попытка
+		Документ = Элементы.ЛентаДиалога.Документ;
+		Лента = Документ.getElementById("chat");
+		Если Лента = Неопределено Тогда
+			Возврат Параметры;
+		КонецЕсли;
+
+		ПредыдущееКоличествоСообщений = Строка(
+			Лента.getAttribute("data-message-count"));
+		ПредыдущаяОперацияВыполняется = Строка(
+			Лента.getAttribute("data-running"));
+		ТекущееКоличествоСообщений = Формат(
+			Сообщения.Количество(),
+			"ЧГ=0");
+		Если ОперацияВыполняется
+			И ПредыдущаяОперацияВыполняется = "1"
+			И ПредыдущееКоличествоСообщений = ТекущееКоличествоСообщений Тогда
+			Параметры.Режим = "preserve";
+			Параметры.Позиция = Документ.documentElement.scrollTop;
+			Если Документ.body.scrollTop > Параметры.Позиция Тогда
+				Параметры.Позиция = Документ.body.scrollTop;
+			КонецЕсли;
+		КонецЕсли;
+
+		ПанельИнструментов = Документ.getElementById("tools-panel");
+		Если ПанельИнструментов <> Неопределено Тогда
+			Параметры.ИнструментыРазвернуты = ПанельИнструментов.hasAttribute("open");
+		КонецЕсли;
+	Исключение
+	КонецПопытки;
+	Возврат Параметры;
+
+КонецФункции
+
+&НаКлиенте
+Функция СформироватьHTMLДиалога(ПараметрыПрокрутки)
 
 	ЧастиHTML = Новый Массив;
 	ЧастиHTML.Добавить("<!DOCTYPE html><html><head><meta charset='utf-8'><style>");
 	ЧастиHTML.Добавить(СтилиHTMLДиалога());
-	ЧастиHTML.Добавить("</style></head><body><main class='chat' aria-live='polite'>");
+	ЧастиHTML.Добавить(СтрШаблон(
+		"</style></head><body data-scroll-mode='%1' data-scroll-top='%2'>"
+		+ "<main class='chat' id='chat' data-message-count='%3' data-running='%4' aria-live='polite'>",
+		ПараметрыПрокрутки.Режим,
+		Формат(ПараметрыПрокрутки.Позиция, "ЧГ=0"),
+		Формат(Сообщения.Количество(), "ЧГ=0"),
+		?(ОперацияВыполняется, "1", "0")));
 
 	НомерСообщения = 0;
 	Для Каждого СообщениеДиалога Из Сообщения Цикл
@@ -599,7 +661,8 @@
 			НомерСообщения));
 	КонецЦикла;
 
-	HTMLИнструментов = СформироватьHTMLИнструментов();
+	HTMLИнструментов = СформироватьHTMLИнструментов(
+		ПараметрыПрокрутки.ИнструментыРазвернуты);
 	Если ЗначениеЗаполнено(HTMLИнструментов) Тогда
 		ЧастиHTML.Добавить(HTMLИнструментов);
 	КонецЕсли;
@@ -683,12 +746,27 @@
 		|function copyMessage(id,button){
 		| var node=document.getElementById(id);if(!node){return;}
 		| var text=node.innerText||node.textContent||'';
-		| function done(){var old=button.innerHTML;button.innerHTML='&#10003;';setTimeout(function(){button.innerHTML=old;},900);}
-		| if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done);return;}
-		| var area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();
-		| try{document.execCommand('copy');done();}finally{document.body.removeChild(area);}
+		| var old=button.innerHTML,oldTitle=button.title;
+		| function done(){button.innerHTML='&#10003;';button.title='Скопировано';setTimeout(function(){button.innerHTML=old;button.title=oldTitle;},900);}
+		| function failed(){button.innerHTML='!';button.title='Не удалось скопировать';setTimeout(function(){button.innerHTML=old;button.title=oldTitle;},1200);}
+		| try{if(window.clipboardData&&window.clipboardData.setData&&window.clipboardData.setData('Text',text)){done();return;}}catch(ignore){}
+		| var area=document.createElement('textarea');area.value=text;area.setAttribute('readonly','');area.style.position='fixed';area.style.left='-10000px';area.style.top='0';document.body.appendChild(area);area.focus();area.select();
+		| try{if(area.setSelectionRange){area.setSelectionRange(0,area.value.length);}if(document.execCommand&&document.execCommand('copy')){document.body.removeChild(area);done();return;}}catch(ignore){}
+		| document.body.removeChild(area);
+		| if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,failed);return;}
+		| failed();
 		|}
-		|window.setTimeout(function(){window.scrollTo(0,document.body.scrollHeight);},0);
+		|function restoreChatScroll(){
+		| var mode=document.body.getAttribute('data-scroll-mode');
+		| if(mode==='preserve'){
+		|  var top=parseInt(document.body.getAttribute('data-scroll-top')||'0',10);
+		|  window.scrollTo(0,isNaN(top)?0:top);return;
+		| }
+		| var end=document.getElementById('chat-end');
+		| if(end&&end.scrollIntoView){end.scrollIntoView(false);return;}
+		| window.scrollTo(0,document.body.scrollHeight);
+		|}
+		|window.setTimeout(restoreChatScroll,0);
 		|</script>";
 
 КонецФункции
@@ -762,17 +840,19 @@
 КонецФункции
 
 &НаКлиенте
-Функция СформироватьHTMLИнструментов()
+Функция СформироватьHTMLИнструментов(ИнструментыРазвернуты)
 
 	Если ШагиАгента.Количество() = 0 И Не ОперацияВыполняется Тогда
 		Возврат "";
 	КонецЕсли;
 	ЕстьШаги = ШагиАгента.Количество() > 0;
 	Если ЕстьШаги Тогда
+		АтрибутРазвернуто = ?(ИнструментыРазвернуты, " open", "");
 		HTML = СтрШаблон(
-			"<details class='tools' open><summary class='tools-header'>"
-			+ "<span>Вызовы инструментов</span><span class='tool-count'>%1</span>"
+			"<details class='tools' id='tools-panel'%1><summary class='tools-header'>"
+			+ "<span>Вызовы инструментов</span><span class='tool-count'>%2</span>"
 			+ "</summary><div class='tools-content'>",
+			АтрибутРазвернуто,
 			ШагиАгента.Количество());
 		Для Каждого Шаг Из ШагиАгента Цикл
 			КлассСтатуса = "pending";

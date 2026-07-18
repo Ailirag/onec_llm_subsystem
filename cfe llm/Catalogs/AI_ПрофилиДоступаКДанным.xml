@@ -458,11 +458,16 @@
 					<Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Ограниченные поля</v8:content>
+							<v8:content>Запрещенные поля</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment />
-					<ToolTip />
+					<Comment>Поля, которые агенту запрещено использовать в запросах. Пустой список разрешает все поля разрешенных объектов.</Comment>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Пустой список означает доступ ко всем полям разрешенных объектов</v8:content>
+						</v8:item>
+					</ToolTip>
 					<FillChecking>DontCheck</FillChecking>
 					<StandardAttributes>
 						<xr:StandardAttribute name="LineNumber">

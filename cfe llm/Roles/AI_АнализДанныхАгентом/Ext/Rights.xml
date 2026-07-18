@@ -135,4 +135,26 @@
 		<right><name>Read</name><value>true</value></right>
 		<right><name>View</name><value>true</value></right>
 	</object>
+	<object>
+		<name>Catalog.AI_MCPСерверы</name>
+		<right><name>Read</name><value>true</value></right>
+		<right><name>View</name><value>true</value></right>
+		<right><name>InputByString</name><value>true</value></right>
+	</object>
+	<object>
+		<name>Catalog.AI_MCPИнструменты</name>
+		<right><name>Read</name><value>true</value></right>
+		<right><name>View</name><value>true</value></right>
+		<right><name>InputByString</name><value>true</value></right>
+	</object>
+	<object>
+		<name>Catalog.AI_ПрофилиMCP</name>
+		<right><name>Read</name><value>true</value></right>
+		<right><name>View</name><value>true</value></right>
+		<right><name>InputByString</name><value>true</value></right>
+	</object>
+	<object>
+		<name>InformationRegister.AI_СекретыMCP</name>
+		<right><name>Read</name><value>true</value></right>
+	</object>
 </Rights>
