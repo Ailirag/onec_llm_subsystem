@@ -1,0 +1,84 @@
+name: Ошибка
+description: Сообщить о воспроизводимой ошибке расширения
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Удалите из примеров API-ключи, токены, персональные данные и содержимое
+        рабочей информационной базы.
+
+  - type: input
+    id: extension-version
+    attributes:
+      label: Версия расширения
+      placeholder: 1.0.0.0 или хеш коммита
+    validations:
+      required: true
+
+  - type: input
+    id: platform-version
+    attributes:
+      label: Версия платформы 1С
+      placeholder: 8.3.xx.xxxx
+    validations:
+      required: true
+
+  - type: dropdown
+    id: client
+    attributes:
+      label: Клиент
+      options:
+        - Тонкий клиент
+        - Веб-клиент
+        - Толстый клиент
+        - Серверный или фоновый вызов
+    validations:
+      required: true
+
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Конфигурация
+      description: Название, версия и режим совместимости целевой конфигурации.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Шаги воспроизведения
+      description: Приведите минимальную последовательность действий.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Ожидаемое поведение
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Фактическое поведение
+      description: Приложите очищенный текст ошибки или снимок экрана.
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: Дополнительная диагностика
+      description: Провайдер, тип API и результат проверки модели без секретов.
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Проверка данных
+      options:
+        - label: В сообщении нет ключей, токенов и данных рабочей базы.
+          required: true

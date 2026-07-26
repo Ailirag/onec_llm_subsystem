@@ -1,0 +1,33 @@
+# Build and generated output
+/.build/
+/.tmp-*/
+/cf llm/
+
+# 1C binary deliverables and database dumps
+/*.cf
+/*.cfe
+/*.epf
+/*.erf
+/*.dt
+/*.1CD
+/*.1cd
+/*.bak
+
+# Local 1C/Codex workspace settings
+/.v8-project.json
+/.idea/
+/.vscode/
+
+# Credentials and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.pfx
+*.key
+
+# Logs and operating-system files
+*.log
+*.tmp
+Thumbs.db
+.DS_Store

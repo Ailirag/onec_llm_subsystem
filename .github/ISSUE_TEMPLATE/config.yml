@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Сообщить об уязвимости
+    url: https://github.com/Ailirag/onec_llm_subsystem/security/advisories/new
+    about: Не публикуйте уязвимости и данные рабочей базы в открытых issue.

@@ -3,6 +3,9 @@
 	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
 	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
 	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1" />
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
 	<ChildItems>
 		<InputField name="Код" id="1">
 			<DataPath>Объект.Code</DataPath>
@@ -520,6 +523,196 @@
 								</UsualGroup>
 							</ChildItems>
 						</Page>
+						<Page name="СтраницаДоступ" id="161">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Доступ</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="СтраницаДоступРасширеннаяПодсказка" id="162" />
+							<ChildItems>
+								<InputField name="РежимДоступа" id="163">
+									<DataPath>Объект.РежимДоступа</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Режим доступа</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="РежимДоступаКонтекстноеМеню" id="164" />
+									<ExtendedTooltip name="РежимДоступаРасширеннаяПодсказка" id="165" />
+								</InputField>
+								<LabelDecoration name="ПодсказкаДоступа" id="166">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Персональное назначение имеет приоритет над групповым. Пустой профиль означает профиль агента.</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="ПодсказкаДоступаКонтекстноеМеню" id="167" />
+									<ExtendedTooltip name="ПодсказкаДоступаРасширеннаяПодсказка" id="168" />
+								</LabelDecoration>
+								<UsualGroup name="КомандыДоступаПользователей" id="169">
+									<ExtendedTooltip name="КомандыДоступаПользователейРасширеннаяПодсказка" id="170" />
+									<ChildItems>
+										<Button name="ДобавитьПользователя" id="171">
+											<CommandName>Form.Command.ДобавитьПользователя</CommandName>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Подобрать пользователя</v8:content>
+												</v8:item>
+											</Title>
+											<ExtendedTooltip name="ДобавитьПользователяРасширеннаяПодсказка" id="172" />
+										</Button>
+									</ChildItems>
+								</UsualGroup>
+								<Table name="ДоступПользователей" id="173">
+									<DataPath>Объект.ДоступПользователей</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Пользователи</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="ДоступПользователейКонтекстноеМеню" id="174" />
+									<AutoCommandBar name="ДоступПользователейКоманднаяПанель" id="175">
+										<Autofill>false</Autofill>
+										<ChildItems>
+											<Button name="ДоступПользователейУдалить" id="212">
+												<Type>CommandBarButton</Type>
+												<CommandName>Form.Item.ДоступПользователей.StandardCommand.Delete</CommandName>
+												<ExtendedTooltip name="ДоступПользователейУдалитьРасширеннаяПодсказка" id="213" />
+											</Button>
+										</ChildItems>
+									</AutoCommandBar>
+									<SearchStringAddition name="ДоступПользователейСтрокаПоиска" id="176" />
+									<ViewStatusAddition name="ДоступПользователейСостояниеПросмотра" id="177" />
+									<SearchControlAddition name="ДоступПользователейУправлениеПоиском" id="178" />
+									<ChildItems>
+										<InputField name="ДоступПользователейИдентификатор" id="179">
+											<DataPath>Объект.ДоступПользователей.ИдентификаторПользователя</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Идентификатор</v8:content>
+												</v8:item>
+											</Title>
+											<ReadOnly>true</ReadOnly>
+											<ContextMenu name="ДоступПользователейИдентификаторКонтекстноеМеню" id="180" />
+											<ExtendedTooltip name="ДоступПользователейИдентификаторРасширеннаяПодсказка" id="181" />
+										</InputField>
+										<InputField name="ДоступПользователейИмя" id="182">
+											<DataPath>Объект.ДоступПользователей.Имя</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Имя</v8:content>
+												</v8:item>
+											</Title>
+											<ReadOnly>true</ReadOnly>
+											<ContextMenu name="ДоступПользователейИмяКонтекстноеМеню" id="183" />
+											<ExtendedTooltip name="ДоступПользователейИмяРасширеннаяПодсказка" id="184" />
+										</InputField>
+										<InputField name="ДоступПользователейПолноеИмя" id="185">
+											<DataPath>Объект.ДоступПользователей.ПолноеИмя</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Полное имя</v8:content>
+												</v8:item>
+											</Title>
+											<ReadOnly>true</ReadOnly>
+											<ContextMenu name="ДоступПользователейПолноеИмяКонтекстноеМеню" id="186" />
+											<ExtendedTooltip name="ДоступПользователейПолноеИмяРасширеннаяПодсказка" id="187" />
+										</InputField>
+										<InputField name="ДоступПользователейПрофиль" id="188">
+											<DataPath>Объект.ДоступПользователей.ПрофильДоступаКДанным</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Профиль данных</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="ДоступПользователейПрофильКонтекстноеМеню" id="189" />
+											<ExtendedTooltip name="ДоступПользователейПрофильРасширеннаяПодсказка" id="190" />
+										</InputField>
+										<CheckBoxField name="ДоступПользователейАктивен" id="191">
+											<DataPath>Объект.ДоступПользователей.Активен</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Активен</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="ДоступПользователейАктивенКонтекстноеМеню" id="192" />
+											<ExtendedTooltip name="ДоступПользователейАктивенРасширеннаяПодсказка" id="193" />
+										</CheckBoxField>
+									</ChildItems>
+								</Table>
+								<Table name="ДоступГрупп" id="194">
+									<DataPath>Объект.ДоступГрупп</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Группы пользователей</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="ДоступГруппКонтекстноеМеню" id="195" />
+									<AutoCommandBar name="ДоступГруппКоманднаяПанель" id="196" />
+									<SearchStringAddition name="ДоступГруппСтрокаПоиска" id="197" />
+									<ViewStatusAddition name="ДоступГруппСостояниеПросмотра" id="198" />
+									<SearchControlAddition name="ДоступГруппУправлениеПоиском" id="199" />
+									<ChildItems>
+										<InputField name="ДоступГруппГруппа" id="200">
+											<DataPath>Объект.ДоступГрупп.Группа</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Группа</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="ДоступГруппГруппаКонтекстноеМеню" id="201" />
+											<ExtendedTooltip name="ДоступГруппГруппаРасширеннаяПодсказка" id="202" />
+										</InputField>
+										<InputField name="ДоступГруппПрофиль" id="203">
+											<DataPath>Объект.ДоступГрупп.ПрофильДоступаКДанным</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Профиль данных</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="ДоступГруппПрофильКонтекстноеМеню" id="204" />
+											<ExtendedTooltip name="ДоступГруппПрофильРасширеннаяПодсказка" id="205" />
+										</InputField>
+										<InputField name="ДоступГруппПриоритет" id="206">
+											<DataPath>Объект.ДоступГрупп.Приоритет</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Приоритет</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="ДоступГруппПриоритетКонтекстноеМеню" id="207" />
+											<ExtendedTooltip name="ДоступГруппПриоритетРасширеннаяПодсказка" id="208" />
+										</InputField>
+										<CheckBoxField name="ДоступГруппАктивна" id="209">
+											<DataPath>Объект.ДоступГрупп.Активна</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Активна</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="ДоступГруппАктивнаКонтекстноеМеню" id="210" />
+											<ExtendedTooltip name="ДоступГруппАктивнаРасширеннаяПодсказка" id="211" />
+										</CheckBoxField>
+									</ChildItems>
+								</Table>
+							</ChildItems>
+						</Page>
 					</ChildItems>
 				</Pages>
 			</ChildItems>
@@ -534,4 +727,15 @@
 			<SavedData>true</SavedData>
 		</Attribute>
 	</Attributes>
+	<Commands>
+		<Command name="ДобавитьПользователя" id="1">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подобрать пользователя</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ДобавитьПользователя</Action>
+		</Command>
+	</Commands>
 </Form>

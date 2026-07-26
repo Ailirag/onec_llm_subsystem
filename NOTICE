@@ -1,0 +1,48 @@
+LLM subsystem for 1C:Enterprise
+Copyright 2026 Ailirag contributors
+
+This product includes software developed by third parties.
+The original copyright and license notices are retained in the corresponding
+source files.
+
+OpenIntegrations
+----------------
+Copyright (c) 2023-2026 Anton Tsitavets
+Source: https://github.com/Bayselonarrend/OpenIntegrations
+License: MIT
+
+The OpenIntegrations modules are located primarily under the OPI_ prefix.
+They have been integrated with the LLM subsystem; their original license
+headers are retained.
+
+Connector
+---------
+Copyright 2017-2023 Vladimir Bondarevskiy
+Source: https://github.com/vbondarevsky/Connector
+License: Apache License 2.0
+
+Portions of the HTTP and GZip implementation are included in:
+cfe llm/DataProcessors/OPI_HTTPКлиент/Ext/ObjectModule.bsl
+
+1c-jwt
+------
+Copyright (c) 2017 Vasily Pintov
+Source: https://github.com/pintov/1c-jwt
+License: MIT
+
+Portions are included in:
+cfe llm/CommonModules/OPI_Криптография/Ext/Module.bsl
+
+1C-Soft materials
+-----------------
+Copyright (c) 2019-2020, ООО "1С-Софт"
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+License text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Portions of the query console forms, object module and cryptographic helpers
+are included in this product. They were integrated and modified for use in
+the LLM subsystem and agent dialog. Original attribution headers are retained
+in the affected source files.
+
+The project-level Apache License 2.0 applies only to original project material
+and contributions unless a source file or this NOTICE states otherwise.

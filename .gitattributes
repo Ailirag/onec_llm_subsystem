@@ -1,0 +1,23 @@
+* text=auto
+
+*.bsl text
+*.os text
+*.xml text
+*.json text
+*.md text eol=lf
+*.ps1 text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+*.bin binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.cf binary
+*.cfe binary
+*.epf binary
+*.erf binary
+*.dt binary
+*.1CD binary

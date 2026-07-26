@@ -1,0 +1,33 @@
+name: Предложение
+description: Предложить улучшение подсистемы
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Проблема
+      description: Какой пользовательский или технический сценарий сейчас неудобен?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Предлагаемое решение
+      description: Опишите ожидаемое поведение без привязки к секретам окружения.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Альтернативы
+      description: Какие другие варианты рассматривались?
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Влияние
+      description: Права, данные, совместимость, внешние API и миграции.

@@ -9,11 +9,11 @@
 					<v8:content>LLM</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment />
+			<Comment/>
 			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<IncludeInCommandInterface>true</IncludeInCommandInterface>
 			<UseOneCommand>false</UseOneCommand>
-			<Explanation />
+			<Explanation/>
 			<Picture>
 				<xr:Ref>CommonPicture.AI_Подсистема2</xr:Ref>
 				<xr:LoadTransparent>false</xr:LoadTransparent>
@@ -24,6 +24,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.OPI_HTTPКлиент</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.AI_Песочница</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_ТипAPI</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_ТипПровайдера</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_ФорматыОтветов</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_РольСообщения</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_Провайдеры</xr:Item>
@@ -47,6 +48,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.AI_Диалоги</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_ДополнительныйКонтекст</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Constant.AI_КоличествоПотоковОбработкиОчереди</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Constant.AI_ТаймаутЗапросаМоделиСекунд</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Constant.AI_КоличествоПопытокОбработкиЗапросаОчереди</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_РазмерКонтекстногоОкнаВебПоиска</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ОбработкаСервер</xr:Item>
@@ -63,6 +65,8 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Constant.AI_СрокХраненияДиалоговДней</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">ScheduledJob.AI_ОчисткаЖурналовИДиалогов</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_ПрофилиДоступаКДанным</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_ГруппыПользователей</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_РежимДоступаАгента</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_МетаданныеСервер</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ПолитикиАгента</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_БезопасныеЗапросы</xr:Item>
@@ -77,6 +81,29 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_MCPСерверы</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_MCPИнструменты</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_ПрофилиMCP</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.AI_ЗаголовкиДиалогов</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ДиалогиКлиентСервер</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ДиалогиСервер</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ОбслуживаниеСервер</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ZAI</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_АгентскиеОперации</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_АгентскиеОперацииСервер</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_MCPТранспортHTTP</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_MCPКлиент</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_MCPРеестрИнструментов</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_MCPСекреты</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ДоступКАгентамСервер</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ДоступКАгентамКлиентСервер</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_РежимВыполненияMCP</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_ТипАвторизацииMCP</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_СтатусАгентскойОперации</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_СтатусОчереди</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.AI_АгентскиеОперации</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.AI_ШагиАгентскихОпераций</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.AI_СекретыMCP</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Role.AI_АдминистраторMCP</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Role.AI_АнализДанныхАгентом</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Role.AI_КонсольЗапросов</xr:Item>
 			</Content>
 		</Properties>
 		<ChildObjects>

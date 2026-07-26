@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "sourceDirectory": "cfe llm",
+  "embeddedDirectory": "cf llm",
+  "rootSubsystem": "LLM",
+  "allowedOutsideSubsystem": [
+    "Language.Русский",
+    "Subsystem.LLM"
+  ],
+  "excludedFromEmbedded": [],
+  "configuration": {
+    "name": "LLMSubsystem",
+    "synonym": "Подсистема LLM",
+    "vendor": "Ailirag",
+    "version": "1.0.0.0",
+    "copyright": "Copyright 2026 Ailirag contributors",
+    "vendorInformationAddress": "https://github.com/Ailirag",
+    "configurationInformationAddress": "https://github.com/Ailirag/onec_llm_subsystem",
+    "compatibilityMode": "Version8_3_17",
+    "uuid": "182c5c71-70c4-48fe-a732-44c8850bc3cd",
+    "internalObjectIds": [
+      "03822e83-107a-42e6-a3db-08fee9cd40f6",
+      "30f899e3-050d-4ec9-ab70-fc858d3da58a",
+      "f0bce1c4-2429-4e63-a195-c410ebe115cd",
+      "c61a0d77-8656-4403-9532-93c2f99ed002",
+      "158542c6-7f06-4f63-a70b-e55e481b27cb",
+      "b3fccf32-0b6d-4e41-9a5d-b3652ef5cf9a",
+      "ee477c19-482e-4225-a902-d0ed0b3f3a51"
+    ]
+  }
+}
