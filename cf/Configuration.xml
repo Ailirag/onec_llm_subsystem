@@ -247,9 +247,12 @@
 			<Language>Русский</Language>
 			<Subsystem>Основная</Subsystem>
 			<Role>ПолныеПрава</Role>
+			<CommonModule>LLMFunctionalTests</CommonModule>
+			<CommonModule>LLMBackgroundTestServer</CommonModule>
 			<Catalog>Контрагенты</Catalog>
 			<DataProcessor>КонсольЗаданий</DataProcessor>
 			<DataProcessor>УниверсальнаяОбработка</DataProcessor>
+			<InformationRegister>LLMTestDeliveries</InformationRegister>
 		</ChildObjects>
 	</Configuration>
 </MetaDataObject>

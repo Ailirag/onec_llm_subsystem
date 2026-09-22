@@ -1352,15 +1352,6 @@
 									<Edit>true</Edit>
 									<ShowCellNames>true</ShowCellNames>
 									<ShowRowAndColumnNames>true</ShowRowAndColumnNames>
-									<ContextMenu name="ВизуальныйКонструкторКонтекстноеМеню" id="208">
-										<ChildItems>
-											<Button name="ВизуальныйКонструкторКонтекстноеМенюВизуальныйКонструктор_СоздатьСвязь" id="222">
-												<Type>CommandBarButton</Type>
-												<CommandName>Form.Command.ВизуальныйКонструктор_СоздатьСвязь</CommandName>
-												<ExtendedTooltip name="ВизуальныйКонструкторКонтекстноеМенюВизуальныйКонструктор_СоздатьСвязьРасширеннаяПодсказка" id="223"/>
-											</Button>
-										</ChildItems>
-									</ContextMenu>
 									<ExtendedTooltip name="ВизуальныйКонструкторРасширеннаяПодсказка" id="209"/>
 									<Events>
 										<Event name="Selection">ВизуальныйКонструкторВыбор</Event>
@@ -2831,20 +2822,6 @@
 			</ToolTip>
 			<Action>ВизуальныйКонструктор_ОтображатьЗапрос</Action>
 		</Command>
-		<Command name="ВизуальныйКонструктор_СоздатьСвязь" id="26">
-			<Title>
-				<v8:item>
-					<v8:lang>ru</v8:lang>
-					<v8:content>Создать связь</v8:content>
-				</v8:item>
-			</Title>
-			<ToolTip>
-				<v8:item>
-					<v8:lang>ru</v8:lang>
-					<v8:content>Визуальный конструктор создать связь</v8:content>
-				</v8:item>
-			</ToolTip>
-		</Command>
 		<Command name="ВизуальныйКонструктор_ВыполнитьЗапрос" id="27">
 			<Title>
 				<v8:item>
@@ -2995,7 +2972,6 @@
 			</ToolTip>
 			<Action>КодДляОтладки</Action>
 		</Command>
-		<Command name="Команда1" id="19"/>
 		<Command name="ПанельСпискаКодов" id="20">
 			<Title>
 				<v8:item>

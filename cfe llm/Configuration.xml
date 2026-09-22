@@ -41,10 +41,10 @@
 				</v8:item>
 			</Synonym>
 			<Comment/>
-			<ConfigurationExtensionPurpose>Patch</ConfigurationExtensionPurpose>
+			<ConfigurationExtensionPurpose>AddOn</ConfigurationExtensionPurpose>
 			<KeepMappingToExtendedConfigurationObjectsByIDs>true</KeepMappingToExtendedConfigurationObjectsByIDs>
 			<NamePrefix>Нейро_</NamePrefix>
-			<ConfigurationExtensionCompatibilityMode>Version8_3_17</ConfigurationExtensionCompatibilityMode>
+			<ConfigurationExtensionCompatibilityMode>Version8_3_25</ConfigurationExtensionCompatibilityMode>
 			<DefaultRunMode>ManagedApplication</DefaultRunMode>
 			<UsePurposes>
 				<v8:Value xsi:type="app:ApplicationUsePurpose">PlatformApplication</v8:Value>
@@ -122,11 +122,18 @@
 			<CommonModule>AI_ДиалогиСервер</CommonModule>
 			<CommonModule>AI_ДоступКАгентамСервер</CommonModule>
 			<CommonModule>AI_ДоступКАгентамКлиентСервер</CommonModule>
+			<CommonModule>AI_ПубличныйAPI</CommonModule>
+			<CommonModule>AI_ДиспетчерОпераций</CommonModule>
+			<CommonModule>AI_КонтрактыОпераций</CommonModule>
+			<CommonModule>AI_ОбработчикиРезультатовПереопределяемый</CommonModule>
+			<CommonModule>AI_НаблюдаемостьОпераций</CommonModule>
+			<CommonModule>AI_МиграцияОчереди</CommonModule>
 			<EventSubscription>AI_КонтрольУникальностиИдентификатораЛогики</EventSubscription>
 			<ScheduledJob>AI_ОбработкаОчередиЗапросов</ScheduledJob>
 			<ScheduledJob>AI_ОбработкаОчередиПодготовкиКВекторизации</ScheduledJob>
 			<ScheduledJob>AI_ОбработкаОчередиВекторизации</ScheduledJob>
 			<ScheduledJob>AI_ОчисткаЖурналовИДиалогов</ScheduledJob>
+			<ScheduledJob>AI_ДиспетчерОпераций</ScheduledJob>
 			<Constant>AI_ЛогироватьЗапросы</Constant>
 			<Constant>AI_КоличествоПотоковОбработкиОчереди</Constant>
 			<Constant>AI_КоличествоПопытокОбработкиЗапросаОчереди</Constant>
@@ -134,6 +141,8 @@
 			<Constant>AI_СрокХраненияЖурналаЗапросовДней</Constant>
 			<Constant>AI_СрокХраненияДиалоговДней</Constant>
 			<Constant>AI_ТаймаутЗапросаМоделиСекунд</Constant>
+			<Constant>AI_СрокХраненияОперацийДней</Constant>
+			<Constant>AI_СрокХраненияОценокДней</Constant>
 			<Catalog>AI_Провайдеры</Catalog>
 			<Catalog>AI_Модели</Catalog>
 			<Catalog>AI_Агенты</Catalog>
@@ -147,6 +156,7 @@
 			<Catalog>AI_MCPИнструменты</Catalog>
 			<Catalog>AI_ПрофилиMCP</Catalog>
 			<Catalog>AI_ГруппыПользователей</Catalog>
+			<Catalog>AI_Сценарии</Catalog>
 			<Enum>AI_ТипAPI</Enum>
 			<Enum>AI_ФорматыОтветов</Enum>
 			<Enum>AI_РольСообщения</Enum>
@@ -165,6 +175,7 @@
 			<DataProcessor>OPI_HTTPКлиент</DataProcessor>
 			<DataProcessor>AI_Песочница</DataProcessor>
 			<DataProcessor>AI_ЧатПоДаннымБазы</DataProcessor>
+			<DataProcessor>AI_МониторАгентскихОпераций</DataProcessor>
 			<InformationRegister>AI_ЖурналЗапросов</InformationRegister>
 			<InformationRegister>AI_ОчередьЗапросов</InformationRegister>
 			<InformationRegister>AI_Диалоги</InformationRegister>
@@ -177,6 +188,8 @@
 			<InformationRegister>AI_ВложенияАгентскихОпераций</InformationRegister>
 			<InformationRegister>AI_СекретыMCP</InformationRegister>
 			<InformationRegister>AI_ЗаголовкиДиалогов</InformationRegister>
+			<InformationRegister>AI_ИдемпотентностьАгентскихОпераций</InformationRegister>
+			<InformationRegister>AI_ОценкиРезультатов</InformationRegister>
 		</ChildObjects>
 	</Configuration>
 </MetaDataObject>
