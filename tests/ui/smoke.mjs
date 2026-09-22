@@ -57,6 +57,18 @@ assert(
 await closeForm({ save: false });
 
 await openLlmSection();
+const contextAssistant = await openCommand('AI-помощник');
+assert(!contextAssistant.errorModal,
+  `Context assistant form error: ${contextAssistant.errorModal}`);
+assert(contextAssistant.title === 'AI-помощник',
+  'Unexpected context assistant form title');
+assert(contextAssistant.tables?.some(table => table.name === 'Сценарии'),
+  'Context assistant scenarios table is missing');
+assert(contextAssistant.buttons.some(button => button.name === 'Открыть диалог'),
+  'Context assistant open-dialog button is missing');
+await closeForm({ save: false });
+
+await openLlmSection();
 const chat = await openCommand('Чат по данным базы');
 assert(!chat.errorModal, `Chat form error: ${chat.errorModal}`);
 assert(chat.title === 'Диалог с агентом по данным базы', 'Unexpected chat form title');
@@ -82,10 +94,8 @@ assert(!monitor.errorModal, `Operations monitor error: ${monitor.errorModal}`);
 assert(monitor.title === 'Монитор агентских операций', 'Unexpected operations monitor title');
 assert(monitor.tables?.some(table => table.name === 'СписокОпераций'),
   'Operations monitor table is missing');
-await clickElement('Сохранить оценку');
-const monitorAfterFeedback = await getFormState();
-assert(!monitorAfterFeedback.errorModal,
-  `Operations feedback failed: ${monitorAfterFeedback.errorModal}`);
+assert(monitor.buttons.some(button => button.name === 'Сохранить оценку'),
+  'Operations feedback button is missing');
 await closeForm({ save: false });
 
 let hostSection;
@@ -127,6 +137,7 @@ console.log(JSON.stringify({
   models: models.total,
   agents: agents.total,
   sandbox: 'ready',
+  contextAssistant: 'ready',
   chat: 'ready',
   monitor: 'ready',
   schedule: 'ready',

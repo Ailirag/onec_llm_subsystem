@@ -37,6 +37,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ZAI</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_Инструкция</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">EventSubscription.AI_КонтрольУникальностиИдентификатораЛогики</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_МестаЗапускаСценариев</xr:Item>
 			</Content>
 		</Properties>
 		<ChildObjects/>

@@ -33,6 +33,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_СпособПередачиВложения</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_СтатусВложения</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_РольСообщения</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.AI_ПомощникКонтекста</xr:Item>
 			</Content>
 		</Properties>
 		<ChildObjects/>

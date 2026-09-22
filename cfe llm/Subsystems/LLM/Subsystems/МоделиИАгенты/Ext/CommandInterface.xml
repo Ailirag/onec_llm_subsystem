@@ -7,12 +7,14 @@
 	<Command name="Catalog.AI_Сценарии.StandardCommand.OpenList"><Visibility><xr:Common>true</xr:Common></Visibility></Command>
 	<Command name="Catalog.AI_ДополнительныйКонтекст.StandardCommand.OpenList"><Visibility><xr:Common>true</xr:Common></Visibility></Command>
 	<Command name="InformationRegister.AI_ВозможностиМоделей.StandardCommand.OpenList"><Visibility><xr:Common>false</xr:Common></Visibility></Command>
+	<Command name="Catalog.AI_МестаЗапускаСценариев.StandardCommand.OpenList"><Visibility><xr:Common>true</xr:Common></Visibility></Command>
 	</CommandsVisibility>
 	<CommandsOrder>
 	<Command name="Catalog.AI_Провайдеры.StandardCommand.OpenList"><CommandGroup>NavigationPanelOrdinary</CommandGroup></Command>
 	<Command name="Catalog.AI_Модели.StandardCommand.OpenList"><CommandGroup>NavigationPanelOrdinary</CommandGroup></Command>
 	<Command name="Catalog.AI_Агенты.StandardCommand.OpenList"><CommandGroup>NavigationPanelOrdinary</CommandGroup></Command>
 	<Command name="Catalog.AI_Сценарии.StandardCommand.OpenList"><CommandGroup>NavigationPanelOrdinary</CommandGroup></Command>
+	<Command name="Catalog.AI_МестаЗапускаСценариев.StandardCommand.OpenList"><CommandGroup>NavigationPanelOrdinary</CommandGroup></Command>
 	<Command name="Catalog.AI_ДополнительныйКонтекст.StandardCommand.OpenList"><CommandGroup>NavigationPanelOrdinary</CommandGroup></Command>
 	</CommandsOrder>
 </CommandInterface>

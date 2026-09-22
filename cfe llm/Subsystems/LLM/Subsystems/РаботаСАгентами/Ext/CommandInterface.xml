@@ -4,8 +4,10 @@
 	<Command name="DataProcessor.AI_ЧатПоДаннымБазы.StandardCommand.Open"><Visibility><xr:Common>true</xr:Common></Visibility></Command>
 	<Command name="DataProcessor.AI_Песочница.StandardCommand.Open"><Visibility><xr:Common>true</xr:Common></Visibility></Command>
 	<Command name="InformationRegister.AI_Диалоги.StandardCommand.OpenList"><Visibility><xr:Common>false</xr:Common></Visibility></Command>
+	<Command name="DataProcessor.AI_ПомощникКонтекста.StandardCommand.Open"><Visibility><xr:Common>true</xr:Common></Visibility></Command>
 	</CommandsVisibility>
 	<CommandsOrder>
+	<Command name="DataProcessor.AI_ПомощникКонтекста.StandardCommand.Open"><CommandGroup>NavigationPanelOrdinary</CommandGroup></Command>
 	<Command name="DataProcessor.AI_ЧатПоДаннымБазы.StandardCommand.Open"><CommandGroup>NavigationPanelOrdinary</CommandGroup></Command>
 	<Command name="DataProcessor.AI_Песочница.StandardCommand.Open"><CommandGroup>NavigationPanelOrdinary</CommandGroup></Command>
 	</CommandsOrder>

@@ -1,5 +1,6 @@
 # Build and generated output
 /.build/
+/build/
 /.tmp-*/
 /cf llm/
 

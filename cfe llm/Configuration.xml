@@ -128,6 +128,8 @@
 			<CommonModule>AI_ОбработчикиРезультатовПереопределяемый</CommonModule>
 			<CommonModule>AI_НаблюдаемостьОпераций</CommonModule>
 			<CommonModule>AI_МиграцияОчереди</CommonModule>
+			<CommonModule>AI_ИнтерфейсныеСценарии</CommonModule>
+			<CommonModule>AI_ИнтерфейсныеСценарииКлиент</CommonModule>
 			<EventSubscription>AI_КонтрольУникальностиИдентификатораЛогики</EventSubscription>
 			<ScheduledJob>AI_ОбработкаОчередиЗапросов</ScheduledJob>
 			<ScheduledJob>AI_ОбработкаОчередиПодготовкиКВекторизации</ScheduledJob>
@@ -157,6 +159,7 @@
 			<Catalog>AI_ПрофилиMCP</Catalog>
 			<Catalog>AI_ГруппыПользователей</Catalog>
 			<Catalog>AI_Сценарии</Catalog>
+			<Catalog>AI_МестаЗапускаСценариев</Catalog>
 			<Enum>AI_ТипAPI</Enum>
 			<Enum>AI_ФорматыОтветов</Enum>
 			<Enum>AI_РольСообщения</Enum>
@@ -176,6 +179,7 @@
 			<DataProcessor>AI_Песочница</DataProcessor>
 			<DataProcessor>AI_ЧатПоДаннымБазы</DataProcessor>
 			<DataProcessor>AI_МониторАгентскихОпераций</DataProcessor>
+			<DataProcessor>AI_ПомощникКонтекста</DataProcessor>
 			<InformationRegister>AI_ЖурналЗапросов</InformationRegister>
 			<InformationRegister>AI_ОчередьЗапросов</InformationRegister>
 			<InformationRegister>AI_Диалоги</InformationRegister>

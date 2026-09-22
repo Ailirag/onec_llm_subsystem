@@ -240,7 +240,7 @@
 		<Metadata name="CommonModule.AI_ZAI" id="359271a1-0770-46b4-bc72-fdb66a597495" configVersion="f081f78f290347acd93e8a41a5051d9708d01d48"/>
 		<Metadata name="CommonModule.AI_ZAI.Module" id="359271a1-0770-46b4-bc72-fdb66a597495.0" configVersion="260839f1879c11295739c1bc1624bfc5b4379e21"/>
 		<Metadata name="CommonModule.AI_АгентскиеОперации" id="544739eb-0118-4ac9-9d93-039c79f3e8a0" configVersion="aa2257040afbbda0dbe4fc50edc634fb0a7dd067"/>
-		<Metadata name="CommonModule.AI_АгентскиеОперации.Module" id="544739eb-0118-4ac9-9d93-039c79f3e8a0.0" configVersion="48ddf60514727a2c90a20626daa79dfcc986810d"/>
+		<Metadata name="CommonModule.AI_АгентскиеОперации.Module" id="544739eb-0118-4ac9-9d93-039c79f3e8a0.0" configVersion="39aa7682ff31399f3f33419f20d463a6666d51b0"/>
 		<Metadata name="CommonModule.AI_АгентскиеОперацииСервер" id="04d39ce9-4f3f-4c7c-ace8-a813af2e51bd" configVersion="f90d0d534cadbccebaacb564c77831a01672c30d"/>
 		<Metadata name="CommonModule.AI_АгентскиеОперацииСервер.Module" id="04d39ce9-4f3f-4c7c-ace8-a813af2e51bd.0" configVersion="66f15e75779804986cac578bfdc592f798374ca8"/>
 		<Metadata name="CommonModule.AI_БезопасныеЗапросы" id="0c779718-7bb8-4bbc-8cb7-3f0f170f8c88" configVersion="2dfec0f1a0dd41cb901ede9b97c3353c2400a87b"/>
@@ -252,7 +252,7 @@
 		<Metadata name="CommonModule.AI_ДиалогиКлиентСервер" id="9f167d96-0688-41f8-9923-022c13a53877" configVersion="d9726cc7b93cdb913c77c2dbcac5c4efdb7cd9f4"/>
 		<Metadata name="CommonModule.AI_ДиалогиКлиентСервер.Module" id="9f167d96-0688-41f8-9923-022c13a53877.0" configVersion="33a1d581ef52c5db34c2f99782e5602e35525ce5"/>
 		<Metadata name="CommonModule.AI_ДиалогиСервер" id="148038ed-a769-4f47-8753-5bc81ae4ae69" configVersion="3c893488e91e29394490c43517c6e6ff3b5ca809"/>
-		<Metadata name="CommonModule.AI_ДиалогиСервер.Module" id="148038ed-a769-4f47-8753-5bc81ae4ae69.0" configVersion="1a29dcd7081a9fc2add4034f3a5e4007882c43cb"/>
+		<Metadata name="CommonModule.AI_ДиалогиСервер.Module" id="148038ed-a769-4f47-8753-5bc81ae4ae69.0" configVersion="b442a2d1b05a60f5e1ce613667495ca03144295a"/>
 		<Metadata name="CommonModule.AI_ДиспетчерОпераций" id="7d1ca523-4079-41c3-9287-951374f4fa2f" configVersion="fe1de98ed251439a392ddf5b971b4d85979d973e"/>
 		<Metadata name="CommonModule.AI_ДиспетчерОпераций.Module" id="7d1ca523-4079-41c3-9287-951374f4fa2f.0" configVersion="bef6021ef7dad3d5da54a7aa0bd59ace7dc6f0d1"/>
 		<Metadata name="CommonModule.AI_ДоступКАгентамКлиентСервер" id="4297624b-7d89-4b5e-a6ea-f6c3b7b1a01e" configVersion="57807dd5fafed15e6b24f131deb8dad411c979ec"/>
@@ -305,7 +305,7 @@
 		<Metadata name="CommonPicture.AI_Подсистема.Picture" id="43e1a334-aa4d-4756-9e53-e4b14502d44b.0" configVersion="9b0162b712e3028af03afff531494a3419d1c3cc"/>
 		<Metadata name="CommonPicture.AI_Подсистема2" id="19ff5f76-e6ec-4d0b-a594-ff86e22fbd1f" configVersion="3cc55289a352ddbe1b2a54a2ef4cfa8525ceee21"/>
 		<Metadata name="CommonPicture.AI_Подсистема2.Picture" id="19ff5f76-e6ec-4d0b-a594-ff86e22fbd1f.0" configVersion="0cfc68a087ec5289f7a10bc83adec304fdcc0dad"/>
-		<Metadata name="Configuration.LLM" id="e19600ea-58c6-4d43-8a38-374e4e4b0bc6" configVersion="fc362643b10bf2599efcab16036d260ed95441a7"/>
+		<Metadata name="Configuration.LLM" id="e19600ea-58c6-4d43-8a38-374e4e4b0bc6" configVersion="1afea41761e54a60894189519fa6c7131186e021"/>
 		<Metadata name="Constant.AI_КоличествоПопытокОбработкиЗапросаОчереди" id="e9d4d57d-426f-4496-9e1b-8aecae88aa01" configVersion="9bb265169b7f61b56d2e4526513d56d54ba95ec7"/>
 		<Metadata name="Constant.AI_КоличествоПотоковВекторизации" id="b13b38e1-680f-4d57-848b-7a5fae602ca8" configVersion="e5cb58ea46a85975e4d57b66aeed3656bb9cbd41"/>
 		<Metadata name="Constant.AI_КоличествоПотоковОбработкиОчереди" id="e06f8560-a183-4872-9102-fe5fb35a8a20" configVersion="fb32fa60f56f3465778d836d69b6473a16b72885"/>
@@ -361,7 +361,7 @@
 		<Metadata name="DataProcessor.AI_ЧатПоДаннымБазы.Form.Граница" id="2f334e23-ff88-44b7-a6f8-72fdd76f2845" configVersion="3219460ebe630617a55167bdf1462dbbd95eabb9"/>
 		<Metadata name="DataProcessor.AI_ЧатПоДаннымБазы.Form.Граница.Form" id="2f334e23-ff88-44b7-a6f8-72fdd76f2845.0" configVersion="d2f4842c26208cb17b9d60164354694d66b81788"/>
 		<Metadata name="DataProcessor.AI_ЧатПоДаннымБазы.Form.ДиалогСАгентом" id="d7f1b22d-354c-4e07-a583-654acc5e542b" configVersion="43689e102806368a08ce70e4bff5e60869f3bd5d"/>
-		<Metadata name="DataProcessor.AI_ЧатПоДаннымБазы.Form.ДиалогСАгентом.Form" id="d7f1b22d-354c-4e07-a583-654acc5e542b.0" configVersion="6c6443f7b6043b1152e5da9200070403bdaf8772"/>
+		<Metadata name="DataProcessor.AI_ЧатПоДаннымБазы.Form.ДиалогСАгентом.Form" id="d7f1b22d-354c-4e07-a583-654acc5e542b.0" configVersion="509321eaa65d87790c145f3e7cc6787a4dc6286d"/>
 		<Metadata name="DataProcessor.AI_ЧатПоДаннымБазы.Form.МоментВремени" id="278cc196-33e3-414b-a56f-98c65af34cba" configVersion="c7d88f1882f49d8fee8121c5eac95c1e87f4bb69"/>
 		<Metadata name="DataProcessor.AI_ЧатПоДаннымБазы.Form.МоментВремени.Form" id="278cc196-33e3-414b-a56f-98c65af34cba.0" configVersion="0c1a78578a4476c9b406a78b2f1fe6e8c7a908e6"/>
 		<Metadata name="DataProcessor.AI_ЧатПоДаннымБазы.Form.Настройки" id="7d6d9e5e-6150-41e8-b9af-eeecaed459f2" configVersion="cc2f68a829dd2be6e155a2ffd4c3212f402b34e9"/>
@@ -582,14 +582,18 @@
 			<Metadata name="InformationRegister.AI_ЖурналЗапросов.Attribute.Ошибка" id="e2eff464-e871-4750-a636-c5e472aa3313"/>
 		</Metadata>
 		<Metadata name="InformationRegister.AI_ЖурналЗапросов.ManagerModule" id="7e87ff7e-d868-4ea6-8e12-15f684b0918f.2" configVersion="59afbe9f12836def74407b94829a8780d8218c98"/>
-		<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов" id="9bba5f3e-f02d-4d58-a9e3-e634b7a47730" configVersion="8565f8e2b5ef35362737ceebf58ecab72099e4d1">
+		<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов" id="9bba5f3e-f02d-4d58-a9e3-e634b7a47730" configVersion="210cb737001252953679cbdb7687ffed15339220">
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.Архивирован" id="093e1595-3db3-4998-9e35-f876a43133d7"/>
+			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.КонтекстJSON" id="1e5c0b24-0894-4a5b-8dc4-5a2990edad5f"/>
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.ТипAPI" id="4a119a37-8953-4194-bde1-22fbadb40d40"/>
+			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.КлючИсточника" id="4f930c74-f2de-4ed0-87b6-e805f7ff3491"/>
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.ДатаИзменения" id="58426263-69b1-45c4-ae2a-ec9c8a2902b9"/>
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.ГлубинаДиалога" id="5b1f9c66-a4e4-4d69-92a0-3870c7876b75"/>
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.КоличествоСообщений" id="656f29ce-973d-4c74-9e38-472afda27d57"/>
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.Агент" id="7aff689d-3e46-4c3a-b266-cb7cde427ebf"/>
+			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.ТипИсточника" id="7c8d5d58-af0e-48ae-a5a9-9529eb6d7411"/>
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.ДатаСоздания" id="8055eb29-e0dc-44ef-b061-2585f474342b"/>
+			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.ПредставлениеИсточника" id="866b2fa8-6023-480d-b523-990872380337"/>
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.ДанныеКонтекста" id="879600bb-b177-44cc-8f5d-8a3d47a145e5"/>
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.Заголовок" id="8b0a6746-a50a-49ea-842c-df18c43d7167"/>
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.ПоследнееСообщение" id="aa8a9658-dca5-4561-ba26-b3eb5d820df0"/>
@@ -598,7 +602,9 @@
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.Провайдер" id="d002ddf7-a45f-4986-abfe-475127841398"/>
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.Модель" id="d2a4dee1-0bd8-4269-bfd4-9236518f8737"/>
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.ПредыдущийIDОтвета" id="d396bdb9-ee98-4d88-b568-c0753f5720f8"/>
+			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.ВерсияКонтекста" id="d9734794-e6e1-419c-8caf-91970338afcc"/>
 			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Dimension.ИдентификаторДиалога" id="de948f1e-7371-4403-a14f-1c4b06cc5a44"/>
+			<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.Attribute.Сценарий" id="ede5f89c-04cc-4f80-877e-40e83679048d"/>
 		</Metadata>
 		<Metadata name="InformationRegister.AI_ЗаголовкиДиалогов.RecordSetModule" id="9bba5f3e-f02d-4d58-a9e3-e634b7a47730.1" configVersion="36c70d61edbbcbc0f6f35ccfb284679edbb972f8"/>
 		<Metadata name="InformationRegister.AI_ИдемпотентностьАгентскихОпераций" id="746eb707-766e-42d4-aece-8daa5bb955e1" configVersion="ea9cc9ea5d2f2699f91c5f4a26a29970510e6f37">
@@ -712,7 +718,7 @@
 		<Metadata name="Role.AI_ПолныеПрава" id="e73cfa6e-b681-4085-ba61-970bd427536f" configVersion="e1d625668239b9472f3d74769fd717538d820ebe"/>
 		<Metadata name="Role.AI_ПолныеПрава.Rights" id="e73cfa6e-b681-4085-ba61-970bd427536f.0" configVersion="3c1d8fded4cfcb972f47431a71c958e8476f12cd"/>
 		<Metadata name="Role.AI_ПользовательLLM" id="137a6296-3d2f-4666-b7e7-214e7627cccc" configVersion="5a8a9f9404cc36c90803cd7cfc29dd39b45fc0f7"/>
-		<Metadata name="Role.AI_ПользовательLLM.Rights" id="137a6296-3d2f-4666-b7e7-214e7627cccc.0" configVersion="46506702c2ab4a4c2570add7364348c38a9bd7ed"/>
+		<Metadata name="Role.AI_ПользовательLLM.Rights" id="137a6296-3d2f-4666-b7e7-214e7627cccc.0" configVersion="0048b6df8b063bd69bc57f870b254a6fa67506cd"/>
 		<Metadata name="ScheduledJob.AI_ДиспетчерОпераций" id="bfad69db-91a6-44bb-afa3-e4e85340199e" configVersion="69dc6f3b77f45d25511f10fb9a197276c8a33f21"/>
 		<Metadata name="ScheduledJob.AI_ОбработкаОчередиВекторизации" id="96fc232c-e516-4f8c-9193-90bfb47460f5" configVersion="b4d9a8f21e86efeb4c9c18b7f97ed16f2307f58e"/>
 		<Metadata name="ScheduledJob.AI_ОбработкаОчередиЗапросов" id="8dc24e47-5775-4bc2-9770-91804b786848" configVersion="8a898f46ce5eb3fcbbfefb8353ff0e876b52a795"/>
@@ -730,12 +736,33 @@
 		<Metadata name="Subsystem.LLM.Subsystem.Интеграции.Subsystem.MCP.CommandInterface" id="0def84f5-6db0-4eab-8047-ea25c5977478.1" configVersion="8d698a1030ee851f6d51347efa80069a6a0ddd55"/>
 		<Metadata name="Subsystem.LLM.Subsystem.Интеграции.Subsystem.RAG" id="ac35d478-f42f-4bb7-b225-2172600c9277" configVersion="4ce69ab205645b6cd40bc1415c0f433992f6a066"/>
 		<Metadata name="Subsystem.LLM.Subsystem.Интеграции.Subsystem.RAG.CommandInterface" id="ac35d478-f42f-4bb7-b225-2172600c9277.1" configVersion="baaeca8d390743039e4aaf67012164ee76b176d8"/>
-		<Metadata name="Subsystem.LLM.Subsystem.МоделиИАгенты" id="56288030-3e12-4dd5-9581-3be32551467d" configVersion="cea4cc0cacdfe813965c295b2a051a07f8803e8e"/>
-		<Metadata name="Subsystem.LLM.Subsystem.МоделиИАгенты.CommandInterface" id="56288030-3e12-4dd5-9581-3be32551467d.1" configVersion="b5054ba474b9007e0e1552408eec2081fe8668f4"/>
+		<Metadata name="Subsystem.LLM.Subsystem.МоделиИАгенты" id="56288030-3e12-4dd5-9581-3be32551467d" configVersion="e7abfac99098a04063630af7d3ee6503d0493d24"/>
+		<Metadata name="Subsystem.LLM.Subsystem.МоделиИАгенты.CommandInterface" id="56288030-3e12-4dd5-9581-3be32551467d.1" configVersion="b718e94742dfa4a66a8503fe0c78a37d03d7f0ab"/>
 		<Metadata name="Subsystem.LLM.Subsystem.Мониторинг" id="9d83ab1a-39c2-44ac-83b9-f1391a1a4967" configVersion="6a1a52078a48b695a5edf93af31716948015daf8"/>
 		<Metadata name="Subsystem.LLM.Subsystem.Мониторинг.CommandInterface" id="9d83ab1a-39c2-44ac-83b9-f1391a1a4967.1" configVersion="de3e4591ecb933e50dd6dd5327ff942d66290405"/>
-		<Metadata name="Subsystem.LLM.Subsystem.РаботаСАгентами" id="e410bab6-4eff-41e4-ad94-3343f9e8da95" configVersion="a483e2b91c72e38d3a2c7d81396fa308ba4a5df5"/>
-		<Metadata name="Subsystem.LLM.Subsystem.РаботаСАгентами.CommandInterface" id="e410bab6-4eff-41e4-ad94-3343f9e8da95.1" configVersion="e10d7cf495c1d0e72b69cf9fc7444b028145f066"/>
-		<Metadata name="Subsystem.LLM.Subsystem.СлужебноеЯдро" id="f5850cc3-1952-49c6-b848-c9f7412ecd5a" configVersion="93119a9646efd479088f98c77961851eea0133c2"/>
+		<Metadata name="Subsystem.LLM.Subsystem.РаботаСАгентами" id="e410bab6-4eff-41e4-ad94-3343f9e8da95" configVersion="33bb2dcfa3ad23cf6402a6e81d4ad44f86fcac9e"/>
+		<Metadata name="Subsystem.LLM.Subsystem.РаботаСАгентами.CommandInterface" id="e410bab6-4eff-41e4-ad94-3343f9e8da95.1" configVersion="8021e467e637a11223226c5cf6698d05dbc0c3a7"/>
+		<Metadata name="Subsystem.LLM.Subsystem.СлужебноеЯдро" id="f5850cc3-1952-49c6-b848-c9f7412ecd5a" configVersion="f87d2f688163a9558bad1b07fb0aa9e503096487"/>
+		<Metadata name="Catalog.AI_МестаЗапускаСценариев" id="f7ebe675-ae70-4903-b088-5f9c75ee6fc7" configVersion="0d9400d0024012d8c750439eebc0550d7e2d07e7">
+			<Metadata name="Catalog.AI_МестаЗапускаСценариев.Attribute.ПредставлениеКоманды" id="227b84a5-d3fb-4140-91cc-4b2ba3e778b7"/>
+			<Metadata name="Catalog.AI_МестаЗапускаСценариев.Attribute.РазрешитьНесколькоОбъектов" id="274bbc43-0bf8-418f-aa2e-87a9edfb1edf"/>
+			<Metadata name="Catalog.AI_МестаЗапускаСценариев.Attribute.НачальныйЗапрос" id="334609c5-f853-4744-9b66-80b482484644"/>
+			<Metadata name="Catalog.AI_МестаЗапускаСценариев.Attribute.Сценарий" id="64cf7d9f-a516-4582-9c19-ee301e75db38"/>
+			<Metadata name="Catalog.AI_МестаЗапускаСценариев.Attribute.Активно" id="7aa2c328-a00b-44a0-9846-8e55ac820e2f"/>
+			<Metadata name="Catalog.AI_МестаЗапускаСценариев.Attribute.ТипМеста" id="98a1c2eb-c2c4-429f-a607-c10b6c31d7b8"/>
+			<Metadata name="Catalog.AI_МестаЗапускаСценариев.Attribute.Описание" id="98c5bcb4-3f32-463e-9fc1-90e883ee00cd"/>
+			<Metadata name="Catalog.AI_МестаЗапускаСценариев.Attribute.Порядок" id="c525ffbf-f277-4770-a276-4d6b28aa80aa"/>
+			<Metadata name="Catalog.AI_МестаЗапускаСценариев.Attribute.ПолноеИмяМетаданных" id="e252bcf8-59ae-4435-b235-ed99b4f3679d"/>
+		</Metadata>
+		<Metadata name="Catalog.AI_МестаЗапускаСценариев.ObjectModule" id="f7ebe675-ae70-4903-b088-5f9c75ee6fc7.0" configVersion="d320064177a0be7a97c18aaa5b8ac0ae4100a9fa"/>
+		<Metadata name="CommonModule.AI_ИнтерфейсныеСценарии" id="50cfc2f4-2866-473f-9e6d-6c46f98dcb45" configVersion="384d7e7b5c30b01f59ce847441fca07327671766"/>
+		<Metadata name="CommonModule.AI_ИнтерфейсныеСценарии.Module" id="50cfc2f4-2866-473f-9e6d-6c46f98dcb45.0" configVersion="59ba7616d01c0766d3c9030372753672af3db124"/>
+		<Metadata name="CommonModule.AI_ИнтерфейсныеСценарииКлиент" id="17566fd2-0bd9-48db-a45d-89a8f240df15" configVersion="7769576c0b1902644d51e41139534584e7fa6bd5"/>
+		<Metadata name="CommonModule.AI_ИнтерфейсныеСценарииКлиент.Module" id="17566fd2-0bd9-48db-a45d-89a8f240df15.0" configVersion="bcde5d7f25062b45afa8fc1af3c4cdd1651665bb"/>
+		<Metadata name="DataProcessor.AI_ПомощникКонтекста" id="029c3b24-b5b6-4518-bb96-1483060b26fa" configVersion="9609ea494db8e5f374f532ad73fd91ebade388a3"/>
+		<Metadata name="DataProcessor.AI_ПомощникКонтекста.Form.Форма" id="453a9c87-2a69-48e4-a20f-b7f29b2affa1" configVersion="d0b5e38863865a48c854f2ee83f254b5c55cc666"/>
+		<Metadata name="DataProcessor.AI_ПомощникКонтекста.Form.Форма.Form" id="453a9c87-2a69-48e4-a20f-b7f29b2affa1.0" configVersion="30f9eeb9f37e898d1ea1c74b3646877895c1b137"/>
+		<Metadata name="DataProcessor.AI_ПомощникКонтекста.ManagerModule" id="029c3b24-b5b6-4518-bb96-1483060b26fa.2" configVersion="e1273a67e4411fc0ee08739ca4060c54e07dfca1"/>
+		<Metadata name="DataProcessor.AI_ПомощникКонтекста.ObjectModule" id="029c3b24-b5b6-4518-bb96-1483060b26fa.0" configVersion="48964c2541a6d518597b3c511b170766475de19c"/>
 	</ConfigVersions>
 </ConfigDumpInfo>

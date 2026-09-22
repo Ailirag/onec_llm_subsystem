@@ -37,6 +37,8 @@
 				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ОбработкаСервер</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonPicture.AI_Подсистема</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonPicture.AI_Подсистема2</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ИнтерфейсныеСценарии</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ИнтерфейсныеСценарииКлиент</xr:Item>
 			</Content>
 		</Properties>
 		<ChildObjects/>
