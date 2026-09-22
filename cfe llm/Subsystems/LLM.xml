@@ -104,6 +104,19 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Role.AI_АдминистраторMCP</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Role.AI_АнализДанныхАгентом</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Role.AI_КонсольЗапросов</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ПубличныйAPI</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.AI_ИдемпотентностьАгентскихОпераций</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ДиспетчерОпераций</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">ScheduledJob.AI_ДиспетчерОпераций</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Constant.AI_СрокХраненияОперацийДней</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_Сценарии</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_КонтрактыОпераций</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ОбработчикиРезультатовПереопределяемый</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">InformationRegister.AI_ОценкиРезультатов</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_НаблюдаемостьОпераций</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Constant.AI_СрокХраненияОценокДней</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_МиграцияОчереди</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.AI_МониторАгентскихОпераций</xr:Item>
 			</Content>
 		</Properties>
 		<ChildObjects>

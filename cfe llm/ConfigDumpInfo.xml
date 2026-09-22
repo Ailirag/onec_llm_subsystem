@@ -291,7 +291,7 @@
 		<Metadata name="DataProcessor.AI_Клиент.ObjectModule" id="0aaf0ba1-f72c-41a2-ba5e-57170e0833b1.0" configVersion="ebe8288edcaa315d40bdc4ccb70165e6ad23f66f"/>
 		<Metadata name="DataProcessor.AI_Песочница" id="c4cad3f3-954f-4b20-92c6-82428e304f54" configVersion="58a6f5e48c5600b5d5d73b29cc09d66c515ebbef"/>
 		<Metadata name="DataProcessor.AI_Песочница.Form.Форма" id="8eeca5db-2c73-4f3e-abc0-8965bfeb51d5" configVersion="624b238acd9cb0e243132837bc60befeb79ddb32"/>
-		<Metadata name="DataProcessor.AI_Песочница.Form.Форма.Form" id="8eeca5db-2c73-4f3e-abc0-8965bfeb51d5.0" configVersion="a4411984db4264b2675713b2deb738c86a22717a"/>
+		<Metadata name="DataProcessor.AI_Песочница.Form.Форма.Form" id="8eeca5db-2c73-4f3e-abc0-8965bfeb51d5.0" configVersion="e983aea3a9b43082335ff8a661e4e7c74d1939e9"/>
 		<Metadata name="DataProcessor.AI_ЧатПоДаннымБазы" id="fca5e33f-334a-4d73-9bca-301060e74ee3" configVersion="9c864abf009ec4ea4fa2dd196339e5cf45eaae2e">
 			<Metadata name="DataProcessor.AI_ЧатПоДаннымБазы.TabularSection.Запросы.Attribute.АдресРезультатовЗапроса" id="0092d991-9d41-44a0-88dc-fa0652df911b"/>
 			<Metadata name="DataProcessor.AI_ЧатПоДаннымБазы.TabularSection.Запросы.Attribute.Идентификатор" id="05094194-28e6-4f68-b07d-cfe26044400c"/>
