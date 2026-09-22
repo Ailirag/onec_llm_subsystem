@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<CommandInterface xmlns="http://v8.1c.ru/8.3/xcf/extrnprops" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<CommandsVisibility>
+	<Command name="DataProcessor.AI_МониторАгентскихОпераций.StandardCommand.Open"><Visibility><xr:Common>true</xr:Common></Visibility></Command>
+	<Command name="InformationRegister.AI_ЖурналЗапросов.StandardCommand.OpenList"><Visibility><xr:Common>true</xr:Common></Visibility></Command>
+	<Command name="InformationRegister.AI_ОчередьЗапросов.StandardCommand.OpenList"><Visibility><xr:Common>false</xr:Common></Visibility></Command>
+	<Command name="InformationRegister.AI_ВложенияАгентскихОпераций.StandardCommand.OpenList"><Visibility><xr:Common>false</xr:Common></Visibility></Command>
+	<Command name="InformationRegister.AI_АгентскиеОперации.StandardCommand.OpenList"><Visibility><xr:Common>false</xr:Common></Visibility></Command>
+	<Command name="InformationRegister.AI_ШагиАгентскихОпераций.StandardCommand.OpenList"><Visibility><xr:Common>false</xr:Common></Visibility></Command>
+	<Command name="InformationRegister.AI_ИдемпотентностьАгентскихОпераций.StandardCommand.OpenList"><Visibility><xr:Common>false</xr:Common></Visibility></Command>
+	<Command name="InformationRegister.AI_ОценкиРезультатов.StandardCommand.OpenList"><Visibility><xr:Common>false</xr:Common></Visibility></Command>
+	</CommandsVisibility>
+	<CommandsOrder>
+	<Command name="DataProcessor.AI_МониторАгентскихОпераций.StandardCommand.Open"><CommandGroup>NavigationPanelOrdinary</CommandGroup></Command>
+	<Command name="InformationRegister.AI_ЖурналЗапросов.StandardCommand.OpenList"><CommandGroup>NavigationPanelOrdinary</CommandGroup></Command>
+	</CommandsOrder>
+</CommandInterface>

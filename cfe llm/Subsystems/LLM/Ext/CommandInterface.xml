@@ -11,7 +11,16 @@
 		<Command name="DataProcessor.AI_ЧатПоДаннымБазы.StandardCommand.Open">
 			<CommandGroup>NavigationPanelOrdinary</CommandGroup>
 		</Command>
-	</CommandsOrder>
+	</CommandsOrder><SubsystemsOrder>
+	<Subsystem>Subsystem.LLM.Subsystem.РаботаСАгентами</Subsystem>
+	<Subsystem>Subsystem.LLM.Subsystem.МоделиИАгенты</Subsystem>
+	<Subsystem>Subsystem.LLM.Subsystem.ДоступКДанным</Subsystem>
+	<Subsystem>Subsystem.LLM.Subsystem.Интеграции</Subsystem>
+	<Subsystem>Subsystem.LLM.Subsystem.Мониторинг</Subsystem>
+	<Subsystem>Subsystem.LLM.Subsystem.Администрирование</Subsystem>
+	<Subsystem>Subsystem.LLM.Subsystem.СлужебноеЯдро</Subsystem>
+	</SubsystemsOrder>
+
 	<GroupsOrder>
 		<Group>NavigationPanelOrdinary</Group>
 	</GroupsOrder>
