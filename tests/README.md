@@ -68,6 +68,14 @@ the newest installed `cc-1c-skills` web-test runner.
 
 The local `.v8-project.json` entry is also generated and ignored by Git. Its
 database id and alias are `llm-functional-test` and `llm-test`.
+
+## Сценарии инструкций
+
+`ui/guides` — сценарии для сборки пользовательских инструкций. Это не тесты:
+они запускаются вручную этапом `tools\Build-UserGuide.ps1`, ходят в живую базу
+и обращаются к модели. Раннер тот же, что у UI-смоука. Подробности — в
+[Инструкции для пользователей](../docs/user-guides.md).
+
 # Проверки публичного ядра
 
 После подготовки тестовой базы:
