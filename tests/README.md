@@ -1,4 +1,4 @@
-# Functional test environment
+﻿# Functional test environment
 
 The local functional test environment is deliberately separate from production
 metadata and from a developer's working infobase.
@@ -75,6 +75,20 @@ database id and alias are `llm-functional-test` and `llm-test`.
 они запускаются вручную этапом `tools\Build-UserGuide.ps1`, ходят в живую базу
 и обращаются к модели. Раннер тот же, что у UI-смоука. Подробности — в
 [Инструкции для пользователей](../docs/user-guides.md).
+
+## Сценарии интерфейса вне смоука
+
+`ui/wait-for-write.mjs`, `ui/batch-queue.mjs` и `ui/action-chain.mjs` проверяют
+ожидание записи объекта, массовый режим и цепочку действий. Они ходят в живую
+базу и обращаются к модели, поэтому в обычный прогон UI-смоука не входят и
+запускаются руками:
+
+```powershell
+node <раннер cc-1c-skills>\run.mjs run http://localhost:8081/<база> tests\ui\<сценарий>.mjs
+```
+
+Ход прогона пишется в `.build\<сценарий>.log`: вывод раннера возвращается одним
+куском в самом конце, и при зависании по нему ничего не видно.
 
 # Проверки публичного ядра
 

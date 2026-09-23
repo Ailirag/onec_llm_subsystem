@@ -27,6 +27,9 @@ param(
 $ErrorActionPreference = "Stop"
 
 $repositoryPath = Split-Path $PSScriptRoot -Parent
+if ($Scenario.StartsWith("_")) {
+    throw "Файл на подчеркивание — это библиотека сборщика, а не сценарий: $Scenario"
+}
 $scenarioFile = Join-Path $repositoryPath "tests\ui\guides\$Scenario.mjs"
 if (-not (Test-Path -LiteralPath $scenarioFile -PathType Leaf)) {
     throw "Сценарий не найден: $scenarioFile"
@@ -70,6 +73,16 @@ if (-not (Test-Path -LiteralPath (Join-Path $runnerDirectory "node_modules"))) {
 # Каталог уходит в сценарий строкой JS: в пути Windows есть обратные слеши.
 $outputLiteral = $outputDirectory.Replace('\', '\\')
 $prologue = "const ВЫХОД = `"$outputLiteral`";"
+
+# Механика снимков общая для всех сценариев и подставляется перед текстом
+# сценария: раннер исполняет файл как тело функции, импортов там нет, а
+# копировать полсотни строк в каждую инструкцию — верный способ развести их.
+$runtimeFile = Join-Path (Split-Path $scenarioFile -Parent) "_runtime.mjs"
+if (Test-Path -LiteralPath $runtimeFile -PathType Leaf) {
+    $prologue = $prologue + [Environment]::NewLine +
+        [System.IO.File]::ReadAllText($runtimeFile, [System.Text.UTF8Encoding]::new($false))
+}
+
 $scenarioBody = [System.IO.File]::ReadAllText($scenarioFile, [System.Text.UTF8Encoding]::new($false))
 $prepared = Join-Path $env:TEMP ("web-test-guide-" + [guid]::NewGuid().ToString("N") + ".mjs")
 [System.IO.File]::WriteAllText($prepared, $prologue + "`n" + $scenarioBody, [System.Text.UTF8Encoding]::new($false))
