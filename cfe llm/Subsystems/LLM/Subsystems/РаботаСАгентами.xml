@@ -9,7 +9,7 @@
 					<v8:content>Работа с агентами</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment />
 			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<IncludeInCommandInterface>true</IncludeInCommandInterface>
 			<UseOneCommand>false</UseOneCommand>
@@ -19,7 +19,7 @@
 					<v8:content>Диалоги, песочница и пользовательская работа с агентами.</v8:content>
 				</v8:item>
 			</Explanation>
-			<Picture/>
+			<Picture />
 			<Content>
 				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.AI_ЧатПоДаннымБазы</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.AI_Песочница</xr:Item>
@@ -34,8 +34,9 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_СтатусВложения</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_РольСообщения</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.AI_ПомощникКонтекста</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_СпособРазбораВложений</xr:Item>
 			</Content>
 		</Properties>
-		<ChildObjects/>
+		<ChildObjects />
 	</Subsystem>
 </MetaDataObject>
