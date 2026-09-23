@@ -9,7 +9,7 @@
 					<v8:content>Служебное ядро</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment />
 			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<IncludeInCommandInterface>false</IncludeInCommandInterface>
 			<UseOneCommand>false</UseOneCommand>
@@ -19,7 +19,7 @@
 					<v8:content>Низкоуровневые транспортные и инфраструктурные объекты.</v8:content>
 				</v8:item>
 			</Explanation>
-			<Picture/>
+			<Picture />
 			<Content>
 				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.AI_Клиент</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.OPI_HTTPКлиент</xr:Item>
@@ -39,8 +39,18 @@
 				<xr:Item xsi:type="xr:MDObjectRef">CommonPicture.AI_Подсистема2</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ИнтерфейсныеСценарии</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ИнтерфейсныеСценарииКлиент</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ИзвлечениеРеквизитов</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ВложенияПереопределяемый</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ПрименениеРекомендаций</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ДействияПереопределяемый</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_ВидДействия</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonPicture.AI_ИндикаторОжидания</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ПовторноеИспользование</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_Инструкции</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ПакетыСценариев</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_РежимВыполнения</xr:Item>
 			</Content>
 		</Properties>
-		<ChildObjects/>
+		<ChildObjects />
 	</Subsystem>
 </MetaDataObject>

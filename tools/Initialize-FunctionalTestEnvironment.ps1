@@ -3,7 +3,10 @@ param(
     [string]$BasePath = (Join-Path $env:LOCALAPPDATA "Ailirag\onec_llm_subsystem\functional-test-base"),
     [string]$V8Path = "",
     [int]$SeedTimeoutSeconds = 120,
-    [switch]$Recreate
+    [switch]$Recreate,
+    # Цикл разработки: база уже поднята и засеяна, пересевать фикстуры не нужно.
+    # Экономит COM-подключение и повторную запись тестовых данных на каждой итерации.
+    [switch]$SkipSeed
 )
 
 $ErrorActionPreference = "Stop"
@@ -190,6 +193,14 @@ Invoke-1C `
 Invoke-1C `
     -Arguments "DESIGNER /F`"$baseFullPath`" /UpdateDBCfg" `
     -LogName "update-database.log"
+
+if ($SkipSeed) {
+    Write-Host "Пересев фикстур пропущен (-SkipSeed)."
+    Update-LocalDatabaseRegistry
+    Write-Host ""
+    Write-Host "[OK] Функциональная база обновлена: $baseFullPath"
+    return
+}
 
 $seedResult = Join-Path $buildPath "seed-result.txt"
 $seedOutput = Join-Path $buildPath "seed-com.stdout.log"

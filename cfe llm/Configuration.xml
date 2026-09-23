@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
 	<Configuration uuid="e19600ea-58c6-4d43-8a38-374e4e4b0bc6">
 		<InternalInfo>
@@ -40,7 +40,7 @@
 					<v8:content>LLM</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment />
 			<ConfigurationExtensionPurpose>AddOn</ConfigurationExtensionPurpose>
 			<KeepMappingToExtendedConfigurationObjectsByIDs>true</KeepMappingToExtendedConfigurationObjectsByIDs>
 			<NamePrefix>Нейро_</NamePrefix>
@@ -56,8 +56,8 @@
 			<Vendor>Ailirag</Vendor>
 			<Version>1.0.0.0</Version>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
-			<BriefInformation/>
-			<DetailedInformation/>
+			<BriefInformation />
+			<DetailedInformation />
 			<Copyright>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -83,6 +83,7 @@
 			<Subsystem>LLM</Subsystem>
 			<CommonPicture>AI_Подсистема</CommonPicture>
 			<CommonPicture>AI_Подсистема2</CommonPicture>
+			<CommonPicture>AI_ИндикаторОжидания</CommonPicture>
 			<SessionParameter>OPI_НастройкиРасширенногоВызова</SessionParameter>
 			<Role>AI_ПолныеПрава</Role>
 			<Role>AI_ПользовательLLM</Role>
@@ -130,6 +131,13 @@
 			<CommonModule>AI_МиграцияОчереди</CommonModule>
 			<CommonModule>AI_ИнтерфейсныеСценарии</CommonModule>
 			<CommonModule>AI_ИнтерфейсныеСценарииКлиент</CommonModule>
+			<CommonModule>AI_ИзвлечениеРеквизитов</CommonModule>
+			<CommonModule>AI_ВложенияПереопределяемый</CommonModule>
+			<CommonModule>AI_ПрименениеРекомендаций</CommonModule>
+			<CommonModule>AI_ДействияПереопределяемый</CommonModule>
+			<CommonModule>AI_ПовторноеИспользование</CommonModule>
+			<CommonModule>AI_Инструкции</CommonModule>
+			<CommonModule>AI_ПакетыСценариев</CommonModule>
 			<EventSubscription>AI_КонтрольУникальностиИдентификатораЛогики</EventSubscription>
 			<ScheduledJob>AI_ОбработкаОчередиЗапросов</ScheduledJob>
 			<ScheduledJob>AI_ОбработкаОчередиПодготовкиКВекторизации</ScheduledJob>
@@ -160,6 +168,7 @@
 			<Catalog>AI_ГруппыПользователей</Catalog>
 			<Catalog>AI_Сценарии</Catalog>
 			<Catalog>AI_МестаЗапускаСценариев</Catalog>
+			<Catalog>AI_КартыИзвлечения</Catalog>
 			<Enum>AI_ТипAPI</Enum>
 			<Enum>AI_ФорматыОтветов</Enum>
 			<Enum>AI_РольСообщения</Enum>
@@ -174,6 +183,11 @@
 			<Enum>AI_РежимВыполненияMCP</Enum>
 			<Enum>AI_РежимДоступаАгента</Enum>
 			<Enum>AI_ТипПровайдера</Enum>
+			<Enum>AI_ТипЗначенияПоля</Enum>
+			<Enum>AI_ВидУточнения</Enum>
+			<Enum>AI_ВидСравненияОтбора</Enum>
+			<Enum>AI_ВидДействия</Enum>
+			<Enum>AI_РежимВыполнения</Enum>
 			<DataProcessor>AI_Клиент</DataProcessor>
 			<DataProcessor>OPI_HTTPКлиент</DataProcessor>
 			<DataProcessor>AI_Песочница</DataProcessor>

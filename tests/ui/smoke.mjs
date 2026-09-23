@@ -96,6 +96,13 @@ assert(monitor.tables?.some(table => table.name === 'СписокОпераци�
   'Operations monitor table is missing');
 assert(monitor.buttons.some(button => button.name === 'Сохранить оценку'),
   'Operations feedback button is missing');
+// Кликать по кнопке нельзя: на заполненном списке оценка упирается в правило
+// "оценить можно только сохраненный успешный результат", и тест стал бы
+// зависеть от порядка запуска. Проверяем, что форма оценки собрана целиком.
+for (const field of ['Решение', 'Комментарий', 'ИсправленныйОтвет']) {
+  assert(monitor.fields?.some(item => item.name === field),
+    `Operations feedback field ${field} is missing`);
+}
 await closeForm({ save: false });
 
 let hostSection;

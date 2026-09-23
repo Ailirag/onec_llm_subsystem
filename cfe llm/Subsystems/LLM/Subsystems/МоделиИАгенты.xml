@@ -9,7 +9,7 @@
 					<v8:content>Модели и агенты</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment />
 			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<IncludeInCommandInterface>true</IncludeInCommandInterface>
 			<UseOneCommand>false</UseOneCommand>
@@ -19,7 +19,7 @@
 					<v8:content>Провайдеры, модели, агенты, сценарии и дополнительный контекст.</v8:content>
 				</v8:item>
 			</Explanation>
-			<Picture/>
+			<Picture />
 			<Content>
 				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_Провайдеры</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_Модели</xr:Item>
@@ -38,8 +38,12 @@
 				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_Инструкция</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">EventSubscription.AI_КонтрольУникальностиИдентификатораЛогики</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_МестаЗапускаСценариев</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.AI_КартыИзвлечения</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_ТипЗначенияПоля</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_ВидУточнения</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_ВидСравненияОтбора</xr:Item>
 			</Content>
 		</Properties>
-		<ChildObjects/>
+		<ChildObjects />
 	</Subsystem>
 </MetaDataObject>
