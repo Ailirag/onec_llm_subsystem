@@ -188,6 +188,7 @@
 			<Enum>AI_ВидСравненияОтбора</Enum>
 			<Enum>AI_ВидДействия</Enum>
 			<Enum>AI_РежимВыполнения</Enum>
+			<Enum>AI_СпособРазбораВложений</Enum>
 			<DataProcessor>AI_Клиент</DataProcessor>
 			<DataProcessor>OPI_HTTPКлиент</DataProcessor>
 			<DataProcessor>AI_Песочница</DataProcessor>

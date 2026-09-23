@@ -2,7 +2,7 @@
 <Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
 	<WindowOpeningMode>LockOwnerWindow</WindowOpeningMode>
 	<UseForFoldersAndItems>Items</UseForFoldersAndItems>
-	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1" />
 	<Events>
 		<Event name="OnReadAtServer">ПриЧтенииНаСервере</Event>
 		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
@@ -13,38 +13,38 @@
 			<DataPath>Объект.Code</DataPath>
 			<EditMode>EnterOnInput</EditMode>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="КодКонтекстноеМеню" id="2"/>
-			<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3"/>
+			<ContextMenu name="КодКонтекстноеМеню" id="2" />
+			<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3" />
 		</InputField>
 		<InputField name="Наименование" id="4">
 			<DataPath>Объект.Description</DataPath>
 			<EditMode>EnterOnInput</EditMode>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="НаименованиеКонтекстноеМеню" id="5"/>
-			<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6"/>
+			<ContextMenu name="НаименованиеКонтекстноеМеню" id="5" />
+			<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6" />
 		</InputField>
 		<InputField name="ПровайдерИсточникAPI" id="53">
 			<DataPath>Объект.ПровайдерИсточникAPI</DataPath>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="ПровайдерИсточникAPIКонтекстноеМеню" id="54"/>
-			<ExtendedTooltip name="ПровайдерИсточникAPIРасширеннаяПодсказка" id="55"/>
+			<ContextMenu name="ПровайдерИсточникAPIКонтекстноеМеню" id="54" />
+			<ExtendedTooltip name="ПровайдерИсточникAPIРасширеннаяПодсказка" id="55" />
 		</InputField>
 		<CheckBoxField name="Активен" id="7">
 			<DataPath>Объект.Активен</DataPath>
 			<EditMode>EnterOnInput</EditMode>
 			<CheckBoxType>Auto</CheckBoxType>
-			<ContextMenu name="АктивенКонтекстноеМеню" id="8"/>
-			<ExtendedTooltip name="АктивенРасширеннаяПодсказка" id="9"/>
+			<ContextMenu name="АктивенКонтекстноеМеню" id="8" />
+			<ExtendedTooltip name="АктивенРасширеннаяПодсказка" id="9" />
 		</CheckBoxField>
 		<InputField name="ТипПровайдера" id="64">
 			<DataPath>Объект.ТипПровайдера</DataPath>
-			<ContextMenu name="ТипПровайдераКонтекстноеМеню" id="65"/>
-			<ExtendedTooltip name="ТипПровайдераРасширеннаяПодсказка" id="66"/>
+			<ContextMenu name="ТипПровайдераКонтекстноеМеню" id="65" />
+			<ExtendedTooltip name="ТипПровайдераРасширеннаяПодсказка" id="66" />
 		</InputField>
 		<CheckBoxField name="ЛогироватьЗапросы" id="22">
 			<CheckBoxType>Auto</CheckBoxType>
-			<ContextMenu name="ЛогироватьЗапросыКонтекстноеМеню" id="23"/>
-			<ExtendedTooltip name="ЛогироватьЗапросыРасширеннаяПодсказка" id="24"/>
+			<ContextMenu name="ЛогироватьЗапросыКонтекстноеМеню" id="23" />
+			<ExtendedTooltip name="ЛогироватьЗапросыРасширеннаяПодсказка" id="24" />
 		</CheckBoxField>
 		<InputField name="МаксКоличествоПотоков" id="25">
 			<DataPath>Объект.МаксКоличествоПотоков</DataPath>
@@ -56,22 +56,22 @@
 			</ToolTip>
 			<ToolTipRepresentation>ShowRight</ToolTipRepresentation>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="МаксКоличествоПотоковКонтекстноеМеню" id="26"/>
-			<ExtendedTooltip name="МаксКоличествоПотоковРасширеннаяПодсказка" id="27"/>
+			<ContextMenu name="МаксКоличествоПотоковКонтекстноеМеню" id="26" />
+			<ExtendedTooltip name="МаксКоличествоПотоковРасширеннаяПодсказка" id="27" />
 		</InputField>
 		<InputField name="ТипAPI" id="10">
 			<DataPath>1/0:2e47597b-2800-4664-90b9-dc5b2a84718a</DataPath>
 			<EditMode>EnterOnInput</EditMode>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="ТипAPIКонтекстноеМеню" id="11"/>
-			<ExtendedTooltip name="ТипAPIРасширеннаяПодсказка" id="12"/>
+			<ContextMenu name="ТипAPIКонтекстноеМеню" id="11" />
+			<ExtendedTooltip name="ТипAPIРасширеннаяПодсказка" id="12" />
 		</InputField>
 		<InputField name="БазовыйURL" id="13">
 			<DataPath>1/0:5594c8e3-29f6-48f7-876c-d9408fd7ead6</DataPath>
 			<EditMode>EnterOnInput</EditMode>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="БазовыйURLКонтекстноеМеню" id="14"/>
-			<ExtendedTooltip name="БазовыйURLРасширеннаяПодсказка" id="15"/>
+			<ContextMenu name="БазовыйURLКонтекстноеМеню" id="14" />
+			<ExtendedTooltip name="БазовыйURLРасширеннаяПодсказка" id="15" />
 		</InputField>
 		<InputField name="ЛимитRPM" id="56">
 			<DataPath>Объект.ЛимитRPM</DataPath>
@@ -83,14 +83,14 @@
 			</ToolTip>
 			<ToolTipRepresentation>ShowRight</ToolTipRepresentation>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="ЛимитRPMКонтекстноеМеню" id="57"/>
-			<ExtendedTooltip name="ЛимитRPMРасширеннаяПодсказка" id="58"/>
+			<ContextMenu name="ЛимитRPMКонтекстноеМеню" id="57" />
+			<ExtendedTooltip name="ЛимитRPMРасширеннаяПодсказка" id="58" />
 		</InputField>
 		<InputField name="ApiКлюч" id="19">
 			<DataPath>ApiКлюч</DataPath>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="ApiКлючКонтекстноеМеню" id="20"/>
-			<ExtendedTooltip name="ApiКлючРасширеннаяПодсказка" id="21"/>
+			<ContextMenu name="ApiКлючКонтекстноеМеню" id="20" />
+			<ExtendedTooltip name="ApiКлючРасширеннаяПодсказка" id="21" />
 		</InputField>
 		<InputField name="МодельАнализаВложений" id="61">
 			<DataPath>Объект.МодельАнализаВложений</DataPath>
@@ -111,13 +111,26 @@
 					<xr:ValueChange>Clear</xr:ValueChange>
 				</xr:Link>
 			</ChoiceParameterLinks>
-			<ContextMenu name="МодельАнализаВложенийКонтекстноеМеню" id="62"/>
-			<ExtendedTooltip name="МодельАнализаВложенийРасширеннаяПодсказка" id="63"/>
+			<ContextMenu name="МодельАнализаВложенийКонтекстноеМеню" id="62" />
+			<ExtendedTooltip name="МодельАнализаВложенийРасширеннаяПодсказка" id="63" />
+		</InputField>
+		<InputField name="СпособРазбораВложений" id="67">
+			<DataPath>Объект.СпособРазбораВложений</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Способ разбора вложений</v8:content>
+				</v8:item>
+			</Title>
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<HorizontalStretch>true</HorizontalStretch>
+			<ContextMenu name="СпособРазбораВложенийКонтекстноеМеню" id="68" />
+			<ExtendedTooltip name="СпособРазбораВложенийРасширеннаяПодсказка" id="69" />
 		</InputField>
 		<Button name="ЗагрузитьМодели" id="59">
 			<Type>UsualButton</Type>
 			<CommandName>Form.Command.ЗагрузитьМодели</CommandName>
-			<ExtendedTooltip name="ЗагрузитьМоделиРасширеннаяПодсказка" id="60"/>
+			<ExtendedTooltip name="ЗагрузитьМоделиРасширеннаяПодсказка" id="60" />
 		</Button>
 		<InputField name="ТаймаутСек" id="16">
 			<DataPath>Объект.ТаймаутСек</DataPath>
@@ -136,69 +149,69 @@
 			<ToolTipRepresentation>ShowRight</ToolTipRepresentation>
 			<EditMode>EnterOnInput</EditMode>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="ТаймаутСекКонтекстноеМеню" id="17"/>
-			<ExtendedTooltip name="ТаймаутСекРасширеннаяПодсказка" id="18"/>
+			<ContextMenu name="ТаймаутСекКонтекстноеМеню" id="17" />
+			<ExtendedTooltip name="ТаймаутСекРасширеннаяПодсказка" id="18" />
 		</InputField>
 		<Table name="АдресаСервисов" id="28">
 			<AutoInsertNewRow>true</AutoInsertNewRow>
 			<EnableStartDrag>true</EnableStartDrag>
 			<EnableDrag>true</EnableDrag>
 			<DataPath>Объект.АдресаСервисов</DataPath>
-			<RowFilter xsi:nil="true"/>
-			<ContextMenu name="АдресаСервисовКонтекстноеМеню" id="29"/>
-			<AutoCommandBar name="АдресаСервисовКоманднаяПанель" id="30"/>
-			<ExtendedTooltip name="АдресаСервисовРасширеннаяПодсказка" id="31"/>
+			<RowFilter xsi:nil="true" />
+			<ContextMenu name="АдресаСервисовКонтекстноеМеню" id="29" />
+			<AutoCommandBar name="АдресаСервисовКоманднаяПанель" id="30" />
+			<ExtendedTooltip name="АдресаСервисовРасширеннаяПодсказка" id="31" />
 			<SearchStringAddition name="АдресаСервисовСтрокаПоиска" id="32">
 				<AdditionSource>
 					<Item>АдресаСервисов</Item>
 					<Type>SearchStringRepresentation</Type>
 				</AdditionSource>
-				<ContextMenu name="АдресаСервисовСтрокаПоискаКонтекстноеМеню" id="33"/>
-				<ExtendedTooltip name="АдресаСервисовСтрокаПоискаРасширеннаяПодсказка" id="34"/>
+				<ContextMenu name="АдресаСервисовСтрокаПоискаКонтекстноеМеню" id="33" />
+				<ExtendedTooltip name="АдресаСервисовСтрокаПоискаРасширеннаяПодсказка" id="34" />
 			</SearchStringAddition>
 			<ViewStatusAddition name="АдресаСервисовСостояниеПросмотра" id="35">
 				<AdditionSource>
 					<Item>АдресаСервисов</Item>
 					<Type>ViewStatusRepresentation</Type>
 				</AdditionSource>
-				<ContextMenu name="АдресаСервисовСостояниеПросмотраКонтекстноеМеню" id="36"/>
-				<ExtendedTooltip name="АдресаСервисовСостояниеПросмотраРасширеннаяПодсказка" id="37"/>
+				<ContextMenu name="АдресаСервисовСостояниеПросмотраКонтекстноеМеню" id="36" />
+				<ExtendedTooltip name="АдресаСервисовСостояниеПросмотраРасширеннаяПодсказка" id="37" />
 			</ViewStatusAddition>
 			<SearchControlAddition name="АдресаСервисовУправлениеПоиском" id="38">
 				<AdditionSource>
 					<Item>АдресаСервисов</Item>
 					<Type>SearchControl</Type>
 				</AdditionSource>
-				<ContextMenu name="АдресаСервисовУправлениеПоискомКонтекстноеМеню" id="39"/>
-				<ExtendedTooltip name="АдресаСервисовУправлениеПоискомРасширеннаяПодсказка" id="40"/>
+				<ContextMenu name="АдресаСервисовУправлениеПоискомКонтекстноеМеню" id="39" />
+				<ExtendedTooltip name="АдресаСервисовУправлениеПоискомРасширеннаяПодсказка" id="40" />
 			</SearchControlAddition>
 			<ChildItems>
 				<LabelField name="АдресаСервисовНомерСтроки" id="41">
 					<DataPath>Объект.АдресаСервисов.LineNumber</DataPath>
 					<EditMode>EnterOnInput</EditMode>
-					<ContextMenu name="АдресаСервисовНомерСтрокиКонтекстноеМеню" id="42"/>
-					<ExtendedTooltip name="АдресаСервисовНомерСтрокиРасширеннаяПодсказка" id="43"/>
+					<ContextMenu name="АдресаСервисовНомерСтрокиКонтекстноеМеню" id="42" />
+					<ExtendedTooltip name="АдресаСервисовНомерСтрокиРасширеннаяПодсказка" id="43" />
 				</LabelField>
 				<InputField name="АдресаСервисовБазовыйURL" id="44">
 					<DataPath>Объект.АдресаСервисов.БазовыйURL</DataPath>
 					<EditMode>EnterOnInput</EditMode>
 					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-					<ContextMenu name="АдресаСервисовБазовыйURLКонтекстноеМеню" id="45"/>
-					<ExtendedTooltip name="АдресаСервисовБазовыйURLРасширеннаяПодсказка" id="46"/>
+					<ContextMenu name="АдресаСервисовБазовыйURLКонтекстноеМеню" id="45" />
+					<ExtendedTooltip name="АдресаСервисовБазовыйURLРасширеннаяПодсказка" id="46" />
 				</InputField>
 				<InputField name="АдресаСервисовТип" id="47">
 					<DataPath>Объект.АдресаСервисов.Тип</DataPath>
 					<EditMode>EnterOnInput</EditMode>
 					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-					<ContextMenu name="АдресаСервисовТипКонтекстноеМеню" id="48"/>
-					<ExtendedTooltip name="АдресаСервисовТипРасширеннаяПодсказка" id="49"/>
+					<ContextMenu name="АдресаСервисовТипКонтекстноеМеню" id="48" />
+					<ExtendedTooltip name="АдресаСервисовТипРасширеннаяПодсказка" id="49" />
 				</InputField>
 				<InputField name="АдресаСервисовОписание" id="50">
 					<DataPath>Объект.АдресаСервисов.Описание</DataPath>
 					<EditMode>EnterOnInput</EditMode>
 					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-					<ContextMenu name="АдресаСервисовОписаниеКонтекстноеМеню" id="51"/>
-					<ExtendedTooltip name="АдресаСервисовОписаниеРасширеннаяПодсказка" id="52"/>
+					<ContextMenu name="АдресаСервисовОписаниеКонтекстноеМеню" id="51" />
+					<ExtendedTooltip name="АдресаСервисовОписаниеРасширеннаяПодсказка" id="52" />
 				</InputField>
 			</ChildItems>
 		</Table>
