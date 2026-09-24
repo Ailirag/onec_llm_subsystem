@@ -581,6 +581,23 @@
 								</InputField>
 							</ChildItems>
 						</Table>
+						<InputField name="ТекстОтветаМодели" id="186">
+							<DataPath>ТекстОтвета</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Ответ модели</v8:content>
+								</v8:item>
+							</Title>
+							<Visible>false</Visible>
+							<ReadOnly>true</ReadOnly>
+							<TitleLocation>Top</TitleLocation>
+							<MultiLine>true</MultiLine>
+							<Height>10</Height>
+							<HorizontalStretch>true</HorizontalStretch>
+							<ContextMenu name="ТекстОтветаМоделиКонтекстноеМеню" id="187" />
+							<ExtendedTooltip name="ТекстОтветаМоделиРасширеннаяПодсказка" id="188" />
+						</InputField>
 						<Button name="ЗаписатьОбъектВладельца" id="139">
 							<CommandName>Form.Command.ЗаписатьОбъектВладельца</CommandName>
 							<Title>
@@ -659,6 +676,91 @@
 							</Title>
 							<ExtendedTooltip name="ОткрытьРезультатПакетаРасширеннаяПодсказка" id="159" />
 						</Button>
+					</ChildItems>
+				</Page>
+				<Page name="СтраницаДиалог" id="166">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Диалог</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СтраницаДиалогРасширеннаяПодсказка" id="167" />
+					<ChildItems>
+						<LabelDecoration name="ПояснениеДиалога" id="168">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content> </v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ПояснениеДиалогаКонтекстноеМеню" id="169" />
+							<ExtendedTooltip name="ПояснениеДиалогаРасширеннаяПодсказка" id="170" />
+						</LabelDecoration>
+						<InputField name="ИсторияДиалога" id="171">
+							<DataPath>ИсторияДиалога</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<TitleLocation>None</TitleLocation>
+							<MultiLine>true</MultiLine>
+							<Height>12</Height>
+							<HorizontalStretch>true</HorizontalStretch>
+							<ContextMenu name="ИсторияДиалогаКонтекстноеМеню" id="172" />
+							<ExtendedTooltip name="ИсторияДиалогаРасширеннаяПодсказка" id="173" />
+						</InputField>
+						<InputField name="СообщениеДиалога" id="174">
+							<DataPath>СообщениеДиалога</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Ваше сообщение</v8:content>
+								</v8:item>
+							</Title>
+							<TitleLocation>Top</TitleLocation>
+							<MultiLine>true</MultiLine>
+							<Height>3</Height>
+							<HorizontalStretch>true</HorizontalStretch>
+							<InputHint>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Опишите, что нужно, или ответьте на вопрос модели</v8:content>
+								</v8:item>
+							</InputHint>
+							<ContextMenu name="СообщениеДиалогаКонтекстноеМеню" id="175" />
+							<ExtendedTooltip name="СообщениеДиалогаРасширеннаяПодсказка" id="176" />
+						</InputField>
+						<UsualGroup name="ГруппаКнопокДиалога" id="177">
+							<ExtendedTooltip name="ГруппаКнопокДиалогаРасширеннаяПодсказка" id="178" />
+							<ChildItems>
+								<Button name="КнопкаОтправить" id="179">
+									<CommandName>Form.Command.ОтправитьСообщение</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Отправить</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="КнопкаОтправитьРасширеннаяПодсказка" id="180" />
+								</Button>
+								<Button name="КнопкаСформировать" id="181">
+									<CommandName>Form.Command.СформироватьРезультат</CommandName>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Сформировать результат</v8:content>
+										</v8:item>
+									</Title>
+									<ExtendedTooltip name="КнопкаСформироватьРасширеннаяПодсказка" id="182" />
+								</Button>
+							</ChildItems>
+						</UsualGroup>
+						<InputField name="СтатусДиалога" id="183">
+							<DataPath>СтатусОперации</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<TitleLocation>None</TitleLocation>
+							<HorizontalStretch>true</HorizontalStretch>
+							<ContextMenu name="СтатусДиалогаКонтекстноеМеню" id="184" />
+							<ExtendedTooltip name="СтатусДиалогаРасширеннаяПодсказка" id="185" />
+						</InputField>
 					</ChildItems>
 				</Page>
 			</ChildItems>
@@ -1298,6 +1400,65 @@
 				</Column>
 			</Columns>
 		</Attribute>
+		<Attribute name="ИсторияДиалога" id="189">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="СообщениеДиалога" id="190">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ЭтапДиалога" id="191">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>20</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ИдентификаторДиалогаРежима" id="192">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>36</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ПредыдущийIDОтветаДиалога" id="193">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>200</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="ДанныеКонтекстаДиалога" id="194">
+			<Type>
+				<v8:Type>xs:string</v8:Type>
+				<v8:StringQualifiers>
+					<v8:Length>0</v8:Length>
+					<v8:AllowedLength>Variable</v8:AllowedLength>
+				</v8:StringQualifiers>
+			</Type>
+		</Attribute>
+		<Attribute name="АвтозапускДействия" id="195">
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+		</Attribute>
 	</Attributes>
 	<Commands>
 		<Command name="Далее" id="184">
@@ -1398,6 +1559,24 @@
 				</v8:item>
 			</Title>
 			<Action>ЗагрузитьПакетОбработка</Action>
+		</Command>
+		<Command name="ОтправитьСообщение" id="195">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отправить</v8:content>
+				</v8:item>
+			</Title>
+			<Action>ОтправитьСообщениеОбработка</Action>
+		</Command>
+		<Command name="СформироватьРезультат" id="196">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сформировать результат</v8:content>
+				</v8:item>
+			</Title>
+			<Action>СформироватьРезультатОбработка</Action>
 		</Command>
 	</Commands>
 </Form>

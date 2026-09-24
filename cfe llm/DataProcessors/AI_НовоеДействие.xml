@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<DataProcessor uuid="d1b8e803-4d87-4f2d-ae58-1ef5dd6324a3">
+		<InternalInfo>
+			<xr:GeneratedType name="DataProcessorObject.AI_НовоеДействие" category="Object">
+				<xr:TypeId>43df8391-9a3b-4ca4-a288-3f26d22a24a5</xr:TypeId>
+				<xr:ValueId>72556683-fdb0-4dac-acfb-8709004dd2f0</xr:ValueId>
+			</xr:GeneratedType>
+			<xr:GeneratedType name="DataProcessorManager.AI_НовоеДействие" category="Manager">
+				<xr:TypeId>4db5210c-598a-484f-90e8-eb036c662be7</xr:TypeId>
+				<xr:ValueId>68af260b-1caa-4f4f-96c1-99fccf0870fd</xr:ValueId>
+			</xr:GeneratedType>
+		</InternalInfo>
+		<Properties>
+			<Name>AI_НовоеДействие</Name>
+			<Synonym>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Новое AI-действие</v8:content>
+				</v8:item>
+			</Synonym>
+			<Comment />
+			<UseStandardCommands>true</UseStandardCommands>
+			<DefaultForm>DataProcessor.AI_НовоеДействие.Form.Форма</DefaultForm>
+			<AuxiliaryForm />
+			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<ExtendedPresentation />
+			<Explanation>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Пошагово заводит действие помощника: карту извлечения, сценарий и место запуска</v8:content>
+				</v8:item>
+			</Explanation>
+		</Properties>
+		<ChildObjects>
+			<Form>Форма</Form>
+		</ChildObjects>
+	</DataProcessor>
+</MetaDataObject>

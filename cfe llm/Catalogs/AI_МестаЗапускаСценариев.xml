@@ -60,9 +60,9 @@
 			<SearchStringModeOnInputByString>Begin</SearchStringModeOnInputByString>
 			<FullTextSearchOnInputByString>DontUse</FullTextSearchOnInputByString>
 			<ChoiceDataGetModeOnInputByString>Directly</ChoiceDataGetModeOnInputByString>
-			<DefaultObjectForm />
+			<DefaultObjectForm>Catalog.AI_МестаЗапускаСценариев.Form.ФормаЭлемента</DefaultObjectForm>
 			<DefaultFolderForm />
-			<DefaultListForm />
+			<DefaultListForm>Catalog.AI_МестаЗапускаСценариев.Form.ФормаСписка</DefaultListForm>
 			<DefaultChoiceForm />
 			<DefaultFolderChoiceForm />
 			<AuxiliaryObjectForm />
@@ -468,6 +468,50 @@
 					<DataHistory>Use</DataHistory>
 				</Properties>
 			</Attribute>
+			<Attribute uuid="f8f39318-2562-480d-afe6-eff10aa84680">
+				<Properties>
+					<Name>РежимДиалога</Name><Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сначала диалог с моделью</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment />
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+					<PasswordMode>false</PasswordMode>
+					<Format />
+					<EditFormat />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Помощник сначала ведет переписку: пользователь объясняет, что нужно, модель уточняет. Результат по карте формируется по кнопке, когда разговор закончен. Для пачки объектов не подходит.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<MarkNegatives>false</MarkNegatives>
+					<Mask />
+					<MultiLine>false</MultiLine>
+					<ExtendedEdit>false</ExtendedEdit>
+					<MinValue xsi:nil="true" />
+					<MaxValue xsi:nil="true" />
+					<FillFromFillingValue>false</FillFromFillingValue>
+					<FillValue xsi:type="xs:boolean">false</FillValue>
+					<FillChecking>DontCheck</FillChecking>
+					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+					<ChoiceParameterLinks />
+					<ChoiceParameters />
+					<QuickChoice>Auto</QuickChoice>
+					<CreateOnInput>Auto</CreateOnInput>
+					<ChoiceForm />
+					<LinkByType />
+					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
+					<Use>ForItem</Use>
+					<Indexing>DontIndex</Indexing>
+					<FullTextSearch>Use</FullTextSearch>
+					<DataHistory>Use</DataHistory>
+				</Properties>
+			</Attribute>
 			<Attribute uuid="b4c1e3e8-25c8-4d5a-bf94-9390f95fb2c0">
 				<Properties>
 					<Name>КартаИзвлечения</Name>
@@ -724,6 +768,153 @@
 					<DataHistory>Use</DataHistory>
 				</Properties>
 			</Attribute>
+			<Attribute uuid="1cfd6883-7169-43b9-ac29-eb29486639b4">
+				<Properties>
+					<Name>МетодПодготовкиЗапроса</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Метод подготовки запроса</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment />
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>64</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+					<PasswordMode>false</PasswordMode>
+					<Format />
+					<EditFormat />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Метод внешней обработки, который вызывается перед обращением к модели: может добавить или заменить файлы, дописать данные и запрос либо отказать с причиной.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<MarkNegatives>false</MarkNegatives>
+					<Mask />
+					<MultiLine>false</MultiLine>
+					<ExtendedEdit>false</ExtendedEdit>
+					<MinValue xsi:nil="true" />
+					<MaxValue xsi:nil="true" />
+					<FillFromFillingValue>false</FillFromFillingValue>
+					<FillValue xsi:type="xs:string" />
+					<FillChecking>DontCheck</FillChecking>
+					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+					<ChoiceParameterLinks />
+					<ChoiceParameters />
+					<QuickChoice>Auto</QuickChoice>
+					<CreateOnInput>Auto</CreateOnInput>
+					<ChoiceForm />
+					<LinkByType />
+					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
+					<Use>ForItem</Use>
+					<Indexing>DontIndex</Indexing>
+					<FullTextSearch>Use</FullTextSearch>
+					<DataHistory>Use</DataHistory>
+				</Properties>
+			</Attribute>
+			<Attribute uuid="caf1e575-6d7a-472e-8fee-3c4146822ce2">
+				<Properties>
+					<Name>МетодПослеОтвета</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Метод после ответа модели</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment />
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>64</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+					<PasswordMode>false</PasswordMode>
+					<Format />
+					<EditFormat />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Метод внешней обработки, который получает ответ модели до показа пользователю: может поправить значения, добавить предупреждения или отклонить ответ.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<MarkNegatives>false</MarkNegatives>
+					<Mask />
+					<MultiLine>false</MultiLine>
+					<ExtendedEdit>false</ExtendedEdit>
+					<MinValue xsi:nil="true" />
+					<MaxValue xsi:nil="true" />
+					<FillFromFillingValue>false</FillFromFillingValue>
+					<FillValue xsi:type="xs:string" />
+					<FillChecking>DontCheck</FillChecking>
+					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+					<ChoiceParameterLinks />
+					<ChoiceParameters />
+					<QuickChoice>Auto</QuickChoice>
+					<CreateOnInput>Auto</CreateOnInput>
+					<ChoiceForm />
+					<LinkByType />
+					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
+					<Use>ForItem</Use>
+					<Indexing>DontIndex</Indexing>
+					<FullTextSearch>Use</FullTextSearch>
+					<DataHistory>Use</DataHistory>
+				</Properties>
+			</Attribute>
+			<Attribute uuid="3e484101-2c71-43ff-8bd4-2debc9f786fd">
+				<Properties>
+					<Name>МетодПослеДействия</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Метод после действия</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment />
+					<Type>
+						<v8:Type>xs:string</v8:Type>
+						<v8:StringQualifiers>
+							<v8:Length>64</v8:Length>
+							<v8:AllowedLength>Variable</v8:AllowedLength>
+						</v8:StringQualifiers>
+					</Type>
+					<PasswordMode>false</PasswordMode>
+					<Format />
+					<EditFormat />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Метод внешней обработки, который вызывается после успешного действия с результатом: например, приложить исходный файл к объекту или запустить процесс.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<MarkNegatives>false</MarkNegatives>
+					<Mask />
+					<MultiLine>false</MultiLine>
+					<ExtendedEdit>false</ExtendedEdit>
+					<MinValue xsi:nil="true" />
+					<MaxValue xsi:nil="true" />
+					<FillFromFillingValue>false</FillFromFillingValue>
+					<FillValue xsi:type="xs:string" />
+					<FillChecking>DontCheck</FillChecking>
+					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+					<ChoiceParameterLinks />
+					<ChoiceParameters />
+					<QuickChoice>Auto</QuickChoice>
+					<CreateOnInput>Auto</CreateOnInput>
+					<ChoiceForm />
+					<LinkByType />
+					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
+					<Use>ForItem</Use>
+					<Indexing>DontIndex</Indexing>
+					<FullTextSearch>Use</FullTextSearch>
+					<DataHistory>Use</DataHistory>
+				</Properties>
+			</Attribute>
 			<Attribute uuid="180e431c-fb25-463b-8b82-96a1020ec87d">
 				<Properties>
 					<Name>РежимВыполнения</Name>
@@ -808,6 +999,8 @@
 					<DataHistory>Use</DataHistory>
 				</Properties>
 			</Attribute>
+			<Form>ФормаЭлемента</Form>
+			<Form>ФормаСписка</Form>
 			<TabularSection uuid="519fba1d-1b4e-45c9-a311-6a930e844968">
 				<InternalInfo>
 					<xr:GeneratedType name="CatalogTabularSection.AI_МестаЗапускаСценариев.Уточнения" category="TabularSection">
@@ -1751,6 +1944,297 @@
 							<Format />
 							<EditFormat />
 							<ToolTip />
+							<MarkNegatives>false</MarkNegatives>
+							<Mask />
+							<MultiLine>false</MultiLine>
+							<ExtendedEdit>false</ExtendedEdit>
+							<MinValue xsi:nil="true" />
+							<MaxValue xsi:nil="true" />
+							<FillChecking>DontCheck</FillChecking>
+							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+							<ChoiceParameterLinks />
+							<ChoiceParameters />
+							<QuickChoice>Auto</QuickChoice>
+							<CreateOnInput>Auto</CreateOnInput>
+							<ChoiceForm />
+							<LinkByType />
+							<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
+							<Indexing>DontIndex</Indexing>
+							<FullTextSearch>Use</FullTextSearch>
+							<DataHistory>Use</DataHistory>
+						</Properties>
+					</Attribute>
+				</ChildObjects>
+			</TabularSection>
+			<TabularSection uuid="7a8e8b1e-02eb-4853-b219-4631e76bbe60">
+				<InternalInfo>
+					<xr:GeneratedType name="CatalogTabularSection.AI_МестаЗапускаСценариев.ДанныеОбъекта" category="TabularSection">
+						<xr:TypeId>c1873788-dac9-45a1-83e0-70afdbfa5951</xr:TypeId>
+						<xr:ValueId>846d5054-259d-4577-acb3-c020157b567d</xr:ValueId>
+					</xr:GeneratedType>
+					<xr:GeneratedType name="CatalogTabularSectionRow.AI_МестаЗапускаСценариев.ДанныеОбъекта" category="TabularSectionRow">
+						<xr:TypeId>b3ca22c4-58a7-41c2-9742-2d698911e322</xr:TypeId>
+						<xr:ValueId>974119bf-a191-407c-89e4-b483029d998d</xr:ValueId>
+					</xr:GeneratedType>
+				</InternalInfo>
+				<Properties>
+					<Name>ДанныеОбъекта</Name><Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Данные объекта для модели</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment />
+					<ToolTip />
+					<FillChecking>DontCheck</FillChecking>
+					<StandardAttributes>
+						<xr:StandardAttribute name="LineNumber">
+							<xr:LinkByType />
+							<xr:FillChecking>DontCheck</xr:FillChecking>
+							<xr:MultiLine>false</xr:MultiLine>
+							<xr:FillFromFillingValue>false</xr:FillFromFillingValue>
+							<xr:CreateOnInput>Auto</xr:CreateOnInput>
+							<xr:MaxValue xsi:nil="true" />
+							<xr:ToolTip />
+							<xr:ExtendedEdit>false</xr:ExtendedEdit>
+							<xr:Format />
+							<xr:ChoiceForm />
+							<xr:QuickChoice>Auto</xr:QuickChoice>
+							<xr:ChoiceHistoryOnInput>Auto</xr:ChoiceHistoryOnInput>
+							<xr:EditFormat />
+							<xr:PasswordMode>false</xr:PasswordMode>
+							<xr:DataHistory>Use</xr:DataHistory>
+							<xr:MarkNegatives>false</xr:MarkNegatives>
+							<xr:MinValue xsi:nil="true" />
+							<xr:Synonym />
+							<xr:Comment />
+							<xr:FullTextSearch>Use</xr:FullTextSearch>
+							<xr:ChoiceParameterLinks />
+							<xr:FillValue xsi:nil="true" />
+							<xr:Mask />
+							<xr:ChoiceParameters />
+						</xr:StandardAttribute>
+					</StandardAttributes>
+					<Use>ForItem</Use>
+				</Properties>
+				<ChildObjects>
+					<Attribute uuid="8ee5b5c2-8449-4027-8ead-6729328efc8b">
+						<Properties>
+							<Name>ТабличнаяЧасть</Name><Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Табличная часть</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment />
+							<Type>
+								<v8:Type>xs:string</v8:Type>
+								<v8:StringQualifiers>
+									<v8:Length>100</v8:Length>
+									<v8:AllowedLength>Variable</v8:AllowedLength>
+								</v8:StringQualifiers>
+							</Type>
+							<PasswordMode>false</PasswordMode>
+							<Format />
+							<EditFormat />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Имя табличной части объекта. Пусто — реквизит шапки.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<MarkNegatives>false</MarkNegatives>
+							<Mask />
+							<MultiLine>false</MultiLine>
+							<ExtendedEdit>false</ExtendedEdit>
+							<MinValue xsi:nil="true" />
+							<MaxValue xsi:nil="true" />
+							<FillChecking>DontCheck</FillChecking>
+							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+							<ChoiceParameterLinks />
+							<ChoiceParameters />
+							<QuickChoice>Auto</QuickChoice>
+							<CreateOnInput>Auto</CreateOnInput>
+							<ChoiceForm />
+							<LinkByType />
+							<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
+							<Indexing>DontIndex</Indexing>
+							<FullTextSearch>Use</FullTextSearch>
+							<DataHistory>Use</DataHistory>
+						</Properties>
+					</Attribute>
+					<Attribute uuid="c211583f-0b42-46a3-a16c-75bbbed28f17">
+						<Properties>
+							<Name>ПутьРеквизита</Name><Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Реквизит</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment />
+							<Type>
+								<v8:Type>xs:string</v8:Type>
+								<v8:StringQualifiers>
+									<v8:Length>200</v8:Length>
+									<v8:AllowedLength>Variable</v8:AllowedLength>
+								</v8:StringQualifiers>
+							</Type>
+							<PasswordMode>false</PasswordMode>
+							<Format />
+							<EditFormat />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Имя реквизита шапки или колонки табличной части. «*» — все реквизиты шапки или все колонки табличной части.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<MarkNegatives>false</MarkNegatives>
+							<Mask />
+							<MultiLine>false</MultiLine>
+							<ExtendedEdit>false</ExtendedEdit>
+							<MinValue xsi:nil="true" />
+							<MaxValue xsi:nil="true" />
+							<FillChecking>DontCheck</FillChecking>
+							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+							<ChoiceParameterLinks />
+							<ChoiceParameters />
+							<QuickChoice>Auto</QuickChoice>
+							<CreateOnInput>Auto</CreateOnInput>
+							<ChoiceForm />
+							<LinkByType />
+							<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
+							<Indexing>DontIndex</Indexing>
+							<FullTextSearch>Use</FullTextSearch>
+							<DataHistory>Use</DataHistory>
+						</Properties>
+					</Attribute>
+				</ChildObjects>
+			</TabularSection>
+			<TabularSection uuid="017bd7a7-22d8-4915-8800-1c42d76c109f">
+				<InternalInfo>
+					<xr:GeneratedType name="CatalogTabularSection.AI_МестаЗапускаСценариев.Видимость" category="TabularSection">
+						<xr:TypeId>96364683-776c-47ae-afd5-a0bc44fc09d5</xr:TypeId>
+						<xr:ValueId>4d833632-7993-4b4c-9936-1c4ee1a30398</xr:ValueId>
+					</xr:GeneratedType>
+					<xr:GeneratedType name="CatalogTabularSectionRow.AI_МестаЗапускаСценариев.Видимость" category="TabularSectionRow">
+						<xr:TypeId>762bd9be-82bf-4301-b520-22860af88b24</xr:TypeId>
+						<xr:ValueId>b9cad7e9-c9f7-4269-9b4e-56c40c9526bc</xr:ValueId>
+					</xr:GeneratedType>
+				</InternalInfo>
+				<Properties>
+					<Name>Видимость</Name>
+					<Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Кому показывать</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment />
+					<ToolTip />
+					<FillChecking>DontCheck</FillChecking>
+					<StandardAttributes>
+						<xr:StandardAttribute name="LineNumber">
+							<xr:LinkByType />
+							<xr:FillChecking>DontCheck</xr:FillChecking>
+							<xr:MultiLine>false</xr:MultiLine>
+							<xr:FillFromFillingValue>false</xr:FillFromFillingValue>
+							<xr:CreateOnInput>Auto</xr:CreateOnInput>
+							<xr:MaxValue xsi:nil="true" />
+							<xr:ToolTip />
+							<xr:ExtendedEdit>false</xr:ExtendedEdit>
+							<xr:Format />
+							<xr:ChoiceForm />
+							<xr:QuickChoice>Auto</xr:QuickChoice>
+							<xr:ChoiceHistoryOnInput>Auto</xr:ChoiceHistoryOnInput>
+							<xr:EditFormat />
+							<xr:PasswordMode>false</xr:PasswordMode>
+							<xr:DataHistory>Use</xr:DataHistory>
+							<xr:MarkNegatives>false</xr:MarkNegatives>
+							<xr:MinValue xsi:nil="true" />
+							<xr:Synonym />
+							<xr:Comment />
+							<xr:FullTextSearch>Use</xr:FullTextSearch>
+							<xr:ChoiceParameterLinks />
+							<xr:FillValue xsi:nil="true" />
+							<xr:Mask />
+							<xr:ChoiceParameters />
+						</xr:StandardAttribute>
+					</StandardAttributes>
+					<Use>ForItem</Use>
+				</Properties>
+				<ChildObjects>
+					<Attribute uuid="0f1a16a6-0ada-4c56-9664-5dca66e0dcef">
+						<Properties>
+							<Name>ВидУсловия</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Условие</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment />
+							<Type>
+								<v8:Type>xs:string</v8:Type>
+								<v8:StringQualifiers>
+									<v8:Length>20</v8:Length>
+									<v8:AllowedLength>Variable</v8:AllowedLength>
+								</v8:StringQualifiers>
+							</Type>
+							<PasswordMode>false</PasswordMode>
+							<Format />
+							<EditFormat />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>«Роль» — роль информационной базы, «ГруппаДоступа» — группа доступа БСП. Действие видно, если выполнено хотя бы одно условие; пустая таблица — видно всем, у кого есть доступ к агенту.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<MarkNegatives>false</MarkNegatives>
+							<Mask />
+							<MultiLine>false</MultiLine>
+							<ExtendedEdit>false</ExtendedEdit>
+							<MinValue xsi:nil="true" />
+							<MaxValue xsi:nil="true" />
+							<FillChecking>DontCheck</FillChecking>
+							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+							<ChoiceParameterLinks />
+							<ChoiceParameters />
+							<QuickChoice>Auto</QuickChoice>
+							<CreateOnInput>Auto</CreateOnInput>
+							<ChoiceForm />
+							<LinkByType />
+							<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
+							<Indexing>DontIndex</Indexing>
+							<FullTextSearch>Use</FullTextSearch>
+							<DataHistory>Use</DataHistory>
+						</Properties>
+					</Attribute>
+					<Attribute uuid="3688f3d1-6ff5-4818-99c8-7e79093be294">
+						<Properties>
+							<Name>Имя</Name>
+							<Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Роль или группа доступа</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment />
+							<Type>
+								<v8:Type>xs:string</v8:Type>
+								<v8:StringQualifiers>
+									<v8:Length>150</v8:Length>
+									<v8:AllowedLength>Variable</v8:AllowedLength>
+								</v8:StringQualifiers>
+							</Type>
+							<PasswordMode>false</PasswordMode>
+							<Format />
+							<EditFormat />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Имя роли, как в конфигураторе, или наименование группы доступа.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>

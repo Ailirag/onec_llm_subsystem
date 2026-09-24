@@ -724,8 +724,93 @@
 							<DataHistory>Use</DataHistory>
 						</Properties>
 					</Attribute>
+					<Attribute uuid="eab08dda-6f6c-4f03-a6e8-cceb0118c5b9">
+						<Properties>
+							<Name>ВыбиратьИзСписка</Name><Synonym>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Выбирать из существующих</v8:content>
+								</v8:item>
+							</Synonym>
+							<Comment />
+							<Type>
+								<v8:Type>xs:boolean</v8:Type>
+							</Type>
+							<PasswordMode>false</PasswordMode>
+							<Format />
+							<EditFormat />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Модель получает перечень существующих значений справочника и выбирает из него дословно: пользователи, виды, статусы. Больше 100 значений перечень не передается. Значения перечислений передаются всегда.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<MarkNegatives>false</MarkNegatives>
+							<Mask />
+							<MultiLine>false</MultiLine>
+							<ExtendedEdit>false</ExtendedEdit>
+							<MinValue xsi:nil="true" />
+							<MaxValue xsi:nil="true" />
+							<FillChecking>DontCheck</FillChecking>
+							<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+							<ChoiceParameterLinks />
+							<ChoiceParameters />
+							<QuickChoice>Auto</QuickChoice>
+							<CreateOnInput>Auto</CreateOnInput>
+							<ChoiceForm />
+							<LinkByType />
+							<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
+							<Indexing>DontIndex</Indexing>
+							<FullTextSearch>Use</FullTextSearch>
+							<DataHistory>Use</DataHistory>
+						</Properties>
+					</Attribute>
 				</ChildObjects>
 			</TabularSection>
+			<Attribute uuid="578397a6-4afe-4a43-a607-9d4d9797e584">
+				<Properties>
+					<Name>ОбновлятьСтрокиПоНомеру</Name><Synonym>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Обновлять существующие строки по номеру</v8:content>
+						</v8:item>
+					</Synonym>
+					<Comment />
+					<Type>
+						<v8:Type>xs:boolean</v8:Type>
+					</Type>
+					<PasswordMode>false</PasswordMode>
+					<Format />
+					<EditFormat />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Модель возвращает номер строки из данных объекта, и значения ложатся в эту строку. Новые строки не добавляются, чужие колонки не трогаются. Модели нужно передать табличную часть в данных объекта.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<MarkNegatives>false</MarkNegatives>
+					<Mask />
+					<MultiLine>false</MultiLine>
+					<ExtendedEdit>false</ExtendedEdit>
+					<MinValue xsi:nil="true" />
+					<MaxValue xsi:nil="true" />
+					<FillFromFillingValue>false</FillFromFillingValue>
+					<FillValue xsi:type="xs:boolean">false</FillValue>
+					<FillChecking>DontCheck</FillChecking>
+					<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+					<ChoiceParameterLinks />
+					<ChoiceParameters />
+					<QuickChoice>Auto</QuickChoice>
+					<CreateOnInput>Auto</CreateOnInput>
+					<ChoiceForm />
+					<LinkByType />
+					<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
+					<Use>ForItem</Use>
+					<Indexing>DontIndex</Indexing>
+					<FullTextSearch>Use</FullTextSearch>
+					<DataHistory>Use</DataHistory>
+				</Properties>
+			</Attribute>
 		</ChildObjects>
 	</Catalog>
 </MetaDataObject>

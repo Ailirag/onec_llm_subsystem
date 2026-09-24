@@ -7,6 +7,7 @@
 	<Command name="InformationRegister.AI_ОчередьВекторизации.StandardCommand.OpenList"><Visibility><xr:Common>false</xr:Common></Visibility></Command>
 	<Command name="InformationRegister.AI_ИдентификаторыЧанков.StandardCommand.OpenList"><Visibility><xr:Common>false</xr:Common></Visibility></Command>
 	<Command name="InformationRegister.AI_ОчередьПодготовкиКВекторизации.StandardCommand.OpenList"><Visibility><xr:Common>false</xr:Common></Visibility></Command>
+	<Command name="Constant.AI_КоличествоПотоковВекторизации.StandardCommand.Open"><Visibility><xr:Common>false</xr:Common></Visibility></Command>
 	</CommandsVisibility>
 	<CommandsOrder>
 	<Command name="Catalog.AI_RAGКоллекции.StandardCommand.OpenList"><CommandGroup>NavigationPanelOrdinary</CommandGroup></Command>

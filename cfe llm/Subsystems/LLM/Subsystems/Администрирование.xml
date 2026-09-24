@@ -9,7 +9,7 @@
 					<v8:content>Администрирование</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment />
 			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<IncludeInCommandInterface>true</IncludeInCommandInterface>
 			<UseOneCommand>false</UseOneCommand>
@@ -19,7 +19,7 @@
 					<v8:content>Эксплуатационные параметры, обслуживание и сроки хранения.</v8:content>
 				</v8:item>
 			</Explanation>
-			<Picture/>
+			<Picture />
 			<Content>
 				<xr:Item xsi:type="xr:MDObjectRef">Constant.AI_ЛогироватьЗапросы</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Constant.AI_КоличествоПотоковОбработкиОчереди</xr:Item>
@@ -32,8 +32,10 @@
 				<xr:Item xsi:type="xr:MDObjectRef">ScheduledJob.AI_ОчисткаЖурналовИДиалогов</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">CommonModule.AI_ОбслуживаниеСервер</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Role.AI_ПолныеПрава</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">CommonForm.AI_НастройкиПодсистемы</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Constant.AI_АдаптерКонфигурации</xr:Item>
 			</Content>
 		</Properties>
-		<ChildObjects/>
+		<ChildObjects />
 	</Subsystem>
 </MetaDataObject>

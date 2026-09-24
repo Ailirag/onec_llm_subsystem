@@ -153,6 +153,8 @@
 			<Constant>AI_ТаймаутЗапросаМоделиСекунд</Constant>
 			<Constant>AI_СрокХраненияОперацийДней</Constant>
 			<Constant>AI_СрокХраненияОценокДней</Constant>
+			<Constant>AI_АдаптерКонфигурации</Constant>
+			<CommonForm>AI_НастройкиПодсистемы</CommonForm>
 			<Catalog>AI_Провайдеры</Catalog>
 			<Catalog>AI_Модели</Catalog>
 			<Catalog>AI_Агенты</Catalog>
@@ -195,6 +197,7 @@
 			<DataProcessor>AI_ЧатПоДаннымБазы</DataProcessor>
 			<DataProcessor>AI_МониторАгентскихОпераций</DataProcessor>
 			<DataProcessor>AI_ПомощникКонтекста</DataProcessor>
+			<DataProcessor>AI_НовоеДействие</DataProcessor>
 			<InformationRegister>AI_ЖурналЗапросов</InformationRegister>
 			<InformationRegister>AI_ОчередьЗапросов</InformationRegister>
 			<InformationRegister>AI_Диалоги</InformationRegister>

@@ -9,19 +9,23 @@
 					<v8:content>Основная</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment />
 			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<IncludeInCommandInterface>true</IncludeInCommandInterface>
 			<UseOneCommand>false</UseOneCommand>
-			<Explanation/>
-			<Picture/>
+			<Explanation />
+			<Picture />
 			<Content>
 				<xr:Item xsi:type="xr:MDObjectRef">Catalog.Контрагенты</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.КонсольЗаданий</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">70d7f0cd-c513-476f-b006-5d18667b7ab7</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.УниверсальнаяОбработка</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.ТестовыеМаршруты</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Enum.ТестовыеВариантыСогласования</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">Catalog.ТестовыеРоли</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.ТестовыйОбработчикLLM</xr:Item>
 			</Content>
 		</Properties>
-		<ChildObjects/>
+		<ChildObjects />
 	</Subsystem>
 </MetaDataObject>

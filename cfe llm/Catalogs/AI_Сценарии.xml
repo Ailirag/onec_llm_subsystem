@@ -103,7 +103,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выключенный сценарий не запускается ни из помощника, ни из прикладного кода.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -143,7 +148,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Системный промт, инструменты и права доступа к данным. Пользователь увидит действия сценария, только если ему доступен этот агент.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -183,7 +193,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Через какого провайдера идет запрос. Модель должна принадлежать этому провайдеру.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -223,7 +238,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Модель, которой уходит запрос сценария.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -249,11 +269,10 @@
 			</Attribute>
 			<Attribute uuid="75a67307-fa5f-4db5-b07b-3fdb89dc331d">
 				<Properties>
-					<Name>ТипAPI</Name>
-					<Synonym>
+					<Name>ТипAPI</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>ТипAPI</v8:content>
+							<v8:content>Тип API</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -263,7 +282,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Протокол обращения к модели: Chat completions или Responses. Берите тот, что поддерживает выбранная модель провайдера.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -308,7 +332,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Номер версии формата ответа. Увеличьте его, если схема ответа изменилась несовместимо: обработчик результата отличит старые ответы от новых.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -334,11 +363,10 @@
 			</Attribute>
 			<Attribute uuid="a2751cdf-fab0-4f43-9765-57990c14eab5">
 				<Properties>
-					<Name>СхемаОтветаJSON</Name>
-					<Synonym>
+					<Name>СхемаОтветаJSON</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Схема ответаJSON</v8:content>
+							<v8:content>Схема ответа (JSON)</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment /><Type>
@@ -351,7 +379,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Строгая схема, по которой отвечает модель. Если сценарий запускается местом с картой извлечения, схема переносится из карты при ее записи — руками ее правят только сценарии без карты.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>true</MultiLine>
@@ -394,7 +427,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Код прикладного обработчика готового результата в AI_ОбработчикиРезультатовПереопределяемый. Пусто — результат только сохраняется, доставлять его некуда.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -434,7 +472,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Повторять операцию при сбое связи или ответе, не прошедшем схему.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -479,7 +522,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько раз всего пробовать операцию, если повтор разрешен (от 1 до 10).</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -519,7 +567,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Совместимость со старым методом постановки в очередь: запросы старого API с этим агентом пойдут по этому сценарию. Для новых настроек не нужен.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -559,7 +612,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Как читать приложенные файлы: мультимодально (файл уходит модели) или распознаванием (OCR). Пусто — как задано у провайдера, а у него пусто — «Авто».</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>

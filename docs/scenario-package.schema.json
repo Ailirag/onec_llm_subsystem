@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Ailirag/onec_llm_subsystem/blob/main/docs/scenario-package.schema.json",
+  "title": "Пакет сценария подсистемы LLM (manifest.json)",
+  "description": "Описание настроенного AI-действия: места запуска, карты извлечения и сценарии. Загружается командой «Загрузить пакет» или AI_ПакетыСценариев.Загрузить — zip с manifest.json и файлами обработок либо сам manifest.json. Связи выражены именами и полными именами метаданных, ссылок на объекты чужой базы нет. Необязательные поля можно опускать: тип значения, тип ссылки, поиск по наименованию и название поля карты выводятся из метаданных, ключ ответа — картой, недостающий сценарий создается по образцу.",
+  "type": "object",
+  "required": ["schema", "launch_places"],
+  "properties": {
+    "schema": {
+      "description": "Версия схемы пакета. Пакет новее базы отклоняется целиком.",
+      "type": "integer",
+      "enum": [1, 2]
+    },
+    "exported_at": {
+      "description": "Когда выгружен (заполняет выгрузка, при загрузке не используется).",
+      "type": "string"
+    },
+    "launch_places": {
+      "description": "Места запуска — что видит пользователь в помощнике. Приходят выключенными: включает администратор.",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/launchPlace" }
+    },
+    "extraction_maps": {
+      "description": "Карты извлечения — какие поля вернет модель и в какие реквизиты они лягут.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/extractionMap" }
+    },
+    "scenarios": {
+      "description": "Настройки ответа сценариев. Агента, провайдера и модель пакет не несет: сценарий ищется по имени, а недостающий создается копией образца.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/scenario" }
+    },
+    "processings": {
+      "description": "Файлы внешних обработок в zip-пакете. Загрузка кладет файл в уже зарегистрированную обработку с тем же именем и не создает новую регистрацию.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/processing" }
+    }
+  },
+  "$defs": {
+    "launchPlace": {
+      "type": "object",
+      "required": ["name", "place_type"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "description": "Наименование места запуска; по нему место обновляется при повторной загрузке." },
+        "scenario": { "type": "string", "description": "Наименование сценария. Нет в базе — создается по образцу с настройками из scenarios." },
+        "extraction_map": { "type": "string", "description": "Наименование карты извлечения из extraction_maps или уже существующей в базе." },
+        "place_type": { "type": "string", "enum": ["Объект", "Список", "Глобально"], "description": "Где видно действие: в карточке объекта, в списке (пачкой) или без объекта — в помощнике раздела LLM." },
+        "metadata_name": { "type": "string", "description": "Полное имя объекта: «Справочник.ШаблоныСогласования». Пусто или «*» — любой объект. Для «Глобально» не нужно." },
+        "command_title": { "type": "string", "description": "Подпись действия в помощнике." },
+        "description": { "type": "string", "description": "Описание для пользователя." },
+        "initial_prompt": { "type": "string", "description": "Запрос к модели." },
+        "order": { "type": "number", "description": "Порядок в списке действий." },
+        "allow_many": { "type": "boolean", "description": "Можно запускать для нескольких выбранных объектов." },
+        "execution_mode": { "type": "string", "enum": ["", "Очередь", "ОднимЗапросом"], "description": "Как обрабатывать пачку. Пусто — очередь, по операции на объект." },
+        "action_kind": {
+          "type": "string",
+          "enum": ["", "ТолькоПоказать", "ЗаполнитьФорму", "ЗаписатьОбъект", "СоздатьОбъект", "ПользовательскоеДействие", "ВнешнийОбработчик"],
+          "description": "Что сделать с результатом."
+        },
+        "action_title": { "type": "string", "description": "Подпись кнопки действия." },
+        "action_key": { "type": "string", "description": "Ключ прикладного действия или внешнего обработчика." },
+        "handler": { "type": "string", "description": "Обработка: наименование из реестра дополнительных обработок БСП либо «Обработка.<Имя>» — обработка конфигурации." },
+        "action_method": { "type": "string", "description": "Метод действия у вида «Внешний обработчик». Пусто — ВыполнитьДействие." },
+        "check_method": { "type": "string", "description": "Метод проверки доступности (этапы ВыборДействия, ПередШагом, ПередДействием)." },
+        "prepare_method": { "type": "string", "description": "Метод этапа «Перед запросом к модели»: подать файл, дописать данные и запрос, отказать." },
+        "after_answer_method": { "type": "string", "description": "Метод этапа «После ответа модели»: поправить значения, предупредить, отклонить ответ." },
+        "after_action_method": { "type": "string", "description": "Метод этапа «После действия»: приложить файл, запустить процесс, предложить следующее действие." },
+        "dialog_mode": { "type": "boolean", "description": "Сначала разговор с моделью, результат — по кнопке «Сформировать результат»." },
+        "object_data": {
+          "description": "Что из объекта передать модели. Пусто — объект не передается.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "tabular_section": { "type": "string", "description": "Имя табличной части; пусто — реквизит шапки." },
+              "attribute": { "type": "string", "description": "Имя реквизита или колонки; «*» — все." }
+            }
+          }
+        },
+        "visibility": {
+          "description": "Кому показывать. Условий несколько — достаточно любого; пусто — всем, у кого есть агент.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["kind", "name"],
+            "properties": {
+              "kind": { "type": "string", "enum": ["Роль", "ГруппаДоступа"] },
+              "name": { "type": "string", "minLength": 1, "description": "Имя роли метаданных либо наименование группы или профиля доступа БСП." }
+            }
+          }
+        },
+        "clarifications": {
+          "description": "Вопросы пользователю перед запуском, в том числе выбор файла объекта.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "kind": { "type": "string", "enum": ["", "ВыборИзПодчиненных", "ВыборИзСписка", "ВводСтроки", "ВводЧисла", "ВводДаты", "Флаг"] },
+              "source": { "type": "string", "description": "Полное имя источника вариантов: «Справочник.Файлы»." },
+              "link_attribute": { "type": "string", "description": "Реквизит источника, связывающий его с объектом: «ВладелецФайла»." },
+              "title_attribute": { "type": "string" },
+              "content_attribute": { "type": "string", "description": "Путь к содержимому файла: «ТекущаяВерсия.ФайлХранилище»." },
+              "file_name_attribute": { "type": "string" },
+              "filter_attribute": { "type": "string" },
+              "filter_value": { "type": "string", "description": "Допустимые значения через запятую: «txt, pdf»." },
+              "send_content": { "type": "boolean" },
+              "required": { "type": "boolean" },
+              "hint": { "type": "string" }
+            }
+          }
+        },
+        "context_filters": {
+          "description": "Условия показа по реквизитам объекта.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": { "type": "string" },
+              "comparison": { "type": "string", "enum": ["", "Равно", "НеРавно", "Заполнено", "НеЗаполнено"] },
+              "value": { "type": "string" }
+            }
+          }
+        },
+        "action_parameters": {
+          "description": "Параметры для обработки: приходят ей как Параметры.Дополнительные, приведенные к типам.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "value_type": { "$ref": "#/$defs/valueType" },
+              "value": { "type": "string" },
+              "reference_type": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "extractionMap": {
+      "type": "object",
+      "required": ["name", "metadata_name", "fields"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "metadata_name": { "type": "string", "minLength": 1, "description": "Полное имя объекта, в реквизиты которого ложатся поля; «*» — любой." },
+        "description": { "type": "string" },
+        "replace_rows": { "type": "boolean", "description": "Заменять строки табличных частей, а не дописывать." },
+        "update_rows_by_number": { "type": "boolean", "description": "Обновлять существующие строки по номеру из данных объекта." },
+        "fields": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["attribute_path"],
+            "properties": {
+              "key": { "type": "string", "description": "Ключ поля в ответе модели. Пусто — выведет карта." },
+              "title": { "type": "string", "description": "Название поля для модели и человека. Пусто — синоним реквизита." },
+              "attribute_path": { "type": "string", "minLength": 1, "description": "Реквизит шапки или колонка табличной части." },
+              "tabular_section": { "type": "string", "description": "Имя табличной части для колонки." },
+              "extra_attribute": { "type": "string", "description": "Наименование дополнительного реквизита (свойства)." },
+              "value_type": { "$ref": "#/$defs/valueType" },
+              "reference_type": { "type": "string", "description": "Полные имена типов через запятую: «Справочник.Пользователи, Справочник.ПолныеРоли». Пусто — из метаданных." },
+              "search_by_title": { "type": "boolean", "description": "Искать ссылку по наименованию. Пусто — из метаданных." },
+              "choose_from_list": { "type": "boolean", "description": "Выбирать из существующих: перечень значений уходит в схему ответа." },
+              "required": { "type": "boolean" },
+              "hint": { "type": "string", "description": "Подсказка модели: правила конфигурации, которых она знать не может." }
+            }
+          }
+        }
+      }
+    },
+    "scenario": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "response_schema": { "type": "string", "description": "JSON Schema ответа. При загрузке пересобирается по карте места." },
+        "handler_code": { "type": "string" },
+        "contract_version": { "type": ["string", "number"] },
+        "allow_retry": { "type": "boolean" },
+        "max_attempts": { "type": "number" },
+        "attachment_parse_mode": { "type": "string", "enum": ["", "Авто", "Мультимодально", "OCR"] }
+      }
+    },
+    "processing": {
+      "type": "object",
+      "required": ["name", "file"],
+      "properties": {
+        "name": { "type": "string" },
+        "file": { "type": "string", "description": "Имя файла внутри zip." },
+        "version": { "type": "string" },
+        "sha256": { "type": "string", "description": "Контрольная сумма: файл, измененный после сборки пакета, не принимается." }
+      }
+    },
+    "valueType": {
+      "type": "string",
+      "enum": ["", "Строка", "Число", "Дата", "Булево", "Ссылка"]
+    }
+  }
+}

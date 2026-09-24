@@ -13,37 +13,37 @@
 				<Type>CommandBarButton</Type>
 				<CommandName>Form.Command.СинхронизироватьСхему</CommandName>
 				<Representation>Text</Representation>
-				<ExtendedTooltip name="СинхронизироватьСхемуРасширеннаяПодсказка" id="2" />
+				<ExtendedTooltip name="СинхронизироватьСхемуРасширеннаяПодсказка" id="2"/>
 			</Button>
 			<Button name="ПоказатьСхему" id="3">
 				<Type>CommandBarButton</Type>
 				<CommandName>Form.Command.ПоказатьСхему</CommandName>
 				<Representation>Text</Representation>
 				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
-				<ExtendedTooltip name="ПоказатьСхемуРасширеннаяПодсказка" id="4" />
+				<ExtendedTooltip name="ПоказатьСхемуРасширеннаяПодсказка" id="4"/>
 			</Button>
 		</ChildItems>
 	</AutoCommandBar>
 	<Events>
 		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+		<Event name="AfterWriteAtServer">ПослеЗаписиНаСервере</Event>
 	</Events>
-	
 	<ChildItems>
 		<UsualGroup name="ГруппаШапка" id="5">
 			<Group>Vertical</Group>
-			<ExtendedTooltip name="ГруппаШапкаРасширеннаяПодсказка" id="6" />
+			<ExtendedTooltip name="ГруппаШапкаРасширеннаяПодсказка" id="6"/>
 			<ChildItems>
 				<InputField name="Наименование" id="7">
 					<DataPath>Объект.Наименование</DataPath>
-					<ContextMenu name="НаименованиеКонтекстноеМеню" id="8" />
-					<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="9" />
+					<ContextMenu name="НаименованиеКонтекстноеМеню" id="8"/>
+					<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="9"/>
 				</InputField>
 				<CheckBoxField name="Активна" id="10">
 					<DataPath>Объект.Активна</DataPath>
 					<CheckBoxType>Auto</CheckBoxType>
 					<TitleLocation>Right</TitleLocation>
-					<ContextMenu name="АктивнаКонтекстноеМеню" id="11" />
-					<ExtendedTooltip name="АктивнаРасширеннаяПодсказка" id="12" />
+					<ContextMenu name="АктивнаКонтекстноеМеню" id="11"/>
+					<ExtendedTooltip name="АктивнаРасширеннаяПодсказка" id="12"/>
 				</CheckBoxField>
 				<InputField name="ПолноеИмяМетаданных" id="13">
 					<DataPath>Объект.ПолноеИмяМетаданных</DataPath>
@@ -53,20 +53,24 @@
 							<v8:content>Применима к объекту</v8:content>
 						</v8:item>
 					</Title>
+					<ChoiceButton>true</ChoiceButton>
+					<ClearButton>true</ClearButton>
 					<HorizontalStretch>true</HorizontalStretch>
 					<InputHint>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Справочник.ВнутренниеДокументы или * для любого</v8:content>
+							<v8:content>Выберите объект; * — любой</v8:content>
 						</v8:item>
 					</InputHint>
-					<ContextMenu name="ПолноеИмяМетаданныхКонтекстноеМеню" id="14" />
-					<ExtendedTooltip name="ПолноеИмяМетаданныхРасширеннаяПодсказка" id="15" />
+					<ContextMenu name="ПолноеИмяМетаданныхКонтекстноеМеню" id="14"/>
+					<ExtendedTooltip name="ПолноеИмяМетаданныхРасширеннаяПодсказка" id="15"/>
 					<Events>
 						<Event name="OnChange">ПолноеИмяМетаданныхПриИзменении</Event>
+						<Event name="StartChoice">ПолноеИмяМетаданныхНачалоВыбора</Event>
+						<Event name="AutoComplete">ПолноеИмяМетаданныхАвтоПодбор</Event>
 					</Events>
 				</InputField>
-				<CheckBoxField name="ЗаменятьСтрокиТабличныхЧастей" id="56">
+				<CheckBoxField name="ЗаменятьСтрокиТабличныхЧастей" id="16">
 					<DataPath>Объект.ЗаменятьСтрокиТабличныхЧастей</DataPath>
 					<Title>
 						<v8:item>
@@ -74,76 +78,108 @@
 							<v8:content>Заменять строки табличных частей</v8:content>
 						</v8:item>
 					</Title>
-					<ContextMenu name="ЗаменятьСтрокиТабличныхЧастейКонтекстноеМеню" id="57" />
-					<ExtendedTooltip name="ЗаменятьСтрокиТабличныхЧастейРасширеннаяПодсказка" id="58" />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Перед применением очищать табличные части, в которые пишет карта. Без флажка строки дописываются к существующим.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<CheckBoxType>Auto</CheckBoxType>
+					<TitleLocation>Right</TitleLocation>
+					<ContextMenu name="ЗаменятьСтрокиТабличныхЧастейКонтекстноеМеню" id="17"/>
+					<ExtendedTooltip name="ЗаменятьСтрокиТабличныхЧастейРасширеннаяПодсказка" id="18"/>
 				</CheckBoxField>
-				<InputField name="Описание" id="16">
+				<CheckBoxField name="ОбновлятьСтрокиПоНомеру" id="19">
+					<DataPath>Объект.ОбновлятьСтрокиПоНомеру</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Обновлять существующие строки по номеру</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Модель называет номер строки из данных объекта, и значения ложатся в эту строку: новые строки не добавляются, другие колонки не трогаются. Табличную часть нужно передать модели в данных объекта места запуска.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<CheckBoxType>Auto</CheckBoxType>
+					<TitleLocation>Right</TitleLocation>
+					<ContextMenu name="ОбновлятьСтрокиПоНомеруКонтекстноеМеню" id="20"/>
+					<ExtendedTooltip name="ОбновлятьСтрокиПоНомеруРасширеннаяПодсказка" id="21"/>
+				</CheckBoxField>
+				<InputField name="Описание" id="22">
 					<DataPath>Объект.Описание</DataPath>
 					<MultiLine>true</MultiLine>
 					<AutoMaxWidth>false</AutoMaxWidth>
-					<Height>3</Height>
+					<Height>2</Height>
 					<HorizontalStretch>true</HorizontalStretch>
-					<ContextMenu name="ОписаниеКонтекстноеМеню" id="17" />
-					<ExtendedTooltip name="ОписаниеРасширеннаяПодсказка" id="18" />
+					<ContextMenu name="ОписаниеКонтекстноеМеню" id="23"/>
+					<ExtendedTooltip name="ОписаниеРасширеннаяПодсказка" id="24"/>
 				</InputField>
+				<LabelDecoration name="СостояниеСхемы" id="25">
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content> </v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="СостояниеСхемыКонтекстноеМеню" id="26"/>
+					<ExtendedTooltip name="СостояниеСхемыРасширеннаяПодсказка" id="27"/>
+				</LabelDecoration>
 			</ChildItems>
 		</UsualGroup>
-		<Table name="Поля" id="19">
+		<Table name="Поля" id="28">
 			<DataPath>Объект.Поля</DataPath>
 			<ChangeRowSet>true</ChangeRowSet>
 			<ChangeRowOrder>true</ChangeRowOrder>
 			<Height>12</Height>
-			<ContextMenu name="ПоляКонтекстноеМеню" id="20" />
-			<AutoCommandBar name="ПоляКоманднаяПанель" id="21" />
-			<ExtendedTooltip name="ПоляРасширеннаяПодсказка" id="22" />
-			<SearchStringAddition name="ПоляСтрокаПоиска" id="23">
+			<ContextMenu name="ПоляКонтекстноеМеню" id="29"/>
+			<AutoCommandBar name="ПоляКоманднаяПанель" id="30"/>
+			<ExtendedTooltip name="ПоляРасширеннаяПодсказка" id="31"/>
+			<SearchStringAddition name="ПоляСтрокаПоиска" id="32">
 				<AdditionSource>
 					<Item>Поля</Item>
 					<Type>SearchStringRepresentation</Type>
 				</AdditionSource>
-				<ContextMenu name="ПоляСтрокаПоискаКонтекстноеМеню" id="24" />
-				<ExtendedTooltip name="ПоляСтрокаПоискаРасширеннаяПодсказка" id="25" />
+				<ContextMenu name="ПоляСтрокаПоискаКонтекстноеМеню" id="33"/>
+				<ExtendedTooltip name="ПоляСтрокаПоискаРасширеннаяПодсказка" id="34"/>
 			</SearchStringAddition>
-			<ViewStatusAddition name="ПоляСостояниеПросмотра" id="26">
+			<ViewStatusAddition name="ПоляСостояниеПросмотра" id="35">
 				<AdditionSource>
 					<Item>Поля</Item>
 					<Type>ViewStatusRepresentation</Type>
 				</AdditionSource>
-				<ContextMenu name="ПоляСостояниеПросмотраКонтекстноеМеню" id="27" />
-				<ExtendedTooltip name="ПоляСостояниеПросмотраРасширеннаяПодсказка" id="28" />
+				<ContextMenu name="ПоляСостояниеПросмотраКонтекстноеМеню" id="36"/>
+				<ExtendedTooltip name="ПоляСостояниеПросмотраРасширеннаяПодсказка" id="37"/>
 			</ViewStatusAddition>
-			<SearchControlAddition name="ПоляУправлениеПоиском" id="29">
+			<SearchControlAddition name="ПоляУправлениеПоиском" id="38">
 				<AdditionSource>
 					<Item>Поля</Item>
 					<Type>SearchControl</Type>
 				</AdditionSource>
-				<ContextMenu name="ПоляУправлениеПоискомКонтекстноеМеню" id="30" />
-				<ExtendedTooltip name="ПоляУправлениеПоискомРасширеннаяПодсказка" id="31" />
+				<ContextMenu name="ПоляУправлениеПоискомКонтекстноеМеню" id="39"/>
+				<ExtendedTooltip name="ПоляУправлениеПоискомРасширеннаяПодсказка" id="40"/>
 			</SearchControlAddition>
 			<ChildItems>
-				<InputField name="Ключ" id="32">
-					<DataPath>Объект.Поля.Ключ</DataPath>
-					<Title>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>Ключ в ответе</v8:content>
-						</v8:item>
-					</Title>
-					<ContextMenu name="КлючКонтекстноеМеню" id="33" />
-					<ExtendedTooltip name="КлючРасширеннаяПодсказка" id="34" />
-				</InputField>
-				<InputField name="ПолеПредставление" id="35">
+				<InputField name="ПолеПредставление" id="41">
 					<DataPath>Объект.Поля.Представление</DataPath>
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Представление</v8:content>
+							<v8:content>Реквизит</v8:content>
 						</v8:item>
 					</Title>
-					<ContextMenu name="ПолеПредставлениеКонтекстноеМеню" id="36" />
-					<ExtendedTooltip name="ПолеПредставлениеРасширеннаяПодсказка" id="37" />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Как реквизит называется для человека: это имя пользователь увидит в результате.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ContextMenu name="ПолеПредставлениеКонтекстноеМеню" id="42"/>
+					<ExtendedTooltip name="ПолеПредставлениеРасширеннаяПодсказка" id="43"/>
 				</InputField>
-				<InputField name="ТипЗначения" id="38">
+				<InputField name="ТипЗначения" id="44">
 					<DataPath>Объект.Поля.ТипЗначения</DataPath>
 					<Title>
 						<v8:item>
@@ -151,32 +187,10 @@
 							<v8:content>Тип</v8:content>
 						</v8:item>
 					</Title>
-					<ContextMenu name="ТипЗначенияКонтекстноеМеню" id="39" />
-					<ExtendedTooltip name="ТипЗначенияРасширеннаяПодсказка" id="40" />
+					<ContextMenu name="ТипЗначенияКонтекстноеМеню" id="45"/>
+					<ExtendedTooltip name="ТипЗначенияРасширеннаяПодсказка" id="46"/>
 				</InputField>
-				<InputField name="ТипСсылки" id="41">
-					<DataPath>Объект.Поля.ТипСсылки</DataPath>
-					<Title>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>Тип ссылки</v8:content>
-						</v8:item>
-					</Title>
-					<ContextMenu name="ТипСсылкиКонтекстноеМеню" id="42" />
-					<ExtendedTooltip name="ТипСсылкиРасширеннаяПодсказка" id="43" />
-				</InputField>
-				<InputField name="ТабличнаяЧасть" id="59">
-					<DataPath>Объект.Поля.ТабличнаяЧасть</DataPath>
-					<Title>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>Табличная часть</v8:content>
-						</v8:item>
-					</Title>
-					<ContextMenu name="ТабличнаяЧастьКонтекстноеМеню" id="60" />
-					<ExtendedTooltip name="ТабличнаяЧастьРасширеннаяПодсказка" id="61" />
-				</InputField>
-				<InputField name="ПутьРеквизита" id="44">
+				<InputField name="ПутьРеквизита" id="47">
 					<DataPath>Объект.Поля.ПутьРеквизита</DataPath>
 					<Title>
 						<v8:item>
@@ -184,10 +198,16 @@
 							<v8:content>Реквизит объекта</v8:content>
 						</v8:item>
 					</Title>
-					<ContextMenu name="ПутьРеквизитаКонтекстноеМеню" id="45" />
-					<ExtendedTooltip name="ПутьРеквизитаРасширеннаяПодсказка" id="46" />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Имя реквизита объекта, куда ляжет значение. Для строк табличной части — имя колонки.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ContextMenu name="ПутьРеквизитаКонтекстноеМеню" id="48"/>
+					<ExtendedTooltip name="ПутьРеквизитаРасширеннаяПодсказка" id="49"/>
 				</InputField>
-				<InputField name="ДополнительныйРеквизит" id="62">
+				<InputField name="ДополнительныйРеквизит" id="50">
 					<DataPath>Объект.Поля.ДополнительныйРеквизит</DataPath>
 					<Title>
 						<v8:item>
@@ -195,23 +215,50 @@
 							<v8:content>Доп. реквизит (свойство)</v8:content>
 						</v8:item>
 					</Title>
-					<ContextMenu name="ДополнительныйРеквизитКонтекстноеМеню" id="63" />
-					<ExtendedTooltip name="ДополнительныйРеквизитРасширеннаяПодсказка" id="64" />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Наименование дополнительного реквизита, куда пишется значение. «Реквизит объекта» тогда не заполняется. Для свойства-списка укажите тип «Ссылка» и справочник значений свойств.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ContextMenu name="ДополнительныйРеквизитКонтекстноеМеню" id="51"/>
+					<ExtendedTooltip name="ДополнительныйРеквизитРасширеннаяПодсказка" id="52"/>
 				</InputField>
-				<CheckBoxField name="ПоискПоНаименованию" id="47">
-					<DataPath>Объект.Поля.ПоискПоНаименованию</DataPath>
+				<InputField name="ТабличнаяЧасть" id="53">
+					<DataPath>Объект.Поля.ТабличнаяЧасть</DataPath>
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Искать по наименованию</v8:content>
+							<v8:content>Табличная часть</v8:content>
 						</v8:item>
 					</Title>
-					<CheckBoxType>Auto</CheckBoxType>
-					<TitleLocation>Right</TitleLocation>
-					<ContextMenu name="ПоискПоНаименованиюКонтекстноеМеню" id="48" />
-					<ExtendedTooltip name="ПоискПоНаименованиюРасширеннаяПодсказка" id="49" />
-				</CheckBoxField>
-				<CheckBoxField name="Обязательное" id="50">
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Если поле пишется в строки табличной части, укажите ее: тогда «Реквизит объекта» — это колонка этой табличной части.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ContextMenu name="ТабличнаяЧастьКонтекстноеМеню" id="54"/>
+					<ExtendedTooltip name="ТабличнаяЧастьРасширеннаяПодсказка" id="55"/>
+				</InputField>
+				<InputField name="ТипСсылки" id="56">
+					<DataPath>Объект.Поля.ТипСсылки</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Тип ссылки</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Для типа «Ссылка»: справочник, в котором искать значение по наименованию. Например: Справочник.Контрагенты.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ContextMenu name="ТипСсылкиКонтекстноеМеню" id="57"/>
+					<ExtendedTooltip name="ТипСсылкиРасширеннаяПодсказка" id="58"/>
+				</InputField>
+				<CheckBoxField name="Обязательное" id="59">
 					<DataPath>Объект.Поля.Обязательное</DataPath>
 					<Title>
 						<v8:item>
@@ -221,10 +268,42 @@
 					</Title>
 					<CheckBoxType>Auto</CheckBoxType>
 					<TitleLocation>Right</TitleLocation>
-					<ContextMenu name="ОбязательноеКонтекстноеМеню" id="51" />
-					<ExtendedTooltip name="ОбязательноеРасширеннаяПодсказка" id="52" />
+					<ContextMenu name="ОбязательноеКонтекстноеМеню" id="60"/>
+					<ExtendedTooltip name="ОбязательноеРасширеннаяПодсказка" id="61"/>
 				</CheckBoxField>
-				<InputField name="Подсказка" id="53">
+				<CheckBoxField name="ПоискПоНаименованию" id="62">
+					<DataPath>Объект.Поля.ПоискПоНаименованию</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Искать по наименованию</v8:content>
+						</v8:item>
+					</Title>
+					<CheckBoxType>Auto</CheckBoxType>
+					<TitleLocation>Right</TitleLocation>
+					<ContextMenu name="ПоискПоНаименованиюКонтекстноеМеню" id="63"/>
+					<ExtendedTooltip name="ПоискПоНаименованиюРасширеннаяПодсказка" id="64"/>
+				</CheckBoxField>
+				<CheckBoxField name="ВыбиратьИзСписка" id="65">
+					<DataPath>Объект.Поля.ВыбиратьИзСписка</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выбирать из существующих</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Модель получает перечень существующих значений справочника (не больше 100) и выбирает из него дословно: пользователи, виды, статусы. Для перечислений перечень передается всегда.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<CheckBoxType>Auto</CheckBoxType>
+					<TitleLocation>Right</TitleLocation>
+					<ContextMenu name="ВыбиратьИзСпискаКонтекстноеМеню" id="66"/>
+					<ExtendedTooltip name="ВыбиратьИзСпискаРасширеннаяПодсказка" id="67"/>
+				</CheckBoxField>
+				<InputField name="Подсказка" id="68">
 					<DataPath>Объект.Поля.Подсказка</DataPath>
 					<Title>
 						<v8:item>
@@ -232,14 +311,43 @@
 							<v8:content>Подсказка модели</v8:content>
 						</v8:item>
 					</Title>
-					<ContextMenu name="ПодсказкаКонтекстноеМеню" id="54" />
-					<ExtendedTooltip name="ПодсказкаРасширеннаяПодсказка" id="55" />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Что именно искать в документе. Модель читает этот текст вместе с полем.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ContextMenu name="ПодсказкаКонтекстноеМеню" id="69"/>
+					<ExtendedTooltip name="ПодсказкаРасширеннаяПодсказка" id="70"/>
+				</InputField>
+				<InputField name="Ключ" id="71">
+					<DataPath>Объект.Поля.Ключ</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ключ в ответе</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Имя поля в ответе модели. Пустой ключ выводится из реквизита при записи карты.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<InputHint>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>заполнится сам</v8:content>
+						</v8:item>
+					</InputHint>
+					<ContextMenu name="КлючКонтекстноеМеню" id="72"/>
+					<ExtendedTooltip name="КлючРасширеннаяПодсказка" id="73"/>
 				</InputField>
 			</ChildItems>
 		</Table>
 	</ChildItems>
 	<Attributes>
-		<Attribute name="Объект" id="56">
+		<Attribute name="Объект" id="74">
 			<Type>
 				<v8:Type>cfg:CatalogObject.AI_КартыИзвлечения</v8:Type>
 			</Type>
@@ -248,7 +356,7 @@
 		</Attribute>
 	</Attributes>
 	<Commands>
-		<Command name="СинхронизироватьСхему" id="57">
+		<Command name="СинхронизироватьСхему" id="75">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -257,7 +365,7 @@
 			</Title>
 			<Action>СинхронизироватьСхемуОбработка</Action>
 		</Command>
-		<Command name="ПоказатьСхему" id="58">
+		<Command name="ПоказатьСхему" id="76">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>

@@ -42,6 +42,7 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_ТипЗначенияПоля</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_ВидУточнения</xr:Item>
 				<xr:Item xsi:type="xr:MDObjectRef">Enum.AI_ВидСравненияОтбора</xr:Item>
+				<xr:Item xsi:type="xr:MDObjectRef">DataProcessor.AI_НовоеДействие</xr:Item>
 			</Content>
 		</Properties>
 		<ChildObjects />

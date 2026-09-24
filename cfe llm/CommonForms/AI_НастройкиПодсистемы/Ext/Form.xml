@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Настройки подсистемы LLM</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<LabelDecoration name="ПояснениеНастроек" id="1">
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Общие настройки подсистемы. Провайдеры, модели, агенты и сценарии настраиваются в своих справочниках раздела LLM.</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="ПояснениеНастроекКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="ПояснениеНастроекРасширеннаяПодсказка" id="3"/>
+		</LabelDecoration>
+		<UsualGroup name="ГруппаЗапросы" id="4">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Запросы к моделям и очередь</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<ShowTitle>true</ShowTitle>
+			<ExtendedTooltip name="ГруппаЗапросыРасширеннаяПодсказка" id="5"/>
+			<ChildItems>
+				<InputField name="ТаймаутЗапросаМоделиСекунд" id="6">
+					<DataPath>НаборКонстант.AI_ТаймаутЗапросаМоделиСекунд</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Таймаут запроса к модели, с</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько ждать ответа модели по одному HTTP-запросу. Длинные документы и рассуждающие модели требуют больше.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ContextMenu name="ТаймаутЗапросаМоделиСекундКонтекстноеМеню" id="7"/>
+					<ExtendedTooltip name="ТаймаутЗапросаМоделиСекундРасширеннаяПодсказка" id="8"/>
+				</InputField>
+				<InputField name="КоличествоПотоковОбработкиОчереди" id="9">
+					<DataPath>НаборКонстант.AI_КоличествоПотоковОбработкиОчереди</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Потоков обработки очереди</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько операций очереди выполняется одновременно: по одной на поток. Больше потоков — быстрее пачка и выше нагрузка на провайдера.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ContextMenu name="КоличествоПотоковОбработкиОчередиКонтекстноеМеню" id="10"/>
+					<ExtendedTooltip name="КоличествоПотоковОбработкиОчередиРасширеннаяПодсказка" id="11"/>
+				</InputField>
+				<InputField name="КоличествоПопытокОбработкиЗапросаОчереди" id="12">
+					<DataPath>НаборКонстант.AI_КоличествоПопытокОбработкиЗапросаОчереди</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Попыток на запрос очереди</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько раз очередь повторяет запрос после сбоя, прежде чем отметить его ошибкой.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ContextMenu name="КоличествоПопытокОбработкиЗапросаОчередиКонтекстноеМеню" id="13"/>
+					<ExtendedTooltip name="КоличествоПопытокОбработкиЗапросаОчередиРасширеннаяПодсказка" id="14"/>
+				</InputField>
+				<CheckBoxField name="ЛогироватьЗапросы" id="15">
+					<DataPath>НаборКонстант.AI_ЛогироватьЗапросы</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сохранять запросы и ответы моделей в журнал</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Журнал запросов нужен для разбора ошибок. Он хранит тексты целиком — включайте на время разбора и следите за сроком хранения.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<CheckBoxType>Auto</CheckBoxType>
+					<TitleLocation>Right</TitleLocation>
+					<ContextMenu name="ЛогироватьЗапросыКонтекстноеМеню" id="16"/>
+					<ExtendedTooltip name="ЛогироватьЗапросыРасширеннаяПодсказка" id="17"/>
+				</CheckBoxField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаХранение" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сроки хранения, дней (0 — не очищать)</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<ShowTitle>true</ShowTitle>
+			<ExtendedTooltip name="ГруппаХранениеРасширеннаяПодсказка" id="19"/>
+			<ChildItems>
+				<InputField name="СрокХраненияОперацийДней" id="20">
+					<DataPath>НаборКонстант.AI_СрокХраненияОперацийДней</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Тексты прикладных операций</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Через сколько дней очищаются запросы, контекст и ответы прикладных операций. Сами операции и их статусы остаются.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ContextMenu name="СрокХраненияОперацийДнейКонтекстноеМеню" id="21"/>
+					<ExtendedTooltip name="СрокХраненияОперацийДнейРасширеннаяПодсказка" id="22"/>
+				</InputField>
+				<InputField name="СрокХраненияДиалоговДней" id="23">
+					<DataPath>НаборКонстант.AI_СрокХраненияДиалоговДней</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Диалоги</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="СрокХраненияДиалоговДнейКонтекстноеМеню" id="24"/>
+					<ExtendedTooltip name="СрокХраненияДиалоговДнейРасширеннаяПодсказка" id="25"/>
+				</InputField>
+				<InputField name="СрокХраненияЖурналаЗапросовДней" id="26">
+					<DataPath>НаборКонстант.AI_СрокХраненияЖурналаЗапросовДней</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Журнал запросов</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="СрокХраненияЖурналаЗапросовДнейКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="СрокХраненияЖурналаЗапросовДнейРасширеннаяПодсказка" id="28"/>
+				</InputField>
+				<InputField name="СрокХраненияОценокДней" id="29">
+					<DataPath>НаборКонстант.AI_СрокХраненияОценокДней</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Тексты оценок результатов</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Через сколько дней очищаются комментарии и исправленные ответы оценок. Сами вердикты остаются.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ContextMenu name="СрокХраненияОценокДнейКонтекстноеМеню" id="30"/>
+					<ExtendedTooltip name="СрокХраненияОценокДнейРасширеннаяПодсказка" id="31"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаRAG" id="32">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Векторизация (RAG)</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<ShowTitle>true</ShowTitle>
+			<ExtendedTooltip name="ГруппаRAGРасширеннаяПодсказка" id="33"/>
+			<ChildItems>
+				<InputField name="КоличествоПотоковВекторизации" id="34">
+					<DataPath>НаборКонстант.AI_КоличествоПотоковВекторизации</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Потоков векторизации</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="КоличествоПотоковВекторизацииКонтекстноеМеню" id="35"/>
+					<ExtendedTooltip name="КоличествоПотоковВекторизацииРасширеннаяПодсказка" id="36"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаИнтеграция" id="37">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Интеграция с конфигурацией</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<ShowTitle>true</ShowTitle>
+			<ExtendedTooltip name="ГруппаИнтеграцияРасширеннаяПодсказка" id="38"/>
+			<ChildItems>
+				<LabelDecoration name="ПояснениеАдаптера" id="39">
+					<Title formatted="false">
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Адаптер знает типы значений этой конфигурации, которых ядро искать не умеет: например, роли исполнителей и автоподстановки Документооборота. Он предлагает модели допустимые значения и находит их по тексту ответа. Пусто — адаптера нет.</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ПояснениеАдаптераКонтекстноеМеню" id="40"/>
+					<ExtendedTooltip name="ПояснениеАдаптераРасширеннаяПодсказка" id="41"/>
+				</LabelDecoration>
+				<InputField name="АдаптерКонфигурации" id="42">
+					<DataPath>НаборКонстант.AI_АдаптерКонфигурации</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Адаптер конфигурации</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Наименование обработки из реестра дополнительных отчетов и обработок либо «Обработка.&lt;Имя&gt;» обработки конфигурации.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ChoiceButton>true</ChoiceButton>
+					<ClearButton>true</ClearButton>
+					<InputHint>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Обработка из реестра дополнительных обработок или Обработка.&lt;Имя&gt;</v8:content>
+						</v8:item>
+					</InputHint>
+					<ContextMenu name="АдаптерКонфигурацииКонтекстноеМеню" id="43"/>
+					<ExtendedTooltip name="АдаптерКонфигурацииРасширеннаяПодсказка" id="44"/>
+					<Events>
+						<Event name="StartChoice">АдаптерКонфигурацииНачалоВыбора</Event>
+					</Events>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="НаборКонстант" id="45">
+			<Type>
+				<v8:Type>cfg:ConstantsSet</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+</Form>

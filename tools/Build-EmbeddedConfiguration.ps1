@@ -17,6 +17,7 @@ $objectDirectories = @{
     EventSubscription   = "EventSubscriptions"
     ScheduledJob        = "ScheduledJobs"
     Constant            = "Constants"
+    CommonForm          = "CommonForms"
     Catalog             = "Catalogs"
     Enum                = "Enums"
     DataProcessor       = "DataProcessors"
