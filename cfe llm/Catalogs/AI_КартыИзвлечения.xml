@@ -231,7 +231,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Перед применением очищать табличные части, в которые пишет карта. Без флажка строки дописываются к существующим.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -647,7 +652,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Если поле пишется в строки табличной части, укажите ее: тогда «Реквизит объекта» — это колонка этой табличной части.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -688,7 +698,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Наименование дополнительного реквизита (свойства), куда пишется значение; «Реквизит объекта» тогда не заполняется. Для свойства-списка укажите тип «Ссылка» и справочник значений свойств.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
