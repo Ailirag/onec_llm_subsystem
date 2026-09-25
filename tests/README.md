@@ -12,11 +12,24 @@ It contains:
   profile;
 - a local HTTP mock for Models, Responses, Chat Completions, Files API, tool
   calls, token usage, and HTTP error handling;
+- in the same mock, an OpenAI-compatible embeddings endpoint (`/v1/embeddings`)
+  and a Qdrant REST subset under `/qdrant` (collections, upsert, filtered
+  search, point delete and lookup). Keys are checked strictly
+  (`mock-emb-key`, `mock-qdrant-key`); vectors are built from the marker words
+  ALPHA, BETA and GAMMA, so similarity is predictable; `RAG_SLOW` in the text
+  delays the embedding response by six seconds;
 - a test-only common module in the minimal host configuration, invoked through
   `V83.COMConnector` without opening the 1C UI;
 - checks for metadata discovery, safe queries, restricted fields, model loading,
   both API protocols, attachments, agent tool execution, conversation
-  isolation, and token logging.
+  isolation, and token logging;
+- RAG checks (`rag_*`): a collection is created in Qdrant and filled through
+  the vectorization queue; an agent's question finds the allowed fragment and
+  the model request carries it in both API protocols, while a fragment closed
+  by an access label and an unchecked collection stay out; sandbox collection
+  settings, service errors, the embedding timeout, and removal of stale
+  fragments. The RAG checks run after the token journal check because their
+  model calls are journaled too.
 
 ## Initialize or update
 

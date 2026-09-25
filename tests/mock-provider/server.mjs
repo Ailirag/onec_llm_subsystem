@@ -5,6 +5,15 @@ const port = Number(process.env.LLM_MOCK_PORT || 18081);
 let responseSequence = 0;
 let fileSequence = 0;
 
+// RAG: OpenAI-compatible embeddings on /v1/embeddings and a Qdrant REST subset
+// under /qdrant. Keys are checked strictly, so a request with a missing or
+// mangled key fails the same way a real service would.
+const embeddingApiKey = "mock-emb-key";
+const qdrantApiKey = "mock-qdrant-key";
+const slowEmbeddingDelayMs = 6000;
+const qdrantCollections = new Map();
+let qdrantOperationSequence = 0;
+
 function json(res, statusCode, body) {
   const payload = JSON.stringify(body);
   res.writeHead(statusCode, {
@@ -58,6 +67,230 @@ function outputMessage(text) {
   };
 }
 
+// The RAG smoke question must reach the model with the allowed fragment only:
+// the fragment closed by an access label and the dissimilar one must stay out.
+function ragAnswer(hasText) {
+  if (hasText("RAG_FRAGMENT_RESTRICTED")) return "MOCK_RAG_LEAK";
+  if (hasText("--RAG_CONTEXT--")
+    && hasText("RAG_FRAGMENT_ALPHA")
+    && !hasText("RAG_FRAGMENT_BETA")) {
+    return "MOCK_RAG_OK";
+  }
+  return "MOCK_RAG_MISSING";
+}
+
+function delay(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
+// Deterministic 4-dimensional vectors: one axis per marker word plus a small
+// constant, so similar texts share an axis and unrelated ones stay near zero.
+function embeddingFor(text) {
+  const value = String(text ?? "");
+  const vector = [
+    value.includes("ALPHA") ? 1 : 0,
+    value.includes("BETA") ? 1 : 0,
+    value.includes("GAMMA") ? 1 : 0,
+    0.1,
+  ];
+  return value.includes("RAG_DIM3") ? vector.slice(0, 3) : vector;
+}
+
+async function handleEmbeddings(req, res, body) {
+  if (req.headers.authorization !== `Bearer ${embeddingApiKey}`) {
+    json(res, 401, { error: { message: "invalid_api_key", type: "invalid_request_error" } });
+    return;
+  }
+  const inputs = Array.isArray(body.input) ? body.input : [body.input];
+  if (inputs.some((item) => String(item).includes("RAG_EMBED_FAIL"))) {
+    json(res, 500, { error: { message: "mock_embedding_failure", type: "server_error" } });
+    return;
+  }
+  if (inputs.some((item) => String(item).includes("RAG_SLOW"))) {
+    await delay(slowEmbeddingDelayMs);
+    if (req.socket.destroyed) return;
+  }
+  json(res, 200, {
+    object: "list",
+    model: body.model,
+    data: inputs.map((item, index) => ({ object: "embedding", index, embedding: embeddingFor(item) })),
+    usage: { prompt_tokens: inputs.length, total_tokens: inputs.length },
+  });
+}
+
+function qdrantOk(res, result) {
+  json(res, 200, { result, status: "ok", time: 0 });
+}
+
+function qdrantError(res, statusCode, message) {
+  json(res, statusCode, { status: { error: message }, time: 0 });
+}
+
+function cosine(left, right) {
+  let dot = 0;
+  let leftNorm = 0;
+  let rightNorm = 0;
+  for (let index = 0; index < left.length; index += 1) {
+    dot += left[index] * right[index];
+    leftNorm += left[index] * left[index];
+    rightNorm += right[index] * right[index];
+  }
+  return leftNorm && rightNorm ? dot / Math.sqrt(leftNorm * rightNorm) : 0;
+}
+
+function matchesCondition(payload, condition) {
+  const value = payload?.[condition.key];
+  const values = Array.isArray(value) ? value : [value];
+  if (Array.isArray(condition.match?.any)) {
+    return values.some((item) => condition.match.any.includes(item));
+  }
+  if (condition.match && "value" in condition.match) {
+    return values.includes(condition.match.value);
+  }
+  return false;
+}
+
+function matchesFilter(payload, filter) {
+  return (filter?.must ?? []).every((condition) => matchesCondition(payload, condition));
+}
+
+function collectionInfo(collection) {
+  return {
+    status: "green",
+    optimizer_status: "ok",
+    points_count: collection.points.size,
+    indexed_vectors_count: 0,
+    segments_count: 1,
+    config: { params: { vectors: { size: collection.size, distance: collection.distance } } },
+    payload_schema: {},
+  };
+}
+
+function checkVector(res, collection, vector) {
+  if (!Array.isArray(vector) || vector.length !== collection.size) {
+    qdrantError(
+      res,
+      400,
+      `Wrong input: Vector dimension error: expected dim: ${collection.size}, got ${Array.isArray(vector) ? vector.length : 0}`,
+    );
+    return false;
+  }
+  return true;
+}
+
+function handleQdrant(req, res, url, body) {
+  const parts = url.pathname.split("/").filter(Boolean).slice(1).map(decodeURIComponent);
+  if (req.method === "GET" && parts.length === 1 && parts[0] === "healthz") {
+    res.writeHead(200, { "content-type": "text/plain; charset=utf-8" });
+    res.end("healthz check passed");
+    return;
+  }
+  if (req.headers["api-key"] !== qdrantApiKey) {
+    qdrantError(res, 401, "Must provide an API key or an Authorization bearer token");
+    return;
+  }
+  if (parts[0] !== "collections") {
+    qdrantError(res, 404, `Mock Qdrant route not found: ${req.method} ${url.pathname}`);
+    return;
+  }
+  if (parts.length === 1 && req.method === "GET") {
+    qdrantOk(res, { collections: [...qdrantCollections.keys()].map((name) => ({ name })) });
+    return;
+  }
+
+  const name = parts[1];
+  const collection = qdrantCollections.get(name);
+  if (parts.length === 2) {
+    if (req.method === "GET") {
+      if (!collection) {
+        qdrantError(res, 404, `Not found: Collection \`${name}\` doesn't exist!`);
+        return;
+      }
+      qdrantOk(res, collectionInfo(collection));
+      return;
+    }
+    if (req.method === "PUT") {
+      if (collection) {
+        qdrantError(res, 409, `Wrong input: Collection \`${name}\` already exists!`);
+        return;
+      }
+      const size = Number(body.vectors?.size);
+      if (!Number.isInteger(size) || size < 1) {
+        qdrantError(res, 400, "Wrong input: vectors.size must be a positive integer");
+        return;
+      }
+      qdrantCollections.set(name, { size, distance: body.vectors.distance || "Cosine", points: new Map() });
+      qdrantOk(res, true);
+      return;
+    }
+    if (req.method === "DELETE") {
+      qdrantOk(res, qdrantCollections.delete(name));
+      return;
+    }
+  }
+
+  if (!collection) {
+    qdrantError(res, 404, `Not found: Collection \`${name}\` doesn't exist!`);
+    return;
+  }
+  const operation = () => ({
+    operation_id: ++qdrantOperationSequence,
+    status: url.searchParams.get("wait") === "true" ? "completed" : "acknowledged",
+  });
+
+  if (parts.length === 3 && parts[2] === "points" && req.method === "PUT") {
+    const points = Array.isArray(body.points) ? body.points : [];
+    for (const point of points) {
+      if (!checkVector(res, collection, point.vector)) return;
+    }
+    for (const point of points) {
+      const id = String(point.id).toLowerCase();
+      collection.points.set(id, { id, vector: point.vector, payload: point.payload ?? {} });
+    }
+    qdrantOk(res, operation());
+    return;
+  }
+
+  if (parts.length === 4 && parts[2] === "points" && parts[3] === "search" && req.method === "POST") {
+    if (!Number.isInteger(body.limit) || body.limit < 1) {
+      qdrantError(res, 422, `Validation error in JSON body: [limit: value ${body.limit} invalid, must be 1 or larger]`);
+      return;
+    }
+    if (!checkVector(res, collection, body.vector)) return;
+    const threshold = typeof body.score_threshold === "number" ? body.score_threshold : -Infinity;
+    const result = [...collection.points.values()]
+      .filter((point) => matchesFilter(point.payload, body.filter))
+      .map((point) => ({ id: point.id, version: 0, score: cosine(body.vector, point.vector), point }))
+      .filter((item) => item.score >= threshold)
+      .sort((left, right) => right.score - left.score)
+      .slice(0, body.limit)
+      .map(({ id, version, score, point }) => (
+        body.with_payload ? { id, version, score, payload: point.payload } : { id, version, score }));
+    qdrantOk(res, result);
+    return;
+  }
+
+  if (parts.length === 4 && parts[2] === "points" && parts[3] === "delete" && req.method === "POST") {
+    for (const id of Array.isArray(body.points) ? body.points : []) {
+      collection.points.delete(String(id).toLowerCase());
+    }
+    qdrantOk(res, operation());
+    return;
+  }
+
+  if (parts.length === 4 && parts[2] === "points" && req.method === "GET") {
+    const point = collection.points.get(parts[3].toLowerCase());
+    if (!point) {
+      qdrantError(res, 404, `Not found: Point with id ${parts[3]} does not exists!`);
+      return;
+    }
+    qdrantOk(res, { id: point.id, payload: point.payload, vector: point.vector });
+    return;
+  }
+
+  qdrantError(res, 404, `Mock Qdrant route not found: ${req.method} ${url.pathname}`);
+}
+
 function handleResponses(res, body) {
   const id = `resp_mock_${++responseSequence}`;
   const hasText = (text) =>
@@ -86,6 +319,18 @@ function handleResponses(res, body) {
 
   if (hasText("FORCE_503")) {
     json(res, 503, { status: 503, detail: "mock_temporarily_unavailable" });
+    return;
+  }
+
+  if (hasText("RAG_SMOKE")) {
+    json(res, 200, {
+      id,
+      object: "response",
+      status: "completed",
+      model: body.model,
+      output: [outputMessage(ragAnswer(hasText))],
+      usage: responsesUsage(),
+    });
     return;
   }
 
@@ -165,6 +410,24 @@ function handleChatCompletions(res, body) {
     }
     json(res, 200, { id: `chatcmpl_mock_${++responseSequence}`, model: body.model,
       choices: [{ index: 0, finish_reason: 'stop', message: { role: 'assistant', content: '{"count":37}' } }], usage: chatUsage() });
+    return;
+  }
+  const hasText = (text) =>
+    contains(body.messages, (value) => typeof value === "string" && value.includes(text));
+  if (hasText("RAG_SMOKE")) {
+    json(res, 200, {
+      id: `chatcmpl_mock_${++responseSequence}`,
+      object: "chat.completion",
+      model: body.model,
+      choices: [
+        {
+          index: 0,
+          finish_reason: "stop",
+          message: { role: "assistant", content: ragAnswer(hasText) },
+        },
+      ],
+      usage: chatUsage(),
+    });
     return;
   }
   const hasToolOutput = contains(body.messages, (value) => value?.role === "tool");
@@ -293,6 +556,16 @@ const server = http.createServer(async (req, res) => {
 
   if (req.method === "POST" && url.pathname === "/v1/chat/completions") {
     handleChatCompletions(res, body);
+    return;
+  }
+
+  if (req.method === "POST" && url.pathname === "/v1/embeddings") {
+    await handleEmbeddings(req, res, body);
+    return;
+  }
+
+  if (url.pathname === "/qdrant" || url.pathname.startsWith("/qdrant/")) {
+    handleQdrant(req, res, url, body);
     return;
   }
 
