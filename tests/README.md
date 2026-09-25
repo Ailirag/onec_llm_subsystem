@@ -14,7 +14,10 @@ It contains:
   calls, token usage, and HTTP error handling;
 - a test-only common module in the minimal host configuration, invoked through
   `V83.COMConnector` without opening the 1C UI;
-- checks for metadata discovery, safe queries, restricted fields, model loading,
+- a periodic `ТестовыеЦены` register for virtual-table query checks;
+- checks for metadata discovery, safe queries, restricted fields (including
+  `*`, fields without a table name, table aliases, references, conditions,
+  nested queries and virtual tables), model loading,
   both API protocols, attachments, agent tool execution, conversation
   isolation, and token logging.
 

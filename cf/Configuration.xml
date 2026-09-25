@@ -256,6 +256,7 @@
 			<DataProcessor>УниверсальнаяОбработка</DataProcessor>
 			<DataProcessor>ТестовыйОбработчикLLM</DataProcessor>
 			<InformationRegister>LLMTestDeliveries</InformationRegister>
+			<InformationRegister>ТестовыеЦены</InformationRegister>
 			<Enum>ТестовыеВариантыСогласования</Enum>
 		</ChildObjects>
 	</Configuration>
