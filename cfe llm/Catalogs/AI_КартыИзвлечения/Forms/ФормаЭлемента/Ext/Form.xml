@@ -12,12 +12,24 @@
 			<Button name="СинхронизироватьСхему" id="1">
 				<Type>CommandBarButton</Type>
 				<CommandName>Form.Command.СинхронизироватьСхему</CommandName>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Переписывает схему ответа во всех сценариях мест запуска, где выбрана эта карта. Нужна записанная карта. Обычно не требуется: схема переносится при записи карты.</v8:content>
+					</v8:item>
+				</ToolTip>
 				<Representation>Text</Representation>
 				<ExtendedTooltip name="СинхронизироватьСхемуРасширеннаяПодсказка" id="2"/>
 			</Button>
 			<Button name="ПоказатьСхему" id="3">
 				<Type>CommandBarButton</Type>
 				<CommandName>Form.Command.ПоказатьСхему</CommandName>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Показывает схему ответа по записанной карте — что модель обязана вернуть. Ничего не записывает; несохраненные правки не учтены.</v8:content>
+					</v8:item>
+				</ToolTip>
 				<Representation>Text</Representation>
 				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
 				<ExtendedTooltip name="ПоказатьСхемуРасширеннаяПодсказка" id="4"/>
@@ -31,6 +43,7 @@
 	<ChildItems>
 		<UsualGroup name="ГруппаШапка" id="5">
 			<Group>Vertical</Group>
+			<ShowTitle>false</ShowTitle>
 			<ExtendedTooltip name="ГруппаШапкаРасширеннаяПодсказка" id="6"/>
 			<ChildItems>
 				<InputField name="Наименование" id="7">
@@ -363,6 +376,12 @@
 					<v8:content>Записать схему в сценарии</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Переписывает схему ответа во всех сценариях мест запуска, где выбрана эта карта. Нужна записанная карта. Обычно не требуется: схема переносится при записи карты.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>СинхронизироватьСхемуОбработка</Action>
 		</Command>
 		<Command name="ПоказатьСхему" id="76">
@@ -372,6 +391,12 @@
 					<v8:content>Показать схему ответа</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Показывает схему ответа по записанной карте — что модель обязана вернуть. Ничего не записывает; несохраненные правки не учтены.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ПоказатьСхемуОбработка</Action>
 		</Command>
 	</Commands>

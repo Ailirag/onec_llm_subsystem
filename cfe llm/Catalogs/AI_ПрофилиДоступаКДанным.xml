@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
 	<Catalog uuid="367ec33d-915f-418c-8612-c5988bc41782">
 		<InternalInfo>
@@ -70,7 +70,7 @@
 			<AuxiliaryListForm />
 			<AuxiliaryChoiceForm />
 			<AuxiliaryFolderChoiceForm />
-			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<BasedOn />
 			<DataLockFields />
 			<DataLockControlMode>Managed</DataLockControlMode>
@@ -103,7 +103,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Агент может выполнять запросы к данным разрешенных объектов. Без флажка видит только их структуру. Нужны список разрешенных объектов и роль «Анализ данных агентом».</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -148,7 +153,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько раз агент может обратиться к модели за один ответ, вызывая инструменты. 0 — по умолчанию, 6. Лимит исчерпан — ответ завершится ошибкой.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -174,11 +184,10 @@
 			</Attribute>
 			<Attribute uuid="ddb97c7f-378c-4558-a66a-c5ef99f98d4b">
 				<Properties>
-					<Name>МаксимумЗапросовКДанным</Name>
-					<Synonym>
+					<Name>МаксимумЗапросовКДанным</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Максимум запросов кданным</v8:content>
+							<v8:content>Максимум запросов к данным</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -193,7 +202,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько запросов к данным агент может выполнить за один ответ. 0 — по умолчанию, 4. Запрос сверх лимита отклоняется.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -238,7 +252,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Наибольшее N в «ВЫБРАТЬ ПЕРВЫЕ N». Запрос без ПЕРВЫЕ, кроме итога одной строкой, и с большим N отклоняется. 0 — по умолчанию, 100.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -283,7 +302,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Наибольшая длина текста запроса агента в символах; длиннее — отклоняется. 0 — по умолчанию, 10 000.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -383,7 +407,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Объект, который агент может читать, например Справочник.Контрагенты. Добавляйте кнопкой «Подобрать объекты»: неизвестное имя или повтор не дадут записать профиль.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -420,7 +449,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Запрос к объекту должен содержать параметры &amp;НачалоПериода и &amp;КонецПериода, иначе отклоняется. Для больших регистров и журналов документов.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -522,7 +556,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Разрешенный объект, поле которого запрещено. Объект вне списка разрешенных не даст записать профиль.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -563,7 +602,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Имя поля; колонка табличной части — «ТабличнаяЧасть.Колонка». Агент не видит поле в описании объекта, запрос с этим полем отклоняется.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>

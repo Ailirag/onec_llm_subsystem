@@ -70,7 +70,7 @@
 			<AuxiliaryListForm />
 			<AuxiliaryChoiceForm />
 			<AuxiliaryFolderChoiceForm />
-			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<BasedOn />
 			<DataLockFields />
 			<DataLockControlMode>Managed</DataLockControlMode>
@@ -107,7 +107,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Роль, задачи, стиль и ограничения модели; обязательна. Передается первым сообщением запроса. В агентском режиме к ней добавляются правила работы с инструментами.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -152,7 +157,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Свобода формулировок: 0,1–0,3 — точные ответы и извлечение данных, 0,4–0,7 — более свободный текст. Ноль не допускается. В диалогах и AI-действиях всегда 0,3.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -178,11 +188,10 @@
 			</Attribute>
 			<Attribute uuid="0f6a4c9a-ed78-444d-af79-88b5e238d702">
 				<Properties>
-					<Name>МаксТокенов</Name>
-					<Synonym>
+					<Name>МаксТокенов</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Макс токенов</v8:content>
+							<v8:content>Лимит токенов ответа</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -197,7 +206,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Наибольшая длина ответа в токенах; рассуждающие модели тратят лимит и на скрытые рассуждения. Ноль не допускается. В диалогах и AI-действиях всегда 50 000.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -223,11 +237,10 @@
 			</Attribute>
 			<Attribute uuid="2e0c21dc-f192-47e1-8d5f-4a573675d923">
 				<Properties>
-					<Name>ИдентификаторДляЛогики</Name>
-					<Synonym>
+					<Name>ИдентификаторДляЛогики</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Идентификатор для логики</v8:content>
+							<v8:content>Программный идентификатор</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -241,7 +254,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Уникальный обязательный код агента для программ: по нему агента находит код внедрения и обработчик очереди запросов. Модели не передается.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -267,11 +285,10 @@
 			</Attribute>
 			<Attribute uuid="a4d609f9-4dd3-4ac5-b6fc-8776a1fba139">
 				<Properties>
-					<Name>НуженВебПоиск</Name>
-					<Synonym>
+					<Name>НуженВебПоиск</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Нужен веб поиск</v8:content>
+							<v8:content>Искать в интернете</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -281,7 +298,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Разрешает модели искать в интернете. Работает только с Responses API и Z.AI, иначе запрос завершится ошибкой. У Yandex поиск включается принудительно.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -307,11 +329,10 @@
 			</Attribute>
 			<Attribute uuid="8954f342-9c39-4909-9165-3820e76e8ff7">
 				<Properties>
-					<Name>ОкноКонтекстаВебПоиска</Name>
-					<Synonym>
+					<Name>ОкноКонтекстаВебПоиска</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Окно контекста веб поиска</v8:content>
+							<v8:content>Объем результатов поиска</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -321,7 +342,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько найденного текста модель берет в работу: Low — меньше и дешевле, High — больше и дороже. Учитывается у Yandex (пусто — Medium) и Z.AI.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -347,11 +373,10 @@
 			</Attribute>
 			<Attribute uuid="0cc50b17-09a0-4a88-81b9-21fc6c2c2344">
 				<Properties>
-					<Name>ИзвлекатьОтветВСтруктуру</Name>
-					<Synonym>
+					<Name>ИзвлекатьОтветВСтруктуру</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Извлекать ответ в структуру</v8:content>
+							<v8:content>Разбирать ответ как JSON</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -361,7 +386,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Только для очереди запросов: ответ разбирается как JSON и передается обработчику структурой. Требуйте в инструкции ответ в формате JSON.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -401,7 +431,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Модель получает инструменты: ищет объекты базы, строит и выполняет запросы по профилю данных, вызывает MCP-инструменты. Работает в несколько шагов — дольше и дороже.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -427,11 +462,10 @@
 			</Attribute>
 			<Attribute uuid="de9e3e08-f515-410b-95f1-4be54cf6ba99">
 				<Properties>
-					<Name>ПрофильДоступаКДанным</Name>
-					<Synonym>
+					<Name>ПрофильДоступаКДанным</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Профиль доступа кданным</v8:content>
+							<v8:content>Профиль доступа к данным</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -441,7 +475,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Какие объекты базы агент может читать в агентском режиме. Пусто — только обзор метаданных, без чтения данных. Действует, если в назначении не указан свой профиль.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -467,11 +506,10 @@
 			</Attribute>
 			<Attribute uuid="845fd59a-6881-4037-94a4-ce790d91f6b2">
 				<Properties>
-					<Name>ПрофильMCP</Name>
-					<Synonym>
+					<Name>ПрофильMCP</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Профильmcp</v8:content>
+							<v8:content>Профиль MCP-инструментов</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -481,7 +519,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Инструменты внешних MCP-серверов, доступные агенту. Действует только в агентском режиме. Пусто — без внешних инструментов.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -521,7 +564,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Кому доступен агент: всем пользователям LLM, только назначенным на вкладке «Доступ» пользователям и группам или никому. Новый агент создается в режиме «По назначениям».</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -587,7 +635,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Сведения, которые модель получает отдельным сообщением в AI-действиях, прикладных вызовах и очереди запросов. В свободном диалоге не передаются.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -652,7 +705,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Искать ли в этой коллекции. Снимите флажок, чтобы временно отключить коллекцию, не удаляя строку.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -689,7 +747,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Векторная коллекция для поиска. Она должна быть инициализирована, а ее подключение RAG включено, иначе запрос агента завершится ошибкой.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -712,11 +775,10 @@
 					</Attribute>
 					<Attribute uuid="1c90c0bd-baa6-4b28-ab7f-66b7ac137d9f">
 						<Properties>
-							<Name>ЛимитФрагментовQdrant</Name>
-							<Synonym>
+							<Name>ЛимитФрагментовQdrant</Name><Synonym>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Лимит фрагментов Qdrant</v8:content>
+									<v8:content>Лимит фрагментов</v8:content>
 								</v8:item>
 							</Synonym>
 							<Comment />
@@ -731,7 +793,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Сколько самых похожих фрагментов брать из коллекции, например 5. Больше — полнее контекст, но дороже запрос. При 0 фрагментов не будет.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -754,11 +821,10 @@
 					</Attribute>
 					<Attribute uuid="45c44793-6647-4c8a-9469-7723477a8386">
 						<Properties>
-							<Name>ВесКоллекции</Name>
-							<Synonym>
+							<Name>ВесКоллекции</Name><Synonym>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Вес (приоритет) коллекции</v8:content>
+									<v8:content>Вес коллекции</v8:content>
 								</v8:item>
 							</Synonym>
 							<Comment />
@@ -773,7 +839,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Множитель сходства для порядка фрагментов: у коллекции с большим весом они идут первыми. Обычно 1. На отбор не влияет.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -796,11 +867,10 @@
 					</Attribute>
 					<Attribute uuid="dc93f093-8726-4abc-82ec-b4d73619d47d">
 						<Properties>
-							<Name>МинПорогСхожестиВектора</Name>
-							<Synonym>
+							<Name>МинПорогСхожестиВектора</Name><Synonym>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Мин. порог схожести вектора</v8:content>
+									<v8:content>Минимальное сходство</v8:content>
 								</v8:item>
 							</Synonym>
 							<Comment />
@@ -815,7 +885,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Фрагменты со сходством ниже порога отбрасываются. От 0 до 1, например 0,7: чем выше, тем строже отбор. 0 — без порога.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -880,7 +955,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Метка доступа фрагментов. Метки одного типа объединяются через «или», разных типов — через «и». Пустая таблица — поиск по всем фрагментам.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -931,11 +1011,10 @@
 				<ChildObjects>
 					<Attribute uuid="a7042606-f031-49db-8644-775b78681700">
 						<Properties>
-							<Name>URL</Name>
-							<Synonym>
+							<Name>URL</Name><Synonym>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>URL</v8:content>
+									<v8:content>Домен сайта</v8:content>
 								</v8:item>
 							</Synonym>
 							<Comment />
@@ -949,7 +1028,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Домен без протокола и пути, например consultant.ru. Если список заполнен, поиск идет только по этим сайтам. Z.AI учитывает только первую строку.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -1042,7 +1126,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Идентификатор пользователя информационной базы. Заполняется при подборе; переименование пользователя доступ не снимает.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -1065,11 +1154,10 @@
 					</Attribute>
 					<Attribute uuid="f2213dc4-2be1-4b45-aed8-9ffdbd5f2195">
 						<Properties>
-							<Name>Имя</Name>
-							<Synonym>
+							<Name>Имя</Name><Synonym>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Имя</v8:content>
+									<v8:content>Имя входа</v8:content>
 								</v8:item>
 							</Synonym>
 							<Comment />
@@ -1083,7 +1171,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Имя входа на момент подбора. Только для справки, на доступ не влияет.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -1124,7 +1217,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Полное имя на момент подбора. Только для справки, на доступ не влияет.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -1147,11 +1245,10 @@
 					</Attribute>
 					<Attribute uuid="1ada5021-076d-453c-9e8e-cf062a924c6c">
 						<Properties>
-							<Name>ПрофильДоступаКДанным</Name>
-							<Synonym>
+							<Name>ПрофильДоступаКДанным</Name><Synonym>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Профиль доступа кданным</v8:content>
+									<v8:content>Профиль доступа к данным</v8:content>
 								</v8:item>
 							</Synonym>
 							<Comment />
@@ -1161,7 +1258,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Профиль данных этого пользователя в агентском режиме. Пусто — профиль агента.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -1198,7 +1300,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Снимите флажок, чтобы отключить назначение, не удаляя строку.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -1291,7 +1398,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Группа пользователей LLM: доступ получают ее участники, если группа включена.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -1314,11 +1426,10 @@
 					</Attribute>
 					<Attribute uuid="a6f0e186-d87e-4569-9ee3-7da1a6dcc8d9">
 						<Properties>
-							<Name>ПрофильДоступаКДанным</Name>
-							<Synonym>
+							<Name>ПрофильДоступаКДанным</Name><Synonym>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Профиль доступа кданным</v8:content>
+									<v8:content>Профиль доступа к данным</v8:content>
 								</v8:item>
 							</Synonym>
 							<Comment />
@@ -1328,7 +1439,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Профиль данных участников группы в агентском режиме. Пусто — профиль агента.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -1370,7 +1486,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Для пользователя из нескольких групп действует строка с наибольшим приоритетом. Равный приоритет и разные профили блокируют доступ. Личное назначение важнее.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -1407,7 +1528,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Доступ дают только отмеченные строки. Снимите флажок, чтобы временно отключить группу для этого агента.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>

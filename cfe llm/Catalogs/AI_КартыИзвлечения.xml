@@ -70,7 +70,7 @@
 			<AuxiliaryListForm />
 			<AuxiliaryChoiceForm />
 			<AuxiliaryFolderChoiceForm />
-			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<BasedOn />
 			<DataLockFields />
 			<DataLockControlMode>Managed</DataLockControlMode>
@@ -103,7 +103,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выключенная карта не работает: ответ по ней не разбирается и не применяется, схема в сценарии не обновляется, мастер ее не предлагает.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -147,7 +152,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Объект, в реквизиты которого ложатся поля; для «Создать объект» — что создавать. * — любой объект: берется объект действия.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -191,7 +201,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заметка для администратора: для чего карта и где используется. Пользователь ее не видит; текст попадает в инструкцию HTML и в пакет.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>true</MultiLine>
@@ -336,7 +351,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Имя поля в ответе модели латиницей. Пусто — выведется из реквизита при записи карты.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -377,7 +397,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Название поля для пользователя в таблице результата. Модель видит его только в разговоре; в обычном запуске — ключ и подсказку.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -414,7 +439,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Строка, число, дата (модель вернет ГГГГ-ММ-ДД), булево или ссылка. Для ссылки заполните «Тип ссылки» и «Искать по наименованию».</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -455,7 +485,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Где искать значение типа «Ссылка»: полные имена справочников и перечислений через запятую, например Справочник.Пользователи. Типы проверяются по очереди.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -496,7 +531,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Имя реквизита объекта или колонки табличной части, куда ляжет значение. Путь через точку не поддерживается.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -533,7 +573,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Для типа «Ссылка»: искать значение в базе по тексту модели. Без флажка значение не распознается и не применится.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -570,7 +615,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Только пометка: если модель не вернет значение, в результате будет «Обязательное поле не заполнено моделью». Применению и схеме ответа не мешает.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -611,7 +661,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Что искать и как понимать поле — текст уходит модели вместе с полем. Пишите правила предметной области с коротким примером.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>true</MultiLine>

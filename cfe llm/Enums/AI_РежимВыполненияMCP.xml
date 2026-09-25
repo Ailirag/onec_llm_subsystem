@@ -23,72 +23,72 @@
 					<v8:content>Режим выполнения MCP</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment />
 			<UseStandardCommands>false</UseStandardCommands>
 			<StandardAttributes>
 				<xr:StandardAttribute name="Order">
-					<xr:LinkByType/>
+					<xr:LinkByType />
 					<xr:FillChecking>DontCheck</xr:FillChecking>
 					<xr:MultiLine>false</xr:MultiLine>
 					<xr:FillFromFillingValue>false</xr:FillFromFillingValue>
 					<xr:CreateOnInput>Auto</xr:CreateOnInput>
-					<xr:MaxValue xsi:nil="true"/>
-					<xr:ToolTip/>
+					<xr:MaxValue xsi:nil="true" />
+					<xr:ToolTip />
 					<xr:ExtendedEdit>false</xr:ExtendedEdit>
-					<xr:Format/>
-					<xr:ChoiceForm/>
+					<xr:Format />
+					<xr:ChoiceForm />
 					<xr:QuickChoice>Auto</xr:QuickChoice>
 					<xr:ChoiceHistoryOnInput>Auto</xr:ChoiceHistoryOnInput>
-					<xr:EditFormat/>
+					<xr:EditFormat />
 					<xr:PasswordMode>false</xr:PasswordMode>
 					<xr:DataHistory>Use</xr:DataHistory>
 					<xr:MarkNegatives>false</xr:MarkNegatives>
-					<xr:MinValue xsi:nil="true"/>
-					<xr:Synonym/>
-					<xr:Comment/>
+					<xr:MinValue xsi:nil="true" />
+					<xr:Synonym />
+					<xr:Comment />
 					<xr:FullTextSearch>Use</xr:FullTextSearch>
-					<xr:ChoiceParameterLinks/>
-					<xr:FillValue xsi:nil="true"/>
-					<xr:Mask/>
-					<xr:ChoiceParameters/>
+					<xr:ChoiceParameterLinks />
+					<xr:FillValue xsi:nil="true" />
+					<xr:Mask />
+					<xr:ChoiceParameters />
 				</xr:StandardAttribute>
 				<xr:StandardAttribute name="Ref">
-					<xr:LinkByType/>
+					<xr:LinkByType />
 					<xr:FillChecking>DontCheck</xr:FillChecking>
 					<xr:MultiLine>false</xr:MultiLine>
 					<xr:FillFromFillingValue>false</xr:FillFromFillingValue>
 					<xr:CreateOnInput>Auto</xr:CreateOnInput>
-					<xr:MaxValue xsi:nil="true"/>
-					<xr:ToolTip/>
+					<xr:MaxValue xsi:nil="true" />
+					<xr:ToolTip />
 					<xr:ExtendedEdit>false</xr:ExtendedEdit>
-					<xr:Format/>
-					<xr:ChoiceForm/>
+					<xr:Format />
+					<xr:ChoiceForm />
 					<xr:QuickChoice>Auto</xr:QuickChoice>
 					<xr:ChoiceHistoryOnInput>Auto</xr:ChoiceHistoryOnInput>
-					<xr:EditFormat/>
+					<xr:EditFormat />
 					<xr:PasswordMode>false</xr:PasswordMode>
 					<xr:DataHistory>Use</xr:DataHistory>
 					<xr:MarkNegatives>false</xr:MarkNegatives>
-					<xr:MinValue xsi:nil="true"/>
-					<xr:Synonym/>
-					<xr:Comment/>
+					<xr:MinValue xsi:nil="true" />
+					<xr:Synonym />
+					<xr:Comment />
 					<xr:FullTextSearch>Use</xr:FullTextSearch>
-					<xr:ChoiceParameterLinks/>
-					<xr:FillValue xsi:nil="true"/>
-					<xr:Mask/>
-					<xr:ChoiceParameters/>
+					<xr:ChoiceParameterLinks />
+					<xr:FillValue xsi:nil="true" />
+					<xr:Mask />
+					<xr:ChoiceParameters />
 				</xr:StandardAttribute>
 			</StandardAttributes>
-			<Characteristics/>
+			<Characteristics />
 			<QuickChoice>true</QuickChoice>
 			<ChoiceMode>BothWays</ChoiceMode>
-			<DefaultListForm/>
-			<DefaultChoiceForm/>
-			<AuxiliaryListForm/>
-			<AuxiliaryChoiceForm/>
-			<ListPresentation/>
-			<ExtendedListPresentation/>
-			<Explanation/>
+			<DefaultListForm />
+			<DefaultChoiceForm />
+			<AuxiliaryListForm />
+			<AuxiliaryChoiceForm />
+			<ListPresentation />
+			<ExtendedListPresentation />
+			<Explanation />
 			<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 		</Properties>
 		<ChildObjects>
@@ -101,19 +101,18 @@
 							<v8:content>Выполнять автоматически</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 				</Properties>
 			</EnumValue>
 			<EnumValue uuid="b45399e7-b5ef-4300-be29-611f96abea76">
 				<Properties>
-					<Name>Подтверждать</Name>
-					<Synonym>
+					<Name>Подтверждать</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Требовать подтверждение</v8:content>
+							<v8:content>Требовать подтверждение (пока не поддерживается)</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 				</Properties>
 			</EnumValue>
 			<EnumValue uuid="4d9142ec-be19-4743-abdc-79358164d449">
@@ -125,7 +124,7 @@
 							<v8:content>Запрещено</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 				</Properties>
 			</EnumValue>
 		</ChildObjects>

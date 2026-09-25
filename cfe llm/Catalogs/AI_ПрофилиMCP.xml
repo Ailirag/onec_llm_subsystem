@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
 	<Catalog uuid="935f46a6-c593-47ad-acd3-7e8e0c9d9398">
 		<InternalInfo>
@@ -70,7 +70,7 @@
 			<AuxiliaryListForm />
 			<AuxiliaryChoiceForm />
 			<AuxiliaryFolderChoiceForm />
-			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<BasedOn />
 			<DataLockFields />
 			<DataLockControlMode>Managed</DataLockControlMode>
@@ -89,11 +89,10 @@
 		<ChildObjects>
 			<Attribute uuid="1a72b4db-3561-4221-8fcc-bdd7866129ce">
 				<Properties>
-					<Name>МаксимумВызовов</Name>
-					<Synonym>
+					<Name>МаксимумВызовов</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Максимум вызовов</v8:content>
+							<v8:content>Максимум вызовов за ответ</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -108,7 +107,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько раз агент может вызвать MCP-инструменты, отвечая на один вопрос. 0 — 10 вызовов. Сверх лимита модель получает ошибку.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -134,11 +138,10 @@
 			</Attribute>
 			<Attribute uuid="126c99f5-6353-4e80-8473-a633808739bc">
 				<Properties>
-					<Name>ОбщийТаймаутСекунд</Name>
-					<Synonym>
+					<Name>ОбщийТаймаутСекунд</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Общий таймаут секунд</v8:content>
+							<v8:content>Предельное время вызова, с</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -153,7 +156,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько секунд может длиться один вызов инструмента вместе с подключением к серверу. 0 — 120 секунд.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -179,11 +187,10 @@
 			</Attribute>
 			<Attribute uuid="9c858434-a390-49a1-9f79-ec9ccd6a009e">
 				<Properties>
-					<Name>МаксимальныйРазмерРезультатаБайт</Name>
-					<Synonym>
+					<Name>МаксимальныйРазмерРезультатаБайт</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Максимальный размер результата байт</v8:content>
+							<v8:content>Предельный размер результата, байт</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -198,7 +205,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Результат одного вызова больше этого размера модели не передается — она получает ошибку. 0 — 1 048 576 байт (1 МБ).</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -294,7 +306,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Инструмент, загруженный с MCP-сервера. Работает, только если он есть на сервере, совместим и сервер включен.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -331,7 +348,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Работает только «Выполнять автоматически» — агент вызывает инструмент без вопросов. Другие режимы закрывают доступ к нему.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>

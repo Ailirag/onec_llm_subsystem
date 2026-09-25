@@ -23,72 +23,72 @@
 					<v8:content>Тип авторизации MCP</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment />
 			<UseStandardCommands>false</UseStandardCommands>
 			<StandardAttributes>
 				<xr:StandardAttribute name="Order">
-					<xr:LinkByType/>
+					<xr:LinkByType />
 					<xr:FillChecking>DontCheck</xr:FillChecking>
 					<xr:MultiLine>false</xr:MultiLine>
 					<xr:FillFromFillingValue>false</xr:FillFromFillingValue>
 					<xr:CreateOnInput>Auto</xr:CreateOnInput>
-					<xr:MaxValue xsi:nil="true"/>
-					<xr:ToolTip/>
+					<xr:MaxValue xsi:nil="true" />
+					<xr:ToolTip />
 					<xr:ExtendedEdit>false</xr:ExtendedEdit>
-					<xr:Format/>
-					<xr:ChoiceForm/>
+					<xr:Format />
+					<xr:ChoiceForm />
 					<xr:QuickChoice>Auto</xr:QuickChoice>
 					<xr:ChoiceHistoryOnInput>Auto</xr:ChoiceHistoryOnInput>
-					<xr:EditFormat/>
+					<xr:EditFormat />
 					<xr:PasswordMode>false</xr:PasswordMode>
 					<xr:DataHistory>Use</xr:DataHistory>
 					<xr:MarkNegatives>false</xr:MarkNegatives>
-					<xr:MinValue xsi:nil="true"/>
-					<xr:Synonym/>
-					<xr:Comment/>
+					<xr:MinValue xsi:nil="true" />
+					<xr:Synonym />
+					<xr:Comment />
 					<xr:FullTextSearch>Use</xr:FullTextSearch>
-					<xr:ChoiceParameterLinks/>
-					<xr:FillValue xsi:nil="true"/>
-					<xr:Mask/>
-					<xr:ChoiceParameters/>
+					<xr:ChoiceParameterLinks />
+					<xr:FillValue xsi:nil="true" />
+					<xr:Mask />
+					<xr:ChoiceParameters />
 				</xr:StandardAttribute>
 				<xr:StandardAttribute name="Ref">
-					<xr:LinkByType/>
+					<xr:LinkByType />
 					<xr:FillChecking>DontCheck</xr:FillChecking>
 					<xr:MultiLine>false</xr:MultiLine>
 					<xr:FillFromFillingValue>false</xr:FillFromFillingValue>
 					<xr:CreateOnInput>Auto</xr:CreateOnInput>
-					<xr:MaxValue xsi:nil="true"/>
-					<xr:ToolTip/>
+					<xr:MaxValue xsi:nil="true" />
+					<xr:ToolTip />
 					<xr:ExtendedEdit>false</xr:ExtendedEdit>
-					<xr:Format/>
-					<xr:ChoiceForm/>
+					<xr:Format />
+					<xr:ChoiceForm />
 					<xr:QuickChoice>Auto</xr:QuickChoice>
 					<xr:ChoiceHistoryOnInput>Auto</xr:ChoiceHistoryOnInput>
-					<xr:EditFormat/>
+					<xr:EditFormat />
 					<xr:PasswordMode>false</xr:PasswordMode>
 					<xr:DataHistory>Use</xr:DataHistory>
 					<xr:MarkNegatives>false</xr:MarkNegatives>
-					<xr:MinValue xsi:nil="true"/>
-					<xr:Synonym/>
-					<xr:Comment/>
+					<xr:MinValue xsi:nil="true" />
+					<xr:Synonym />
+					<xr:Comment />
 					<xr:FullTextSearch>Use</xr:FullTextSearch>
-					<xr:ChoiceParameterLinks/>
-					<xr:FillValue xsi:nil="true"/>
-					<xr:Mask/>
-					<xr:ChoiceParameters/>
+					<xr:ChoiceParameterLinks />
+					<xr:FillValue xsi:nil="true" />
+					<xr:Mask />
+					<xr:ChoiceParameters />
 				</xr:StandardAttribute>
 			</StandardAttributes>
-			<Characteristics/>
+			<Characteristics />
 			<QuickChoice>true</QuickChoice>
 			<ChoiceMode>BothWays</ChoiceMode>
-			<DefaultListForm/>
-			<DefaultChoiceForm/>
-			<AuxiliaryListForm/>
-			<AuxiliaryChoiceForm/>
-			<ListPresentation/>
-			<ExtendedListPresentation/>
-			<Explanation/>
+			<DefaultListForm />
+			<DefaultChoiceForm />
+			<AuxiliaryListForm />
+			<AuxiliaryChoiceForm />
+			<ListPresentation />
+			<ExtendedListPresentation />
+			<Explanation />
 			<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 		</Properties>
 		<ChildObjects>
@@ -101,43 +101,40 @@
 							<v8:content>Без авторизации</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 				</Properties>
 			</EnumValue>
 			<EnumValue uuid="16d64e5f-f574-4e38-a1fa-3dddf6855577">
 				<Properties>
-					<Name>Bearer</Name>
-					<Synonym>
+					<Name>Bearer</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Bearer</v8:content>
+							<v8:content>Токен (Bearer)</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 				</Properties>
 			</EnumValue>
 			<EnumValue uuid="43fc28d0-560d-4f1a-8507-467a4ac636f1">
 				<Properties>
-					<Name>ПроизвольныйЗаголовок</Name>
-					<Synonym>
+					<Name>ПроизвольныйЗаголовок</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Произвольный заголовок</v8:content>
+							<v8:content>Ключ в своем заголовке</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 				</Properties>
 			</EnumValue>
 			<EnumValue uuid="31729f72-6b61-44e2-9ec9-53e11d20b04f">
 				<Properties>
-					<Name>Basic</Name>
-					<Synonym>
+					<Name>Basic</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Basic</v8:content>
+							<v8:content>Логин и пароль (Basic)</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 				</Properties>
 			</EnumValue>
 		</ChildObjects>

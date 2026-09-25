@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="v8help://service_book/service_style"/>
+</head>
+<body>
+<h1>Подключения RAG</h1>
+<p>Справочник (в меню — «RAG») хранит подключение к двум внешним сервисам базы знаний: сервису эмбеддингов, который превращает текст в вектор, и векторной базе Qdrant, где лежат фрагменты текста с их векторами. К подключению привязываются <a href="Catalog.AI_RAGКоллекции/Help">RAG-коллекции</a>.</p>
+
+<h2>Что нужно вне 1С</h2>
+<ul>
+<li>Сервис эмбеддингов с API, совместимым с OpenAI: запрос POST на адрес …/embeddings.</li>
+<li>Qdrant с REST API.</li>
+<li>Оба сервиса должны открываться с сервера 1С: все вызовы идут с сервера.</li>
+</ul>
+
+<h2>Поля</h2>
+<table border="1" cellpadding="5" cellspacing="0">
+<tr><th>Поле</th><th>Что задает</th></tr>
+<tr><td>Владелец</td><td>Провайдер, к которому относится подключение; нужен только для группировки.</td></tr>
+<tr><td>Активен</td><td>Выключенное подключение останавливает векторизацию своих коллекций, а запросы агентов с этими коллекциями завершаются ошибкой.</td></tr>
+<tr><td>Адрес сервиса эмбеддингов</td><td>Без «/embeddings» на конце, например http://сервер:8000/v1.</td></tr>
+<tr><td>Модель эмбеддингов</td><td>Имя модели так, как его ждет сервис. Той же моделью векторизуются и данные, и вопросы: после смены модели коллекции нужно загрузить заново.</td></tr>
+<tr><td>Размер вектора</td><td>Сколько чисел в векторе модели (например 768 или 1536). Учитывается при создании коллекции в Qdrant.</td></tr>
+<tr><td>Адрес Qdrant</td><td>Адрес REST API без «/» на конце, например http://сервер:6333.</td></tr>
+<tr><td>Ключи API</td><td>Сервису эмбеддингов — заголовком Authorization: Bearer, Qdrant — заголовком api-key. Пусто — без авторизации.</td></tr>
+<tr><td>Таймауты</td><td>Сейчас не применяются: ожидание ответа — до 3600 секунд при любом значении.</td></tr>
+</table>
+<p>Проверки связи в карточке нет: подключение проверяется первой векторизацией и первым запросом агента. Ошибки пишутся в журнал регистрации (события «AI_RAG» и «AI_Клиент.RAG»).</p>
+<p>См. также: <a href="Catalog.AI_RAGКоллекции/Help">RAG-коллекции</a>, <a href="Subsystem.LLM/Help">как устроена подсистема LLM</a>.</p>
+<!--session-links-->
+<script type="text/javascript">
+(function () {
+    var parameters = window.location.search;
+    if (!parameters) return;
+    for (var i = 0; i < document.links.length; i++) {
+        var link = document.links[i];
+        if (link.href.indexOf('/mdobject/') >= 0 && link.href.indexOf('?') < 0) {
+            link.href = link.href + parameters;
+        }
+    }
+})();
+</script>
+<!--/session-links-->
+</body>
+</html>

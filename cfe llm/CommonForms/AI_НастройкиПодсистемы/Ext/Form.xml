@@ -8,6 +8,9 @@
 	</Title>
 	<AutoTitle>false</AutoTitle>
 	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
 	<ChildItems>
 		<LabelDecoration name="ПояснениеНастроек" id="1">
 			<Title formatted="false">
@@ -28,6 +31,7 @@
 			</Title>
 			<Group>Vertical</Group>
 			<ShowTitle>true</ShowTitle>
+			<ThroughAlign>Use</ThroughAlign>
 			<ExtendedTooltip name="ГруппаЗапросыРасширеннаяПодсказка" id="5"/>
 			<ChildItems>
 				<InputField name="ТаймаутЗапросаМоделиСекунд" id="6">
@@ -111,6 +115,7 @@
 			</Title>
 			<Group>Vertical</Group>
 			<ShowTitle>true</ShowTitle>
+			<ThroughAlign>Use</ThroughAlign>
 			<ExtendedTooltip name="ГруппаХранениеРасширеннаяПодсказка" id="19"/>
 			<ChildItems>
 				<InputField name="СрокХраненияОперацийДней" id="20">
@@ -180,6 +185,7 @@
 			</Title>
 			<Group>Vertical</Group>
 			<ShowTitle>true</ShowTitle>
+			<ThroughAlign>Use</ThroughAlign>
 			<ExtendedTooltip name="ГруппаRAGРасширеннаяПодсказка" id="33"/>
 			<ChildItems>
 				<InputField name="КоличествоПотоковВекторизации" id="34">
@@ -204,13 +210,14 @@
 			</Title>
 			<Group>Vertical</Group>
 			<ShowTitle>true</ShowTitle>
+			<ThroughAlign>Use</ThroughAlign>
 			<ExtendedTooltip name="ГруппаИнтеграцияРасширеннаяПодсказка" id="38"/>
 			<ChildItems>
 				<LabelDecoration name="ПояснениеАдаптера" id="39">
 					<Title formatted="false">
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Адаптер знает типы значений этой конфигурации, которых ядро искать не умеет: например, роли исполнителей и автоподстановки Документооборота. Он предлагает модели допустимые значения и находит их по тексту ответа. Пусто — адаптера нет.</v8:content>
+							<v8:content>Адаптер нужен, когда модель должна выбирать значения, которые ядро само не находит: в Документообороте — роли исполнителей и автоподстановки («Автор процесса»). Это внешняя обработка: сохраните ее ссылкой ниже, зарегистрируйте в «Дополнительных отчетах и обработках» и выберите здесь. Пусто — адаптера нет. Подробнее — в справке (F1).</v8:content>
 						</v8:item>
 					</Title>
 					<ContextMenu name="ПояснениеАдаптераКонтекстноеМеню" id="40"/>
@@ -244,11 +251,45 @@
 						<Event name="StartChoice">АдаптерКонфигурацииНачалоВыбора</Event>
 					</Events>
 				</InputField>
+				<Button name="СохранитьАдаптерДокументооборота" id="45">
+					<Type>Hyperlink</Type>
+					<CommandName>Form.Command.СохранитьАдаптерДокументооборота</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сохранить адаптер Документооборота в файл</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сохраняет в файл AI_АдаптерДокументооборота.epf для регистрации в «Дополнительных отчетах и обработках». Не регистрирует его и не заполняет поле «Адаптер конфигурации».</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="СохранитьАдаптерДокументооборотаРасширеннаяПодсказка" id="46"/>
+				</Button>
+				<Button name="СохранитьОбработкуБСП" id="47">
+					<Type>Hyperlink</Type>
+					<CommandName>Form.Command.СохранитьОбработкуБСП</CommandName>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сохранить обработку помощника для БСП в файл</v8:content>
+						</v8:item>
+					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сохраняет в файл обработку AI-помощника для регистрации в «Дополнительных отчетах и обработках». Сама ее не регистрирует.</v8:content>
+						</v8:item>
+					</ToolTip>
+					<ExtendedTooltip name="СохранитьОбработкуБСПРасширеннаяПодсказка" id="48"/>
+				</Button>
 			</ChildItems>
 		</UsualGroup>
 	</ChildItems>
 	<Attributes>
-		<Attribute name="НаборКонстант" id="45">
+		<Attribute name="НаборКонстант" id="49">
 			<Type>
 				<v8:Type>cfg:ConstantsSet</v8:Type>
 			</Type>
@@ -256,4 +297,36 @@
 			<SavedData>true</SavedData>
 		</Attribute>
 	</Attributes>
+	<Commands>
+		<Command name="СохранитьАдаптерДокументооборота" id="50">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сохранить адаптер Документооборота</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сохраняет в файл AI_АдаптерДокументооборота.epf для регистрации в «Дополнительных отчетах и обработках». Не регистрирует его и не заполняет поле «Адаптер конфигурации».</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>СохранитьАдаптерДокументооборотаОбработка</Action>
+		</Command>
+		<Command name="СохранитьОбработкуБСП" id="51">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сохранить обработку для БСП</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Сохраняет в файл обработку AI-помощника для регистрации в «Дополнительных отчетах и обработках». Сама ее не регистрирует.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>СохранитьОбработкуБСПОбработка</Action>
+		</Command>
+	</Commands>
 </Form>

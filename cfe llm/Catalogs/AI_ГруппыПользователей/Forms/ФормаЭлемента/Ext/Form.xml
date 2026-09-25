@@ -1,12 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
-	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
-		<Autofill>true</Autofill>
-	</AutoCommandBar>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
 	<Events>
 		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
 	</Events>
-
 	<ChildItems>
 		<InputField name="Код" id="1">
 			<DataPath>Объект.Code</DataPath>
@@ -16,8 +13,8 @@
 					<v8:content>Код</v8:content>
 				</v8:item>
 			</Title>
-			<ContextMenu name="КодКонтекстноеМеню" id="2" />
-			<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3" />
+			<ContextMenu name="КодКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3"/>
 		</InputField>
 		<InputField name="Наименование" id="4">
 			<DataPath>Объект.Description</DataPath>
@@ -27,8 +24,8 @@
 					<v8:content>Наименование</v8:content>
 				</v8:item>
 			</Title>
-			<ContextMenu name="НаименованиеКонтекстноеМеню" id="5" />
-			<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6" />
+			<ContextMenu name="НаименованиеКонтекстноеМеню" id="5"/>
+			<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6"/>
 		</InputField>
 		<CheckBoxField name="Активна" id="7">
 			<DataPath>Объект.Активна</DataPath>
@@ -38,8 +35,8 @@
 					<v8:content>Активна</v8:content>
 				</v8:item>
 			</Title>
-			<ContextMenu name="АктивнаКонтекстноеМеню" id="8" />
-			<ExtendedTooltip name="АктивнаРасширеннаяПодсказка" id="9" />
+			<ContextMenu name="АктивнаКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="АктивнаРасширеннаяПодсказка" id="9"/>
 		</CheckBoxField>
 		<InputField name="Комментарий" id="10">
 			<DataPath>Объект.Комментарий</DataPath>
@@ -50,25 +47,10 @@
 				</v8:item>
 			</Title>
 			<MultiLine>true</MultiLine>
-			<ContextMenu name="КомментарийКонтекстноеМеню" id="11" />
-			<ExtendedTooltip name="КомментарийРасширеннаяПодсказка" id="12" />
+			<ContextMenu name="КомментарийКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="КомментарийРасширеннаяПодсказка" id="12"/>
 		</InputField>
-		<UsualGroup name="КомандыУчастников" id="13">
-			<ExtendedTooltip name="КомандыУчастниковРасширеннаяПодсказка" id="14" />
-			<ChildItems>
-				<Button name="ДобавитьПользователя" id="15">
-					<CommandName>Form.Command.ДобавитьПользователя</CommandName>
-					<Title>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>Подобрать пользователя</v8:content>
-						</v8:item>
-					</Title>
-					<ExtendedTooltip name="ДобавитьПользователяРасширеннаяПодсказка" id="16" />
-				</Button>
-			</ChildItems>
-		</UsualGroup>
-		<Table name="Участники" id="17">
+		<Table name="Участники" id="13">
 			<DataPath>Объект.Участники</DataPath>
 			<Title>
 				<v8:item>
@@ -76,13 +58,61 @@
 					<v8:content>Участники</v8:content>
 				</v8:item>
 			</Title>
-			<ContextMenu name="УчастникиКонтекстноеМеню" id="18" />
-			<AutoCommandBar name="УчастникиКоманднаяПанель" id="19" />
-			<SearchStringAddition name="УчастникиСтрокаПоиска" id="20" />
-			<ViewStatusAddition name="УчастникиСостояниеПросмотра" id="21" />
-			<SearchControlAddition name="УчастникиУправлениеПоиском" id="22" />
+			<ContextMenu name="УчастникиКонтекстноеМеню" id="14"/>
+			<AutoCommandBar name="УчастникиКоманднаяПанель" id="15">
+				<Autofill>false</Autofill>
+				<ChildItems>
+					<Button name="ДобавитьПользователя" id="16">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Command.ДобавитьПользователя</CommandName>
+						<Title>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Подобрать пользователя</v8:content>
+							</v8:item>
+						</Title>
+						<ToolTip>
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Выбрать пользователя информационной базы и добавить в группу. Нужны права администратора информационной базы.</v8:content>
+							</v8:item>
+						</ToolTip>
+						<ExtendedTooltip name="ДобавитьПользователяРасширеннаяПодсказка" id="17"/>
+					</Button>
+					<Button name="УчастникиУдалить" id="18">
+						<Type>CommandBarButton</Type>
+						<CommandName>Form.Item.Участники.StandardCommand.Delete</CommandName>
+						<ExtendedTooltip name="УчастникиУдалитьРасширеннаяПодсказка" id="19"/>
+					</Button>
+				</ChildItems>
+			</AutoCommandBar>
+			<ExtendedTooltip name="УчастникиРасширеннаяПодсказка" id="20"/>
+			<SearchStringAddition name="УчастникиСтрокаПоиска" id="21">
+				<AdditionSource>
+					<Item>Участники</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="УчастникиСтрокаПоискаКонтекстноеМеню" id="22"/>
+				<ExtendedTooltip name="УчастникиСтрокаПоискаРасширеннаяПодсказка" id="23"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="УчастникиСостояниеПросмотра" id="24">
+				<AdditionSource>
+					<Item>Участники</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="УчастникиСостояниеПросмотраКонтекстноеМеню" id="25"/>
+				<ExtendedTooltip name="УчастникиСостояниеПросмотраРасширеннаяПодсказка" id="26"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="УчастникиУправлениеПоиском" id="27">
+				<AdditionSource>
+					<Item>Участники</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="УчастникиУправлениеПоискомКонтекстноеМеню" id="28"/>
+				<ExtendedTooltip name="УчастникиУправлениеПоискомРасширеннаяПодсказка" id="29"/>
+			</SearchControlAddition>
 			<ChildItems>
-				<InputField name="УчастникиИдентификатор" id="23">
+				<InputField name="УчастникиИдентификатор" id="30">
 					<DataPath>Объект.Участники.ИдентификаторПользователя</DataPath>
 					<Title>
 						<v8:item>
@@ -91,10 +121,10 @@
 						</v8:item>
 					</Title>
 					<ReadOnly>true</ReadOnly>
-					<ContextMenu name="УчастникиИдентификаторКонтекстноеМеню" id="24" />
-					<ExtendedTooltip name="УчастникиИдентификаторРасширеннаяПодсказка" id="25" />
+					<ContextMenu name="УчастникиИдентификаторКонтекстноеМеню" id="31"/>
+					<ExtendedTooltip name="УчастникиИдентификаторРасширеннаяПодсказка" id="32"/>
 				</InputField>
-				<InputField name="УчастникиИмя" id="26">
+				<InputField name="УчастникиИмя" id="33">
 					<DataPath>Объект.Участники.Имя</DataPath>
 					<Title>
 						<v8:item>
@@ -103,10 +133,10 @@
 						</v8:item>
 					</Title>
 					<ReadOnly>true</ReadOnly>
-					<ContextMenu name="УчастникиИмяКонтекстноеМеню" id="27" />
-					<ExtendedTooltip name="УчастникиИмяРасширеннаяПодсказка" id="28" />
+					<ContextMenu name="УчастникиИмяКонтекстноеМеню" id="34"/>
+					<ExtendedTooltip name="УчастникиИмяРасширеннаяПодсказка" id="35"/>
 				</InputField>
-				<InputField name="УчастникиПолноеИмя" id="29">
+				<InputField name="УчастникиПолноеИмя" id="36">
 					<DataPath>Объект.Участники.ПолноеИмя</DataPath>
 					<Title>
 						<v8:item>
@@ -115,14 +145,14 @@
 						</v8:item>
 					</Title>
 					<ReadOnly>true</ReadOnly>
-					<ContextMenu name="УчастникиПолноеИмяКонтекстноеМеню" id="30" />
-					<ExtendedTooltip name="УчастникиПолноеИмяРасширеннаяПодсказка" id="31" />
+					<ContextMenu name="УчастникиПолноеИмяКонтекстноеМеню" id="37"/>
+					<ExtendedTooltip name="УчастникиПолноеИмяРасширеннаяПодсказка" id="38"/>
 				</InputField>
 			</ChildItems>
 		</Table>
 	</ChildItems>
 	<Attributes>
-		<Attribute name="Объект" id="1">
+		<Attribute name="Объект" id="39">
 			<Type>
 				<v8:Type>cfg:CatalogObject.AI_ГруппыПользователей</v8:Type>
 			</Type>
@@ -131,13 +161,19 @@
 		</Attribute>
 	</Attributes>
 	<Commands>
-		<Command name="ДобавитьПользователя" id="1">
+		<Command name="ДобавитьПользователя" id="40">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Подобрать пользователя</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выбрать пользователя информационной базы и добавить в группу. Нужны права администратора информационной базы.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ДобавитьПользователя</Action>
 		</Command>
 	</Commands>

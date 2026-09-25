@@ -20,44 +20,53 @@
 				<CommandName>Form.StandardCommand.Close</CommandName>
 				<ExtendedTooltip name="КнопкаЗакрытьРасширеннаяПодсказка" id="4"/>
 			</Button>
+			<Button name="КнопкаСправка" id="5">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<ExtendedTooltip name="КнопкаСправкаРасширеннаяПодсказка" id="6"/>
+			</Button>
 		</ChildItems>
 	</AutoCommandBar>
 	<Events>
 		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
 	</Events>
 	<ChildItems>
-		<LabelDecoration name="Итог" id="5">
+		<LabelDecoration name="Итог" id="7">
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<HorizontalStretch>true</HorizontalStretch>
 			<Title formatted="false">
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content> </v8:content>
 				</v8:item>
 			</Title>
-			<ContextMenu name="ИтогКонтекстноеМеню" id="6"/>
-			<ExtendedTooltip name="ИтогРасширеннаяПодсказка" id="7"/>
+			<ContextMenu name="ИтогКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ИтогРасширеннаяПодсказка" id="9"/>
 		</LabelDecoration>
-		<UsualGroup name="ГруппаСводка" id="8">
+		<UsualGroup name="ГруппаСводка" id="10">
 			<Group>Horizontal</Group>
-			<ExtendedTooltip name="ГруппаСводкаРасширеннаяПодсказка" id="9"/>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаСводкаРасширеннаяПодсказка" id="11"/>
 			<ChildItems>
-				<UsualGroup name="ГруппаСводкаЛево" id="10">
+				<UsualGroup name="ГруппаСводкаЛево" id="12">
 					<Group>Vertical</Group>
+					<ShowTitle>false</ShowTitle>
 					<United>false</United>
-					<ExtendedTooltip name="ГруппаСводкаЛевоРасширеннаяПодсказка" id="11"/>
+					<ExtendedTooltip name="ГруппаСводкаЛевоРасширеннаяПодсказка" id="13"/>
 					<ChildItems>
-						<InputField name="Статус" id="12">
+						<InputField name="Статус" id="14">
 							<DataPath>Статус</DataPath>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="СтатусКонтекстноеМеню" id="13"/>
-							<ExtendedTooltip name="СтатусРасширеннаяПодсказка" id="14"/>
+							<ContextMenu name="СтатусКонтекстноеМеню" id="15"/>
+							<ExtendedTooltip name="СтатусРасширеннаяПодсказка" id="16"/>
 						</InputField>
-						<InputField name="Сценарий" id="15">
+						<InputField name="Сценарий" id="17">
 							<DataPath>Сценарий</DataPath>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="СценарийКонтекстноеМеню" id="16"/>
-							<ExtendedTooltip name="СценарийРасширеннаяПодсказка" id="17"/>
+							<ContextMenu name="СценарийКонтекстноеМеню" id="18"/>
+							<ExtendedTooltip name="СценарийРасширеннаяПодсказка" id="19"/>
 						</InputField>
-						<InputField name="ОбъектОперации" id="18">
+						<InputField name="ОбъектОперации" id="20">
 							<DataPath>ОбъектОперации</DataPath>
 							<Title>
 								<v8:item>
@@ -66,10 +75,10 @@
 								</v8:item>
 							</Title>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="ОбъектОперацииКонтекстноеМеню" id="19"/>
-							<ExtendedTooltip name="ОбъектОперацииРасширеннаяПодсказка" id="20"/>
+							<ContextMenu name="ОбъектОперацииКонтекстноеМеню" id="21"/>
+							<ExtendedTooltip name="ОбъектОперацииРасширеннаяПодсказка" id="22"/>
 						</InputField>
-						<InputField name="ТекущийЭтап" id="21">
+						<InputField name="ТекущийЭтап" id="23">
 							<DataPath>ТекущийЭтап</DataPath>
 							<Title>
 								<v8:item>
@@ -78,17 +87,18 @@
 								</v8:item>
 							</Title>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="ТекущийЭтапКонтекстноеМеню" id="22"/>
-							<ExtendedTooltip name="ТекущийЭтапРасширеннаяПодсказка" id="23"/>
+							<ContextMenu name="ТекущийЭтапКонтекстноеМеню" id="24"/>
+							<ExtendedTooltip name="ТекущийЭтапРасширеннаяПодсказка" id="25"/>
 						</InputField>
 					</ChildItems>
 				</UsualGroup>
-				<UsualGroup name="ГруппаСводкаПраво" id="24">
+				<UsualGroup name="ГруппаСводкаПраво" id="26">
 					<Group>Vertical</Group>
+					<ShowTitle>false</ShowTitle>
 					<United>false</United>
-					<ExtendedTooltip name="ГруппаСводкаПравоРасширеннаяПодсказка" id="25"/>
+					<ExtendedTooltip name="ГруппаСводкаПравоРасширеннаяПодсказка" id="27"/>
 					<ChildItems>
-						<InputField name="ДатаСоздания" id="26">
+						<InputField name="ДатаСоздания" id="28">
 							<DataPath>ДатаСоздания</DataPath>
 							<Title>
 								<v8:item>
@@ -97,87 +107,89 @@
 								</v8:item>
 							</Title>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="ДатаСозданияКонтекстноеМеню" id="27"/>
-							<ExtendedTooltip name="ДатаСозданияРасширеннаяПодсказка" id="28"/>
+							<ContextMenu name="ДатаСозданияКонтекстноеМеню" id="29"/>
+							<ExtendedTooltip name="ДатаСозданияРасширеннаяПодсказка" id="30"/>
 						</InputField>
-						<InputField name="Длительность" id="29">
+						<InputField name="Длительность" id="31">
 							<DataPath>Длительность</DataPath>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="ДлительностьКонтекстноеМеню" id="30"/>
-							<ExtendedTooltip name="ДлительностьРасширеннаяПодсказка" id="31"/>
+							<ContextMenu name="ДлительностьКонтекстноеМеню" id="32"/>
+							<ExtendedTooltip name="ДлительностьРасширеннаяПодсказка" id="33"/>
 						</InputField>
-						<InputField name="Модель" id="32">
+						<InputField name="Модель" id="34">
 							<DataPath>Модель</DataPath>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="МодельКонтекстноеМеню" id="33"/>
-							<ExtendedTooltip name="МодельРасширеннаяПодсказка" id="34"/>
+							<ContextMenu name="МодельКонтекстноеМеню" id="35"/>
+							<ExtendedTooltip name="МодельРасширеннаяПодсказка" id="36"/>
 						</InputField>
-						<InputField name="Агент" id="35">
+						<InputField name="Агент" id="37">
 							<DataPath>Агент</DataPath>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="АгентКонтекстноеМеню" id="36"/>
-							<ExtendedTooltip name="АгентРасширеннаяПодсказка" id="37"/>
+							<ContextMenu name="АгентКонтекстноеМеню" id="38"/>
+							<ExtendedTooltip name="АгентРасширеннаяПодсказка" id="39"/>
 						</InputField>
 					</ChildItems>
 				</UsualGroup>
 			</ChildItems>
 		</UsualGroup>
-		<Pages name="Страницы" id="38">
-			<ExtendedTooltip name="СтраницыРасширеннаяПодсказка" id="39"/>
+		<Pages name="Страницы" id="40">
+			<ExtendedTooltip name="СтраницыРасширеннаяПодсказка" id="41"/>
 			<ChildItems>
-				<Page name="СтраницаФайлы" id="40">
+				<Page name="СтраницаФайлы" id="42">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Файлы</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="СтраницаФайлыРасширеннаяПодсказка" id="41"/>
+					<ExtendedTooltip name="СтраницаФайлыРасширеннаяПодсказка" id="43"/>
 					<ChildItems>
-						<LabelDecoration name="ПояснениеФайлов" id="42">
+						<LabelDecoration name="ПояснениеФайлов" id="44">
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<HorizontalStretch>true</HorizontalStretch>
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content> </v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПояснениеФайловКонтекстноеМеню" id="43"/>
-							<ExtendedTooltip name="ПояснениеФайловРасширеннаяПодсказка" id="44"/>
+							<ContextMenu name="ПояснениеФайловКонтекстноеМеню" id="45"/>
+							<ExtendedTooltip name="ПояснениеФайловРасширеннаяПодсказка" id="46"/>
 						</LabelDecoration>
-						<Table name="Вложения" id="45">
+						<Table name="Вложения" id="47">
 							<DataPath>Вложения</DataPath>
 							<ReadOnly>true</ReadOnly>
 							<CommandBarLocation>None</CommandBarLocation>
 							<Height>4</Height>
-							<ContextMenu name="ВложенияКонтекстноеМеню" id="46"/>
-							<AutoCommandBar name="ВложенияКоманднаяПанель" id="47"/>
-							<ExtendedTooltip name="ВложенияРасширеннаяПодсказка" id="48"/>
-							<SearchStringAddition name="ВложенияСтрокаПоиска" id="49">
+							<ContextMenu name="ВложенияКонтекстноеМеню" id="48"/>
+							<AutoCommandBar name="ВложенияКоманднаяПанель" id="49"/>
+							<ExtendedTooltip name="ВложенияРасширеннаяПодсказка" id="50"/>
+							<SearchStringAddition name="ВложенияСтрокаПоиска" id="51">
 								<AdditionSource>
 									<Item>Вложения</Item>
 									<Type>SearchStringRepresentation</Type>
 								</AdditionSource>
-								<ContextMenu name="ВложенияСтрокаПоискаКонтекстноеМеню" id="50"/>
-								<ExtendedTooltip name="ВложенияСтрокаПоискаРасширеннаяПодсказка" id="51"/>
+								<ContextMenu name="ВложенияСтрокаПоискаКонтекстноеМеню" id="52"/>
+								<ExtendedTooltip name="ВложенияСтрокаПоискаРасширеннаяПодсказка" id="53"/>
 							</SearchStringAddition>
-							<ViewStatusAddition name="ВложенияСостояниеПросмотра" id="52">
+							<ViewStatusAddition name="ВложенияСостояниеПросмотра" id="54">
 								<AdditionSource>
 									<Item>Вложения</Item>
 									<Type>ViewStatusRepresentation</Type>
 								</AdditionSource>
-								<ContextMenu name="ВложенияСостояниеПросмотраКонтекстноеМеню" id="53"/>
-								<ExtendedTooltip name="ВложенияСостояниеПросмотраРасширеннаяПодсказка" id="54"/>
+								<ContextMenu name="ВложенияСостояниеПросмотраКонтекстноеМеню" id="55"/>
+								<ExtendedTooltip name="ВложенияСостояниеПросмотраРасширеннаяПодсказка" id="56"/>
 							</ViewStatusAddition>
-							<SearchControlAddition name="ВложенияУправлениеПоиском" id="55">
+							<SearchControlAddition name="ВложенияУправлениеПоиском" id="57">
 								<AdditionSource>
 									<Item>Вложения</Item>
 									<Type>SearchControl</Type>
 								</AdditionSource>
-								<ContextMenu name="ВложенияУправлениеПоискомКонтекстноеМеню" id="56"/>
-								<ExtendedTooltip name="ВложенияУправлениеПоискомРасширеннаяПодсказка" id="57"/>
+								<ContextMenu name="ВложенияУправлениеПоискомКонтекстноеМеню" id="58"/>
+								<ExtendedTooltip name="ВложенияУправлениеПоискомРасширеннаяПодсказка" id="59"/>
 							</SearchControlAddition>
 							<ChildItems>
-								<InputField name="ВложенияИмяФайла" id="58">
+								<InputField name="ВложенияИмяФайла" id="60">
 									<DataPath>Вложения.ИмяФайла</DataPath>
 									<Title>
 										<v8:item>
@@ -185,10 +197,10 @@
 											<v8:content>Файл</v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="ВложенияИмяФайлаКонтекстноеМеню" id="59"/>
-									<ExtendedTooltip name="ВложенияИмяФайлаРасширеннаяПодсказка" id="60"/>
+									<ContextMenu name="ВложенияИмяФайлаКонтекстноеМеню" id="61"/>
+									<ExtendedTooltip name="ВложенияИмяФайлаРасширеннаяПодсказка" id="62"/>
 								</InputField>
-								<InputField name="ВложенияРазмер" id="61">
+								<InputField name="ВложенияРазмер" id="63">
 									<DataPath>Вложения.Размер</DataPath>
 									<Title>
 										<v8:item>
@@ -196,10 +208,10 @@
 											<v8:content>Размер</v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="ВложенияРазмерКонтекстноеМеню" id="62"/>
-									<ExtendedTooltip name="ВложенияРазмерРасширеннаяПодсказка" id="63"/>
+									<ContextMenu name="ВложенияРазмерКонтекстноеМеню" id="64"/>
+									<ExtendedTooltip name="ВложенияРазмерРасширеннаяПодсказка" id="65"/>
 								</InputField>
-								<InputField name="ВложенияСтатус" id="64">
+								<InputField name="ВложенияСтатус" id="66">
 									<DataPath>Вложения.Статус</DataPath>
 									<Title>
 										<v8:item>
@@ -207,10 +219,10 @@
 											<v8:content>Статус</v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="ВложенияСтатусКонтекстноеМеню" id="65"/>
-									<ExtendedTooltip name="ВложенияСтатусРасширеннаяПодсказка" id="66"/>
+									<ContextMenu name="ВложенияСтатусКонтекстноеМеню" id="67"/>
+									<ExtendedTooltip name="ВложенияСтатусРасширеннаяПодсказка" id="68"/>
 								</InputField>
-								<InputField name="ВложенияМодельАнализа" id="67">
+								<InputField name="ВложенияМодельАнализа" id="69">
 									<DataPath>Вложения.МодельАнализа</DataPath>
 									<Title>
 										<v8:item>
@@ -218,10 +230,10 @@
 											<v8:content>Чем прочитан</v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="ВложенияМодельАнализаКонтекстноеМеню" id="68"/>
-									<ExtendedTooltip name="ВложенияМодельАнализаРасширеннаяПодсказка" id="69"/>
+									<ContextMenu name="ВложенияМодельАнализаКонтекстноеМеню" id="70"/>
+									<ExtendedTooltip name="ВложенияМодельАнализаРасширеннаяПодсказка" id="71"/>
 								</InputField>
-								<InputField name="ВложенияТокены" id="70">
+								<InputField name="ВложенияТокены" id="72">
 									<DataPath>Вложения.Токены</DataPath>
 									<Title>
 										<v8:item>
@@ -229,15 +241,15 @@
 											<v8:content>Токены</v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="ВложенияТокеныКонтекстноеМеню" id="71"/>
-									<ExtendedTooltip name="ВложенияТокеныРасширеннаяПодсказка" id="72"/>
+									<ContextMenu name="ВложенияТокеныКонтекстноеМеню" id="73"/>
+									<ExtendedTooltip name="ВложенияТокеныРасширеннаяПодсказка" id="74"/>
 								</InputField>
 							</ChildItems>
 							<Events>
 								<Event name="OnActivateRow">ВложенияПриАктивизацииСтроки</Event>
 							</Events>
 						</Table>
-						<InputField name="ТекущийРезультатАнализа" id="73">
+						<InputField name="ТекущийРезультатАнализа" id="75">
 							<DataPath>ТекущийРезультатАнализа</DataPath>
 							<Title>
 								<v8:item>
@@ -250,21 +262,21 @@
 							<MultiLine>true</MultiLine>
 							<AutoMaxWidth>false</AutoMaxWidth>
 							<Height>8</Height>
-							<ContextMenu name="ТекущийРезультатАнализаКонтекстноеМеню" id="74"/>
-							<ExtendedTooltip name="ТекущийРезультатАнализаРасширеннаяПодсказка" id="75"/>
+							<ContextMenu name="ТекущийРезультатАнализаКонтекстноеМеню" id="76"/>
+							<ExtendedTooltip name="ТекущийРезультатАнализаРасширеннаяПодсказка" id="77"/>
 						</InputField>
 					</ChildItems>
 				</Page>
-				<Page name="СтраницаЗапрос" id="76">
+				<Page name="СтраницаЗапрос" id="78">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Запрос</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="СтраницаЗапросРасширеннаяПодсказка" id="77"/>
+					<ExtendedTooltip name="СтраницаЗапросРасширеннаяПодсказка" id="79"/>
 					<ChildItems>
-						<InputField name="Промт" id="78">
+						<InputField name="Промт" id="80">
 							<DataPath>Промт</DataPath>
 							<Title>
 								<v8:item>
@@ -277,10 +289,10 @@
 							<MultiLine>true</MultiLine>
 							<AutoMaxWidth>false</AutoMaxWidth>
 							<Height>4</Height>
-							<ContextMenu name="ПромтКонтекстноеМеню" id="79"/>
-							<ExtendedTooltip name="ПромтРасширеннаяПодсказка" id="80"/>
+							<ContextMenu name="ПромтКонтекстноеМеню" id="81"/>
+							<ExtendedTooltip name="ПромтРасширеннаяПодсказка" id="82"/>
 						</InputField>
-						<InputField name="ДанныеКонтекста" id="81">
+						<InputField name="ДанныеКонтекста" id="83">
 							<DataPath>ДанныеКонтекста</DataPath>
 							<Title>
 								<v8:item>
@@ -293,21 +305,21 @@
 							<MultiLine>true</MultiLine>
 							<AutoMaxWidth>false</AutoMaxWidth>
 							<Height>6</Height>
-							<ContextMenu name="ДанныеКонтекстаКонтекстноеМеню" id="82"/>
-							<ExtendedTooltip name="ДанныеКонтекстаРасширеннаяПодсказка" id="83"/>
+							<ContextMenu name="ДанныеКонтекстаКонтекстноеМеню" id="84"/>
+							<ExtendedTooltip name="ДанныеКонтекстаРасширеннаяПодсказка" id="85"/>
 						</InputField>
 					</ChildItems>
 				</Page>
-				<Page name="СтраницаОтвет" id="84">
+				<Page name="СтраницаОтвет" id="86">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Ответ</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="СтраницаОтветРасширеннаяПодсказка" id="85"/>
+					<ExtendedTooltip name="СтраницаОтветРасширеннаяПодсказка" id="87"/>
 					<ChildItems>
-						<InputField name="Результат" id="86">
+						<InputField name="Результат" id="88">
 							<DataPath>Результат</DataPath>
 							<Title>
 								<v8:item>
@@ -320,10 +332,10 @@
 							<MultiLine>true</MultiLine>
 							<AutoMaxWidth>false</AutoMaxWidth>
 							<Height>10</Height>
-							<ContextMenu name="РезультатКонтекстноеМеню" id="87"/>
-							<ExtendedTooltip name="РезультатРасширеннаяПодсказка" id="88"/>
+							<ContextMenu name="РезультатКонтекстноеМеню" id="89"/>
+							<ExtendedTooltip name="РезультатРасширеннаяПодсказка" id="90"/>
 						</InputField>
-						<InputField name="ТекстОшибки" id="89">
+						<InputField name="ТекстОшибки" id="91">
 							<DataPath>ТекстОшибки</DataPath>
 							<Title>
 								<v8:item>
@@ -336,54 +348,54 @@
 							<MultiLine>true</MultiLine>
 							<AutoMaxWidth>false</AutoMaxWidth>
 							<Height>3</Height>
-							<ContextMenu name="ТекстОшибкиКонтекстноеМеню" id="90"/>
-							<ExtendedTooltip name="ТекстОшибкиРасширеннаяПодсказка" id="91"/>
+							<ContextMenu name="ТекстОшибкиКонтекстноеМеню" id="92"/>
+							<ExtendedTooltip name="ТекстОшибкиРасширеннаяПодсказка" id="93"/>
 						</InputField>
 					</ChildItems>
 				</Page>
-				<Page name="СтраницаШаги" id="92">
+				<Page name="СтраницаШаги" id="94">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Шаги агента</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="СтраницаШагиРасширеннаяПодсказка" id="93"/>
+					<ExtendedTooltip name="СтраницаШагиРасширеннаяПодсказка" id="95"/>
 					<ChildItems>
-						<Table name="Шаги" id="94">
+						<Table name="Шаги" id="96">
 							<DataPath>Шаги</DataPath>
 							<ReadOnly>true</ReadOnly>
 							<CommandBarLocation>None</CommandBarLocation>
 							<Height>8</Height>
-							<ContextMenu name="ШагиКонтекстноеМеню" id="95"/>
-							<AutoCommandBar name="ШагиКоманднаяПанель" id="96"/>
-							<ExtendedTooltip name="ШагиРасширеннаяПодсказка" id="97"/>
-							<SearchStringAddition name="ШагиСтрокаПоиска" id="98">
+							<ContextMenu name="ШагиКонтекстноеМеню" id="97"/>
+							<AutoCommandBar name="ШагиКоманднаяПанель" id="98"/>
+							<ExtendedTooltip name="ШагиРасширеннаяПодсказка" id="99"/>
+							<SearchStringAddition name="ШагиСтрокаПоиска" id="100">
 								<AdditionSource>
 									<Item>Шаги</Item>
 									<Type>SearchStringRepresentation</Type>
 								</AdditionSource>
-								<ContextMenu name="ШагиСтрокаПоискаКонтекстноеМеню" id="99"/>
-								<ExtendedTooltip name="ШагиСтрокаПоискаРасширеннаяПодсказка" id="100"/>
+								<ContextMenu name="ШагиСтрокаПоискаКонтекстноеМеню" id="101"/>
+								<ExtendedTooltip name="ШагиСтрокаПоискаРасширеннаяПодсказка" id="102"/>
 							</SearchStringAddition>
-							<ViewStatusAddition name="ШагиСостояниеПросмотра" id="101">
+							<ViewStatusAddition name="ШагиСостояниеПросмотра" id="103">
 								<AdditionSource>
 									<Item>Шаги</Item>
 									<Type>ViewStatusRepresentation</Type>
 								</AdditionSource>
-								<ContextMenu name="ШагиСостояниеПросмотраКонтекстноеМеню" id="102"/>
-								<ExtendedTooltip name="ШагиСостояниеПросмотраРасширеннаяПодсказка" id="103"/>
+								<ContextMenu name="ШагиСостояниеПросмотраКонтекстноеМеню" id="104"/>
+								<ExtendedTooltip name="ШагиСостояниеПросмотраРасширеннаяПодсказка" id="105"/>
 							</ViewStatusAddition>
-							<SearchControlAddition name="ШагиУправлениеПоиском" id="104">
+							<SearchControlAddition name="ШагиУправлениеПоиском" id="106">
 								<AdditionSource>
 									<Item>Шаги</Item>
 									<Type>SearchControl</Type>
 								</AdditionSource>
-								<ContextMenu name="ШагиУправлениеПоискомКонтекстноеМеню" id="105"/>
-								<ExtendedTooltip name="ШагиУправлениеПоискомРасширеннаяПодсказка" id="106"/>
+								<ContextMenu name="ШагиУправлениеПоискомКонтекстноеМеню" id="107"/>
+								<ExtendedTooltip name="ШагиУправлениеПоискомРасширеннаяПодсказка" id="108"/>
 							</SearchControlAddition>
 							<ChildItems>
-								<InputField name="ШагиНомер" id="107">
+								<InputField name="ШагиНомер" id="109">
 									<DataPath>Шаги.Номер</DataPath>
 									<Title>
 										<v8:item>
@@ -391,10 +403,10 @@
 											<v8:content>№</v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="ШагиНомерКонтекстноеМеню" id="108"/>
-									<ExtendedTooltip name="ШагиНомерРасширеннаяПодсказка" id="109"/>
+									<ContextMenu name="ШагиНомерКонтекстноеМеню" id="110"/>
+									<ExtendedTooltip name="ШагиНомерРасширеннаяПодсказка" id="111"/>
 								</InputField>
-								<InputField name="ШагиИнструмент" id="110">
+								<InputField name="ШагиИнструмент" id="112">
 									<DataPath>Шаги.Инструмент</DataPath>
 									<Title>
 										<v8:item>
@@ -402,10 +414,10 @@
 											<v8:content>Инструмент</v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="ШагиИнструментКонтекстноеМеню" id="111"/>
-									<ExtendedTooltip name="ШагиИнструментРасширеннаяПодсказка" id="112"/>
+									<ContextMenu name="ШагиИнструментКонтекстноеМеню" id="113"/>
+									<ExtendedTooltip name="ШагиИнструментРасширеннаяПодсказка" id="114"/>
 								</InputField>
-								<InputField name="ШагиСтатус" id="113">
+								<InputField name="ШагиСтатус" id="115">
 									<DataPath>Шаги.Статус</DataPath>
 									<Title>
 										<v8:item>
@@ -413,10 +425,10 @@
 											<v8:content>Статус</v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="ШагиСтатусКонтекстноеМеню" id="114"/>
-									<ExtendedTooltip name="ШагиСтатусРасширеннаяПодсказка" id="115"/>
+									<ContextMenu name="ШагиСтатусКонтекстноеМеню" id="116"/>
+									<ExtendedTooltip name="ШагиСтатусРасширеннаяПодсказка" id="117"/>
 								</InputField>
-								<InputField name="ШагиДлительностьМс" id="116">
+								<InputField name="ШагиДлительностьМс" id="118">
 									<DataPath>Шаги.ДлительностьМс</DataPath>
 									<Title>
 										<v8:item>
@@ -424,10 +436,10 @@
 											<v8:content>Мс</v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="ШагиДлительностьМсКонтекстноеМеню" id="117"/>
-									<ExtendedTooltip name="ШагиДлительностьМсРасширеннаяПодсказка" id="118"/>
+									<ContextMenu name="ШагиДлительностьМсКонтекстноеМеню" id="119"/>
+									<ExtendedTooltip name="ШагиДлительностьМсРасширеннаяПодсказка" id="120"/>
 								</InputField>
-								<InputField name="ШагиАргументы" id="119">
+								<InputField name="ШагиАргументы" id="121">
 									<DataPath>Шаги.Аргументы</DataPath>
 									<Title>
 										<v8:item>
@@ -435,10 +447,10 @@
 											<v8:content>Аргументы</v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="ШагиАргументыКонтекстноеМеню" id="120"/>
-									<ExtendedTooltip name="ШагиАргументыРасширеннаяПодсказка" id="121"/>
+									<ContextMenu name="ШагиАргументыКонтекстноеМеню" id="122"/>
+									<ExtendedTooltip name="ШагиАргументыРасширеннаяПодсказка" id="123"/>
 								</InputField>
-								<InputField name="ШагиРезультат" id="122">
+								<InputField name="ШагиРезультат" id="124">
 									<DataPath>Шаги.Результат</DataPath>
 									<Title>
 										<v8:item>
@@ -446,23 +458,23 @@
 											<v8:content>Результат</v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="ШагиРезультатКонтекстноеМеню" id="123"/>
-									<ExtendedTooltip name="ШагиРезультатРасширеннаяПодсказка" id="124"/>
+									<ContextMenu name="ШагиРезультатКонтекстноеМеню" id="125"/>
+									<ExtendedTooltip name="ШагиРезультатРасширеннаяПодсказка" id="126"/>
 								</InputField>
 							</ChildItems>
 						</Table>
 					</ChildItems>
 				</Page>
-				<Page name="СтраницаТокены" id="125">
+				<Page name="СтраницаТокены" id="127">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Токены и доставка</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="СтраницаТокеныРасширеннаяПодсказка" id="126"/>
+					<ExtendedTooltip name="СтраницаТокеныРасширеннаяПодсказка" id="128"/>
 					<ChildItems>
-						<InputField name="ВходящиеТокены" id="127">
+						<InputField name="ВходящиеТокены" id="129">
 							<DataPath>ВходящиеТокены</DataPath>
 							<Title>
 								<v8:item>
@@ -471,10 +483,10 @@
 								</v8:item>
 							</Title>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="ВходящиеТокеныКонтекстноеМеню" id="128"/>
-							<ExtendedTooltip name="ВходящиеТокеныРасширеннаяПодсказка" id="129"/>
+							<ContextMenu name="ВходящиеТокеныКонтекстноеМеню" id="130"/>
+							<ExtendedTooltip name="ВходящиеТокеныРасширеннаяПодсказка" id="131"/>
 						</InputField>
-						<InputField name="ВыходящиеТокены" id="130">
+						<InputField name="ВыходящиеТокены" id="132">
 							<DataPath>ВыходящиеТокены</DataPath>
 							<Title>
 								<v8:item>
@@ -483,10 +495,10 @@
 								</v8:item>
 							</Title>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="ВыходящиеТокеныКонтекстноеМеню" id="131"/>
-							<ExtendedTooltip name="ВыходящиеТокеныРасширеннаяПодсказка" id="132"/>
+							<ContextMenu name="ВыходящиеТокеныКонтекстноеМеню" id="133"/>
+							<ExtendedTooltip name="ВыходящиеТокеныРасширеннаяПодсказка" id="134"/>
 						</InputField>
-						<InputField name="ВходящиеТокеныВложений" id="133">
+						<InputField name="ВходящиеТокеныВложений" id="135">
 							<DataPath>ВходящиеТокеныВложений</DataPath>
 							<Title>
 								<v8:item>
@@ -495,10 +507,10 @@
 								</v8:item>
 							</Title>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="ВходящиеТокеныВложенийКонтекстноеМеню" id="134"/>
-							<ExtendedTooltip name="ВходящиеТокеныВложенийРасширеннаяПодсказка" id="135"/>
+							<ContextMenu name="ВходящиеТокеныВложенийКонтекстноеМеню" id="136"/>
+							<ExtendedTooltip name="ВходящиеТокеныВложенийРасширеннаяПодсказка" id="137"/>
 						</InputField>
-						<InputField name="ВыходящиеТокеныВложений" id="136">
+						<InputField name="ВыходящиеТокеныВложений" id="138">
 							<DataPath>ВыходящиеТокеныВложений</DataPath>
 							<Title>
 								<v8:item>
@@ -507,10 +519,10 @@
 								</v8:item>
 							</Title>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="ВыходящиеТокеныВложенийКонтекстноеМеню" id="137"/>
-							<ExtendedTooltip name="ВыходящиеТокеныВложенийРасширеннаяПодсказка" id="138"/>
+							<ContextMenu name="ВыходящиеТокеныВложенийКонтекстноеМеню" id="139"/>
+							<ExtendedTooltip name="ВыходящиеТокеныВложенийРасширеннаяПодсказка" id="140"/>
 						</InputField>
-						<InputField name="КоличествоПопыток" id="139">
+						<InputField name="КоличествоПопыток" id="141">
 							<DataPath>КоличествоПопыток</DataPath>
 							<Title>
 								<v8:item>
@@ -519,16 +531,16 @@
 								</v8:item>
 							</Title>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="КоличествоПопытокКонтекстноеМеню" id="140"/>
-							<ExtendedTooltip name="КоличествоПопытокРасширеннаяПодсказка" id="141"/>
+							<ContextMenu name="КоличествоПопытокКонтекстноеМеню" id="142"/>
+							<ExtendedTooltip name="КоличествоПопытокРасширеннаяПодсказка" id="143"/>
 						</InputField>
-						<InputField name="Провайдер" id="142">
+						<InputField name="Провайдер" id="144">
 							<DataPath>Провайдер</DataPath>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="ПровайдерКонтекстноеМеню" id="143"/>
-							<ExtendedTooltip name="ПровайдерРасширеннаяПодсказка" id="144"/>
+							<ContextMenu name="ПровайдерКонтекстноеМеню" id="145"/>
+							<ExtendedTooltip name="ПровайдерРасширеннаяПодсказка" id="146"/>
 						</InputField>
-						<InputField name="СтатусДоставки" id="145">
+						<InputField name="СтатусДоставки" id="147">
 							<DataPath>СтатусДоставки</DataPath>
 							<Title>
 								<v8:item>
@@ -537,10 +549,10 @@
 								</v8:item>
 							</Title>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="СтатусДоставкиКонтекстноеМеню" id="146"/>
-							<ExtendedTooltip name="СтатусДоставкиРасширеннаяПодсказка" id="147"/>
+							<ContextMenu name="СтатусДоставкиКонтекстноеМеню" id="148"/>
+							<ExtendedTooltip name="СтатусДоставкиРасширеннаяПодсказка" id="149"/>
 						</InputField>
-						<InputField name="ОшибкаДоставки" id="148">
+						<InputField name="ОшибкаДоставки" id="150">
 							<DataPath>ОшибкаДоставки</DataPath>
 							<Title>
 								<v8:item>
@@ -552,8 +564,8 @@
 							<MultiLine>true</MultiLine>
 							<AutoMaxWidth>false</AutoMaxWidth>
 							<Height>2</Height>
-							<ContextMenu name="ОшибкаДоставкиКонтекстноеМеню" id="149"/>
-							<ExtendedTooltip name="ОшибкаДоставкиРасширеннаяПодсказка" id="150"/>
+							<ContextMenu name="ОшибкаДоставкиКонтекстноеМеню" id="151"/>
+							<ExtendedTooltip name="ОшибкаДоставкиРасширеннаяПодсказка" id="152"/>
 						</InputField>
 					</ChildItems>
 				</Page>
@@ -561,7 +573,7 @@
 		</Pages>
 	</ChildItems>
 	<Attributes>
-		<Attribute name="ИдентификаторОперации" id="151">
+		<Attribute name="ИдентификаторОперации" id="153">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -572,7 +584,7 @@
 				<v8:Type>v8:UUID</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="ИдентификаторДиалога" id="152">
+		<Attribute name="ИдентификаторДиалога" id="154">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -583,7 +595,7 @@
 				<v8:Type>v8:UUID</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="Статус" id="153">
+		<Attribute name="Статус" id="155">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -598,7 +610,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="Сценарий" id="154">
+		<Attribute name="Сценарий" id="156">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -613,7 +625,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ОбъектОперации" id="155">
+		<Attribute name="ОбъектОперации" id="157">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -628,7 +640,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ТекущийЭтап" id="156">
+		<Attribute name="ТекущийЭтап" id="158">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -643,7 +655,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ДатаСоздания" id="157">
+		<Attribute name="ДатаСоздания" id="159">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -657,7 +669,7 @@
 				</v8:DateQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="Длительность" id="158">
+		<Attribute name="Длительность" id="160">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -672,7 +684,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="Модель" id="159">
+		<Attribute name="Модель" id="161">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -687,7 +699,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="Агент" id="160">
+		<Attribute name="Агент" id="162">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -702,7 +714,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="Провайдер" id="161">
+		<Attribute name="Провайдер" id="163">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -717,7 +729,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="Промт" id="162">
+		<Attribute name="Промт" id="164">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -732,7 +744,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ДанныеКонтекста" id="163">
+		<Attribute name="ДанныеКонтекста" id="165">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -747,7 +759,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="Результат" id="164">
+		<Attribute name="Результат" id="166">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -762,7 +774,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ТекстОшибки" id="165">
+		<Attribute name="ТекстОшибки" id="167">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -777,7 +789,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ВходящиеТокены" id="166">
+		<Attribute name="ВходящиеТокены" id="168">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -793,7 +805,7 @@
 				</v8:NumberQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ВыходящиеТокены" id="167">
+		<Attribute name="ВыходящиеТокены" id="169">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -809,7 +821,7 @@
 				</v8:NumberQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ВходящиеТокеныВложений" id="168">
+		<Attribute name="ВходящиеТокеныВложений" id="170">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -825,7 +837,7 @@
 				</v8:NumberQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ВыходящиеТокеныВложений" id="169">
+		<Attribute name="ВыходящиеТокеныВложений" id="171">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -841,7 +853,7 @@
 				</v8:NumberQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="КоличествоПопыток" id="170">
+		<Attribute name="КоличествоПопыток" id="172">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -857,7 +869,7 @@
 				</v8:NumberQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="СтатусДоставки" id="171">
+		<Attribute name="СтатусДоставки" id="173">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -872,7 +884,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ОшибкаДоставки" id="172">
+		<Attribute name="ОшибкаДоставки" id="174">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -887,7 +899,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ТекущийРезультатАнализа" id="173">
+		<Attribute name="ТекущийРезультатАнализа" id="175">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -902,7 +914,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="Вложения" id="174">
+		<Attribute name="Вложения" id="176">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -913,7 +925,7 @@
 				<v8:Type>v8:ValueTable</v8:Type>
 			</Type>
 			<Columns>
-				<Column name="ИмяФайла" id="175">
+				<Column name="ИмяФайла" id="177">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -922,7 +934,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="Размер" id="176">
+				<Column name="Размер" id="178">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -931,7 +943,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="Статус" id="177">
+				<Column name="Статус" id="179">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -940,7 +952,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="МодельАнализа" id="178">
+				<Column name="МодельАнализа" id="180">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -949,7 +961,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="Токены" id="179">
+				<Column name="Токены" id="181">
 					<Type>
 						<v8:Type>xs:decimal</v8:Type>
 						<v8:NumberQualifiers>
@@ -959,7 +971,7 @@
 						</v8:NumberQualifiers>
 					</Type>
 				</Column>
-				<Column name="РезультатАнализа" id="180">
+				<Column name="РезультатАнализа" id="182">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -968,7 +980,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="ТекстОшибки" id="181">
+				<Column name="ТекстОшибки" id="183">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -979,7 +991,7 @@
 				</Column>
 			</Columns>
 		</Attribute>
-		<Attribute name="Шаги" id="182">
+		<Attribute name="Шаги" id="184">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -990,7 +1002,7 @@
 				<v8:Type>v8:ValueTable</v8:Type>
 			</Type>
 			<Columns>
-				<Column name="Номер" id="183">
+				<Column name="Номер" id="185">
 					<Type>
 						<v8:Type>xs:decimal</v8:Type>
 						<v8:NumberQualifiers>
@@ -1000,7 +1012,7 @@
 						</v8:NumberQualifiers>
 					</Type>
 				</Column>
-				<Column name="Инструмент" id="184">
+				<Column name="Инструмент" id="186">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1009,7 +1021,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="Статус" id="185">
+				<Column name="Статус" id="187">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1018,7 +1030,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="ДлительностьМс" id="186">
+				<Column name="ДлительностьМс" id="188">
 					<Type>
 						<v8:Type>xs:decimal</v8:Type>
 						<v8:NumberQualifiers>
@@ -1028,7 +1040,7 @@
 						</v8:NumberQualifiers>
 					</Type>
 				</Column>
-				<Column name="Аргументы" id="187">
+				<Column name="Аргументы" id="189">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1037,7 +1049,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="Результат" id="188">
+				<Column name="Результат" id="190">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1050,13 +1062,19 @@
 		</Attribute>
 	</Attributes>
 	<Commands>
-		<Command name="ОткрытьПереписку" id="189">
+		<Command name="ОткрытьПереписку" id="191">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Открыть переписку</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открывает диалог, в котором шла операция: запрос с файлами и ответ модели. Написанное там уйдет модели новым запросом.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ОткрытьПерепискуОбработка</Action>
 		</Command>
 	</Commands>

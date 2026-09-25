@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="470" viewBox="0 0 980 470" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5f6b7a"/>
+    </marker>
+    <style>
+      .title { font-size: 17px; font-weight: 600; fill: #1f2a37; }
+      .num { font-size: 13px; font-weight: 700; fill: #ffffff; }
+      .name { font-size: 14px; font-weight: 600; fill: #1f2a37; }
+      .note { font-size: 12px; fill: #3d4a5a; }
+      .hook { font-size: 11.5px; fill: #8a4b00; }
+      .step { fill: #fff6d6; stroke: #c9a227; stroke-width: 1.5; }
+      .model { fill: #eaf3fb; stroke: #6a9fd4; stroke-width: 1.5; }
+      .done { fill: #e8f5e9; stroke: #5baf6b; stroke-width: 1.5; }
+      .badge { fill: #c9a227; }
+      .tag { fill: #fff0e0; stroke: #e39a3b; stroke-width: 1; }
+      .link { stroke: #5f6b7a; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="980" height="470" fill="#ffffff"/>
+  <text x="24" y="32" class="title">Как проходит одно AI-действие и где в него вмешивается код</text>
+
+  <!-- Ряд 1 -->
+  <rect x="24" y="56" width="215" height="92" rx="8" class="step"/>
+  <circle cx="44" cy="76" r="11" class="badge"/><text x="40" y="81" class="num">1</text>
+  <text x="62" y="81" class="name">Помощник</text>
+  <text x="38" y="103" class="note">из карточки, списка или</text>
+  <text x="38" y="121" class="note">раздела LLM; список —</text>
+  <text x="38" y="139" class="note">только доступные действия</text>
+
+  <rect x="264" y="56" width="215" height="92" rx="8" class="step"/>
+  <circle cx="284" cy="76" r="11" class="badge"/><text x="280" y="81" class="num">2</text>
+  <text x="302" y="81" class="name">Вопросы</text>
+  <text x="278" y="103" class="note">какой файл, какие значения;</text>
+  <text x="278" y="121" class="note">если включен разговор —</text>
+  <text x="278" y="139" class="note">беседа с моделью</text>
+
+  <rect x="504" y="56" width="215" height="92" rx="8" class="step"/>
+  <circle cx="524" cy="76" r="11" class="badge"/><text x="520" y="81" class="num">3</text>
+  <text x="542" y="81" class="name">Запрос к модели</text>
+  <text x="518" y="103" class="note">промт, данные объекта,</text>
+  <text x="518" y="121" class="note">файлы и схема ответа</text>
+  <text x="518" y="139" class="note">по карте</text>
+
+  <rect x="744" y="56" width="212" height="92" rx="8" class="model"/>
+  <circle cx="764" cy="76" r="11" class="badge"/><text x="760" y="81" class="num">4</text>
+  <text x="782" y="81" class="name">Модель отвечает</text>
+  <text x="758" y="103" class="note">фоновая операция; ее видно</text>
+  <text x="758" y="121" class="note">в мониторе операций</text>
+
+  <path d="M239,102 L260,102" class="link"/>
+  <path d="M479,102 L500,102" class="link"/>
+  <path d="M719,102 L740,102" class="link"/>
+
+  <!-- Крючки ряда 1 -->
+  <rect x="24" y="160" width="215" height="58" rx="6" class="tag"/>
+  <text x="36" y="180" class="hook">«Кому показывать»: роль или группа</text>
+  <text x="36" y="198" class="hook">проверка «ВыборДействия»</text>
+  <text x="36" y="213" class="hook">— скрыть действие</text>
+
+  <rect x="264" y="160" width="215" height="58" rx="6" class="tag"/>
+  <text x="276" y="180" class="hook">проверка «ПередШагом»</text>
+  <text x="276" y="198" class="hook">— остановить с причиной</text>
+
+  <rect x="504" y="160" width="215" height="58" rx="6" class="tag"/>
+  <text x="516" y="180" class="hook">этап «Перед запросом к модели» —</text>
+  <text x="516" y="198" class="hook">подать свой файл, дописать</text>
+  <text x="516" y="213" class="hook">данные, отказать</text>
+
+  <rect x="744" y="160" width="212" height="58" rx="6" class="tag"/>
+  <text x="756" y="180" class="hook">этап «После ответа модели» —</text>
+  <text x="756" y="198" class="hook">поправить значения,</text>
+  <text x="756" y="213" class="hook">отклонить ответ</text>
+
+  <path d="M850,218 L850,250 L609,250 L609,268" class="link"/>
+
+  <!-- Ряд 2 -->
+  <rect x="504" y="272" width="215" height="92" rx="8" class="step"/>
+  <circle cx="524" cy="292" r="11" class="badge"/><text x="520" y="297" class="num">5</text>
+  <text x="542" y="297" class="name">Результат</text>
+  <text x="518" y="319" class="note">значения по карте; ссылки</text>
+  <text x="518" y="337" class="note">найдены в базе; человек</text>
+  <text x="518" y="355" class="note">проверяет и отмечает</text>
+
+  <rect x="264" y="272" width="215" height="92" rx="8" class="step"/>
+  <circle cx="284" cy="292" r="11" class="badge"/><text x="280" y="297" class="num">6</text>
+  <text x="302" y="297" class="name">Действие</text>
+  <text x="278" y="319" class="note">заполнить форму, записать</text>
+  <text x="278" y="337" class="note">в объект, создать объект —</text>
+  <text x="278" y="355" class="note">по кнопке человека</text>
+
+  <rect x="24" y="272" width="215" height="92" rx="8" class="done"/>
+  <circle cx="44" cy="292" r="11" class="badge"/><text x="40" y="297" class="num">7</text>
+  <text x="62" y="297" class="name">После действия</text>
+  <text x="38" y="319" class="note">сообщения человеку;</text>
+  <text x="38" y="337" class="note">можно предложить</text>
+  <text x="38" y="355" class="note">следующее действие</text>
+
+  <path d="M504,318 L483,318" class="link"/>
+  <path d="M264,318 L243,318" class="link"/>
+
+  <!-- Крючки ряда 2 -->
+  <rect x="504" y="376" width="215" height="58" rx="6" class="tag"/>
+  <text x="516" y="396" class="hook">адаптер конфигурации находит</text>
+  <text x="516" y="414" class="hook">значения, которых ядро не знает:</text>
+  <text x="516" y="429" class="hook">роли, автоподстановки ДО</text>
+
+  <rect x="264" y="376" width="215" height="58" rx="6" class="tag"/>
+  <text x="276" y="396" class="hook">проверка «ПередДействием»</text>
+  <text x="276" y="414" class="hook">— запретить с причиной</text>
+
+  <rect x="24" y="376" width="215" height="58" rx="6" class="tag"/>
+  <text x="36" y="396" class="hook">этап «После действия» — при-</text>
+  <text x="36" y="414" class="hook">ложить файл, запустить процесс</text>
+
+  <text x="744" y="300" class="note">Оранжевым — точки, где</text>
+  <text x="744" y="318" class="note">вмешивается код: сначала</text>
+  <text x="744" y="336" class="note">процедуры конфигурации</text>
+  <text x="744" y="354" class="note">(AI_ДействияПереопределяемый),</text>
+  <text x="744" y="372" class="note">затем методы обработки,</text>
+  <text x="744" y="390" class="note">указанной в месте запуска.</text>
+</svg>

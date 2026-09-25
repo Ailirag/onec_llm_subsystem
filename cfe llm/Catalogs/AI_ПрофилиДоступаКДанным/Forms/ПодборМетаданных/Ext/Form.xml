@@ -41,6 +41,7 @@
 	<ChildItems>
 		<UsualGroup name="ГруппаПоиска" id="5">
 			<Group>AlwaysHorizontal</Group>
+			<ShowTitle>false</ShowTitle>
 			<ExtendedTooltip name="ГруппаПоискаРасширеннаяПодсказка" id="6"/>
 			<ChildItems>
 				<InputField name="СтрокаПоиска" id="7">

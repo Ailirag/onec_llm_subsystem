@@ -13,96 +13,105 @@
 		</InputField>
 		<InputField name="Наименование" id="4">
 			<DataPath>Объект.Description</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Код модели в API</v8:content>
+				</v8:item>
+			</Title>
 			<EditMode>EnterOnInput</EditMode>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
+			<HorizontalStretch>true</HorizontalStretch>
 			<ContextMenu name="НаименованиеКонтекстноеМеню" id="5"/>
 			<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6"/>
 		</InputField>
 		<InputField name="Владелец" id="7">
 			<DataPath>Объект.Owner</DataPath>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Провайдер</v8:content>
+				</v8:item>
+			</Title>
 			<EditMode>EnterOnInput</EditMode>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
 			<ContextMenu name="ВладелецКонтекстноеМеню" id="8"/>
 			<ExtendedTooltip name="ВладелецРасширеннаяПодсказка" id="9"/>
 		</InputField>
-		<InputField name="FolderID" id="13">
+		<InputField name="FolderID" id="10">
 			<DataPath>Объект.FolderID</DataPath>
 			<EditMode>EnterOnInput</EditMode>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="FolderIDКонтекстноеМеню" id="14"/>
-			<ExtendedTooltip name="FolderIDРасширеннаяПодсказка" id="15"/>
+			<ContextMenu name="FolderIDКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="FolderIDРасширеннаяПодсказка" id="12"/>
 		</InputField>
-		<InputField name="ИдентификаторДляЛогики" id="16">
+		<InputField name="ИдентификаторДляЛогики" id="13">
 			<DataPath>Объект.ИдентификаторДляЛогики</DataPath>
 			<EditMode>EnterOnInput</EditMode>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="ИдентификаторДляЛогикиКонтекстноеМеню" id="17"/>
-			<ExtendedTooltip name="ИдентификаторДляЛогикиРасширеннаяПодсказка" id="18"/>
+			<ContextMenu name="ИдентификаторДляЛогикиКонтекстноеМеню" id="14"/>
+			<ExtendedTooltip name="ИдентификаторДляЛогикиРасширеннаяПодсказка" id="15"/>
 		</InputField>
-		<UsualGroup name="ГруппаОМодели" id="25">
+		<UsualGroup name="ГруппаОМодели" id="16">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Информация о модели</v8:content>
+					<v8:content>Справочно (подсистема эти значения не использует)</v8:content>
 				</v8:item>
 			</Title>
-			<ToolTip>
-				<v8:item>
-					<v8:lang>ru</v8:lang>
-					<v8:content>Группа о модели</v8:content>
-				</v8:item>
-			</ToolTip>
 			<Group>Vertical</Group>
-			<ExtendedTooltip name="ГруппаОМоделиРасширеннаяПодсказка" id="26"/>
+			<ShowTitle>true</ShowTitle>
+			<ExtendedTooltip name="ГруппаОМоделиРасширеннаяПодсказка" id="17"/>
 			<ChildItems>
-				<UsualGroup name="ГруппаСправка" id="27">
-					<Title>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>Группа справка</v8:content>
-						</v8:item>
-					</Title>
-					<ToolTip>
-						<v8:item>
-							<v8:lang>ru</v8:lang>
-							<v8:content>Группа справка</v8:content>
-						</v8:item>
-					</ToolTip>
+				<UsualGroup name="ГруппаСправка" id="18">
 					<Group>AlwaysHorizontal</Group>
 					<Representation>None</Representation>
 					<ShowTitle>false</ShowTitle>
-					<ExtendedTooltip name="ГруппаСправкаРасширеннаяПодсказка" id="28"/>
+					<ExtendedTooltip name="ГруппаСправкаРасширеннаяПодсказка" id="19"/>
 					<ChildItems>
-						<InputField name="КонтекстноеОкно" id="19">
+						<InputField name="КонтекстноеОкно" id="20">
 							<DataPath>Объект.КонтекстноеОкно</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Контекстное окно, токенов</v8:content>
+								</v8:item>
+							</Title>
 							<EditMode>EnterOnInput</EditMode>
 							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-							<ContextMenu name="КонтекстноеОкноКонтекстноеМеню" id="20"/>
-							<ExtendedTooltip name="КонтекстноеОкноРасширеннаяПодсказка" id="21"/>
+							<ContextMenu name="КонтекстноеОкноКонтекстноеМеню" id="21"/>
+							<ExtendedTooltip name="КонтекстноеОкноРасширеннаяПодсказка" id="22"/>
 						</InputField>
-						<InputField name="ЦенаЗа1000Токенов" id="22">
+						<InputField name="ЦенаЗа1000Токенов" id="23">
 							<DataPath>Объект.ЦенаЗа1000Токенов</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Цена за 1000 токенов</v8:content>
+								</v8:item>
+							</Title>
 							<EditMode>EnterOnInput</EditMode>
 							<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-							<ContextMenu name="ЦенаЗа1000ТокеновКонтекстноеМеню" id="23"/>
-							<ExtendedTooltip name="ЦенаЗа1000ТокеновРасширеннаяПодсказка" id="24"/>
+							<ContextMenu name="ЦенаЗа1000ТокеновКонтекстноеМеню" id="24"/>
+							<ExtendedTooltip name="ЦенаЗа1000ТокеновРасширеннаяПодсказка" id="25"/>
 						</InputField>
 					</ChildItems>
 				</UsualGroup>
-				<InputField name="Описание" id="10">
+				<InputField name="Описание" id="26">
 					<DataPath>Объект.Описание</DataPath>
-					<EditMode>EnterOnInput</EditMode>
-					<AutoMaxWidth>false</AutoMaxWidth>
 					<MultiLine>true</MultiLine>
+					<EditMode>EnterOnInput</EditMode>
 					<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-					<ContextMenu name="ОписаниеКонтекстноеМеню" id="11"/>
-					<ExtendedTooltip name="ОписаниеРасширеннаяПодсказка" id="12"/>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>3</Height>
+					<ContextMenu name="ОписаниеКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="ОписаниеРасширеннаяПодсказка" id="28"/>
 				</InputField>
 			</ChildItems>
 		</UsualGroup>
 	</ChildItems>
 	<Attributes>
-		<Attribute name="Объект" id="1">
+		<Attribute name="Объект" id="29">
 			<Type>
 				<v8:Type>cfg:CatalogObject.AI_Модели</v8:Type>
 			</Type>

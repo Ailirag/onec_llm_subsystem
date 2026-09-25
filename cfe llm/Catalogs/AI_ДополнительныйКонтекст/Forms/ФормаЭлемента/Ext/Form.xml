@@ -16,12 +16,6 @@
 			<ContextMenu name="КодКонтекстноеМеню" id="2"/>
 			<ExtendedTooltip name="КодРасширеннаяПодсказка" id="3"/>
 		</InputField>
-		<InputField name="Владелец" id="7">
-			<EditMode>EnterOnInput</EditMode>
-			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="ВладелецКонтекстноеМеню" id="8"/>
-			<ExtendedTooltip name="ВладелецРасширеннаяПодсказка" id="9"/>
-		</InputField>
 		<InputField name="Наименование" id="4">
 			<DataPath>Объект.Description</DataPath>
 			<EditMode>EnterOnInput</EditMode>
@@ -29,37 +23,38 @@
 			<ContextMenu name="НаименованиеКонтекстноеМеню" id="5"/>
 			<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="6"/>
 		</InputField>
-		<InputField name="ИдентификаторДляЛогики" id="13">
+		<InputField name="ИдентификаторДляЛогики" id="7">
 			<DataPath>Объект.ИдентификаторДляЛогики</DataPath>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="ИдентификаторДляЛогикиКонтекстноеМеню" id="14"/>
-			<ExtendedTooltip name="ИдентификаторДляЛогикиРасширеннаяПодсказка" id="15"/>
+			<ContextMenu name="ИдентификаторДляЛогикиКонтекстноеМеню" id="8"/>
+			<ExtendedTooltip name="ИдентификаторДляЛогикиРасширеннаяПодсказка" id="9"/>
 		</InputField>
-		<InputField name="ДатаАктуальности" id="16">
+		<InputField name="ДатаАктуальности" id="10">
 			<DataPath>Объект.ДатаАктуальности</DataPath>
+			<ReadOnly>true</ReadOnly>
 			<ExtendedEditMultipleValues>true</ExtendedEditMultipleValues>
-			<ContextMenu name="ДатаАктуальностиКонтекстноеМеню" id="17"/>
-			<ExtendedTooltip name="ДатаАктуальностиРасширеннаяПодсказка" id="18"/>
+			<ContextMenu name="ДатаАктуальностиКонтекстноеМеню" id="11"/>
+			<ExtendedTooltip name="ДатаАктуальностиРасширеннаяПодсказка" id="12"/>
 		</InputField>
-		<TextDocumentField name="ДанныеКонтекста" id="10">
+		<TextDocumentField name="ДанныеКонтекста" id="13">
 			<DataPath>ДанныеКонтекста</DataPath>
-			<ContextMenu name="ДанныеКонтекстаКонтекстноеМеню" id="11"/>
-			<ExtendedTooltip name="ДанныеКонтекстаРасширеннаяПодсказка" id="12"/>
+			<ContextMenu name="ДанныеКонтекстаКонтекстноеМеню" id="14"/>
+			<ExtendedTooltip name="ДанныеКонтекстаРасширеннаяПодсказка" id="15"/>
 		</TextDocumentField>
 	</ChildItems>
 	<Attributes>
-		<Attribute name="Объект" id="1">
+		<Attribute name="Объект" id="16">
 			<Type>
 				<v8:Type>cfg:CatalogObject.AI_ДополнительныйКонтекст</v8:Type>
 			</Type>
 			<MainAttribute>true</MainAttribute>
 			<SavedData>true</SavedData>
 		</Attribute>
-		<Attribute name="ДанныеКонтекста" id="2">
+		<Attribute name="ДанныеКонтекста" id="17">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Данные контекста</v8:content>
+					<v8:content>Текст для модели</v8:content>
 				</v8:item>
 			</Title>
 			<Type>

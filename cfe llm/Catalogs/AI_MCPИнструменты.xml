@@ -72,7 +72,7 @@
 			<AuxiliaryListForm />
 			<AuxiliaryChoiceForm />
 			<AuxiliaryFolderChoiceForm />
-			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<BasedOn />
 			<DataLockFields />
 			<DataLockControlMode>Managed</DataLockControlMode>
@@ -91,11 +91,10 @@
 		<ChildObjects>
 			<Attribute uuid="807ce7e2-e315-43e2-a6a4-cf3bf35df61a">
 				<Properties>
-					<Name>ВнешнееИмя</Name>
-					<Synonym>
+					<Name>ВнешнееИмя</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Внешнее имя</v8:content>
+							<v8:content>Имя на сервере</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -109,7 +108,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Имя инструмента на MCP-сервере. По нему выполняется вызов и сверка при загрузке — не меняйте вручную.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -135,11 +139,10 @@
 			</Attribute>
 			<Attribute uuid="81e2362c-7b63-4919-89ec-1a54b3882f49">
 				<Properties>
-					<Name>ПубличноеИмя</Name>
-					<Synonym>
+					<Name>ПубличноеИмя</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Публичное имя</v8:content>
+							<v8:content>Имя для модели</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -153,7 +156,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Имя, под которым инструмент видит модель. Задается при первой загрузке: латинские буквы, цифры и «_». Менять не рекомендуется.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -197,7 +205,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Описание от сервера. Передается модели и помогает ей решить, когда вызывать инструмент. Обновляется при загрузке.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>true</MultiLine>
@@ -223,11 +236,10 @@
 			</Attribute>
 			<Attribute uuid="6ad3ba9e-e4d1-44dc-b781-534106fa4aef">
 				<Properties>
-					<Name>ВходнаяСхема</Name>
-					<Synonym>
+					<Name>ВходнаяСхема</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Входная схема</v8:content>
+							<v8:content>Параметры вызова</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -237,7 +249,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Описание параметров от сервера. Передается модели вместе с описанием инструмента.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -263,11 +280,10 @@
 			</Attribute>
 			<Attribute uuid="6851ce88-5b49-4881-ac3f-33c3ced6ea71">
 				<Properties>
-					<Name>ВыходнаяСхема</Name>
-					<Synonym>
+					<Name>ВыходнаяСхема</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Выходная схема</v8:content>
+							<v8:content>Формат результата</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -277,7 +293,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Описание результата от сервера. Хранится для справки, сейчас не используется.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -303,11 +324,10 @@
 			</Attribute>
 			<Attribute uuid="abf3c906-8e21-4c9d-93f8-02bf7670af4c">
 				<Properties>
-					<Name>Аннотации</Name>
-					<Synonym>
+					<Name>Аннотации</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Аннотации</v8:content>
+							<v8:content>Признаки инструмента</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -317,7 +337,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Дополнительные признаки от сервера, например «только чтение». Хранятся для справки, сейчас не используются.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -343,11 +368,10 @@
 			</Attribute>
 			<Attribute uuid="a51ec6e2-ad01-4a0f-9fe8-52613db31f3d">
 				<Properties>
-					<Name>ХешСхемы</Name>
-					<Synonym>
+					<Name>ХешСхемы</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Хеш схемы</v8:content>
+							<v8:content>Контрольная сумма описания</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -361,7 +385,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Отпечаток описания инструмента на момент загрузки. Изменился — сервер поменял описание или параметры.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -387,11 +416,10 @@
 			</Attribute>
 			<Attribute uuid="e522ca41-a0d6-4a1e-a5d7-d57f1110d313">
 				<Properties>
-					<Name>Активен</Name>
-					<Synonym>
+					<Name>Активен</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Активен</v8:content>
+							<v8:content>Есть на сервере</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -401,7 +429,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Инструмент найден на сервере при последней загрузке. Флажок ведет загрузка: ручное изменение будет перезаписано. Запрещайте инструмент в профиле MCP.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -441,7 +474,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Параметры инструмента можно передать модели. Несовместимый инструмент агенту не предлагается, даже если он есть в профиле.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -485,7 +523,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Почему параметры инструмента нельзя передать модели. Пусто — инструмент совместим.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>true</MultiLine>
@@ -528,7 +571,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Когда инструмент впервые найден на сервере.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -554,11 +602,10 @@
 			</Attribute>
 			<Attribute uuid="f5d9e1a3-abe5-45c8-b5ee-e295b27d3475">
 				<Properties>
-					<Name>ДатаПроверки</Name>
-					<Synonym>
+					<Name>ДатаПроверки</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Дата проверки</v8:content>
+							<v8:content>Дата обновления</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -571,7 +618,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Когда описание инструмента последний раз обновлено загрузкой с сервера.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>

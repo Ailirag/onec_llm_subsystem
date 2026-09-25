@@ -1,65 +1,122 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
-	<Title>
-		<v8:item>
-			<v8:lang>ru</v8:lang>
-			<v8:content>MCP-серверы</v8:content>
-		</v8:item>
-	</Title>
-	<AutoTitle>false</AutoTitle>
-	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1" />
+	<AutoTitle>true</AutoTitle>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<ChildItems>
+			<Button name="КнопкаПроверитьПодключение" id="1">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.ПроверитьПодключение</CommandName>
+				<ExtendedTooltip name="КнопкаПроверитьПодключениеРасширеннаяПодсказка" id="2"/>
+			</Button>
+			<Button name="КнопкаСинхронизироватьИнструменты" id="3">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.СинхронизироватьИнструменты</CommandName>
+				<ExtendedTooltip name="КнопкаСинхронизироватьИнструментыРасширеннаяПодсказка" id="4"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
 	<Events>
 		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
 		<Event name="AfterWriteAtServer">ПослеЗаписиНаСервере</Event>
 	</Events>
 	<ChildItems>
-		<UsualGroup name="ГруппаШапка" id="1">
+		<UsualGroup name="ГруппаШапка" id="5">
 			<Group>Vertical</Group>
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
-			<ExtendedTooltip name="ГруппаШапкаРасширеннаяПодсказка" id="2" />
+			<ExtendedTooltip name="ГруппаШапкаРасширеннаяПодсказка" id="6"/>
 			<ChildItems>
-				<UsualGroup name="ГруппаКодНаименование" id="3">
+				<UsualGroup name="ГруппаКодНаименование" id="7">
 					<Group>Horizontal</Group>
 					<Representation>None</Representation>
 					<ShowTitle>false</ShowTitle>
-					<ExtendedTooltip name="ГруппаКодНаименованиеРасширеннаяПодсказка" id="4" />
+					<ExtendedTooltip name="ГруппаКодНаименованиеРасширеннаяПодсказка" id="8"/>
 					<ChildItems>
-						<InputField name="Наименование" id="5">
+						<InputField name="Наименование" id="9">
 							<DataPath>Объект.Description</DataPath>
-							<ContextMenu name="НаименованиеКонтекстноеМеню" id="6" />
-							<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="7" />
+							<HorizontalStretch>true</HorizontalStretch>
+							<ContextMenu name="НаименованиеКонтекстноеМеню" id="10"/>
+							<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="11"/>
 						</InputField>
-						<InputField name="Код" id="8">
+						<InputField name="Код" id="12">
 							<DataPath>Объект.Code</DataPath>
-							<ContextMenu name="КодКонтекстноеМеню" id="9" />
-							<ExtendedTooltip name="КодРасширеннаяПодсказка" id="10" />
+							<Width>10</Width>
+							<ContextMenu name="КодКонтекстноеМеню" id="13"/>
+							<ExtendedTooltip name="КодРасширеннаяПодсказка" id="14"/>
 						</InputField>
 					</ChildItems>
 				</UsualGroup>
-				<CheckBoxField name="Активен" id="11">
+				<CheckBoxField name="Активен" id="15">
 					<DataPath>Объект.Активен</DataPath>
 					<CheckBoxType>Auto</CheckBoxType>
 					<TitleLocation>Right</TitleLocation>
-					<ContextMenu name="АктивенКонтекстноеМеню" id="12" />
-					<ExtendedTooltip name="АктивенРасширеннаяПодсказка" id="13" />
+					<ContextMenu name="АктивенКонтекстноеМеню" id="16"/>
+					<ExtendedTooltip name="АктивенРасширеннаяПодсказка" id="17"/>
 				</CheckBoxField>
-				<InputField name="Endpoint" id="14">
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаПодключение" id="18">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Подключение</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<ShowTitle>true</ShowTitle>
+			<ThroughAlign>Use</ThroughAlign>
+			<ExtendedTooltip name="ГруппаПодключениеРасширеннаяПодсказка" id="19"/>
+			<ChildItems>
+				<InputField name="Endpoint" id="20">
 					<DataPath>Объект.Endpoint</DataPath>
-					<ContextMenu name="EndpointКонтекстноеМеню" id="15" />
-					<ExtendedTooltip name="EndpointРасширеннаяПодсказка" id="16" />
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Адрес сервера</v8:content>
+						</v8:item>
+					</Title>
+					<HorizontalStretch>true</HorizontalStretch>
+					<InputHint>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>https://сервер/mcp</v8:content>
+						</v8:item>
+					</InputHint>
+					<ContextMenu name="EndpointКонтекстноеМеню" id="21"/>
+					<ExtendedTooltip name="EndpointРасширеннаяПодсказка" id="22"/>
 				</InputField>
-				<InputField name="ТипАвторизации" id="17">
+				<CheckBoxField name="РазрешитьНезащищенныйHTTP" id="23">
+					<DataPath>Объект.РазрешитьНезащищенныйHTTP</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Разрешить адрес http:// (без шифрования)</v8:content>
+						</v8:item>
+					</Title>
+					<CheckBoxType>Auto</CheckBoxType>
+					<TitleLocation>Right</TitleLocation>
+					<ContextMenu name="РазрешитьНезащищенныйHTTPКонтекстноеМеню" id="24"/>
+					<ExtendedTooltip name="РазрешитьНезащищенныйHTTPРасширеннаяПодсказка" id="25"/>
+				</CheckBoxField>
+				<InputField name="ТипАвторизации" id="26">
 					<DataPath>Объект.ТипАвторизации</DataPath>
-					<ContextMenu name="ТипАвторизацииКонтекстноеМеню" id="18" />
-					<ExtendedTooltip name="ТипАвторизацииРасширеннаяПодсказка" id="19" />
+					<Width>30</Width>
+					<ContextMenu name="ТипАвторизацииКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="ТипАвторизацииРасширеннаяПодсказка" id="28"/>
 				</InputField>
-				<InputField name="ИмяЗаголовкаАвторизации" id="20">
+				<InputField name="ИмяЗаголовкаАвторизации" id="29">
 					<DataPath>Объект.ИмяЗаголовкаАвторизации</DataPath>
-					<ContextMenu name="ИмяЗаголовкаАвторизацииКонтекстноеМеню" id="21" />
-					<ExtendedTooltip name="ИмяЗаголовкаАвторизацииРасширеннаяПодсказка" id="22" />
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заголовок авторизации</v8:content>
+						</v8:item>
+					</Title>
+					<Width>30</Width>
+					<ContextMenu name="ИмяЗаголовкаАвторизацииКонтекстноеМеню" id="30"/>
+					<ExtendedTooltip name="ИмяЗаголовкаАвторизацииРасширеннаяПодсказка" id="31"/>
 				</InputField>
-				<InputField name="СекретАвторизации" id="46">
+				<InputField name="СекретАвторизации" id="32">
 					<DataPath>СекретАвторизации</DataPath>
 					<Title>
 						<v8:item>
@@ -69,62 +126,138 @@
 					</Title>
 					<PasswordMode>true</PasswordMode>
 					<HorizontalStretch>true</HorizontalStretch>
-					<ContextMenu name="СекретАвторизацииКонтекстноеМеню" id="47" />
-					<ExtendedTooltip name="СекретАвторизацииРасширеннаяПодсказка" id="48" />
-				</InputField>
-				<InputField name="ТаймаутСекунд" id="23">
-					<DataPath>Объект.ТаймаутСекунд</DataPath>
-					<ContextMenu name="ТаймаутСекундКонтекстноеМеню" id="24" />
-					<ExtendedTooltip name="ТаймаутСекундРасширеннаяПодсказка" id="25" />
-				</InputField>
-				<InputField name="МаксимальныйРазмерОтветаБайт" id="26">
-					<DataPath>Объект.МаксимальныйРазмерОтветаБайт</DataPath>
-					<ContextMenu name="МаксимальныйРазмерОтветаБайтКонтекстноеМеню" id="27" />
-					<ExtendedTooltip name="МаксимальныйРазмерОтветаБайтРасширеннаяПодсказка" id="28" />
-				</InputField>
-				<CheckBoxField name="РазрешитьНезащищенныйHTTP" id="29">
-					<DataPath>Объект.РазрешитьНезащищенныйHTTP</DataPath>
-					<CheckBoxType>Auto</CheckBoxType>
-					<TitleLocation>Right</TitleLocation>
-					<ContextMenu name="РазрешитьНезащищенныйHTTPКонтекстноеМеню" id="30" />
-					<ExtendedTooltip name="РазрешитьНезащищенныйHTTPРасширеннаяПодсказка" id="31" />
-				</CheckBoxField>
-				<InputField name="ВерсияПротокола" id="32">
-					<DataPath>Объект.ВерсияПротокола</DataPath>
-					<ContextMenu name="ВерсияПротоколаКонтекстноеМеню" id="33" />
-					<ExtendedTooltip name="ВерсияПротоколаРасширеннаяПодсказка" id="34" />
-				</InputField>
-				<InputField name="ПоследняяСинхронизация" id="35">
-					<DataPath>Объект.ПоследняяСинхронизация</DataPath>
-					<ContextMenu name="ПоследняяСинхронизацияКонтекстноеМеню" id="36" />
-					<ExtendedTooltip name="ПоследняяСинхронизацияРасширеннаяПодсказка" id="37" />
-				</InputField>
-				<InputField name="СтатусПодключения" id="38">
-					<DataPath>Объект.СтатусПодключения</DataPath>
-					<ContextMenu name="СтатусПодключенияКонтекстноеМеню" id="39" />
-					<ExtendedTooltip name="СтатусПодключенияРасширеннаяПодсказка" id="40" />
-				</InputField>
-				<InputField name="ТекстОшибки" id="41">
-					<DataPath>Объект.ТекстОшибки</DataPath>
-					<ContextMenu name="ТекстОшибкиКонтекстноеМеню" id="42" />
-					<ExtendedTooltip name="ТекстОшибкиРасширеннаяПодсказка" id="43" />
+					<InputHint>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Введите секрет; сохраненный не показывается</v8:content>
+						</v8:item>
+					</InputHint>
+					<ContextMenu name="СекретАвторизацииКонтекстноеМеню" id="33"/>
+					<ExtendedTooltip name="СекретАвторизацииРасширеннаяПодсказка" id="34"/>
 				</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="ГруппаДополнительныеРеквизиты" id="44">
+		<UsualGroup name="ГруппаОграничения" id="35">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Ограничения</v8:content>
+				</v8:item>
+			</Title>
 			<Group>Vertical</Group>
-			<ExtendedTooltip name="ГруппаДополнительныеРеквизитыРасширеннаяПодсказка" id="45" />
+			<ShowTitle>true</ShowTitle>
+			<ThroughAlign>Use</ThroughAlign>
+			<ExtendedTooltip name="ГруппаОграниченияРасширеннаяПодсказка" id="36"/>
+			<ChildItems>
+				<InputField name="ТаймаутСекунд" id="37">
+					<DataPath>Объект.ТаймаутСекунд</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Таймаут запроса, с</v8:content>
+						</v8:item>
+					</Title>
+					<Width>10</Width>
+					<ContextMenu name="ТаймаутСекундКонтекстноеМеню" id="38"/>
+					<ExtendedTooltip name="ТаймаутСекундРасширеннаяПодсказка" id="39"/>
+				</InputField>
+				<InputField name="МаксимальныйРазмерОтветаБайт" id="40">
+					<DataPath>Объект.МаксимальныйРазмерОтветаБайт</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Максимальный размер ответа, байт</v8:content>
+						</v8:item>
+					</Title>
+					<Width>12</Width>
+					<ContextMenu name="МаксимальныйРазмерОтветаБайтКонтекстноеМеню" id="41"/>
+					<ExtendedTooltip name="МаксимальныйРазмерОтветаБайтРасширеннаяПодсказка" id="42"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаСостояние" id="43">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Состояние (заполняется проверкой и синхронизацией)</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Vertical</Group>
+			<ShowTitle>true</ShowTitle>
+			<ThroughAlign>Use</ThroughAlign>
+			<ExtendedTooltip name="ГруппаСостояниеРасширеннаяПодсказка" id="44"/>
+			<ChildItems>
+				<InputField name="СтатусПодключения" id="45">
+					<DataPath>Объект.СтатусПодключения</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Статус подключения</v8:content>
+						</v8:item>
+					</Title>
+					<ReadOnly>true</ReadOnly>
+					<ContextMenu name="СтатусПодключенияКонтекстноеМеню" id="46"/>
+					<ExtendedTooltip name="СтатусПодключенияРасширеннаяПодсказка" id="47"/>
+				</InputField>
+				<InputField name="ВерсияПротокола" id="48">
+					<DataPath>Объект.ВерсияПротокола</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Версия протокола</v8:content>
+						</v8:item>
+					</Title>
+					<ReadOnly>true</ReadOnly>
+					<Width>20</Width>
+					<ContextMenu name="ВерсияПротоколаКонтекстноеМеню" id="49"/>
+					<ExtendedTooltip name="ВерсияПротоколаРасширеннаяПодсказка" id="50"/>
+				</InputField>
+				<InputField name="ПоследняяСинхронизация" id="51">
+					<DataPath>Объект.ПоследняяСинхронизация</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Последняя синхронизация</v8:content>
+						</v8:item>
+					</Title>
+					<ReadOnly>true</ReadOnly>
+					<ContextMenu name="ПоследняяСинхронизацияКонтекстноеМеню" id="52"/>
+					<ExtendedTooltip name="ПоследняяСинхронизацияРасширеннаяПодсказка" id="53"/>
+				</InputField>
+				<InputField name="ТекстОшибки" id="54">
+					<DataPath>Объект.ТекстОшибки</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Текст ошибки</v8:content>
+						</v8:item>
+					</Title>
+					<ReadOnly>true</ReadOnly>
+					<MultiLine>true</MultiLine>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>3</Height>
+					<HorizontalStretch>true</HorizontalStretch>
+					<VerticalStretch>false</VerticalStretch>
+					<ContextMenu name="ТекстОшибкиКонтекстноеМеню" id="55"/>
+					<ExtendedTooltip name="ТекстОшибкиРасширеннаяПодсказка" id="56"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаДополнительныеРеквизиты" id="57">
+			<Group>Vertical</Group>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаДополнительныеРеквизитыРасширеннаяПодсказка" id="58"/>
 		</UsualGroup>
 	</ChildItems>
 	<Attributes>
-		<Attribute name="Объект" id="46">
+		<Attribute name="Объект" id="59">
 			<Type>
 				<v8:Type>cfg:CatalogObject.AI_MCPСерверы</v8:Type>
 			</Type>
 			<MainAttribute>true</MainAttribute>
 			<SavedData>true</SavedData>
 		</Attribute>
-		<Attribute name="СекретАвторизации" id="47">
+		<Attribute name="СекретАвторизации" id="60">
 			<Type>
 				<v8:Type>xs:string</v8:Type>
 				<v8:StringQualifiers>
@@ -132,13 +265,26 @@
 					<v8:AllowedLength>Variable</v8:AllowedLength>
 				</v8:StringQualifiers>
 			</Type>
+			<SavedData>true</SavedData>
 		</Attribute>
 	</Attributes>
 	<Commands>
-		<Command name="ПроверитьПодключение" id="1">
+		<Command name="ПроверитьПодключение" id="61">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Проверить подключение</v8:content>
+				</v8:item>
+			</Title>
 			<Action>ПроверитьПодключение</Action>
 		</Command>
-		<Command name="СинхронизироватьИнструменты" id="2">
+		<Command name="СинхронизироватьИнструменты" id="62">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Загрузить инструменты</v8:content>
+				</v8:item>
+			</Title>
 			<Action>СинхронизироватьИнструменты</Action>
 		</Command>
 	</Commands>

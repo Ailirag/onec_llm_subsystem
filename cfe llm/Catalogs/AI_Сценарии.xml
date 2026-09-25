@@ -70,7 +70,7 @@
 			<AuxiliaryListForm />
 			<AuxiliaryChoiceForm />
 			<AuxiliaryFolderChoiceForm />
-			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<BasedOn />
 			<DataLockFields />
 			<DataLockControlMode>Managed</DataLockControlMode>
@@ -553,11 +553,10 @@
 			</Attribute>
 			<Attribute uuid="a746fbc2-c434-41ef-b020-4d888032ecdc">
 				<Properties>
-					<Name>ИспользоватьДляСтаройОчереди</Name>
-					<Synonym>
+					<Name>ИспользоватьДляСтаройОчереди</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Использовать для старой очереди</v8:content>
+							<v8:content>Принимать запросы старой очереди</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -570,7 +569,7 @@
 					<ToolTip>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Совместимость со старым методом постановки в очередь: запросы старого API с этим агентом пойдут по этому сценарию. Для новых настроек не нужен.</v8:content>
+							<v8:content>Для совместимости: программы, которые ставят запросы в старую очередь с агентом этого сценария, будут выполнять их по сценарию — как агентскую операцию. Не больше одного сценария на агента.</v8:content>
 						</v8:item>
 					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>

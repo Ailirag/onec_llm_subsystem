@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="v8help://service_book/service_style"/>
+</head>
+<body>
+<h1>Метки доступа RAG</h1>
+<p>Справочник (в меню — «RAG виды разрешений») хранит метки, по которым <a href="Catalog.AI_Агенты/Help">агент</a> отбирает фрагменты <a href="Catalog.AI_RAGКоллекции/Help">RAG-коллекций</a>. Метка — это вид плюс значение; значение записывается в наименование элемента.</p>
+
+<table border="1" cellpadding="5" cellspacing="0">
+<tr><th>Вид метки</th><th>Что писать в наименование</th><th>По умолчанию у фрагмента</th></tr>
+<tr><td>Организация</td><td>Значение, которое обработчик наполнения пишет в метку организации (код или GUID).</td><td>default</td></tr>
+<tr><td>Раздел (тенант)</td><td>Раздел данных внутри организации.</td><td>main</td></tr>
+<tr><td>Право</td><td>Имя права, до 10 символов. Фрагменты с правом «all» видны всегда.</td><td>all</td></tr>
+<tr><td>Тип объекта</td><td>Тип источника в виде CatalogRef.Контрагенты или DocumentRef.ЗаказКлиента (не «Справочник.Контрагенты»).</td><td>тип объекта-источника</td></tr>
+</table>
+
+<h2>Как работает отбор</h2>
+<ul>
+<li>Метки добавляются на вкладке «База знаний (RAG)» агента, таблица «Метки доступа». Пустая таблица — агент видит все фрагменты.</li>
+<li>Метки одного вида объединяются через «или», разных видов — через «и».</li>
+<li>Сравнение точное, с учетом регистра. Метка без вида не действует.</li>
+<li>Для организации и раздела послабления нет: метка «Организация = X» скроет фрагменты с меткой default.</li>
+</ul>
+<p>См. также: <a href="Subsystem.LLM/Help">как устроена подсистема LLM</a>.</p>
+<!--session-links-->
+<script type="text/javascript">
+(function () {
+    var parameters = window.location.search;
+    if (!parameters) return;
+    for (var i = 0; i < document.links.length; i++) {
+        var link = document.links[i];
+        if (link.href.indexOf('/mdobject/') >= 0 && link.href.indexOf('?') < 0) {
+            link.href = link.href + parameters;
+        }
+    }
+})();
+</script>
+<!--/session-links-->
+</body>
+</html>

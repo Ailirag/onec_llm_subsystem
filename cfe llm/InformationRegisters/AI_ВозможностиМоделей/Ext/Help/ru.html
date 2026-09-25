@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="v8help://service_book/service_style"/>
+</head>
+<body>
+<h1>Возможности моделей</h1>
+<p>Какие вложения принимает модель и с какими ограничениями. Записи открываются ссылкой из карточки <a href="Catalog.AI_Модели/Help">модели</a>.</p>
+<p>Подсистема смотрит на возможности только у модели, которая выбрана «Моделью для разбора файлов» у <a href="Catalog.AI_Провайдеры/Help">провайдера</a>, и только на записи с типом API «Responses API»:</p>
+<ul>
+<li><strong>Ввод изображений</strong> — модель читает картинки; <strong>Ввод файлов</strong> — документы (у провайдеров, кроме Yandex).</li>
+<li><strong>Максимальный размер файла, байт</strong> — предел одного вложения; 0 — 5 МБ для картинок и 20 МБ для документов.</li>
+<li><strong>Файлов в сообщении, не больше</strong> — 0 означает 5. Больше 5 не задавайте: при отправке действует предел в 5 файлов.</li>
+<li>«Способ передачи» и «Типы файлов MIME» — справочные, подсистема их не читает.</li>
+</ul>
+<p>При разборе файлов подсистема сама записывает модели разбора «Ввод изображений» со значениями по умолчанию, поэтому ручная правка этих записей может быть перезаписана.</p>
+<p>См. также: <a href="Subsystem.LLM/Help">как устроена подсистема LLM</a>.</p>
+<!--session-links-->
+<script type="text/javascript">
+(function () {
+    var parameters = window.location.search;
+    if (!parameters) return;
+    for (var i = 0; i < document.links.length; i++) {
+        var link = document.links[i];
+        if (link.href.indexOf('/mdobject/') >= 0 && link.href.indexOf('?') < 0) {
+            link.href = link.href + parameters;
+        }
+    }
+})();
+</script>
+<!--/session-links-->
+</body>
+</html>

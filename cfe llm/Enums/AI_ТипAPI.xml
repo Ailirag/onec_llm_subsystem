@@ -23,43 +23,41 @@
 					<v8:content>AI_ТипAPI</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment />
 			<UseStandardCommands>false</UseStandardCommands>
-			<Characteristics/>
+			<Characteristics />
 			<QuickChoice>true</QuickChoice>
 			<ChoiceMode>BothWays</ChoiceMode>
-			<DefaultListForm/>
-			<DefaultChoiceForm/>
-			<AuxiliaryListForm/>
-			<AuxiliaryChoiceForm/>
-			<ListPresentation/>
-			<ExtendedListPresentation/>
-			<Explanation/>
+			<DefaultListForm />
+			<DefaultChoiceForm />
+			<AuxiliaryListForm />
+			<AuxiliaryChoiceForm />
+			<ListPresentation />
+			<ExtendedListPresentation />
+			<Explanation />
 			<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 		</Properties>
 		<ChildObjects>
 			<EnumValue uuid="9cf7de4c-76ad-4a69-bc3f-3bc1d78da65a">
 				<Properties>
-					<Name>Responses</Name>
-					<Synonym>
+					<Name>Responses</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Responses (Есть web поиск)</v8:content>
+							<v8:content>Responses API</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 				</Properties>
 			</EnumValue>
 			<EnumValue uuid="fb2f9d9c-ca15-426c-bacb-4909f768850e">
 				<Properties>
-					<Name>ChatCompletions</Name>
-					<Synonym>
+					<Name>ChatCompletions</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Chat completions (Нет web поиска)</v8:content>
+							<v8:content>Chat Completions API</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 				</Properties>
 			</EnumValue>
 		</ChildObjects>

@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Журнал запросов к моделям</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="КнопкаОткрыть" id="1">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Command.ОткрытьЗапись</CommandName>
+				<ExtendedTooltip name="КнопкаОткрытьРасширеннаяПодсказка" id="2"/>
+			</Button>
+			<Button name="КнопкаОбновить" id="3">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Item.Список.StandardCommand.Refresh</CommandName>
+				<ExtendedTooltip name="КнопкаОбновитьРасширеннаяПодсказка" id="4"/>
+			</Button>
+			<Button name="КнопкаНайти" id="5">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Item.Список.StandardCommand.Find</CommandName>
+				<ExtendedTooltip name="КнопкаНайтиРасширеннаяПодсказка" id="6"/>
+			</Button>
+			<Button name="КнопкаНастроитьСписок" id="7">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.Item.Список.StandardCommand.ListSettings</CommandName>
+				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
+				<ExtendedTooltip name="КнопкаНастроитьСписокРасширеннаяПодсказка" id="8"/>
+			</Button>
+			<Button name="КнопкаСправка" id="9">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<ExtendedTooltip name="КнопкаСправкаРасширеннаяПодсказка" id="10"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<ChildItems>
+		<LabelDecoration name="ПояснениеЖурнала" id="11">
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<HorizontalStretch>true</HorizontalStretch>
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Что отправлено моделям и что они ответили — по записи на каждый запрос. Журнал ведется, только если в настройках подсистемы включено «Сохранять запросы и ответы моделей в журнал», и очищается по сроку хранения. Ход AI-действий подробнее — в мониторе агентских операций.</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="ПояснениеЖурналаКонтекстноеМеню" id="12"/>
+			<ExtendedTooltip name="ПояснениеЖурналаРасширеннаяПодсказка" id="13"/>
+		</LabelDecoration>
+		<Table name="Список" id="14">
+			<DataPath>Список</DataPath>
+			<ReadOnly>true</ReadOnly>
+			<CommandBarLocation>None</CommandBarLocation>
+			<RowPictureDataPath>Список.DefaultPicture</RowPictureDataPath>
+			<AutoRefresh>false</AutoRefresh>
+			<AutoRefreshPeriod>60</AutoRefreshPeriod>
+			<Period>
+				<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+				<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+				<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+			</Period>
+			<ChoiceFoldersAndItems>Items</ChoiceFoldersAndItems>
+			<RestoreCurrentRow>false</RestoreCurrentRow>
+			<TopLevelParent xsi:nil="true"/>
+			<ShowRoot>true</ShowRoot>
+			<AllowRootChoice>false</AllowRootChoice>
+			<UpdateOnDataChange>Auto</UpdateOnDataChange>
+			<AllowGettingCurrentRowURL>true</AllowGettingCurrentRowURL>
+			<ContextMenu name="СписокКонтекстноеМеню" id="15"/>
+			<AutoCommandBar name="СписокКоманднаяПанель" id="16">
+				<Autofill>false</Autofill>
+			</AutoCommandBar>
+			<ExtendedTooltip name="СписокРасширеннаяПодсказка" id="17"/>
+			<SearchStringAddition name="СписокСтрокаПоиска" id="18">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСтрокаПоискаКонтекстноеМеню" id="19"/>
+				<ExtendedTooltip name="СписокСтрокаПоискаРасширеннаяПодсказка" id="20"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="СписокСостояниеПросмотра" id="21">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокСостояниеПросмотраКонтекстноеМеню" id="22"/>
+				<ExtendedTooltip name="СписокСостояниеПросмотраРасширеннаяПодсказка" id="23"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="СписокУправлениеПоиском" id="24">
+				<AdditionSource>
+					<Item>Список</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="СписокУправлениеПоискомКонтекстноеМеню" id="25"/>
+				<ExtendedTooltip name="СписокУправлениеПоискомРасширеннаяПодсказка" id="26"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<InputField name="Период" id="27">
+					<DataPath>Список.Период</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Время ответа</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ПериодКонтекстноеМеню" id="28"/>
+					<ExtendedTooltip name="ПериодРасширеннаяПодсказка" id="29"/>
+				</InputField>
+				<InputField name="Пользователь" id="30">
+					<DataPath>Список.Пользователь</DataPath>
+					<ContextMenu name="ПользовательКонтекстноеМеню" id="31"/>
+					<ExtendedTooltip name="ПользовательРасширеннаяПодсказка" id="32"/>
+				</InputField>
+				<InputField name="Провайдер" id="33">
+					<DataPath>Список.Провайдер</DataPath>
+					<ContextMenu name="ПровайдерКонтекстноеМеню" id="34"/>
+					<ExtendedTooltip name="ПровайдерРасширеннаяПодсказка" id="35"/>
+				</InputField>
+				<InputField name="Модель" id="36">
+					<DataPath>Список.Модель</DataPath>
+					<ContextMenu name="МодельКонтекстноеМеню" id="37"/>
+					<ExtendedTooltip name="МодельРасширеннаяПодсказка" id="38"/>
+				</InputField>
+				<InputField name="Агент" id="39">
+					<DataPath>Список.Агент</DataPath>
+					<ContextMenu name="АгентКонтекстноеМеню" id="40"/>
+					<ExtendedTooltip name="АгентРасширеннаяПодсказка" id="41"/>
+				</InputField>
+				<InputField name="ВходныеТокены" id="42">
+					<DataPath>Список.ВходныеТокены</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Входные токены</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ВходныеТокеныКонтекстноеМеню" id="43"/>
+					<ExtendedTooltip name="ВходныеТокеныРасширеннаяПодсказка" id="44"/>
+				</InputField>
+				<InputField name="ВыходныеТокены" id="45">
+					<DataPath>Список.ВыходныеТокены</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выходные токены</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ВыходныеТокеныКонтекстноеМеню" id="46"/>
+					<ExtendedTooltip name="ВыходныеТокеныРасширеннаяПодсказка" id="47"/>
+				</InputField>
+				<InputField name="ТекстЗапроса" id="48">
+					<DataPath>Список.ТекстЗапроса</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Запрос к модели</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="ТекстЗапросаКонтекстноеМеню" id="49"/>
+					<ExtendedTooltip name="ТекстЗапросаРасширеннаяПодсказка" id="50"/>
+				</InputField>
+			</ChildItems>
+			<Events>
+				<Event name="Selection">СписокВыбор</Event>
+			</Events>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Список" id="51">
+			<Type>
+				<v8:Type>cfg:DynamicList</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<Settings xsi:type="DynamicList">
+				<ManualQuery>false</ManualQuery>
+				<DynamicDataRead>true</DynamicDataRead>
+				<MainTable>InformationRegister.AI_ЖурналЗапросов</MainTable>
+				<ListSettings>
+					<dcsset:filter>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>dfcece9d-5077-440b-b6b3-45a5cb4538eb</dcsset:userSettingID>
+					</dcsset:filter>
+					<dcsset:order>
+						<dcsset:item xsi:type="dcsset:OrderItemField">
+							<dcsset:field>Период</dcsset:field>
+							<dcsset:orderType>Desc</dcsset:orderType>
+						</dcsset:item>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>88619765-ccb3-46c6-ac52-38e9c992ebd4</dcsset:userSettingID>
+					</dcsset:order>
+					<dcsset:conditionalAppearance>
+						<dcsset:viewMode>Normal</dcsset:viewMode>
+						<dcsset:userSettingID>b75fecce-942b-4aed-abc9-e6a02e460fb3</dcsset:userSettingID>
+					</dcsset:conditionalAppearance>
+					<dcsset:itemsViewMode>Normal</dcsset:itemsViewMode>
+					<dcsset:itemsUserSettingID>911b6018-f537-43e8-a417-da56b22f9aec</dcsset:itemsUserSettingID>
+				</ListSettings>
+			</Settings>
+		</Attribute>
+	</Attributes>
+	<Commands>
+		<Command name="ОткрытьЗапись" id="52">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть выбранную запись журнала: полный запрос, инструкцию и ответ сервиса. Только для просмотра.</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Action>ОткрытьЗаписьОбработка</Action>
+			<Shortcut>Enter</Shortcut>
+		</Command>
+	</Commands>
+</Form>

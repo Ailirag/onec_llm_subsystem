@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="v8help://service_book/service_style"/>
+</head>
+<body>
+<h1>Профили MCP</h1>
+<p>Профиль MCP — явный список внешних инструментов, разрешенных <a href="Catalog.AI_Агенты/Help">агенту</a>. Профиль указывается в агенте в поле «Профиль внешних MCP-инструментов» и действует только при включенном агентском режиме.</p>
+
+<h2>Разрешенные инструменты</h2>
+<p>В таблице — <a href="Catalog.AI_MCPИнструменты/Help">MCP-инструменты</a> и режим каждого:</p>
+<ul>
+<li><strong>Выполнять автоматически</strong> — модель получает инструмент и вызывает его сама, без вопросов.</li>
+<li><strong>Требовать подтверждение (пока не поддерживается)</strong> — подтверждения в подсистеме нет, поэтому такой инструмент модели не передается: сейчас это то же, что «Запрещено».</li>
+<li><strong>Запрещено</strong> — инструмент не передается и не вызывается.</li>
+</ul>
+<p>Чего нет в профиле, агенту недоступно, даже если инструмент есть на сервере. Не добавляйте один инструмент дважды.</p>
+
+<h2>Пределы</h2>
+<ul>
+<li><strong>Максимум вызовов за ответ</strong> — сколько раз агент может вызвать MCP-инструменты, отвечая на один вопрос; неудачные вызовы тоже считаются. 0 — 10. Сверх лимита модель получает ошибку.</li>
+<li><strong>Предельное время вызова, с</strong> — на каждый вызов отдельно, вместе с подключением к серверу; 0 — 120 секунд.</li>
+<li><strong>Предельный размер результата, байт</strong> — на каждый вызов отдельно; больший результат модели не передается, она получает ошибку. 0 — 1 МБ.</li>
+</ul>
+<p>См. также: <a href="Subsystem.LLM/Help">как устроена подсистема LLM</a>.</p>
+<!--session-links-->
+<script type="text/javascript">
+(function () {
+    var parameters = window.location.search;
+    if (!parameters) return;
+    for (var i = 0; i < document.links.length; i++) {
+        var link = document.links[i];
+        if (link.href.indexOf('/mdobject/') >= 0 && link.href.indexOf('?') < 0) {
+            link.href = link.href + parameters;
+        }
+    }
+})();
+</script>
+<!--/session-links-->
+</body>
+</html>

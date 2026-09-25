@@ -70,7 +70,7 @@
 			<AuxiliaryListForm />
 			<AuxiliaryChoiceForm />
 			<AuxiliaryFolderChoiceForm />
-			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<BasedOn />
 			<DataLockFields />
 			<DataLockControlMode>Managed</DataLockControlMode>
@@ -103,7 +103,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Без флажка любой запрос к моделям этого провайдера завершается ошибкой. Новый провайдер создается выключенным.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -143,7 +148,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Особенности обмена: у Yandex, Z.AI и LM Studio они свои, OpenAI, Ollama и «OpenAI-совместимый» работают одинаково. Пусто — тип определяется по названию.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -169,11 +179,10 @@
 			</Attribute>
 			<Attribute uuid="8657caa1-bc91-474b-b1b5-ff37cd0fea63">
 				<Properties>
-					<Name>APIКлюч</Name>
-					<Synonym>
+					<Name>APIКлюч</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>APIКлюч</v8:content>
+							<v8:content>API-ключ</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -183,7 +192,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ключ доступа к API провайдера. Пусто — запросы уходят без авторизации: так подключают локальный сервер.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -209,11 +223,10 @@
 			</Attribute>
 			<Attribute uuid="a0be04a1-6838-4cdc-b22d-4c27aa39ed5e">
 				<Properties>
-					<Name>МаксКоличествоПотоков</Name>
-					<Synonym>
+					<Name>МаксКоличествоПотоков</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Макс количество потоков</v8:content>
+							<v8:content>Потоков одновременно</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -228,7 +241,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько операций с этим провайдером выполняется одновременно, 0 — одна. Общий предел для всех провайдеров — «Потоков обработки очереди» в настройках подсистемы.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -254,11 +272,10 @@
 			</Attribute>
 			<Attribute uuid="1955f0b2-8ecb-4681-9651-ea0063bac289">
 				<Properties>
-					<Name>ПровайдерИсточникAPI</Name>
-					<Synonym>
+					<Name>ПровайдерИсточникAPI</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Провайдер источник API</v8:content>
+							<v8:content>Работает по API провайдера</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -268,7 +285,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Заполняйте, только если сервис повторяет API другого провайдера: тип берется у него, ключ и адреса — из этой карточки. Обычно достаточно поля «Тип провайдера».</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -294,11 +316,10 @@
 			</Attribute>
 			<Attribute uuid="c36db6b8-deee-4430-953b-09659cc3eb1a">
 				<Properties>
-					<Name>ЛимитRPM</Name>
-					<Synonym>
+					<Name>ЛимитRPM</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Лимит RPM</v8:content>
+							<v8:content>Запросов очереди за запуск</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment>0 — без лимита. Максимум запросов в минуту к провайдеру.</Comment>
@@ -313,7 +334,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько запросов очереди (песочница, программные вызовы) брать за один запуск регламентного задания, 0 — без ограничения. Чат, агентов и AI-действия не ограничивает.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -339,11 +365,10 @@
 			</Attribute>
 			<Attribute uuid="47940953-e407-4842-8d62-594e5a18b7d3">
 				<Properties>
-					<Name>ЛимитТокеновВСутки</Name>
-					<Synonym>
+					<Name>ЛимитТокеновВСутки</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Лимит токенов в сутки</v8:content>
+							<v8:content>Токенов очереди в сутки</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -358,7 +383,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько токенов в сутки можно израсходовать через очередь запросов, 0 — без ограничения. Считается по журналу запросов: без журнала не работает. Чат и агентов не ограничивает.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -384,11 +414,10 @@
 			</Attribute>
 			<Attribute uuid="9a631a4f-e533-433a-8468-82d204b61464">
 				<Properties>
-					<Name>МодельАнализаВложений</Name>
-					<Synonym>
+					<Name>МодельАнализаВложений</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Модель анализа вложений</v8:content>
+							<v8:content>Модель для разбора файлов</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -398,7 +427,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Модель этого провайдера для картинок и документов из вложений. Пусто: у Yandex модель подберется сама, у других провайдеров такие файлы не разобрать.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -424,11 +458,10 @@
 			</Attribute>
 			<Attribute uuid="8f6c5371-7450-465d-9dac-760cea861bd8">
 				<Properties>
-					<Name>ТаймаутСек</Name>
-					<Synonym>
+					<Name>ТаймаутСек</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Таймаут запроса к модели, сек</v8:content>
+							<v8:content>Таймаут запроса к модели, с</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -443,7 +476,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько ждать ответа модели на один запрос. 0 — общий таймаут из настроек подсистемы, а если и он 0 — 120 секунд.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -469,11 +507,10 @@
 			</Attribute>
 			<Attribute uuid="c59f5b88-3767-4613-b02f-f2686392b503">
 				<Properties>
-					<Name>СпособРазбораВложений</Name>
-					<Synonym>
+					<Name>СпособРазбораВложений</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Способ разбора вложений</v8:content>
+							<v8:content>Чем читать файлы</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -483,7 +520,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Авто — по возможностям провайдера; Мультимодально — файл читает сама модель; OCR — PDF и снимки распознает Yandex Vision. Сценарий может задать свой способ.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -535,11 +577,10 @@
 				<ChildObjects>
 					<Attribute uuid="8a3d152d-b74c-495c-ad2b-deae5dd19329">
 						<Properties>
-							<Name>БазовыйURL</Name>
-							<Synonym>
+							<Name>БазовыйURL</Name><Synonym>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Базовый URL</v8:content>
+									<v8:content>Адрес сервиса</v8:content>
 								</v8:item>
 							</Synonym>
 							<Comment />
@@ -553,7 +594,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Адрес без «/v1» на конце: путь вида v1/chat/completions подсистема допишет сама. Для Z.AI можно оставить пустым — возьмется адрес по умолчанию.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -576,11 +622,10 @@
 					</Attribute>
 					<Attribute uuid="f9c6ebd0-0788-4db0-a4e6-f96769ba617f">
 						<Properties>
-							<Name>Тип</Name>
-							<Synonym>
+							<Name>Тип</Name><Synonym>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Тип</v8:content>
+									<v8:content>Тип API</v8:content>
 								</v8:item>
 							</Synonym>
 							<Comment />
@@ -590,7 +635,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Протокол, к которому относится адрес. Для загрузки моделей нужна строка Chat Completions, для файлов во вложениях — Responses. Не повторяйте тип в двух строках.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>
@@ -613,11 +663,10 @@
 					</Attribute>
 					<Attribute uuid="618c68d0-30f9-49f2-a767-0fa0c41fc8f1">
 						<Properties>
-							<Name>Описание</Name>
-							<Synonym>
+							<Name>Описание</Name><Synonym>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Описание</v8:content>
+									<v8:content>Комментарий</v8:content>
 								</v8:item>
 							</Synonym>
 							<Comment />
@@ -631,7 +680,12 @@
 							<PasswordMode>false</PasswordMode>
 							<Format />
 							<EditFormat />
-							<ToolTip />
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Заметка для администратора, в работе не используется.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<MarkNegatives>false</MarkNegatives>
 							<Mask />
 							<MultiLine>false</MultiLine>

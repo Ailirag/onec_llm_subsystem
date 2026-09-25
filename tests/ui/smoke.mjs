@@ -73,8 +73,10 @@ const chat = await openCommand('Чат по данным базы');
 assert(!chat.errorModal, `Chat form error: ${chat.errorModal}`);
 assert(chat.title === 'Диалог с агентом по данным базы', 'Unexpected chat form title');
 assert(chat.iframes === 1, 'Chat HTML document was not rendered');
+// The button shows its caption now; web-test reports the element name only
+// for picture-only buttons, so accept both.
 assert(
-  chat.buttons.some(button => button.name === 'ПрикрепитьФайлы'),
+  chat.buttons.some(button => ['Прикрепить', 'ПрикрепитьФайлы'].includes(button.name)),
   'Attachment button is missing'
 );
 assert(

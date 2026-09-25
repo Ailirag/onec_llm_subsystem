@@ -55,36 +55,41 @@
 				</Title>
 				<ExtendedTooltip name="КнопкаЗакрытьРасширеннаяПодсказка" id="8"/>
 			</Button>
+			<Button name="КнопкаСправка" id="9">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<ExtendedTooltip name="КнопкаСправкаРасширеннаяПодсказка" id="10"/>
+			</Button>
 		</ChildItems>
 	</AutoCommandBar>
 	<Events>
 		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
 	</Events>
 	<ChildItems>
-		<Pages name="Шаги" id="9">
+		<Pages name="Шаги" id="11">
 			<PagesRepresentation>None</PagesRepresentation>
-			<ExtendedTooltip name="ШагиРасширеннаяПодсказка" id="10"/>
+			<ExtendedTooltip name="ШагиРасширеннаяПодсказка" id="12"/>
 			<ChildItems>
-				<Page name="ШагОбъект" id="11">
+				<Page name="ШагОбъект" id="13">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Объект</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="ШагОбъектРасширеннаяПодсказка" id="12"/>
+					<ExtendedTooltip name="ШагОбъектРасширеннаяПодсказка" id="14"/>
 					<ChildItems>
-						<LabelDecoration name="ПояснениеОбъект" id="13">
+						<LabelDecoration name="ПояснениеОбъект" id="15">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content>Шаг 1 из 5. С каким объектом работает действие, где его показать и как назвать. Мастер сам заведет карту извлечения, сценарий и место запуска и свяжет их.</v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПояснениеОбъектКонтекстноеМеню" id="14"/>
-							<ExtendedTooltip name="ПояснениеОбъектРасширеннаяПодсказка" id="15"/>
+							<ContextMenu name="ПояснениеОбъектКонтекстноеМеню" id="16"/>
+							<ExtendedTooltip name="ПояснениеОбъектРасширеннаяПодсказка" id="17"/>
 						</LabelDecoration>
-						<InputField name="ПредставлениеОбъекта" id="16">
+						<InputField name="ПредставлениеОбъекта" id="18">
 							<DataPath>ПредставлениеОбъекта</DataPath>
 							<Title>
 								<v8:item>
@@ -100,8 +105,8 @@
 									<v8:content>Начните вводить название: шаблоны, договор...</v8:content>
 								</v8:item>
 							</InputHint>
-							<ContextMenu name="ПредставлениеОбъектаКонтекстноеМеню" id="17"/>
-							<ExtendedTooltip name="ПредставлениеОбъектаРасширеннаяПодсказка" id="18"/>
+							<ContextMenu name="ПредставлениеОбъектаКонтекстноеМеню" id="19"/>
+							<ExtendedTooltip name="ПредставлениеОбъектаРасширеннаяПодсказка" id="20"/>
 							<Events>
 								<Event name="StartChoice">ПредставлениеОбъектаНачалоВыбора</Event>
 								<Event name="AutoComplete">ПредставлениеОбъектаАвтоПодбор</Event>
@@ -109,7 +114,7 @@
 								<Event name="ChoiceProcessing">ПредставлениеОбъектаОбработкаВыбора</Event>
 							</Events>
 						</InputField>
-						<RadioButtonField name="ТипМестаМастера" id="19">
+						<RadioButtonField name="ТипМестаМастера" id="21">
 							<DataPath>ТипМестаМастера</DataPath>
 							<Title>
 								<v8:item>
@@ -148,13 +153,13 @@
 									</xr:Value>
 								</xr:Item>
 							</ChoiceList>
-							<ContextMenu name="ТипМестаМастераКонтекстноеМеню" id="20"/>
-							<ExtendedTooltip name="ТипМестаМастераРасширеннаяПодсказка" id="21"/>
+							<ContextMenu name="ТипМестаМастераКонтекстноеМеню" id="22"/>
+							<ExtendedTooltip name="ТипМестаМастераРасширеннаяПодсказка" id="23"/>
 							<Events>
 								<Event name="OnChange">ТипМестаМастераПриИзменении</Event>
 							</Events>
 						</RadioButtonField>
-						<InputField name="Название" id="22">
+						<InputField name="Название" id="24">
 							<DataPath>Название</DataPath>
 							<Title>
 								<v8:item>
@@ -169,54 +174,54 @@
 									<v8:content>Например: Заполнить по файлу договора</v8:content>
 								</v8:item>
 							</InputHint>
-							<ContextMenu name="НазваниеКонтекстноеМеню" id="23"/>
-							<ExtendedTooltip name="НазваниеРасширеннаяПодсказка" id="24"/>
+							<ContextMenu name="НазваниеКонтекстноеМеню" id="25"/>
+							<ExtendedTooltip name="НазваниеРасширеннаяПодсказка" id="26"/>
 							<Events>
 								<Event name="OnChange">НазваниеПриИзменении</Event>
 							</Events>
 						</InputField>
-						<LabelDecoration name="ПояснениеНазвания" id="25">
+						<LabelDecoration name="ПояснениеНазвания" id="27">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content>Так будет подписана команда у пользователя. Так же назовутся новые карта и сценарий.</v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПояснениеНазванияКонтекстноеМеню" id="26"/>
-							<ExtendedTooltip name="ПояснениеНазванияРасширеннаяПодсказка" id="27"/>
+							<ContextMenu name="ПояснениеНазванияКонтекстноеМеню" id="28"/>
+							<ExtendedTooltip name="ПояснениеНазванияРасширеннаяПодсказка" id="29"/>
 						</LabelDecoration>
-						<LabelDecoration name="ДействияОбъекта" id="28">
+						<LabelDecoration name="ДействияОбъекта" id="30">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content> </v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ДействияОбъектаКонтекстноеМеню" id="29"/>
-							<ExtendedTooltip name="ДействияОбъектаРасширеннаяПодсказка" id="30"/>
+							<ContextMenu name="ДействияОбъектаКонтекстноеМеню" id="31"/>
+							<ExtendedTooltip name="ДействияОбъектаРасширеннаяПодсказка" id="32"/>
 						</LabelDecoration>
 					</ChildItems>
 				</Page>
-				<Page name="ШагДанные" id="31">
+				<Page name="ШагДанные" id="33">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Данные</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="ШагДанныеРасширеннаяПодсказка" id="32"/>
+					<ExtendedTooltip name="ШагДанныеРасширеннаяПодсказка" id="34"/>
 					<ChildItems>
-						<LabelDecoration name="ПояснениеДанные" id="33">
+						<LabelDecoration name="ПояснениеДанные" id="35">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content>Шаг 2 из 5. Что модель получит, кроме запроса.</v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПояснениеДанныеКонтекстноеМеню" id="34"/>
-							<ExtendedTooltip name="ПояснениеДанныеРасширеннаяПодсказка" id="35"/>
+							<ContextMenu name="ПояснениеДанныеКонтекстноеМеню" id="36"/>
+							<ExtendedTooltip name="ПояснениеДанныеРасширеннаяПодсказка" id="37"/>
 						</LabelDecoration>
-						<RadioButtonField name="ИсточникДанных" id="36">
+						<RadioButtonField name="ИсточникДанных" id="38">
 							<DataPath>ИсточникДанных</DataPath>
 							<Title>
 								<v8:item>
@@ -268,55 +273,55 @@
 									</xr:Value>
 								</xr:Item>
 							</ChoiceList>
-							<ContextMenu name="ИсточникДанныхКонтекстноеМеню" id="37"/>
-							<ExtendedTooltip name="ИсточникДанныхРасширеннаяПодсказка" id="38"/>
+							<ContextMenu name="ИсточникДанныхКонтекстноеМеню" id="39"/>
+							<ExtendedTooltip name="ИсточникДанныхРасширеннаяПодсказка" id="40"/>
 							<Events>
 								<Event name="OnChange">ИсточникДанныхПриИзменении</Event>
 							</Events>
 						</RadioButtonField>
-						<LabelDecoration name="ПояснениеФайла" id="39">
+						<LabelDecoration name="ПояснениеФайла" id="41">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content> </v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПояснениеФайлаКонтекстноеМеню" id="40"/>
-							<ExtendedTooltip name="ПояснениеФайлаРасширеннаяПодсказка" id="41"/>
+							<ContextMenu name="ПояснениеФайлаКонтекстноеМеню" id="42"/>
+							<ExtendedTooltip name="ПояснениеФайлаРасширеннаяПодсказка" id="43"/>
 						</LabelDecoration>
-						<Table name="ДанныеДляМодели" id="42">
+						<Table name="ДанныеДляМодели" id="44">
 							<DataPath>ДанныеДляМодели</DataPath>
 							<CommandBarLocation>None</CommandBarLocation>
 							<Height>8</Height>
-							<ContextMenu name="ДанныеДляМоделиКонтекстноеМеню" id="43"/>
-							<AutoCommandBar name="ДанныеДляМоделиКоманднаяПанель" id="44"/>
-							<ExtendedTooltip name="ДанныеДляМоделиРасширеннаяПодсказка" id="45"/>
-							<SearchStringAddition name="ДанныеДляМоделиСтрокаПоиска" id="46">
+							<ContextMenu name="ДанныеДляМоделиКонтекстноеМеню" id="45"/>
+							<AutoCommandBar name="ДанныеДляМоделиКоманднаяПанель" id="46"/>
+							<ExtendedTooltip name="ДанныеДляМоделиРасширеннаяПодсказка" id="47"/>
+							<SearchStringAddition name="ДанныеДляМоделиСтрокаПоиска" id="48">
 								<AdditionSource>
 									<Item>ДанныеДляМодели</Item>
 									<Type>SearchStringRepresentation</Type>
 								</AdditionSource>
-								<ContextMenu name="ДанныеДляМоделиСтрокаПоискаКонтекстноеМеню" id="47"/>
-								<ExtendedTooltip name="ДанныеДляМоделиСтрокаПоискаРасширеннаяПодсказка" id="48"/>
+								<ContextMenu name="ДанныеДляМоделиСтрокаПоискаКонтекстноеМеню" id="49"/>
+								<ExtendedTooltip name="ДанныеДляМоделиСтрокаПоискаРасширеннаяПодсказка" id="50"/>
 							</SearchStringAddition>
-							<ViewStatusAddition name="ДанныеДляМоделиСостояниеПросмотра" id="49">
+							<ViewStatusAddition name="ДанныеДляМоделиСостояниеПросмотра" id="51">
 								<AdditionSource>
 									<Item>ДанныеДляМодели</Item>
 									<Type>ViewStatusRepresentation</Type>
 								</AdditionSource>
-								<ContextMenu name="ДанныеДляМоделиСостояниеПросмотраКонтекстноеМеню" id="50"/>
-								<ExtendedTooltip name="ДанныеДляМоделиСостояниеПросмотраРасширеннаяПодсказка" id="51"/>
+								<ContextMenu name="ДанныеДляМоделиСостояниеПросмотраКонтекстноеМеню" id="52"/>
+								<ExtendedTooltip name="ДанныеДляМоделиСостояниеПросмотраРасширеннаяПодсказка" id="53"/>
 							</ViewStatusAddition>
-							<SearchControlAddition name="ДанныеДляМоделиУправлениеПоиском" id="52">
+							<SearchControlAddition name="ДанныеДляМоделиУправлениеПоиском" id="54">
 								<AdditionSource>
 									<Item>ДанныеДляМодели</Item>
 									<Type>SearchControl</Type>
 								</AdditionSource>
-								<ContextMenu name="ДанныеДляМоделиУправлениеПоискомКонтекстноеМеню" id="53"/>
-								<ExtendedTooltip name="ДанныеДляМоделиУправлениеПоискомРасширеннаяПодсказка" id="54"/>
+								<ContextMenu name="ДанныеДляМоделиУправлениеПоискомКонтекстноеМеню" id="55"/>
+								<ExtendedTooltip name="ДанныеДляМоделиУправлениеПоискомРасширеннаяПодсказка" id="56"/>
 							</SearchControlAddition>
 							<ChildItems>
-								<CheckBoxField name="ДанныеДляМоделиПометка" id="55">
+								<CheckBoxField name="ДанныеДляМоделиПометка" id="57">
 									<DataPath>ДанныеДляМодели.Пометка</DataPath>
 									<Title>
 										<v8:item>
@@ -326,10 +331,10 @@
 									</Title>
 									<CheckBoxType>Auto</CheckBoxType>
 									<TitleLocation>Right</TitleLocation>
-									<ContextMenu name="ДанныеДляМоделиПометкаКонтекстноеМеню" id="56"/>
-									<ExtendedTooltip name="ДанныеДляМоделиПометкаРасширеннаяПодсказка" id="57"/>
+									<ContextMenu name="ДанныеДляМоделиПометкаКонтекстноеМеню" id="58"/>
+									<ExtendedTooltip name="ДанныеДляМоделиПометкаРасширеннаяПодсказка" id="59"/>
 								</CheckBoxField>
-								<InputField name="ДанныеДляМоделиПредставление" id="58">
+								<InputField name="ДанныеДляМоделиПредставление" id="60">
 									<DataPath>ДанныеДляМодели.Представление</DataPath>
 									<Title>
 										<v8:item>
@@ -338,10 +343,10 @@
 										</v8:item>
 									</Title>
 									<ReadOnly>true</ReadOnly>
-									<ContextMenu name="ДанныеДляМоделиПредставлениеКонтекстноеМеню" id="59"/>
-									<ExtendedTooltip name="ДанныеДляМоделиПредставлениеРасширеннаяПодсказка" id="60"/>
+									<ContextMenu name="ДанныеДляМоделиПредставлениеКонтекстноеМеню" id="61"/>
+									<ExtendedTooltip name="ДанныеДляМоделиПредставлениеРасширеннаяПодсказка" id="62"/>
 								</InputField>
-								<InputField name="ДанныеДляМоделиГде" id="61">
+								<InputField name="ДанныеДляМоделиГде" id="63">
 									<DataPath>ДанныеДляМодели.Где</DataPath>
 									<Title>
 										<v8:item>
@@ -350,12 +355,12 @@
 										</v8:item>
 									</Title>
 									<ReadOnly>true</ReadOnly>
-									<ContextMenu name="ДанныеДляМоделиГдеКонтекстноеМеню" id="62"/>
-									<ExtendedTooltip name="ДанныеДляМоделиГдеРасширеннаяПодсказка" id="63"/>
+									<ContextMenu name="ДанныеДляМоделиГдеКонтекстноеМеню" id="64"/>
+									<ExtendedTooltip name="ДанныеДляМоделиГдеРасширеннаяПодсказка" id="65"/>
 								</InputField>
 							</ChildItems>
 						</Table>
-						<CheckBoxField name="РежимДиалога" id="64">
+						<CheckBoxField name="РежимДиалога" id="66">
 							<DataPath>РежимДиалога</DataPath>
 							<Title>
 								<v8:item>
@@ -365,44 +370,44 @@
 							</Title>
 							<CheckBoxType>Auto</CheckBoxType>
 							<TitleLocation>Right</TitleLocation>
-							<ContextMenu name="РежимДиалогаКонтекстноеМеню" id="65"/>
-							<ExtendedTooltip name="РежимДиалогаРасширеннаяПодсказка" id="66"/>
+							<ContextMenu name="РежимДиалогаКонтекстноеМеню" id="67"/>
+							<ExtendedTooltip name="РежимДиалогаРасширеннаяПодсказка" id="68"/>
 							<Events>
 								<Event name="OnChange">РежимДиалогаПриИзменении</Event>
 							</Events>
 						</CheckBoxField>
-						<LabelDecoration name="ПояснениеДиалога" id="67">
+						<LabelDecoration name="ПояснениеДиалога" id="69">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content> </v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПояснениеДиалогаКонтекстноеМеню" id="68"/>
-							<ExtendedTooltip name="ПояснениеДиалогаРасширеннаяПодсказка" id="69"/>
+							<ContextMenu name="ПояснениеДиалогаКонтекстноеМеню" id="70"/>
+							<ExtendedTooltip name="ПояснениеДиалогаРасширеннаяПодсказка" id="71"/>
 						</LabelDecoration>
 					</ChildItems>
 				</Page>
-				<Page name="ШагРезультат" id="70">
+				<Page name="ШагРезультат" id="72">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Результат</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="ШагРезультатРасширеннаяПодсказка" id="71"/>
+					<ExtendedTooltip name="ШагРезультатРасширеннаяПодсказка" id="73"/>
 					<ChildItems>
-						<LabelDecoration name="ПояснениеРезультат" id="72">
+						<LabelDecoration name="ПояснениеРезультат" id="74">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content>Шаг 3 из 5. Что сделать с ответом модели и какие поля она должна вернуть.</v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПояснениеРезультатКонтекстноеМеню" id="73"/>
-							<ExtendedTooltip name="ПояснениеРезультатРасширеннаяПодсказка" id="74"/>
+							<ContextMenu name="ПояснениеРезультатКонтекстноеМеню" id="75"/>
+							<ExtendedTooltip name="ПояснениеРезультатРасширеннаяПодсказка" id="76"/>
 						</LabelDecoration>
-						<RadioButtonField name="ВидРезультата" id="75">
+						<RadioButtonField name="ВидРезультата" id="77">
 							<DataPath>ВидРезультата</DataPath>
 							<Title>
 								<v8:item>
@@ -480,13 +485,13 @@
 									</xr:Value>
 								</xr:Item>
 							</ChoiceList>
-							<ContextMenu name="ВидРезультатаКонтекстноеМеню" id="76"/>
-							<ExtendedTooltip name="ВидРезультатаРасширеннаяПодсказка" id="77"/>
+							<ContextMenu name="ВидРезультатаКонтекстноеМеню" id="78"/>
+							<ExtendedTooltip name="ВидРезультатаРасширеннаяПодсказка" id="79"/>
 							<Events>
 								<Event name="OnChange">ВидРезультатаПриИзменении</Event>
 							</Events>
 						</RadioButtonField>
-						<InputField name="КартаИзвлечения" id="78">
+						<InputField name="КартаИзвлечения" id="80">
 							<DataPath>КартаИзвлечения</DataPath>
 							<Title>
 								<v8:item>
@@ -495,30 +500,31 @@
 								</v8:item>
 							</Title>
 							<ClearButton>true</ClearButton>
-							<ContextMenu name="КартаИзвлеченияКонтекстноеМеню" id="79"/>
-							<ExtendedTooltip name="КартаИзвлеченияРасширеннаяПодсказка" id="80"/>
+							<ContextMenu name="КартаИзвлеченияКонтекстноеМеню" id="81"/>
+							<ExtendedTooltip name="КартаИзвлеченияРасширеннаяПодсказка" id="82"/>
 							<Events>
 								<Event name="OnChange">КартаИзвлеченияПриИзменении</Event>
 							</Events>
 						</InputField>
-						<LabelDecoration name="ПояснениеКарты" id="81">
+						<LabelDecoration name="ПояснениеКарты" id="83">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content> </v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПояснениеКартыКонтекстноеМеню" id="82"/>
-							<ExtendedTooltip name="ПояснениеКартыРасширеннаяПодсказка" id="83"/>
+							<ContextMenu name="ПояснениеКартыКонтекстноеМеню" id="84"/>
+							<ExtendedTooltip name="ПояснениеКартыРасширеннаяПодсказка" id="85"/>
 						</LabelDecoration>
-						<UsualGroup name="ГруппаОтметки" id="84">
+						<UsualGroup name="ГруппаОтметки" id="86">
 							<Group>HorizontalIfPossible</Group>
-							<ExtendedTooltip name="ГруппаОтметкиРасширеннаяПодсказка" id="85"/>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ГруппаОтметкиРасширеннаяПодсказка" id="87"/>
 							<ChildItems>
-								<CommandBar name="ПанельРеквизитов" id="86">
-									<ExtendedTooltip name="ПанельРеквизитовРасширеннаяПодсказка" id="87"/>
+								<CommandBar name="ПанельРеквизитов" id="88">
+									<ExtendedTooltip name="ПанельРеквизитовРасширеннаяПодсказка" id="89"/>
 									<ChildItems>
-										<Button name="КнопкаОтметитьВсе" id="88">
+										<Button name="КнопкаОтметитьВсе" id="90">
 											<Type>CommandBarButton</Type>
 											<CommandName>Form.Command.ОтметитьВсе</CommandName>
 											<Title>
@@ -527,9 +533,9 @@
 													<v8:content>Отметить все</v8:content>
 												</v8:item>
 											</Title>
-											<ExtendedTooltip name="КнопкаОтметитьВсеРасширеннаяПодсказка" id="89"/>
+											<ExtendedTooltip name="КнопкаОтметитьВсеРасширеннаяПодсказка" id="91"/>
 										</Button>
-										<Button name="КнопкаСнятьОтметки" id="90">
+										<Button name="КнопкаСнятьОтметки" id="92">
 											<Type>CommandBarButton</Type>
 											<CommandName>Form.Command.СнятьОтметки</CommandName>
 											<Title>
@@ -538,55 +544,55 @@
 													<v8:content>Снять отметки</v8:content>
 												</v8:item>
 											</Title>
-											<ExtendedTooltip name="КнопкаСнятьОтметкиРасширеннаяПодсказка" id="91"/>
+											<ExtendedTooltip name="КнопкаСнятьОтметкиРасширеннаяПодсказка" id="93"/>
 										</Button>
 									</ChildItems>
 								</CommandBar>
-								<LabelDecoration name="ОтмеченоРеквизитов" id="92">
+								<LabelDecoration name="ОтмеченоРеквизитов" id="94">
 									<Title formatted="false">
 										<v8:item>
 											<v8:lang>ru</v8:lang>
 											<v8:content> </v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="ОтмеченоРеквизитовКонтекстноеМеню" id="93"/>
-									<ExtendedTooltip name="ОтмеченоРеквизитовРасширеннаяПодсказка" id="94"/>
+									<ContextMenu name="ОтмеченоРеквизитовКонтекстноеМеню" id="95"/>
+									<ExtendedTooltip name="ОтмеченоРеквизитовРасширеннаяПодсказка" id="96"/>
 								</LabelDecoration>
 							</ChildItems>
 						</UsualGroup>
-						<Table name="Реквизиты" id="95">
+						<Table name="Реквизиты" id="97">
 							<DataPath>Реквизиты</DataPath>
 							<CommandBarLocation>None</CommandBarLocation>
 							<Height>10</Height>
-							<ContextMenu name="РеквизитыКонтекстноеМеню" id="96"/>
-							<AutoCommandBar name="РеквизитыКоманднаяПанель" id="97"/>
-							<ExtendedTooltip name="РеквизитыРасширеннаяПодсказка" id="98"/>
-							<SearchStringAddition name="РеквизитыСтрокаПоиска" id="99">
+							<ContextMenu name="РеквизитыКонтекстноеМеню" id="98"/>
+							<AutoCommandBar name="РеквизитыКоманднаяПанель" id="99"/>
+							<ExtendedTooltip name="РеквизитыРасширеннаяПодсказка" id="100"/>
+							<SearchStringAddition name="РеквизитыСтрокаПоиска" id="101">
 								<AdditionSource>
 									<Item>Реквизиты</Item>
 									<Type>SearchStringRepresentation</Type>
 								</AdditionSource>
-								<ContextMenu name="РеквизитыСтрокаПоискаКонтекстноеМеню" id="100"/>
-								<ExtendedTooltip name="РеквизитыСтрокаПоискаРасширеннаяПодсказка" id="101"/>
+								<ContextMenu name="РеквизитыСтрокаПоискаКонтекстноеМеню" id="102"/>
+								<ExtendedTooltip name="РеквизитыСтрокаПоискаРасширеннаяПодсказка" id="103"/>
 							</SearchStringAddition>
-							<ViewStatusAddition name="РеквизитыСостояниеПросмотра" id="102">
+							<ViewStatusAddition name="РеквизитыСостояниеПросмотра" id="104">
 								<AdditionSource>
 									<Item>Реквизиты</Item>
 									<Type>ViewStatusRepresentation</Type>
 								</AdditionSource>
-								<ContextMenu name="РеквизитыСостояниеПросмотраКонтекстноеМеню" id="103"/>
-								<ExtendedTooltip name="РеквизитыСостояниеПросмотраРасширеннаяПодсказка" id="104"/>
+								<ContextMenu name="РеквизитыСостояниеПросмотраКонтекстноеМеню" id="105"/>
+								<ExtendedTooltip name="РеквизитыСостояниеПросмотраРасширеннаяПодсказка" id="106"/>
 							</ViewStatusAddition>
-							<SearchControlAddition name="РеквизитыУправлениеПоиском" id="105">
+							<SearchControlAddition name="РеквизитыУправлениеПоиском" id="107">
 								<AdditionSource>
 									<Item>Реквизиты</Item>
 									<Type>SearchControl</Type>
 								</AdditionSource>
-								<ContextMenu name="РеквизитыУправлениеПоискомКонтекстноеМеню" id="106"/>
-								<ExtendedTooltip name="РеквизитыУправлениеПоискомРасширеннаяПодсказка" id="107"/>
+								<ContextMenu name="РеквизитыУправлениеПоискомКонтекстноеМеню" id="108"/>
+								<ExtendedTooltip name="РеквизитыУправлениеПоискомРасширеннаяПодсказка" id="109"/>
 							</SearchControlAddition>
 							<ChildItems>
-								<CheckBoxField name="РеквизитыПометка" id="108">
+								<CheckBoxField name="РеквизитыПометка" id="110">
 									<DataPath>Реквизиты.Пометка</DataPath>
 									<Title>
 										<v8:item>
@@ -596,13 +602,13 @@
 									</Title>
 									<CheckBoxType>Auto</CheckBoxType>
 									<TitleLocation>Right</TitleLocation>
-									<ContextMenu name="РеквизитыПометкаКонтекстноеМеню" id="109"/>
-									<ExtendedTooltip name="РеквизитыПометкаРасширеннаяПодсказка" id="110"/>
+									<ContextMenu name="РеквизитыПометкаКонтекстноеМеню" id="111"/>
+									<ExtendedTooltip name="РеквизитыПометкаРасширеннаяПодсказка" id="112"/>
 									<Events>
 										<Event name="OnChange">РеквизитыПометкаПриИзменении</Event>
 									</Events>
 								</CheckBoxField>
-								<InputField name="РеквизитыПредставление" id="111">
+								<InputField name="РеквизитыПредставление" id="113">
 									<DataPath>Реквизиты.Представление</DataPath>
 									<Title>
 										<v8:item>
@@ -611,10 +617,10 @@
 										</v8:item>
 									</Title>
 									<ReadOnly>true</ReadOnly>
-									<ContextMenu name="РеквизитыПредставлениеКонтекстноеМеню" id="112"/>
-									<ExtendedTooltip name="РеквизитыПредставлениеРасширеннаяПодсказка" id="113"/>
+									<ContextMenu name="РеквизитыПредставлениеКонтекстноеМеню" id="114"/>
+									<ExtendedTooltip name="РеквизитыПредставлениеРасширеннаяПодсказка" id="115"/>
 								</InputField>
-								<InputField name="РеквизитыТип" id="114">
+								<InputField name="РеквизитыТип" id="116">
 									<DataPath>Реквизиты.ТипПредставление</DataPath>
 									<Title>
 										<v8:item>
@@ -623,10 +629,10 @@
 										</v8:item>
 									</Title>
 									<ReadOnly>true</ReadOnly>
-									<ContextMenu name="РеквизитыТипКонтекстноеМеню" id="115"/>
-									<ExtendedTooltip name="РеквизитыТипРасширеннаяПодсказка" id="116"/>
+									<ContextMenu name="РеквизитыТипКонтекстноеМеню" id="117"/>
+									<ExtendedTooltip name="РеквизитыТипРасширеннаяПодсказка" id="118"/>
 								</InputField>
-								<InputField name="РеквизитыГде" id="117">
+								<InputField name="РеквизитыГде" id="119">
 									<DataPath>Реквизиты.Где</DataPath>
 									<Title>
 										<v8:item>
@@ -635,10 +641,10 @@
 										</v8:item>
 									</Title>
 									<ReadOnly>true</ReadOnly>
-									<ContextMenu name="РеквизитыГдеКонтекстноеМеню" id="118"/>
-									<ExtendedTooltip name="РеквизитыГдеРасширеннаяПодсказка" id="119"/>
+									<ContextMenu name="РеквизитыГдеКонтекстноеМеню" id="120"/>
+									<ExtendedTooltip name="РеквизитыГдеРасширеннаяПодсказка" id="121"/>
 								</InputField>
-								<CheckBoxField name="РеквизитыВыбиратьИзСписка" id="120">
+								<CheckBoxField name="РеквизитыВыбиратьИзСписка" id="122">
 									<DataPath>Реквизиты.ВыбиратьИзСписка</DataPath>
 									<Title>
 										<v8:item>
@@ -648,10 +654,10 @@
 									</Title>
 									<CheckBoxType>Auto</CheckBoxType>
 									<TitleLocation>Right</TitleLocation>
-									<ContextMenu name="РеквизитыВыбиратьИзСпискаКонтекстноеМеню" id="121"/>
-									<ExtendedTooltip name="РеквизитыВыбиратьИзСпискаРасширеннаяПодсказка" id="122"/>
+									<ContextMenu name="РеквизитыВыбиратьИзСпискаКонтекстноеМеню" id="123"/>
+									<ExtendedTooltip name="РеквизитыВыбиратьИзСпискаРасширеннаяПодсказка" id="124"/>
 								</CheckBoxField>
-								<InputField name="РеквизитыПодсказка" id="123">
+								<InputField name="РеквизитыПодсказка" id="125">
 									<DataPath>Реквизиты.Подсказка</DataPath>
 									<Title>
 										<v8:item>
@@ -659,12 +665,12 @@
 											<v8:content>Подсказка модели</v8:content>
 										</v8:item>
 									</Title>
-									<ContextMenu name="РеквизитыПодсказкаКонтекстноеМеню" id="124"/>
-									<ExtendedTooltip name="РеквизитыПодсказкаРасширеннаяПодсказка" id="125"/>
+									<ContextMenu name="РеквизитыПодсказкаКонтекстноеМеню" id="126"/>
+									<ExtendedTooltip name="РеквизитыПодсказкаРасширеннаяПодсказка" id="127"/>
 								</InputField>
 							</ChildItems>
 						</Table>
-						<RadioButtonField name="РежимСтрок" id="126">
+						<RadioButtonField name="РежимСтрок" id="128">
 							<DataPath>РежимСтрок</DataPath>
 							<Title>
 								<v8:item>
@@ -716,31 +722,31 @@
 									</xr:Value>
 								</xr:Item>
 							</ChoiceList>
-							<ContextMenu name="РежимСтрокКонтекстноеМеню" id="127"/>
-							<ExtendedTooltip name="РежимСтрокРасширеннаяПодсказка" id="128"/>
+							<ContextMenu name="РежимСтрокКонтекстноеМеню" id="129"/>
+							<ExtendedTooltip name="РежимСтрокРасширеннаяПодсказка" id="130"/>
 						</RadioButtonField>
 					</ChildItems>
 				</Page>
-				<Page name="ШагДействие" id="129">
+				<Page name="ШагДействие" id="131">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Модель</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="ШагДействиеРасширеннаяПодсказка" id="130"/>
+					<ExtendedTooltip name="ШагДействиеРасширеннаяПодсказка" id="132"/>
 					<ChildItems>
-						<LabelDecoration name="ПояснениеДействие" id="131">
+						<LabelDecoration name="ПояснениеДействие" id="133">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content>Шаг 4 из 5. Какая модель отвечает и что ей сказать.</v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПояснениеДействиеКонтекстноеМеню" id="132"/>
-							<ExtendedTooltip name="ПояснениеДействиеРасширеннаяПодсказка" id="133"/>
+							<ContextMenu name="ПояснениеДействиеКонтекстноеМеню" id="134"/>
+							<ExtendedTooltip name="ПояснениеДействиеРасширеннаяПодсказка" id="135"/>
 						</LabelDecoration>
-						<CheckBoxField name="РазрешитьПачку" id="134">
+						<CheckBoxField name="РазрешитьПачку" id="136">
 							<DataPath>РазрешитьПачку</DataPath>
 							<Title>
 								<v8:item>
@@ -750,33 +756,33 @@
 							</Title>
 							<CheckBoxType>Auto</CheckBoxType>
 							<TitleLocation>Right</TitleLocation>
-							<ContextMenu name="РазрешитьПачкуКонтекстноеМеню" id="135"/>
-							<ExtendedTooltip name="РазрешитьПачкуРасширеннаяПодсказка" id="136"/>
+							<ContextMenu name="РазрешитьПачкуКонтекстноеМеню" id="137"/>
+							<ExtendedTooltip name="РазрешитьПачкуРасширеннаяПодсказка" id="138"/>
 							<Events>
 								<Event name="OnChange">РазрешитьПачкуПриИзменении</Event>
 							</Events>
 						</CheckBoxField>
-						<LabelDecoration name="ПояснениеПачки" id="137">
+						<LabelDecoration name="ПояснениеПачки" id="139">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content> </v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПояснениеПачкиКонтекстноеМеню" id="138"/>
-							<ExtendedTooltip name="ПояснениеПачкиРасширеннаяПодсказка" id="139"/>
+							<ContextMenu name="ПояснениеПачкиКонтекстноеМеню" id="140"/>
+							<ExtendedTooltip name="ПояснениеПачкиРасширеннаяПодсказка" id="141"/>
 						</LabelDecoration>
-						<LabelDecoration name="ПредупреждениеПачки" id="140">
+						<LabelDecoration name="ПредупреждениеПачки" id="142">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content> </v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПредупреждениеПачкиКонтекстноеМеню" id="141"/>
-							<ExtendedTooltip name="ПредупреждениеПачкиРасширеннаяПодсказка" id="142"/>
+							<ContextMenu name="ПредупреждениеПачкиКонтекстноеМеню" id="143"/>
+							<ExtendedTooltip name="ПредупреждениеПачкиРасширеннаяПодсказка" id="144"/>
 						</LabelDecoration>
-						<InputField name="ОбразецСценария" id="143">
+						<InputField name="ОбразецСценария" id="145">
 							<DataPath>ОбразецСценария</DataPath>
 							<Title>
 								<v8:item>
@@ -785,23 +791,23 @@
 								</v8:item>
 							</Title>
 							<HorizontalStretch>true</HorizontalStretch>
-							<ContextMenu name="ОбразецСценарияКонтекстноеМеню" id="144"/>
-							<ExtendedTooltip name="ОбразецСценарияРасширеннаяПодсказка" id="145"/>
+							<ContextMenu name="ОбразецСценарияКонтекстноеМеню" id="146"/>
+							<ExtendedTooltip name="ОбразецСценарияРасширеннаяПодсказка" id="147"/>
 							<Events>
 								<Event name="OnChange">ОбразецСценарияПриИзменении</Event>
 							</Events>
 						</InputField>
-						<LabelDecoration name="ПояснениеСценария" id="146">
+						<LabelDecoration name="ПояснениеСценария" id="148">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content> </v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПояснениеСценарияКонтекстноеМеню" id="147"/>
-							<ExtendedTooltip name="ПояснениеСценарияРасширеннаяПодсказка" id="148"/>
+							<ContextMenu name="ПояснениеСценарияКонтекстноеМеню" id="149"/>
+							<ExtendedTooltip name="ПояснениеСценарияРасширеннаяПодсказка" id="150"/>
 						</LabelDecoration>
-						<InputField name="НачальныйЗапрос" id="149">
+						<InputField name="НачальныйЗапрос" id="151">
 							<DataPath>НачальныйЗапрос</DataPath>
 							<Title>
 								<v8:item>
@@ -814,54 +820,54 @@
 							<AutoMaxWidth>false</AutoMaxWidth>
 							<Height>4</Height>
 							<HorizontalStretch>true</HorizontalStretch>
-							<ContextMenu name="НачальныйЗапросКонтекстноеМеню" id="150"/>
-							<ExtendedTooltip name="НачальныйЗапросРасширеннаяПодсказка" id="151"/>
+							<ContextMenu name="НачальныйЗапросКонтекстноеМеню" id="152"/>
+							<ExtendedTooltip name="НачальныйЗапросРасширеннаяПодсказка" id="153"/>
 							<Events>
 								<Event name="OnChange">НачальныйЗапросПриИзменении</Event>
 							</Events>
 						</InputField>
 					</ChildItems>
 				</Page>
-				<Page name="ШагИтог" id="152">
+				<Page name="ШагИтог" id="154">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Итог</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="ШагИтогРасширеннаяПодсказка" id="153"/>
+					<ExtendedTooltip name="ШагИтогРасширеннаяПодсказка" id="155"/>
 					<ChildItems>
-						<LabelDecoration name="ПояснениеИтог" id="154">
+						<LabelDecoration name="ПояснениеИтог" id="156">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content>Шаг 5 из 5. Проверьте, что будет создано, и нажмите «Создать действие».</v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПояснениеИтогКонтекстноеМеню" id="155"/>
-							<ExtendedTooltip name="ПояснениеИтогРасширеннаяПодсказка" id="156"/>
+							<ContextMenu name="ПояснениеИтогКонтекстноеМеню" id="157"/>
+							<ExtendedTooltip name="ПояснениеИтогРасширеннаяПодсказка" id="158"/>
 						</LabelDecoration>
-						<LabelDecoration name="ТекстИтога" id="157">
+						<LabelDecoration name="ТекстИтога" id="159">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content> </v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ТекстИтогаКонтекстноеМеню" id="158"/>
-							<ExtendedTooltip name="ТекстИтогаРасширеннаяПодсказка" id="159"/>
+							<ContextMenu name="ТекстИтогаКонтекстноеМеню" id="160"/>
+							<ExtendedTooltip name="ТекстИтогаРасширеннаяПодсказка" id="161"/>
 						</LabelDecoration>
-						<LabelDecoration name="ТекстПредупреждений" id="160">
+						<LabelDecoration name="ТекстПредупреждений" id="162">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content> </v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ТекстПредупрежденийКонтекстноеМеню" id="161"/>
-							<ExtendedTooltip name="ТекстПредупрежденийРасширеннаяПодсказка" id="162"/>
+							<ContextMenu name="ТекстПредупрежденийКонтекстноеМеню" id="163"/>
+							<ExtendedTooltip name="ТекстПредупрежденийРасширеннаяПодсказка" id="164"/>
 						</LabelDecoration>
-						<CheckBoxField name="ПодключитьКоманду" id="163">
+						<CheckBoxField name="ПодключитьКоманду" id="165">
 							<DataPath>ПодключитьКоманду</DataPath>
 							<Title>
 								<v8:item>
@@ -871,20 +877,20 @@
 							</Title>
 							<CheckBoxType>Auto</CheckBoxType>
 							<TitleLocation>Right</TitleLocation>
-							<ContextMenu name="ПодключитьКомандуКонтекстноеМеню" id="164"/>
-							<ExtendedTooltip name="ПодключитьКомандуРасширеннаяПодсказка" id="165"/>
+							<ContextMenu name="ПодключитьКомандуКонтекстноеМеню" id="166"/>
+							<ExtendedTooltip name="ПодключитьКомандуРасширеннаяПодсказка" id="167"/>
 						</CheckBoxField>
-						<LabelDecoration name="ПояснениеКоманды" id="166">
+						<LabelDecoration name="ПояснениеКоманды" id="168">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content> </v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПояснениеКомандыКонтекстноеМеню" id="167"/>
-							<ExtendedTooltip name="ПояснениеКомандыРасширеннаяПодсказка" id="168"/>
+							<ContextMenu name="ПояснениеКомандыКонтекстноеМеню" id="169"/>
+							<ExtendedTooltip name="ПояснениеКомандыРасширеннаяПодсказка" id="170"/>
 						</LabelDecoration>
-						<CheckBoxField name="Включить" id="169">
+						<CheckBoxField name="Включить" id="171">
 							<DataPath>Включить</DataPath>
 							<Title>
 								<v8:item>
@@ -894,41 +900,41 @@
 							</Title>
 							<CheckBoxType>Auto</CheckBoxType>
 							<TitleLocation>Right</TitleLocation>
-							<ContextMenu name="ВключитьКонтекстноеМеню" id="170"/>
-							<ExtendedTooltip name="ВключитьРасширеннаяПодсказка" id="171"/>
+							<ContextMenu name="ВключитьКонтекстноеМеню" id="172"/>
+							<ExtendedTooltip name="ВключитьРасширеннаяПодсказка" id="173"/>
 						</CheckBoxField>
 					</ChildItems>
 				</Page>
-				<Page name="ШагГотово" id="172">
+				<Page name="ШагГотово" id="174">
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
 							<v8:content>Готово</v8:content>
 						</v8:item>
 					</Title>
-					<ExtendedTooltip name="ШагГотовоРасширеннаяПодсказка" id="173"/>
+					<ExtendedTooltip name="ШагГотовоРасширеннаяПодсказка" id="175"/>
 					<ChildItems>
-						<LabelDecoration name="ТекстГотово" id="174">
+						<LabelDecoration name="ТекстГотово" id="176">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content> </v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ТекстГотовоКонтекстноеМеню" id="175"/>
-							<ExtendedTooltip name="ТекстГотовоРасширеннаяПодсказка" id="176"/>
+							<ContextMenu name="ТекстГотовоКонтекстноеМеню" id="177"/>
+							<ExtendedTooltip name="ТекстГотовоРасширеннаяПодсказка" id="178"/>
 						</LabelDecoration>
-						<LabelDecoration name="ТекстПроблем" id="177">
+						<LabelDecoration name="ТекстПроблем" id="179">
 							<Title formatted="false">
 								<v8:item>
 									<v8:lang>ru</v8:lang>
 									<v8:content> </v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ТекстПроблемКонтекстноеМеню" id="178"/>
-							<ExtendedTooltip name="ТекстПроблемРасширеннаяПодсказка" id="179"/>
+							<ContextMenu name="ТекстПроблемКонтекстноеМеню" id="180"/>
+							<ExtendedTooltip name="ТекстПроблемРасширеннаяПодсказка" id="181"/>
 						</LabelDecoration>
-						<Button name="КнопкаПодключитьКоманду" id="180">
+						<Button name="КнопкаПодключитьКоманду" id="182">
 							<CommandName>Form.Command.ПодключитьКомандуКОбъекту</CommandName>
 							<Title>
 								<v8:item>
@@ -936,13 +942,14 @@
 									<v8:content>Подключить команду к объекту</v8:content>
 								</v8:item>
 							</Title>
-							<ExtendedTooltip name="КнопкаПодключитьКомандуРасширеннаяПодсказка" id="181"/>
+							<ExtendedTooltip name="КнопкаПодключитьКомандуРасширеннаяПодсказка" id="183"/>
 						</Button>
-						<UsualGroup name="ГруппаСсылки" id="182">
+						<UsualGroup name="ГруппаСсылки" id="184">
 							<Group>HorizontalIfPossible</Group>
-							<ExtendedTooltip name="ГруппаСсылкиРасширеннаяПодсказка" id="183"/>
+							<ShowTitle>false</ShowTitle>
+							<ExtendedTooltip name="ГруппаСсылкиРасширеннаяПодсказка" id="185"/>
 							<ChildItems>
-								<Button name="СсылкаМесто" id="184">
+								<Button name="СсылкаМесто" id="186">
 									<Type>Hyperlink</Type>
 									<CommandName>Form.Command.ОткрытьМестоЗапуска</CommandName>
 									<Title>
@@ -951,9 +958,9 @@
 											<v8:content>Открыть место запуска</v8:content>
 										</v8:item>
 									</Title>
-									<ExtendedTooltip name="СсылкаМестоРасширеннаяПодсказка" id="185"/>
+									<ExtendedTooltip name="СсылкаМестоРасширеннаяПодсказка" id="187"/>
 								</Button>
-								<Button name="СсылкаКарта" id="186">
+								<Button name="СсылкаКарта" id="188">
 									<Type>Hyperlink</Type>
 									<CommandName>Form.Command.ОткрытьКарту</CommandName>
 									<Title>
@@ -962,9 +969,9 @@
 											<v8:content>Открыть карту извлечения</v8:content>
 										</v8:item>
 									</Title>
-									<ExtendedTooltip name="СсылкаКартаРасширеннаяПодсказка" id="187"/>
+									<ExtendedTooltip name="СсылкаКартаРасширеннаяПодсказка" id="189"/>
 								</Button>
-								<Button name="СсылкаСценарий" id="188">
+								<Button name="СсылкаСценарий" id="190">
 									<Type>Hyperlink</Type>
 									<CommandName>Form.Command.ОткрытьСценарий</CommandName>
 									<Title>
@@ -973,11 +980,11 @@
 											<v8:content>Открыть сценарий</v8:content>
 										</v8:item>
 									</Title>
-									<ExtendedTooltip name="СсылкаСценарийРасширеннаяПодсказка" id="189"/>
+									<ExtendedTooltip name="СсылкаСценарийРасширеннаяПодсказка" id="191"/>
 								</Button>
 							</ChildItems>
 						</UsualGroup>
-						<Button name="СсылкаЕщеДействие" id="190">
+						<Button name="СсылкаЕщеДействие" id="192">
 							<Type>Hyperlink</Type>
 							<CommandName>Form.Command.ЕщеДействие</CommandName>
 							<Title>
@@ -986,7 +993,7 @@
 									<v8:content>Завести еще одно действие</v8:content>
 								</v8:item>
 							</Title>
-							<ExtendedTooltip name="СсылкаЕщеДействиеРасширеннаяПодсказка" id="191"/>
+							<ExtendedTooltip name="СсылкаЕщеДействиеРасширеннаяПодсказка" id="193"/>
 						</Button>
 					</ChildItems>
 				</Page>
@@ -994,13 +1001,13 @@
 		</Pages>
 	</ChildItems>
 	<Attributes>
-		<Attribute name="Объект" id="192">
+		<Attribute name="Объект" id="194">
 			<Type>
 				<v8:Type>cfg:DataProcessorObject.AI_НовоеДействие</v8:Type>
 			</Type>
 			<MainAttribute>true</MainAttribute>
 		</Attribute>
-		<Attribute name="ПолноеИмяМетаданных" id="193">
+		<Attribute name="ПолноеИмяМетаданных" id="195">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1015,7 +1022,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ПредставлениеОбъекта" id="194">
+		<Attribute name="ПредставлениеОбъекта" id="196">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1030,7 +1037,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ТипМестаМастера" id="195">
+		<Attribute name="ТипМестаМастера" id="197">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1045,7 +1052,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="Название" id="196">
+		<Attribute name="Название" id="198">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1060,7 +1067,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ИсточникДанных" id="197">
+		<Attribute name="ИсточникДанных" id="199">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1075,7 +1082,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ДанныеДляМодели" id="198">
+		<Attribute name="ДанныеДляМодели" id="200">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1086,12 +1093,12 @@
 				<v8:Type>v8:ValueTable</v8:Type>
 			</Type>
 			<Columns>
-				<Column name="Пометка" id="199">
+				<Column name="Пометка" id="201">
 					<Type>
 						<v8:Type>xs:boolean</v8:Type>
 					</Type>
 				</Column>
-				<Column name="Представление" id="200">
+				<Column name="Представление" id="202">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1100,7 +1107,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="Где" id="201">
+				<Column name="Где" id="203">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1109,7 +1116,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="ТабличнаяЧасть" id="202">
+				<Column name="ТабличнаяЧасть" id="204">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1118,7 +1125,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="ПутьРеквизита" id="203">
+				<Column name="ПутьРеквизита" id="205">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1129,7 +1136,7 @@
 				</Column>
 			</Columns>
 		</Attribute>
-		<Attribute name="РежимДиалога" id="204">
+		<Attribute name="РежимДиалога" id="206">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1140,7 +1147,7 @@
 				<v8:Type>xs:boolean</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="ВидРезультата" id="205">
+		<Attribute name="ВидРезультата" id="207">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1155,7 +1162,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="КартаИзвлечения" id="206">
+		<Attribute name="КартаИзвлечения" id="208">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1166,7 +1173,7 @@
 				<v8:Type>cfg:CatalogRef.AI_КартыИзвлечения</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="Реквизиты" id="207">
+		<Attribute name="Реквизиты" id="209">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1177,12 +1184,12 @@
 				<v8:Type>v8:ValueTable</v8:Type>
 			</Type>
 			<Columns>
-				<Column name="Пометка" id="208">
+				<Column name="Пометка" id="210">
 					<Type>
 						<v8:Type>xs:boolean</v8:Type>
 					</Type>
 				</Column>
-				<Column name="Представление" id="209">
+				<Column name="Представление" id="211">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1191,7 +1198,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="ТипПредставление" id="210">
+				<Column name="ТипПредставление" id="212">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1200,7 +1207,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="Где" id="211">
+				<Column name="Где" id="213">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1209,7 +1216,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="Подсказка" id="212">
+				<Column name="Подсказка" id="214">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1218,7 +1225,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="ТабличнаяЧасть" id="213">
+				<Column name="ТабличнаяЧасть" id="215">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1227,7 +1234,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="ПутьРеквизита" id="214">
+				<Column name="ПутьРеквизита" id="216">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1236,7 +1243,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="ДополнительныйРеквизит" id="215">
+				<Column name="ДополнительныйРеквизит" id="217">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1245,12 +1252,12 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="ТипЗначения" id="216">
+				<Column name="ТипЗначения" id="218">
 					<Type>
 						<v8:Type>cfg:EnumRef.AI_ТипЗначенияПоля</v8:Type>
 					</Type>
 				</Column>
-				<Column name="ТипСсылки" id="217">
+				<Column name="ТипСсылки" id="219">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1259,19 +1266,19 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="ПоискПоНаименованию" id="218">
+				<Column name="ПоискПоНаименованию" id="220">
 					<Type>
 						<v8:Type>xs:boolean</v8:Type>
 					</Type>
 				</Column>
-				<Column name="ВыбиратьИзСписка" id="219">
+				<Column name="ВыбиратьИзСписка" id="221">
 					<Type>
 						<v8:Type>xs:boolean</v8:Type>
 					</Type>
 				</Column>
 			</Columns>
 		</Attribute>
-		<Attribute name="РежимСтрок" id="220">
+		<Attribute name="РежимСтрок" id="222">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1286,7 +1293,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="РазрешитьПачку" id="221">
+		<Attribute name="РазрешитьПачку" id="223">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1297,7 +1304,7 @@
 				<v8:Type>xs:boolean</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="ОбразецСценария" id="222">
+		<Attribute name="ОбразецСценария" id="224">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1308,7 +1315,7 @@
 				<v8:Type>cfg:CatalogRef.AI_Сценарии</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="НачальныйЗапрос" id="223">
+		<Attribute name="НачальныйЗапрос" id="225">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1323,7 +1330,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ЗапросИзменен" id="224">
+		<Attribute name="ЗапросИзменен" id="226">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1334,7 +1341,7 @@
 				<v8:Type>xs:boolean</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="ПодключитьКоманду" id="225">
+		<Attribute name="ПодключитьКоманду" id="227">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1345,7 +1352,7 @@
 				<v8:Type>xs:boolean</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="Включить" id="226">
+		<Attribute name="Включить" id="228">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1356,7 +1363,7 @@
 				<v8:Type>xs:boolean</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="МестоЗапуска" id="227">
+		<Attribute name="МестоЗапуска" id="229">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1367,7 +1374,7 @@
 				<v8:Type>cfg:CatalogRef.AI_МестаЗапускаСценариев</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="СозданнаяКарта" id="228">
+		<Attribute name="СозданнаяКарта" id="230">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1378,7 +1385,7 @@
 				<v8:Type>cfg:CatalogRef.AI_КартыИзвлечения</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="СозданныйСценарий" id="229">
+		<Attribute name="СозданныйСценарий" id="231">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1402,94 +1409,154 @@
 		</Parameter>
 	</Parameters>
 	<Commands>
-		<Command name="Назад" id="230">
+		<Command name="Назад" id="232">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>&lt; Назад</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Возвращает к предыдущему шагу; ответы сохраняются. Ничего не создает и не отменяет.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>НазадОбработка</Action>
 		</Command>
-		<Command name="Далее" id="231">
+		<Command name="Далее" id="233">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Далее &gt;</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Проверяет ответы шага и переходит к следующему. В базе ничего не создает — это делает только «Создать действие».</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ДалееОбработка</Action>
 		</Command>
-		<Command name="Создать" id="232">
+		<Command name="Создать" id="234">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Создать действие</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Создает карту, сценарий и место запуска по ответам — все сразу или ничего. Это запись в базу; отменить можно только вручную.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>СоздатьОбработка</Action>
 		</Command>
-		<Command name="ОтметитьВсе" id="233">
+		<Command name="ОтметитьВсе" id="235">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Отметить все</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отмечает для извлечения все поля объекта, включая колонки табличных частей и дополнительные реквизиты. В базе ничего не меняет.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ОтметитьВсеОбработка</Action>
 		</Command>
-		<Command name="СнятьОтметки" id="234">
+		<Command name="СнятьОтметки" id="236">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Снять отметки</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Снимает все отметки «Извлекать». В базе ничего не меняет.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>СнятьОтметкиОбработка</Action>
 		</Command>
-		<Command name="ПодключитьКомандуКОбъекту" id="235">
+		<Command name="ПодключитьКомандуКОбъекту" id="237">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Подключить команду к объекту</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Добавляет объект в назначение обработки AI-помощника в «Дополнительных отчетах и обработках» — в его карточке появится команда. Созданное действие не меняет.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ПодключитьКомандуКОбъектуОбработка</Action>
 		</Command>
-		<Command name="ОткрытьМестоЗапуска" id="236">
+		<Command name="ОткрытьМестоЗапуска" id="238">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Открыть место запуска</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открывает место запуска действия для тонкой настройки: вопросов, условий показа, обработки. Ничего не меняет.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ОткрытьМестоЗапускаОбработка</Action>
 		</Command>
-		<Command name="ОткрытьКарту" id="237">
+		<Command name="ОткрытьКарту" id="239">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Открыть карту извлечения</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открывает карту извлечения действия — созданную или выбранную готовую. Ничего не меняет.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ОткрытьКартуОбработка</Action>
 		</Command>
-		<Command name="ОткрытьСценарий" id="238">
+		<Command name="ОткрытьСценарий" id="240">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Открыть сценарий</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открывает сценарий действия: там агент и модель. Ничего не меняет.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ОткрытьСценарийОбработка</Action>
 		</Command>
-		<Command name="ЕщеДействие" id="239">
+		<Command name="ЕщеДействие" id="241">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Завести еще одно действие</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Начинает новое действие с шага 1 для того же объекта: название, карта и отметки сбрасываются, остальные ответы сохраняются.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ЕщеДействиеОбработка</Action>
 		</Command>
 	</Commands>

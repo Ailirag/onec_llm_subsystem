@@ -1,102 +1,132 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
-	<Title>
-		<v8:item>
-			<v8:lang>ru</v8:lang>
-			<v8:content>MCP-инструменты</v8:content>
-		</v8:item>
-	</Title>
-	<AutoTitle>false</AutoTitle>
+	<AutoTitle>true</AutoTitle>
 	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
 	<ChildItems>
-		<UsualGroup name="ГруппаШапка" id="1">
+		<LabelDecoration name="ПояснениеИнструмента" id="1">
+			<AutoMaxWidth>false</AutoMaxWidth>
+			<HorizontalStretch>true</HorizontalStretch>
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Инструмент загружается с MCP-сервера кнопкой «Загрузить инструменты» в карточке сервера, и поля ниже заполняет загрузка. Разрешать инструмент агенту — в профиле MCP.</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="ПояснениеИнструментаКонтекстноеМеню" id="2"/>
+			<ExtendedTooltip name="ПояснениеИнструментаРасширеннаяПодсказка" id="3"/>
+		</LabelDecoration>
+		<UsualGroup name="ГруппаШапка" id="4">
 			<Group>Vertical</Group>
 			<Representation>None</Representation>
 			<ShowTitle>false</ShowTitle>
-			<ExtendedTooltip name="ГруппаШапкаРасширеннаяПодсказка" id="2"/>
+			<ExtendedTooltip name="ГруппаШапкаРасширеннаяПодсказка" id="5"/>
 			<ChildItems>
-				<InputField name="Владелец" id="3">
+				<InputField name="Владелец" id="6">
 					<DataPath>Объект.Owner</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>MCP-сервер</v8:content>
+						</v8:item>
+					</Title>
 					<ReadOnly>true</ReadOnly>
-					<ContextMenu name="ВладелецКонтекстноеМеню" id="4"/>
-					<ExtendedTooltip name="ВладелецРасширеннаяПодсказка" id="5"/>
+					<ContextMenu name="ВладелецКонтекстноеМеню" id="7"/>
+					<ExtendedTooltip name="ВладелецРасширеннаяПодсказка" id="8"/>
 				</InputField>
-				<UsualGroup name="ГруппаКодНаименование" id="6">
+				<UsualGroup name="ГруппаКодНаименование" id="9">
 					<Group>Horizontal</Group>
 					<Representation>None</Representation>
 					<ShowTitle>false</ShowTitle>
-					<ExtendedTooltip name="ГруппаКодНаименованиеРасширеннаяПодсказка" id="7"/>
+					<ExtendedTooltip name="ГруппаКодНаименованиеРасширеннаяПодсказка" id="10"/>
 					<ChildItems>
-						<InputField name="Наименование" id="8">
+						<InputField name="Наименование" id="11">
 							<DataPath>Объект.Description</DataPath>
-							<ContextMenu name="НаименованиеКонтекстноеМеню" id="9"/>
-							<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="10"/>
+							<ContextMenu name="НаименованиеКонтекстноеМеню" id="12"/>
+							<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="13"/>
 						</InputField>
-						<InputField name="Код" id="11">
+						<InputField name="Код" id="14">
 							<DataPath>Объект.Code</DataPath>
-							<ContextMenu name="КодКонтекстноеМеню" id="12"/>
-							<ExtendedTooltip name="КодРасширеннаяПодсказка" id="13"/>
+							<ContextMenu name="КодКонтекстноеМеню" id="15"/>
+							<ExtendedTooltip name="КодРасширеннаяПодсказка" id="16"/>
 						</InputField>
 					</ChildItems>
 				</UsualGroup>
-				<InputField name="ВнешнееИмя" id="14">
+				<InputField name="ВнешнееИмя" id="17">
 					<DataPath>Объект.ВнешнееИмя</DataPath>
-					<ContextMenu name="ВнешнееИмяКонтекстноеМеню" id="15"/>
-					<ExtendedTooltip name="ВнешнееИмяРасширеннаяПодсказка" id="16"/>
+					<ReadOnly>true</ReadOnly>
+					<ContextMenu name="ВнешнееИмяКонтекстноеМеню" id="18"/>
+					<ExtendedTooltip name="ВнешнееИмяРасширеннаяПодсказка" id="19"/>
 				</InputField>
-				<InputField name="ПубличноеИмя" id="17">
+				<InputField name="ПубличноеИмя" id="20">
 					<DataPath>Объект.ПубличноеИмя</DataPath>
-					<ContextMenu name="ПубличноеИмяКонтекстноеМеню" id="18"/>
-					<ExtendedTooltip name="ПубличноеИмяРасширеннаяПодсказка" id="19"/>
+					<ReadOnly>true</ReadOnly>
+					<ContextMenu name="ПубличноеИмяКонтекстноеМеню" id="21"/>
+					<ExtendedTooltip name="ПубличноеИмяРасширеннаяПодсказка" id="22"/>
 				</InputField>
-				<InputField name="Описание" id="20">
+				<InputField name="Описание" id="23">
 					<DataPath>Объект.Описание</DataPath>
-					<ContextMenu name="ОписаниеКонтекстноеМеню" id="21"/>
-					<ExtendedTooltip name="ОписаниеРасширеннаяПодсказка" id="22"/>
+					<ReadOnly>true</ReadOnly>
+					<MultiLine>true</MultiLine>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>3</Height>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="ОписаниеКонтекстноеМеню" id="24"/>
+					<ExtendedTooltip name="ОписаниеРасширеннаяПодсказка" id="25"/>
 				</InputField>
-				<InputField name="ХешСхемы" id="23">
+				<InputField name="ХешСхемы" id="26">
 					<DataPath>Объект.ХешСхемы</DataPath>
-					<ContextMenu name="ХешСхемыКонтекстноеМеню" id="24"/>
-					<ExtendedTooltip name="ХешСхемыРасширеннаяПодсказка" id="25"/>
+					<ReadOnly>true</ReadOnly>
+					<ContextMenu name="ХешСхемыКонтекстноеМеню" id="27"/>
+					<ExtendedTooltip name="ХешСхемыРасширеннаяПодсказка" id="28"/>
 				</InputField>
-				<CheckBoxField name="Активен" id="26">
+				<CheckBoxField name="Активен" id="29">
 					<DataPath>Объект.Активен</DataPath>
+					<ReadOnly>true</ReadOnly>
 					<CheckBoxType>Auto</CheckBoxType>
 					<TitleLocation>Right</TitleLocation>
-					<ContextMenu name="АктивенКонтекстноеМеню" id="27"/>
-					<ExtendedTooltip name="АктивенРасширеннаяПодсказка" id="28"/>
+					<ContextMenu name="АктивенКонтекстноеМеню" id="30"/>
+					<ExtendedTooltip name="АктивенРасширеннаяПодсказка" id="31"/>
 				</CheckBoxField>
-				<CheckBoxField name="Совместим" id="29">
+				<CheckBoxField name="Совместим" id="32">
 					<DataPath>Объект.Совместим</DataPath>
+					<ReadOnly>true</ReadOnly>
 					<CheckBoxType>Auto</CheckBoxType>
 					<TitleLocation>Right</TitleLocation>
-					<ContextMenu name="СовместимКонтекстноеМеню" id="30"/>
-					<ExtendedTooltip name="СовместимРасширеннаяПодсказка" id="31"/>
+					<ContextMenu name="СовместимКонтекстноеМеню" id="33"/>
+					<ExtendedTooltip name="СовместимРасширеннаяПодсказка" id="34"/>
 				</CheckBoxField>
-				<InputField name="ОшибкаСовместимости" id="32">
+				<InputField name="ОшибкаСовместимости" id="35">
 					<DataPath>Объект.ОшибкаСовместимости</DataPath>
-					<ContextMenu name="ОшибкаСовместимостиКонтекстноеМеню" id="33"/>
-					<ExtendedTooltip name="ОшибкаСовместимостиРасширеннаяПодсказка" id="34"/>
+					<ReadOnly>true</ReadOnly>
+					<MultiLine>true</MultiLine>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>2</Height>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="ОшибкаСовместимостиКонтекстноеМеню" id="36"/>
+					<ExtendedTooltip name="ОшибкаСовместимостиРасширеннаяПодсказка" id="37"/>
 				</InputField>
-				<InputField name="ДатаОбнаружения" id="35">
+				<InputField name="ДатаОбнаружения" id="38">
 					<DataPath>Объект.ДатаОбнаружения</DataPath>
-					<ContextMenu name="ДатаОбнаруженияКонтекстноеМеню" id="36"/>
-					<ExtendedTooltip name="ДатаОбнаруженияРасширеннаяПодсказка" id="37"/>
+					<ReadOnly>true</ReadOnly>
+					<ContextMenu name="ДатаОбнаруженияКонтекстноеМеню" id="39"/>
+					<ExtendedTooltip name="ДатаОбнаруженияРасширеннаяПодсказка" id="40"/>
 				</InputField>
-				<InputField name="ДатаПроверки" id="38">
+				<InputField name="ДатаПроверки" id="41">
 					<DataPath>Объект.ДатаПроверки</DataPath>
-					<ContextMenu name="ДатаПроверкиКонтекстноеМеню" id="39"/>
-					<ExtendedTooltip name="ДатаПроверкиРасширеннаяПодсказка" id="40"/>
+					<ReadOnly>true</ReadOnly>
+					<ContextMenu name="ДатаПроверкиКонтекстноеМеню" id="42"/>
+					<ExtendedTooltip name="ДатаПроверкиРасширеннаяПодсказка" id="43"/>
 				</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="ГруппаДополнительныеРеквизиты" id="41">
+		<UsualGroup name="ГруппаДополнительныеРеквизиты" id="44">
 			<Group>Vertical</Group>
-			<ExtendedTooltip name="ГруппаДополнительныеРеквизитыРасширеннаяПодсказка" id="42"/>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаДополнительныеРеквизитыРасширеннаяПодсказка" id="45"/>
 		</UsualGroup>
 	</ChildItems>
 	<Attributes>
-		<Attribute name="Объект" id="43">
+		<Attribute name="Объект" id="46">
 			<Type>
 				<v8:Type>cfg:CatalogObject.AI_MCPИнструменты</v8:Type>
 			</Type>

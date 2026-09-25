@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="v8help://service_book/service_style"/>
+</head>
+<body>
+<h1>Модели</h1>
+<p>Модель принадлежит <a href="Catalog.AI_Провайдеры/Help">провайдеру</a>. Обычно модели не заводят руками: их загружает кнопка «Загрузить модели» в карточке провайдера. Модель выбирается в <a href="Catalog.AI_Сценарии/Help">сценарии</a>, в чате и в песочнице.</p>
+
+<h2>Поля</h2>
+<table border="1" cellpadding="5" cellspacing="0">
+<tr><th>Поле</th><th>Что задает</th></tr>
+<tr><td>Код модели в API</td><td>Идентификатор, который уходит сервису в запросе: gpt-4o, deepseek-v4-flash и т. п. У Yandex можно указать короткий код — полный адрес gpt://… соберется из Folder ID. Не переименовывайте загруженную модель: при следующей загрузке появится дубль.</td></tr>
+<tr><td>Провайдер</td><td>Чья это модель. В чате и в настройках модель предлагается только вместе со своим провайдером.</td></tr>
+<tr><td>Каталог Yandex Cloud (Folder ID)</td><td>Только для Yandex: из него собирается адрес модели, без него не работают OCR и модель разбора файлов. Пусто, если в коде модели уже полный адрес gpt://…. Другим провайдерам не нужен.</td></tr>
+<tr><td>Программный идентификатор</td><td>Уникальный код модели для обращения из программ; заполняется при загрузке. Сама подсистема его не использует.</td></tr>
+<tr><td>Справочно: контекстное окно, цена</td><td>Для людей: подсистема эти значения не проверяет и стоимость не считает.</td></tr>
+<tr><td>Описание</td><td>Для чего подходит модель. У моделей Z.AI повторная загрузка заменяет текст описанием из каталога.</td></tr>
+</table>
+
+<h2>Возможности модели</h2>
+<p>Ссылка в карточке открывает <a href="InformationRegister.AI_ВозможностиМоделей/Help">возможности модели</a>: какие вложения она принимает и с какими ограничениями. Они важны только для модели, которая выбрана «Моделью для разбора файлов» у провайдера.</p>
+<p>См. также: <a href="Subsystem.LLM/Help">как устроена подсистема LLM</a>.</p>
+<!--session-links-->
+<script type="text/javascript">
+(function () {
+    var parameters = window.location.search;
+    if (!parameters) return;
+    for (var i = 0; i < document.links.length; i++) {
+        var link = document.links[i];
+        if (link.href.indexOf('/mdobject/') >= 0 && link.href.indexOf('?') < 0) {
+            link.href = link.href + parameters;
+        }
+    }
+})();
+</script>
+<!--/session-links-->
+</body>
+</html>

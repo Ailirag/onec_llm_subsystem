@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Запрос к модели</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
+		<Autofill>false</Autofill>
+		<ChildItems>
+			<Button name="КнопкаЗакрыть" id="1">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Close</CommandName>
+				<ExtendedTooltip name="КнопкаЗакрытьРасширеннаяПодсказка" id="2"/>
+			</Button>
+			<Button name="КнопкаСправка" id="3">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<ExtendedTooltip name="КнопкаСправкаРасширеннаяПодсказка" id="4"/>
+			</Button>
+		</ChildItems>
+	</AutoCommandBar>
+	<Events>
+		<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+	</Events>
+	<ChildItems>
+		<UsualGroup name="ГруппаСводка" id="5">
+			<Group>Horizontal</Group>
+			<Representation>None</Representation>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ГруппаСводкаРасширеннаяПодсказка" id="6"/>
+			<ChildItems>
+				<UsualGroup name="ГруппаСводкаЛево" id="7">
+					<Group>Vertical</Group>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ГруппаСводкаЛевоРасширеннаяПодсказка" id="8"/>
+					<ChildItems>
+						<InputField name="Период" id="9">
+							<DataPath>Запись.Period</DataPath>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Время ответа</v8:content>
+								</v8:item>
+							</Title>
+							<ReadOnly>true</ReadOnly>
+							<ContextMenu name="ПериодКонтекстноеМеню" id="10"/>
+							<ExtendedTooltip name="ПериодРасширеннаяПодсказка" id="11"/>
+						</InputField>
+						<InputField name="Пользователь" id="12">
+							<DataPath>Запись.Пользователь</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<ContextMenu name="ПользовательКонтекстноеМеню" id="13"/>
+							<ExtendedTooltip name="ПользовательРасширеннаяПодсказка" id="14"/>
+						</InputField>
+						<InputField name="Агент" id="15">
+							<DataPath>Запись.Агент</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<ContextMenu name="АгентКонтекстноеМеню" id="16"/>
+							<ExtendedTooltip name="АгентРасширеннаяПодсказка" id="17"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+				<UsualGroup name="ГруппаСводкаПраво" id="18">
+					<Group>Vertical</Group>
+					<Representation>None</Representation>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ГруппаСводкаПравоРасширеннаяПодсказка" id="19"/>
+					<ChildItems>
+						<InputField name="Провайдер" id="20">
+							<DataPath>Запись.Провайдер</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<ContextMenu name="ПровайдерКонтекстноеМеню" id="21"/>
+							<ExtendedTooltip name="ПровайдерРасширеннаяПодсказка" id="22"/>
+						</InputField>
+						<InputField name="Модель" id="23">
+							<DataPath>Запись.Модель</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<ContextMenu name="МодельКонтекстноеМеню" id="24"/>
+							<ExtendedTooltip name="МодельРасширеннаяПодсказка" id="25"/>
+						</InputField>
+						<InputField name="ИДЗапроса" id="26">
+							<DataPath>Запись.ИДЗапроса</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<ContextMenu name="ИДЗапросаКонтекстноеМеню" id="27"/>
+							<ExtendedTooltip name="ИДЗапросаРасширеннаяПодсказка" id="28"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<UsualGroup name="ГруппаТокены" id="29">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Токены</v8:content>
+				</v8:item>
+			</Title>
+			<Group>Horizontal</Group>
+			<ShowTitle>true</ShowTitle>
+			<ExtendedTooltip name="ГруппаТокеныРасширеннаяПодсказка" id="30"/>
+			<ChildItems>
+				<InputField name="ВходныеТокены" id="31">
+					<DataPath>Запись.ВходныеТокены</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Width>10</Width>
+					<ContextMenu name="ВходныеТокеныКонтекстноеМеню" id="32"/>
+					<ExtendedTooltip name="ВходныеТокеныРасширеннаяПодсказка" id="33"/>
+				</InputField>
+				<InputField name="ВыходныеТокены" id="34">
+					<DataPath>Запись.ВыходныеТокены</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Width>10</Width>
+					<ContextMenu name="ВыходныеТокеныКонтекстноеМеню" id="35"/>
+					<ExtendedTooltip name="ВыходныеТокеныРасширеннаяПодсказка" id="36"/>
+				</InputField>
+				<InputField name="ТулТокены" id="37">
+					<DataPath>Запись.ТулТокены</DataPath>
+					<ReadOnly>true</ReadOnly>
+					<Width>10</Width>
+					<ContextMenu name="ТулТокеныКонтекстноеМеню" id="38"/>
+					<ExtendedTooltip name="ТулТокеныРасширеннаяПодсказка" id="39"/>
+				</InputField>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Страницы" id="40">
+			<ExtendedTooltip name="СтраницыРасширеннаяПодсказка" id="41"/>
+			<ChildItems>
+				<Page name="СтраницаЗапрос" id="42">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Запрос</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СтраницаЗапросРасширеннаяПодсказка" id="43"/>
+					<ChildItems>
+						<InputField name="ТекстЗапроса" id="44">
+							<DataPath>Запись.ТекстЗапроса</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<TitleLocation>None</TitleLocation>
+							<MultiLine>true</MultiLine>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Height>12</Height>
+							<HorizontalStretch>true</HorizontalStretch>
+							<VerticalStretch>true</VerticalStretch>
+							<ContextMenu name="ТекстЗапросаКонтекстноеМеню" id="45"/>
+							<ExtendedTooltip name="ТекстЗапросаРасширеннаяПодсказка" id="46"/>
+						</InputField>
+					</ChildItems>
+				</Page>
+				<Page name="СтраницаИнструкция" id="47">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Системная инструкция</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СтраницаИнструкцияРасширеннаяПодсказка" id="48"/>
+					<ChildItems>
+						<InputField name="СистемныйПромт" id="49">
+							<DataPath>Запись.СистемныйПромт</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<TitleLocation>None</TitleLocation>
+							<MultiLine>true</MultiLine>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Height>12</Height>
+							<HorizontalStretch>true</HorizontalStretch>
+							<VerticalStretch>true</VerticalStretch>
+							<ContextMenu name="СистемныйПромтКонтекстноеМеню" id="50"/>
+							<ExtendedTooltip name="СистемныйПромтРасширеннаяПодсказка" id="51"/>
+						</InputField>
+					</ChildItems>
+				</Page>
+				<Page name="СтраницаОтвет" id="52">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ответ сервиса (JSON)</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СтраницаОтветРасширеннаяПодсказка" id="53"/>
+					<ChildItems>
+						<InputField name="ТекстОтвета" id="54">
+							<DataPath>Запись.ТекстОтвета</DataPath>
+							<ReadOnly>true</ReadOnly>
+							<TitleLocation>None</TitleLocation>
+							<MultiLine>true</MultiLine>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Height>12</Height>
+							<HorizontalStretch>true</HorizontalStretch>
+							<VerticalStretch>true</VerticalStretch>
+							<ContextMenu name="ТекстОтветаКонтекстноеМеню" id="55"/>
+							<ExtendedTooltip name="ТекстОтветаРасширеннаяПодсказка" id="56"/>
+						</InputField>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Запись" id="57">
+			<Type>
+				<v8:Type>cfg:InformationRegisterRecordManager.AI_ЖурналЗапросов</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+</Form>

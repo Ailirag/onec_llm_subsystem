@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
 	<Catalog uuid="50b2a659-f056-4935-b473-5b49a4395829">
 		<InternalInfo>
@@ -70,7 +70,7 @@
 			<AuxiliaryListForm />
 			<AuxiliaryChoiceForm />
 			<AuxiliaryFolderChoiceForm />
-			<IncludeHelpInContents>false</IncludeHelpInContents>
+			<IncludeHelpInContents>true</IncludeHelpInContents>
 			<BasedOn />
 			<DataLockFields />
 			<DataLockControlMode>Managed</DataLockControlMode>
@@ -103,7 +103,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Снимите флажок, чтобы отключить сервер: агенты перестанут получать его инструменты, проверка и загрузка инструментов будут отклоняться.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -129,11 +134,10 @@
 			</Attribute>
 			<Attribute uuid="91c4d9b9-b7df-4577-a938-915b4f2dd9ce">
 				<Properties>
-					<Name>Endpoint</Name>
-					<Synonym>
+					<Name>Endpoint</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Endpoint</v8:content>
+							<v8:content>Адрес сервера</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -147,7 +151,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Полный адрес MCP-точки сервера, например https://example.ru/mcp. Переадресации не выполняются. Адрес http:// работает только с разрешением HTTP без шифрования.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -187,7 +196,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Как 1С подтверждает доступ к серверу: без авторизации, токен (Bearer), логин и пароль (Basic) или ключ в своем HTTP-заголовке.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -213,11 +227,10 @@
 			</Attribute>
 			<Attribute uuid="73ef9ef4-7828-4dc9-84b5-d14c1b447d70">
 				<Properties>
-					<Name>ИмяЗаголовкаАвторизации</Name>
-					<Synonym>
+					<Name>ИмяЗаголовкаАвторизации</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Имя заголовка авторизации</v8:content>
+							<v8:content>Заголовок авторизации</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -231,7 +244,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Имя HTTP-заголовка, в котором передается секрет, например X-API-Key. Нужно только для типа «Ключ в своем заголовке».</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -257,11 +275,10 @@
 			</Attribute>
 			<Attribute uuid="deb052d0-7e0d-454a-b27d-a2595e80f123">
 				<Properties>
-					<Name>ТаймаутСекунд</Name>
-					<Synonym>
+					<Name>ТаймаутСекунд</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Таймаут секунд</v8:content>
+							<v8:content>Таймаут запроса, с</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -276,7 +293,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Сколько секунд ждать ответа сервера на каждый запрос. 0 — 60 секунд. При вызове инструмента действует и предельное время из профиля MCP.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -302,11 +324,10 @@
 			</Attribute>
 			<Attribute uuid="1cd6fec3-1baf-4fd9-a652-a1cb410565ae">
 				<Properties>
-					<Name>МаксимальныйРазмерОтветаБайт</Name>
-					<Synonym>
+					<Name>МаксимальныйРазмерОтветаБайт</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Максимальный размер ответа байт</v8:content>
+							<v8:content>Максимальный размер ответа, байт</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -321,7 +342,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Ответ сервера больше этого размера отклоняется с ошибкой. 0 — 5 242 880 байт (5 МБ).</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -347,11 +373,10 @@
 			</Attribute>
 			<Attribute uuid="72d6be62-d268-496d-845a-e7b834bb7d44">
 				<Properties>
-					<Name>РазрешитьНезащищенныйHTTP</Name>
-					<Synonym>
+					<Name>РазрешитьНезащищенныйHTTP</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Разрешить незащищенныйHTTP</v8:content>
+							<v8:content>Разрешить HTTP без шифрования</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -361,7 +386,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Разрешает адрес http://. Секрет и данные передаются открытым текстом — только для доверенной внутренней сети.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -405,7 +435,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Версия протокола MCP, согласованная при последней успешной проверке подключения. Заполняется автоматически.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -431,11 +466,10 @@
 			</Attribute>
 			<Attribute uuid="c79fb1ed-3126-4339-959f-e505647625d0">
 				<Properties>
-					<Name>ПоследняяСинхронизация</Name>
-					<Synonym>
+					<Name>ПоследняяСинхронизация</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Последняя синхронизация</v8:content>
+							<v8:content>Инструменты загружены</v8:content>
 						</v8:item>
 					</Synonym>
 					<Comment />
@@ -448,7 +482,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Когда список инструментов последний раз успешно получен с сервера. Пусто — инструменты еще не загружались.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -492,7 +531,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Итог последней проверки или загрузки инструментов: «Доступен» или «Ошибка». Пусто — сервер еще не проверяли.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>false</MultiLine>
@@ -536,7 +580,12 @@
 					<PasswordMode>false</PasswordMode>
 					<Format />
 					<EditFormat />
-					<ToolTip />
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Причина неудачи последней проверки или загрузки инструментов. Пусто — ошибок не было.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<MarkNegatives>false</MarkNegatives>
 					<Mask />
 					<MultiLine>true</MultiLine>

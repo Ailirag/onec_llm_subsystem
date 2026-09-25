@@ -23,18 +23,18 @@
 					<v8:content>AI_ТипыРазрешенийRAG</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment />
 			<UseStandardCommands>false</UseStandardCommands>
-			<Characteristics/>
+			<Characteristics />
 			<QuickChoice>true</QuickChoice>
 			<ChoiceMode>BothWays</ChoiceMode>
-			<DefaultListForm/>
-			<DefaultChoiceForm/>
-			<AuxiliaryListForm/>
-			<AuxiliaryChoiceForm/>
-			<ListPresentation/>
-			<ExtendedListPresentation/>
-			<Explanation/>
+			<DefaultListForm />
+			<DefaultChoiceForm />
+			<AuxiliaryListForm />
+			<AuxiliaryChoiceForm />
+			<ListPresentation />
+			<ExtendedListPresentation />
+			<Explanation />
 			<ChoiceHistoryOnInput>Auto</ChoiceHistoryOnInput>
 		</Properties>
 		<ChildObjects>
@@ -47,19 +47,18 @@
 							<v8:content>Организация</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 				</Properties>
 			</EnumValue>
 			<EnumValue uuid="11f09e80-2ee6-4e14-bc7c-5b214972f347">
 				<Properties>
-					<Name>Тенант</Name>
-					<Synonym>
+					<Name>Тенант</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Тенант</v8:content>
+							<v8:content>Раздел (тенант)</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 				</Properties>
 			</EnumValue>
 			<EnumValue uuid="0c893997-ad44-4ef0-b7d3-d318b73a575a">
@@ -71,19 +70,18 @@
 							<v8:content>Право</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 				</Properties>
 			</EnumValue>
 			<EnumValue uuid="42a58f42-ca29-4342-8dae-e76f1466ad4d">
 				<Properties>
-					<Name>ТипДанных</Name>
-					<Synonym>
+					<Name>ТипДанных</Name><Synonym>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Тип данных</v8:content>
+							<v8:content>Тип объекта</v8:content>
 						</v8:item>
 					</Synonym>
-					<Comment/>
+					<Comment />
 				</Properties>
 			</EnumValue>
 		</ChildObjects>

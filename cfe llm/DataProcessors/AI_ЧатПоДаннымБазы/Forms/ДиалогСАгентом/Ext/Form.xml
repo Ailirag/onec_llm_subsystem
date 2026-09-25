@@ -8,16 +8,22 @@
 	</Title>
 	<AutoTitle>false</AutoTitle>
 	<WindowOpeningMode>Independent</WindowOpeningMode>
+	<SaveDataInSettings>UseList</SaveDataInSettings>
+	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
 	<Width>124</Width>
 	<Height>46</Height>
-	<AutoSaveDataInSettings>Use</AutoSaveDataInSettings>
-	<SaveDataInSettings>UseList</SaveDataInSettings>
 	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1">
 		<Autofill>false</Autofill>
 		<ChildItems>
 			<Button name="НовыйДиалог" id="1">
 				<Type>CommandBarButton</Type>
 				<CommandName>Form.Command.НовыйДиалог</CommandName>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Начать новую беседу. Текущая остается в истории диалогов.</v8:content>
+					</v8:item>
+				</ToolTip>
 				<Picture>
 					<xr:Ref>StdPicture.CreateListItem</xr:Ref>
 					<xr:LoadTransparent>true</xr:LoadTransparent>
@@ -28,6 +34,12 @@
 			<Button name="ОткрытьКонсоль" id="3">
 				<Type>CommandBarButton</Type>
 				<CommandName>Form.Command.ОткрытьКонсоль</CommandName>
+				<ToolTip>
+					<v8:item>
+						<v8:lang>ru</v8:lang>
+						<v8:content>Открыть консоль запросов: проверить запрос к базе и задать модели вопрос по его результату.</v8:content>
+					</v8:item>
+				</ToolTip>
 				<Picture>
 					<xr:Ref>StdPicture.QueryWizard</xr:Ref>
 					<xr:LoadTransparent>true</xr:LoadTransparent>
@@ -35,6 +47,11 @@
 				<Representation>PictureAndText</Representation>
 				<LocationInCommandBar>InAdditionalSubmenu</LocationInCommandBar>
 				<ExtendedTooltip name="ОткрытьКонсольРасширеннаяПодсказка" id="4"/>
+			</Button>
+			<Button name="КнопкаСправка" id="5">
+				<Type>CommandBarButton</Type>
+				<CommandName>Form.StandardCommand.Help</CommandName>
+				<ExtendedTooltip name="КнопкаСправкаРасширеннаяПодсказка" id="6"/>
 			</Button>
 		</ChildItems>
 	</AutoCommandBar>
@@ -44,7 +61,7 @@
 		<Event name="BeforeClose">ПередЗакрытием</Event>
 	</Events>
 	<ChildItems>
-		<UsualGroup name="НастройкиДиалога" id="5">
+		<UsualGroup name="НастройкиДиалога" id="7">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -56,13 +73,14 @@
 			<Collapsed>true</Collapsed>
 			<Representation>WeakSeparation</Representation>
 			<ShowTitle>true</ShowTitle>
-			<ExtendedTooltip name="НастройкиДиалогаРасширеннаяПодсказка" id="6"/>
+			<ExtendedTooltip name="НастройкиДиалогаРасширеннаяПодсказка" id="8"/>
 			<ChildItems>
-				<UsualGroup name="ОсновныеНастройки" id="7">
+				<UsualGroup name="ОсновныеНастройки" id="9">
 					<Group>HorizontalIfPossible</Group>
-					<ExtendedTooltip name="ОсновныеНастройкиРасширеннаяПодсказка" id="8"/>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ОсновныеНастройкиРасширеннаяПодсказка" id="10"/>
 					<ChildItems>
-						<InputField name="Провайдер" id="9">
+						<InputField name="Провайдер" id="11">
 							<DataPath>Провайдер</DataPath>
 							<Title>
 								<v8:item>
@@ -72,13 +90,13 @@
 							</Title>
 							<ChoiceButton>true</ChoiceButton>
 							<ClearButton>true</ClearButton>
-							<ContextMenu name="ПровайдерКонтекстноеМеню" id="10"/>
-							<ExtendedTooltip name="ПровайдерРасширеннаяПодсказка" id="11"/>
+							<ContextMenu name="ПровайдерКонтекстноеМеню" id="12"/>
+							<ExtendedTooltip name="ПровайдерРасширеннаяПодсказка" id="13"/>
 							<Events>
 								<Event name="OnChange">ПровайдерПриИзменении</Event>
 							</Events>
 						</InputField>
-						<InputField name="Модель" id="12">
+						<InputField name="Модель" id="14">
 							<DataPath>Модель</DataPath>
 							<Title>
 								<v8:item>
@@ -97,28 +115,29 @@
 									<xr:ValueChange>Clear</xr:ValueChange>
 								</xr:Link>
 							</ChoiceParameterLinks>
-							<ContextMenu name="МодельКонтекстноеМеню" id="13"/>
-							<ExtendedTooltip name="МодельРасширеннаяПодсказка" id="14"/>
+							<ContextMenu name="МодельКонтекстноеМеню" id="15"/>
+							<ExtendedTooltip name="МодельРасширеннаяПодсказка" id="16"/>
 						</InputField>
-						<InputField name="ТипAPI" id="15">
+						<InputField name="ТипAPI" id="17">
 							<DataPath>ТипAPI</DataPath>
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>API</v8:content>
+									<v8:content>Тип API</v8:content>
 								</v8:item>
 							</Title>
 							<ChoiceButton>true</ChoiceButton>
-							<ContextMenu name="ТипAPIКонтекстноеМеню" id="16"/>
-							<ExtendedTooltip name="ТипAPIРасширеннаяПодсказка" id="17"/>
+							<ContextMenu name="ТипAPIКонтекстноеМеню" id="18"/>
+							<ExtendedTooltip name="ТипAPIРасширеннаяПодсказка" id="19"/>
 						</InputField>
 					</ChildItems>
 				</UsualGroup>
-				<UsualGroup name="НастройкиАгента" id="18">
+				<UsualGroup name="НастройкиАгента" id="20">
 					<Group>HorizontalIfPossible</Group>
-					<ExtendedTooltip name="НастройкиАгентаРасширеннаяПодсказка" id="19"/>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="НастройкиАгентаРасширеннаяПодсказка" id="21"/>
 					<ChildItems>
-						<InputField name="Агент" id="20">
+						<InputField name="Агент" id="22">
 							<DataPath>Агент</DataPath>
 							<Title>
 								<v8:item>
@@ -130,27 +149,33 @@
 							<ClearButton>true</ClearButton>
 							<AutoMaxWidth>false</AutoMaxWidth>
 							<HorizontalStretch>true</HorizontalStretch>
-							<ContextMenu name="АгентКонтекстноеМеню" id="21"/>
-							<ExtendedTooltip name="АгентРасширеннаяПодсказка" id="22"/>
+							<ContextMenu name="АгентКонтекстноеМеню" id="23"/>
+							<ExtendedTooltip name="АгентРасширеннаяПодсказка" id="24"/>
 							<Events>
 								<Event name="OnChange">АгентПриИзменении</Event>
 								<Event name="StartChoice">АгентНачалоВыбора</Event>
 							</Events>
 						</InputField>
-						<CheckBoxField name="РежимДиалога" id="23">
+						<CheckBoxField name="РежимДиалога" id="25">
 							<DataPath>РежимДиалога</DataPath>
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Сохранять контекст</v8:content>
+									<v8:content>Помнить переписку</v8:content>
 								</v8:item>
 							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Модель видит прошлые сообщения, переписка сохраняется в истории. Выключено — каждое сообщение отдельно и в историю не попадает.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<CheckBoxType>Auto</CheckBoxType>
 							<TitleLocation>Right</TitleLocation>
-							<ContextMenu name="РежимДиалогаКонтекстноеМеню" id="24"/>
-							<ExtendedTooltip name="РежимДиалогаРасширеннаяПодсказка" id="25"/>
+							<ContextMenu name="РежимДиалогаКонтекстноеМеню" id="26"/>
+							<ExtendedTooltip name="РежимДиалогаРасширеннаяПодсказка" id="27"/>
 						</CheckBoxField>
-						<InputField name="ГлубинаДиалога" id="26">
+						<InputField name="ГлубинаДиалога" id="28">
 							<DataPath>ГлубинаДиалога</DataPath>
 							<Title>
 								<v8:item>
@@ -160,12 +185,12 @@
 							</Title>
 							<SpinButton>true</SpinButton>
 							<Width>9</Width>
-							<ContextMenu name="ГлубинаДиалогаКонтекстноеМеню" id="27"/>
-							<ExtendedTooltip name="ГлубинаДиалогаРасширеннаяПодсказка" id="28"/>
+							<ContextMenu name="ГлубинаДиалогаКонтекстноеМеню" id="29"/>
+							<ExtendedTooltip name="ГлубинаДиалогаРасширеннаяПодсказка" id="30"/>
 						</InputField>
 					</ChildItems>
 				</UsualGroup>
-				<InputField name="СистемныйПромт" id="29">
+				<InputField name="СистемныйПромт" id="31">
 					<DataPath>СистемныйПромт</DataPath>
 					<Title>
 						<v8:item>
@@ -178,12 +203,12 @@
 					<AutoMaxWidth>false</AutoMaxWidth>
 					<Height>4</Height>
 					<HorizontalStretch>true</HorizontalStretch>
-					<ContextMenu name="СистемныйПромтКонтекстноеМеню" id="30"/>
-					<ExtendedTooltip name="СистемныйПромтРасширеннаяПодсказка" id="31"/>
+					<ContextMenu name="СистемныйПромтКонтекстноеМеню" id="32"/>
+					<ExtendedTooltip name="СистемныйПромтРасширеннаяПодсказка" id="33"/>
 				</InputField>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="ПанельИсторииДиалогов" id="148">
+		<UsualGroup name="ПанельИсторииДиалогов" id="34">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -194,13 +219,14 @@
 			<Behavior>Collapsible</Behavior>
 			<Collapsed>true</Collapsed>
 			<Representation>WeakSeparation</Representation>
-			<ExtendedTooltip name="ПанельИсторииДиалоговРасширеннаяПодсказка" id="149"/>
+			<ExtendedTooltip name="ПанельИсторииДиалоговРасширеннаяПодсказка" id="35"/>
 			<ChildItems>
-				<UsualGroup name="ФильтрИсторииДиалогов" id="150">
+				<UsualGroup name="ФильтрИсторииДиалогов" id="36">
 					<Group>AlwaysHorizontal</Group>
-					<ExtendedTooltip name="ФильтрИсторииДиалоговРасширеннаяПодсказка" id="151"/>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ФильтрИсторииДиалоговРасширеннаяПодсказка" id="37"/>
 					<ChildItems>
-						<InputField name="ПоискДиалогов" id="152">
+						<InputField name="ПоискДиалогов" id="38">
 							<DataPath>ПоискДиалогов</DataPath>
 							<Title>
 								<v8:item>
@@ -209,13 +235,13 @@
 								</v8:item>
 							</Title>
 							<HorizontalStretch>true</HorizontalStretch>
-							<ContextMenu name="ПоискДиалоговКонтекстноеМеню" id="153"/>
-							<ExtendedTooltip name="ПоискДиалоговРасширеннаяПодсказка" id="154"/>
+							<ContextMenu name="ПоискДиалоговКонтекстноеМеню" id="39"/>
+							<ExtendedTooltip name="ПоискДиалоговРасширеннаяПодсказка" id="40"/>
 							<Events>
 								<Event name="OnChange">ПоискДиалоговПриИзменении</Event>
 							</Events>
 						</InputField>
-						<CheckBoxField name="ПоказыватьАрхивныеДиалоги" id="155">
+						<CheckBoxField name="ПоказыватьАрхивныеДиалоги" id="41">
 							<DataPath>ПоказыватьАрхивныеДиалоги</DataPath>
 							<Title>
 								<v8:item>
@@ -223,13 +249,13 @@
 									<v8:content>Показывать архивные</v8:content>
 								</v8:item>
 							</Title>
-							<ContextMenu name="ПоказыватьАрхивныеДиалогиКонтекстноеМеню" id="156"/>
-							<ExtendedTooltip name="ПоказыватьАрхивныеДиалогиРасширеннаяПодсказка" id="157"/>
+							<ContextMenu name="ПоказыватьАрхивныеДиалогиКонтекстноеМеню" id="42"/>
+							<ExtendedTooltip name="ПоказыватьАрхивныеДиалогиРасширеннаяПодсказка" id="43"/>
 							<Events>
 								<Event name="OnChange">ПоказыватьАрхивныеДиалогиПриИзменении</Event>
 							</Events>
 						</CheckBoxField>
-						<Button name="ОбновитьИсториюДиалогов" id="158">
+						<Button name="ОбновитьИсториюДиалогов" id="44">
 							<CommandName>Form.Command.ОбновитьИсториюДиалогов</CommandName>
 							<Title>
 								<v8:item>
@@ -237,20 +263,48 @@
 									<v8:content>Обновить</v8:content>
 								</v8:item>
 							</Title>
-							<ExtendedTooltip name="ОбновитьИсториюДиалоговРасширеннаяПодсказка" id="159"/>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Перечитать список диалогов с учетом поиска и флажка «Показывать архивные».</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ExtendedTooltip name="ОбновитьИсториюДиалоговРасширеннаяПодсказка" id="45"/>
 						</Button>
 					</ChildItems>
 				</UsualGroup>
-				<Table name="ИсторияДиалогов" id="160">
+				<Table name="ИсторияДиалогов" id="46">
 					<DataPath>ИсторияДиалогов</DataPath>
 					<HeightInTableRows>6</HeightInTableRows>
-					<ContextMenu name="ИсторияДиалоговКонтекстноеМеню" id="161"/>
-					<AutoCommandBar name="ИсторияДиалоговКоманднаяПанель" id="162"/>
-					<SearchStringAddition name="ИсторияДиалоговСтрокаПоиска" id="163"/>
-					<ViewStatusAddition name="ИсторияДиалоговСостояниеПросмотра" id="164"/>
-					<SearchControlAddition name="ИсторияДиалоговУправлениеПоиском" id="165"/>
+					<ContextMenu name="ИсторияДиалоговКонтекстноеМеню" id="47"/>
+					<AutoCommandBar name="ИсторияДиалоговКоманднаяПанель" id="48"/>
+					<ExtendedTooltip name="ИсторияДиалоговРасширеннаяПодсказка" id="49"/>
+					<SearchStringAddition name="ИсторияДиалоговСтрокаПоиска" id="50">
+						<AdditionSource>
+							<Item>ИсторияДиалогов</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ИсторияДиалоговСтрокаПоискаКонтекстноеМеню" id="51"/>
+						<ExtendedTooltip name="ИсторияДиалоговСтрокаПоискаРасширеннаяПодсказка" id="52"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ИсторияДиалоговСостояниеПросмотра" id="53">
+						<AdditionSource>
+							<Item>ИсторияДиалогов</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ИсторияДиалоговСостояниеПросмотраКонтекстноеМеню" id="54"/>
+						<ExtendedTooltip name="ИсторияДиалоговСостояниеПросмотраРасширеннаяПодсказка" id="55"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ИсторияДиалоговУправлениеПоиском" id="56">
+						<AdditionSource>
+							<Item>ИсторияДиалогов</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ИсторияДиалоговУправлениеПоискомКонтекстноеМеню" id="57"/>
+						<ExtendedTooltip name="ИсторияДиалоговУправлениеПоискомРасширеннаяПодсказка" id="58"/>
+					</SearchControlAddition>
 					<ChildItems>
-						<InputField name="ИсторияДатаИзменения" id="166">
+						<InputField name="ИсторияДатаИзменения" id="59">
 							<DataPath>ИсторияДиалогов.ДатаИзменения</DataPath>
 							<Title>
 								<v8:item>
@@ -260,10 +314,10 @@
 							</Title>
 							<ReadOnly>true</ReadOnly>
 							<Width>16</Width>
-							<ContextMenu name="ИсторияДатаИзмененияКонтекстноеМеню" id="167"/>
-							<ExtendedTooltip name="ИсторияДатаИзмененияРасширеннаяПодсказка" id="168"/>
+							<ContextMenu name="ИсторияДатаИзмененияКонтекстноеМеню" id="60"/>
+							<ExtendedTooltip name="ИсторияДатаИзмененияРасширеннаяПодсказка" id="61"/>
 						</InputField>
-						<InputField name="ИсторияЗаголовок" id="169">
+						<InputField name="ИсторияЗаголовок" id="62">
 							<DataPath>ИсторияДиалогов.Заголовок</DataPath>
 							<Title>
 								<v8:item>
@@ -273,10 +327,10 @@
 							</Title>
 							<ReadOnly>true</ReadOnly>
 							<HorizontalStretch>true</HorizontalStretch>
-							<ContextMenu name="ИсторияЗаголовокКонтекстноеМеню" id="170"/>
-							<ExtendedTooltip name="ИсторияЗаголовокРасширеннаяПодсказка" id="171"/>
+							<ContextMenu name="ИсторияЗаголовокКонтекстноеМеню" id="63"/>
+							<ExtendedTooltip name="ИсторияЗаголовокРасширеннаяПодсказка" id="64"/>
 						</InputField>
-						<InputField name="ИсторияАгент" id="172">
+						<InputField name="ИсторияАгент" id="65">
 							<DataPath>ИсторияДиалогов.Агент</DataPath>
 							<Title>
 								<v8:item>
@@ -286,10 +340,10 @@
 							</Title>
 							<ReadOnly>true</ReadOnly>
 							<Width>22</Width>
-							<ContextMenu name="ИсторияАгентКонтекстноеМеню" id="173"/>
-							<ExtendedTooltip name="ИсторияАгентРасширеннаяПодсказка" id="174"/>
+							<ContextMenu name="ИсторияАгентКонтекстноеМеню" id="66"/>
+							<ExtendedTooltip name="ИсторияАгентРасширеннаяПодсказка" id="67"/>
 						</InputField>
-						<InputField name="ИсторияКоличествоСообщений" id="175">
+						<InputField name="ИсторияКоличествоСообщений" id="68">
 							<DataPath>ИсторияДиалогов.КоличествоСообщений</DataPath>
 							<Title>
 								<v8:item>
@@ -299,10 +353,10 @@
 							</Title>
 							<ReadOnly>true</ReadOnly>
 							<Width>10</Width>
-							<ContextMenu name="ИсторияКоличествоСообщенийКонтекстноеМеню" id="176"/>
-							<ExtendedTooltip name="ИсторияКоличествоСообщенийРасширеннаяПодсказка" id="177"/>
+							<ContextMenu name="ИсторияКоличествоСообщенийКонтекстноеМеню" id="69"/>
+							<ExtendedTooltip name="ИсторияКоличествоСообщенийРасширеннаяПодсказка" id="70"/>
 						</InputField>
-						<InputField name="ИсторияПоследнееСообщение" id="178">
+						<InputField name="ИсторияПоследнееСообщение" id="71">
 							<DataPath>ИсторияДиалогов.ПоследнееСообщение</DataPath>
 							<Title>
 								<v8:item>
@@ -312,10 +366,10 @@
 							</Title>
 							<ReadOnly>true</ReadOnly>
 							<HorizontalStretch>true</HorizontalStretch>
-							<ContextMenu name="ИсторияПоследнееСообщениеКонтекстноеМеню" id="179"/>
-							<ExtendedTooltip name="ИсторияПоследнееСообщениеРасширеннаяПодсказка" id="180"/>
+							<ContextMenu name="ИсторияПоследнееСообщениеКонтекстноеМеню" id="72"/>
+							<ExtendedTooltip name="ИсторияПоследнееСообщениеРасширеннаяПодсказка" id="73"/>
 						</InputField>
-						<CheckBoxField name="ИсторияАрхивирован" id="181">
+						<CheckBoxField name="ИсторияАрхивирован" id="74">
 							<DataPath>ИсторияДиалогов.Архивирован</DataPath>
 							<Title>
 								<v8:item>
@@ -324,19 +378,20 @@
 								</v8:item>
 							</Title>
 							<ReadOnly>true</ReadOnly>
-							<ContextMenu name="ИсторияАрхивированКонтекстноеМеню" id="182"/>
-							<ExtendedTooltip name="ИсторияАрхивированРасширеннаяПодсказка" id="183"/>
+							<ContextMenu name="ИсторияАрхивированКонтекстноеМеню" id="75"/>
+							<ExtendedTooltip name="ИсторияАрхивированРасширеннаяПодсказка" id="76"/>
 						</CheckBoxField>
 					</ChildItems>
 					<Events>
 						<Event name="OnActivateRow">ИсторияДиалоговПриАктивизацииСтроки</Event>
 					</Events>
 				</Table>
-				<UsualGroup name="КомандыИсторииДиалогов" id="184">
+				<UsualGroup name="КомандыИсторииДиалогов" id="77">
 					<Group>AlwaysHorizontal</Group>
-					<ExtendedTooltip name="КомандыИсторииДиалоговРасширеннаяПодсказка" id="185"/>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="КомандыИсторииДиалоговРасширеннаяПодсказка" id="78"/>
 					<ChildItems>
-						<InputField name="НовыйЗаголовокДиалога" id="186">
+						<InputField name="НовыйЗаголовокДиалога" id="79">
 							<DataPath>НовыйЗаголовокДиалога</DataPath>
 							<Title>
 								<v8:item>
@@ -345,10 +400,10 @@
 								</v8:item>
 							</Title>
 							<HorizontalStretch>true</HorizontalStretch>
-							<ContextMenu name="НовыйЗаголовокДиалогаКонтекстноеМеню" id="187"/>
-							<ExtendedTooltip name="НовыйЗаголовокДиалогаРасширеннаяПодсказка" id="188"/>
+							<ContextMenu name="НовыйЗаголовокДиалогаКонтекстноеМеню" id="80"/>
+							<ExtendedTooltip name="НовыйЗаголовокДиалогаРасширеннаяПодсказка" id="81"/>
 						</InputField>
-						<Button name="ОткрытьДиалогИзИстории" id="189">
+						<Button name="ОткрытьДиалогИзИстории" id="82">
 							<CommandName>Form.Command.ОткрытьДиалогИзИстории</CommandName>
 							<Title>
 								<v8:item>
@@ -356,9 +411,15 @@
 									<v8:content>Открыть</v8:content>
 								</v8:item>
 							</Title>
-							<ExtendedTooltip name="ОткрытьДиалогИзИсторииРасширеннаяПодсказка" id="190"/>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Открыть выбранный диалог: вернуть его настройки и последние сообщения, чтобы продолжить беседу.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ExtendedTooltip name="ОткрытьДиалогИзИсторииРасширеннаяПодсказка" id="83"/>
 						</Button>
-						<Button name="ПереименоватьДиалог" id="191">
+						<Button name="ПереименоватьДиалог" id="84">
 							<CommandName>Form.Command.ПереименоватьДиалог</CommandName>
 							<Title>
 								<v8:item>
@@ -366,69 +427,88 @@
 									<v8:content>Переименовать</v8:content>
 								</v8:item>
 							</Title>
-							<ExtendedTooltip name="ПереименоватьДиалогРасширеннаяПодсказка" id="192"/>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Задать выбранному диалогу название из поля «Название».</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ExtendedTooltip name="ПереименоватьДиалогРасширеннаяПодсказка" id="85"/>
 						</Button>
-						<Button name="АрхивироватьДиалог" id="193">
+						<Button name="АрхивироватьДиалог" id="86">
 							<CommandName>Form.Command.АрхивироватьДиалог</CommandName>
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>В архив / вернуть</v8:content>
+									<v8:content>В архив или из архива</v8:content>
 								</v8:item>
 							</Title>
-							<ExtendedTooltip name="АрхивироватьДиалогРасширеннаяПодсказка" id="194"/>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Убрать выбранный диалог в архив или вернуть. Архивный диалог скрыт из списка; продолжить его можно после возврата.</v8:content>
+								</v8:item>
+							</ToolTip>
+							<ExtendedTooltip name="АрхивироватьДиалогРасширеннаяПодсказка" id="87"/>
 						</Button>
 					</ChildItems>
 				</UsualGroup>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="СостояниеОперации" id="32">
+		<UsualGroup name="СостояниеОперации" id="88">
 			<Group>AlwaysHorizontal</Group>
-			<ExtendedTooltip name="СостояниеОперацииРасширеннаяПодсказка" id="33"/>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="СостояниеОперацииРасширеннаяПодсказка" id="89"/>
 			<ChildItems>
-				<LabelField name="СтатусОперации" id="34">
+				<LabelField name="СтатусОперации" id="90">
 					<DataPath>СтатусОперации</DataPath>
 					<HorizontalStretch>true</HorizontalStretch>
-					<ContextMenu name="СтатусОперацииКонтекстноеМеню" id="35"/>
-					<ExtendedTooltip name="СтатусОперацииРасширеннаяПодсказка" id="36"/>
+					<ContextMenu name="СтатусОперацииКонтекстноеМеню" id="91"/>
+					<ExtendedTooltip name="СтатусОперацииРасширеннаяПодсказка" id="92"/>
 				</LabelField>
-				<LabelField name="СтатистикаТокенов" id="37">
+				<LabelField name="СтатистикаТокенов" id="93">
 					<DataPath>СтатистикаТокенов</DataPath>
 					<GroupHorizontalAlign>Right</GroupHorizontalAlign>
-					<ContextMenu name="СтатистикаТокеновКонтекстноеМеню" id="38"/>
-					<ExtendedTooltip name="СтатистикаТокеновРасширеннаяПодсказка" id="39"/>
+					<ContextMenu name="СтатистикаТокеновКонтекстноеМеню" id="94"/>
+					<ExtendedTooltip name="СтатистикаТокеновРасширеннаяПодсказка" id="95"/>
 				</LabelField>
-				<Button name="ОтменитьОперацию" id="40">
+				<Button name="ОтменитьОперацию" id="96">
 					<CommandName>Form.Command.ОтменитьОперацию</CommandName>
 					<Title>
 						<v8:item>
 							<v8:lang>ru</v8:lang>
-							<v8:content>Отменить</v8:content>
+							<v8:content>Отменить запрос</v8:content>
 						</v8:item>
 					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Остановить запрос. Если он еще не начался — отменяется сразу, иначе — после текущего шага.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<Visible>false</Visible>
 					<Picture>
 						<xr:Ref>StdPicture.Delete</xr:Ref>
 						<xr:LoadTransparent>true</xr:LoadTransparent>
 					</Picture>
 					<Representation>PictureAndText</Representation>
-					<ExtendedTooltip name="ОтменитьОперациюРасширеннаяПодсказка" id="41"/>
+					<ExtendedTooltip name="ОтменитьОперациюРасширеннаяПодсказка" id="97"/>
 				</Button>
 			</ChildItems>
 		</UsualGroup>
-		<HTMLDocumentField name="ЛентаДиалога" id="42">
+		<HTMLDocumentField name="ЛентаДиалога" id="98">
 			<DataPath>HTMLДиалога</DataPath>
 			<TitleLocation>None</TitleLocation>
 			<Height>18</Height>
 			<HorizontalStretch>true</HorizontalStretch>
 			<VerticalStretch>true</VerticalStretch>
-			<ContextMenu name="ЛентаДиалогаКонтекстноеМеню" id="43"/>
-			<ExtendedTooltip name="ЛентаДиалогаРасширеннаяПодсказка" id="45"/>
+			<ContextMenu name="ЛентаДиалогаКонтекстноеМеню" id="99"/>
+			<ExtendedTooltip name="ЛентаДиалогаРасширеннаяПодсказка" id="100"/>
 			<Events>
 				<Event name="DocumentComplete">ЛентаДиалогаДокументСформирован</Event>
 			</Events>
 		</HTMLDocumentField>
-		<UsualGroup name="ПанельВложений" id="106">
+		<UsualGroup name="ПанельВложений" id="101">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -437,20 +517,42 @@
 			</Title>
 			<Group>Vertical</Group>
 			<Representation>WeakSeparation</Representation>
-			<ExtendedTooltip name="ПанельВложенийРасширеннаяПодсказка" id="107"/>
+			<ExtendedTooltip name="ПанельВложенийРасширеннаяПодсказка" id="102"/>
 			<ChildItems>
-				<Table name="Вложения" id="108">
+				<Table name="Вложения" id="103">
 					<DataPath>Вложения</DataPath>
 					<HeightInTableRows>3</HeightInTableRows>
 					<CommandBarLocation>None</CommandBarLocation>
 					<SearchStringLocation>None</SearchStringLocation>
-					<ContextMenu name="ВложенияКонтекстноеМеню" id="109"/>
-					<AutoCommandBar name="ВложенияКоманднаяПанель" id="110"/>
-					<SearchStringAddition name="ВложенияСтрокаПоиска" id="111"/>
-					<ViewStatusAddition name="ВложенияСостояниеПросмотра" id="112"/>
-					<SearchControlAddition name="ВложенияУправлениеПоиском" id="113"/>
+					<ContextMenu name="ВложенияКонтекстноеМеню" id="104"/>
+					<AutoCommandBar name="ВложенияКоманднаяПанель" id="105"/>
+					<ExtendedTooltip name="ВложенияРасширеннаяПодсказка" id="106"/>
+					<SearchStringAddition name="ВложенияСтрокаПоиска" id="107">
+						<AdditionSource>
+							<Item>Вложения</Item>
+							<Type>SearchStringRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ВложенияСтрокаПоискаКонтекстноеМеню" id="108"/>
+						<ExtendedTooltip name="ВложенияСтрокаПоискаРасширеннаяПодсказка" id="109"/>
+					</SearchStringAddition>
+					<ViewStatusAddition name="ВложенияСостояниеПросмотра" id="110">
+						<AdditionSource>
+							<Item>Вложения</Item>
+							<Type>ViewStatusRepresentation</Type>
+						</AdditionSource>
+						<ContextMenu name="ВложенияСостояниеПросмотраКонтекстноеМеню" id="111"/>
+						<ExtendedTooltip name="ВложенияСостояниеПросмотраРасширеннаяПодсказка" id="112"/>
+					</ViewStatusAddition>
+					<SearchControlAddition name="ВложенияУправлениеПоиском" id="113">
+						<AdditionSource>
+							<Item>Вложения</Item>
+							<Type>SearchControl</Type>
+						</AdditionSource>
+						<ContextMenu name="ВложенияУправлениеПоискомКонтекстноеМеню" id="114"/>
+						<ExtendedTooltip name="ВложенияУправлениеПоискомРасширеннаяПодсказка" id="115"/>
+					</SearchControlAddition>
 					<ChildItems>
-						<InputField name="ВложенияИмяФайла" id="114">
+						<InputField name="ВложенияИмяФайла" id="116">
 							<DataPath>Вложения.ИмяФайла</DataPath>
 							<Title>
 								<v8:item>
@@ -460,10 +562,10 @@
 							</Title>
 							<ReadOnly>true</ReadOnly>
 							<HorizontalStretch>true</HorizontalStretch>
-							<ContextMenu name="ВложенияИмяФайлаКонтекстноеМеню" id="115"/>
-							<ExtendedTooltip name="ВложенияИмяФайлаРасширеннаяПодсказка" id="116"/>
+							<ContextMenu name="ВложенияИмяФайлаКонтекстноеМеню" id="117"/>
+							<ExtendedTooltip name="ВложенияИмяФайлаРасширеннаяПодсказка" id="118"/>
 						</InputField>
-						<InputField name="ВложенияРазмер" id="117">
+						<InputField name="ВложенияРазмер" id="119">
 							<DataPath>Вложения.Размер</DataPath>
 							<Title>
 								<v8:item>
@@ -473,10 +575,10 @@
 							</Title>
 							<ReadOnly>true</ReadOnly>
 							<Width>12</Width>
-							<ContextMenu name="ВложенияРазмерКонтекстноеМеню" id="118"/>
-							<ExtendedTooltip name="ВложенияРазмерРасширеннаяПодсказка" id="119"/>
+							<ContextMenu name="ВложенияРазмерКонтекстноеМеню" id="120"/>
+							<ExtendedTooltip name="ВложенияРазмерРасширеннаяПодсказка" id="121"/>
 						</InputField>
-						<InputField name="ВложенияСтатус" id="120">
+						<InputField name="ВложенияСтатус" id="122">
 							<DataPath>Вложения.Статус</DataPath>
 							<Title>
 								<v8:item>
@@ -486,16 +588,17 @@
 							</Title>
 							<ReadOnly>true</ReadOnly>
 							<Width>18</Width>
-							<ContextMenu name="ВложенияСтатусКонтекстноеМеню" id="121"/>
-							<ExtendedTooltip name="ВложенияСтатусРасширеннаяПодсказка" id="122"/>
+							<ContextMenu name="ВложенияСтатусКонтекстноеМеню" id="123"/>
+							<ExtendedTooltip name="ВложенияСтатусРасширеннаяПодсказка" id="124"/>
 						</InputField>
 					</ChildItems>
 				</Table>
-				<UsualGroup name="КомандыВложений" id="123">
+				<UsualGroup name="КомандыВложений" id="125">
 					<Group>AlwaysHorizontal</Group>
-					<ExtendedTooltip name="КомандыВложенийРасширеннаяПодсказка" id="124"/>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="КомандыВложенийРасширеннаяПодсказка" id="126"/>
 					<ChildItems>
-						<Button name="УдалитьВложение" id="125">
+						<Button name="УдалитьВложение" id="127">
 							<CommandName>Form.Command.УдалитьВложение</CommandName>
 							<Title>
 								<v8:item>
@@ -503,22 +606,29 @@
 									<v8:content>Удалить вложение</v8:content>
 								</v8:item>
 							</Title>
+							<ToolTip>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Убрать выбранный файл из сообщения и удалить его из базы.</v8:content>
+								</v8:item>
+							</ToolTip>
 							<Picture>
 								<xr:Ref>StdPicture.Delete</xr:Ref>
 								<xr:LoadTransparent>true</xr:LoadTransparent>
 							</Picture>
 							<Representation>Picture</Representation>
-							<ExtendedTooltip name="УдалитьВложениеРасширеннаяПодсказка" id="126"/>
+							<ExtendedTooltip name="УдалитьВложениеРасширеннаяПодсказка" id="128"/>
 						</Button>
 					</ChildItems>
 				</UsualGroup>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="ВводСообщения" id="64">
+		<UsualGroup name="ВводСообщения" id="129">
 			<Group>HorizontalIfPossible</Group>
-			<ExtendedTooltip name="ВводСообщенияРасширеннаяПодсказка" id="65"/>
+			<ShowTitle>false</ShowTitle>
+			<ExtendedTooltip name="ВводСообщенияРасширеннаяПодсказка" id="130"/>
 			<ChildItems>
-				<InputField name="НовоеСообщение" id="66">
+				<InputField name="НовоеСообщение" id="131">
 					<DataPath>НовоеСообщение</DataPath>
 					<TitleLocation>None</TitleLocation>
 					<MultiLine>true</MultiLine>
@@ -533,10 +643,10 @@
 							<v8:content>Введите сообщение...</v8:content>
 						</v8:item>
 					</InputHint>
-					<ContextMenu name="НовоеСообщениеКонтекстноеМеню" id="67"/>
-					<ExtendedTooltip name="НовоеСообщениеРасширеннаяПодсказка" id="68"/>
+					<ContextMenu name="НовоеСообщениеКонтекстноеМеню" id="132"/>
+					<ExtendedTooltip name="НовоеСообщениеРасширеннаяПодсказка" id="133"/>
 				</InputField>
-				<Button name="ПрикрепитьФайлы" id="146">
+				<Button name="ПрикрепитьФайлы" id="134">
 					<CommandName>Form.Command.ПрикрепитьФайлы</CommandName>
 					<Title>
 						<v8:item>
@@ -544,15 +654,21 @@
 							<v8:content>Прикрепить</v8:content>
 						</v8:item>
 					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Приложить до 5 файлов: документы, картинки, текст, код. Картинки и текст — до 5 МБ, документы — до 20 МБ.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<Picture>
 						<xr:Ref>StdPicture.Attach</xr:Ref>
 						<xr:LoadTransparent>true</xr:LoadTransparent>
 					</Picture>
-					<Representation>Picture</Representation>
+					<Representation>PictureAndText</Representation>
 					<GroupVerticalAlign>Bottom</GroupVerticalAlign>
-					<ExtendedTooltip name="ПрикрепитьФайлыРасширеннаяПодсказка" id="147"/>
+					<ExtendedTooltip name="ПрикрепитьФайлыРасширеннаяПодсказка" id="135"/>
 				</Button>
-				<Button name="Отправить" id="69">
+				<Button name="Отправить" id="136">
 					<CommandName>Form.Command.Отправить</CommandName>
 					<Title>
 						<v8:item>
@@ -560,6 +676,12 @@
 							<v8:content>Отправить</v8:content>
 						</v8:item>
 					</Title>
+					<ToolTip>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Отправить сообщение (Ctrl+Enter). Ответ готовится в фоне; если закрыть форму, при следующем открытии ход восстановится.</v8:content>
+						</v8:item>
+					</ToolTip>
 					<DefaultButton>true</DefaultButton>
 					<Picture>
 						<xr:Ref>StdPicture.BusinessProcessStart</xr:Ref>
@@ -567,11 +689,11 @@
 					</Picture>
 					<Representation>PictureAndText</Representation>
 					<GroupVerticalAlign>Bottom</GroupVerticalAlign>
-					<ExtendedTooltip name="ОтправитьРасширеннаяПодсказка" id="70"/>
+					<ExtendedTooltip name="ОтправитьРасширеннаяПодсказка" id="137"/>
 				</Button>
 			</ChildItems>
 		</UsualGroup>
-		<UsualGroup name="ТрассировкаАгента" id="71">
+		<UsualGroup name="ТрассировкаАгента" id="138">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -583,9 +705,9 @@
 			<Collapsed>true</Collapsed>
 			<Representation>WeakSeparation</Representation>
 			<ShowTitle>true</ShowTitle>
-			<ExtendedTooltip name="ТрассировкаАгентаРасширеннаяПодсказка" id="72"/>
+			<ExtendedTooltip name="ТрассировкаАгентаРасширеннаяПодсказка" id="139"/>
 			<ChildItems>
-				<Table name="ШагиАгента" id="73">
+				<Table name="ШагиАгента" id="140">
 					<DataPath>ШагиАгента</DataPath>
 					<ChangeRowSet>false</ChangeRowSet>
 					<ChangeRowOrder>false</ChangeRowOrder>
@@ -593,35 +715,35 @@
 					<SearchStringLocation>None</SearchStringLocation>
 					<Height>6</Height>
 					<HorizontalStretch>true</HorizontalStretch>
-					<ContextMenu name="ШагиАгентаКонтекстноеМеню" id="74"/>
-					<AutoCommandBar name="ШагиАгентаКоманднаяПанель" id="75"/>
-					<ExtendedTooltip name="ШагиАгентаРасширеннаяПодсказка" id="76"/>
-					<SearchStringAddition name="ШагиАгентаСтрокаПоиска" id="77">
+					<ContextMenu name="ШагиАгентаКонтекстноеМеню" id="141"/>
+					<AutoCommandBar name="ШагиАгентаКоманднаяПанель" id="142"/>
+					<ExtendedTooltip name="ШагиАгентаРасширеннаяПодсказка" id="143"/>
+					<SearchStringAddition name="ШагиАгентаСтрокаПоиска" id="144">
 						<AdditionSource>
 							<Item>ШагиАгента</Item>
 							<Type>SearchStringRepresentation</Type>
 						</AdditionSource>
-						<ContextMenu name="ШагиАгентаСтрокаПоискаКонтекстноеМеню" id="78"/>
-						<ExtendedTooltip name="ШагиАгентаСтрокаПоискаРасширеннаяПодсказка" id="79"/>
+						<ContextMenu name="ШагиАгентаСтрокаПоискаКонтекстноеМеню" id="145"/>
+						<ExtendedTooltip name="ШагиАгентаСтрокаПоискаРасширеннаяПодсказка" id="146"/>
 					</SearchStringAddition>
-					<ViewStatusAddition name="ШагиАгентаСостояниеПросмотра" id="80">
+					<ViewStatusAddition name="ШагиАгентаСостояниеПросмотра" id="147">
 						<AdditionSource>
 							<Item>ШагиАгента</Item>
 							<Type>ViewStatusRepresentation</Type>
 						</AdditionSource>
-						<ContextMenu name="ШагиАгентаСостояниеПросмотраКонтекстноеМеню" id="81"/>
-						<ExtendedTooltip name="ШагиАгентаСостояниеПросмотраРасширеннаяПодсказка" id="82"/>
+						<ContextMenu name="ШагиАгентаСостояниеПросмотраКонтекстноеМеню" id="148"/>
+						<ExtendedTooltip name="ШагиАгентаСостояниеПросмотраРасширеннаяПодсказка" id="149"/>
 					</ViewStatusAddition>
-					<SearchControlAddition name="ШагиАгентаУправлениеПоиском" id="83">
+					<SearchControlAddition name="ШагиАгентаУправлениеПоиском" id="150">
 						<AdditionSource>
 							<Item>ШагиАгента</Item>
 							<Type>SearchControl</Type>
 						</AdditionSource>
-						<ContextMenu name="ШагиАгентаУправлениеПоискомКонтекстноеМеню" id="84"/>
-						<ExtendedTooltip name="ШагиАгентаУправлениеПоискомРасширеннаяПодсказка" id="85"/>
+						<ContextMenu name="ШагиАгентаУправлениеПоискомКонтекстноеМеню" id="151"/>
+						<ExtendedTooltip name="ШагиАгентаУправлениеПоискомРасширеннаяПодсказка" id="152"/>
 					</SearchControlAddition>
 					<ChildItems>
-						<InputField name="ШагиПорядковыйНомер" id="86">
+						<InputField name="ШагиПорядковыйНомер" id="153">
 							<DataPath>ШагиАгента.ПорядковыйНомер</DataPath>
 							<Title>
 								<v8:item>
@@ -631,10 +753,10 @@
 							</Title>
 							<ReadOnly>true</ReadOnly>
 							<Width>5</Width>
-							<ContextMenu name="ШагиПорядковыйНомерКонтекстноеМеню" id="87"/>
-							<ExtendedTooltip name="ШагиПорядковыйНомерРасширеннаяПодсказка" id="88"/>
+							<ContextMenu name="ШагиПорядковыйНомерКонтекстноеМеню" id="154"/>
+							<ExtendedTooltip name="ШагиПорядковыйНомерРасширеннаяПодсказка" id="155"/>
 						</InputField>
-						<InputField name="ШагиИнструмент" id="89">
+						<InputField name="ШагиИнструмент" id="156">
 							<DataPath>ШагиАгента.Инструмент</DataPath>
 							<Title>
 								<v8:item>
@@ -644,10 +766,10 @@
 							</Title>
 							<ReadOnly>true</ReadOnly>
 							<HorizontalStretch>true</HorizontalStretch>
-							<ContextMenu name="ШагиИнструментКонтекстноеМеню" id="90"/>
-							<ExtendedTooltip name="ШагиИнструментРасширеннаяПодсказка" id="91"/>
+							<ContextMenu name="ШагиИнструментКонтекстноеМеню" id="157"/>
+							<ExtendedTooltip name="ШагиИнструментРасширеннаяПодсказка" id="158"/>
 						</InputField>
-						<InputField name="ШагиСтатус" id="92">
+						<InputField name="ШагиСтатус" id="159">
 							<DataPath>ШагиАгента.Статус</DataPath>
 							<Title>
 								<v8:item>
@@ -657,10 +779,10 @@
 							</Title>
 							<ReadOnly>true</ReadOnly>
 							<Width>13</Width>
-							<ContextMenu name="ШагиСтатусКонтекстноеМеню" id="93"/>
-							<ExtendedTooltip name="ШагиСтатусРасширеннаяПодсказка" id="94"/>
+							<ContextMenu name="ШагиСтатусКонтекстноеМеню" id="160"/>
+							<ExtendedTooltip name="ШагиСтатусРасширеннаяПодсказка" id="161"/>
 						</InputField>
-						<InputField name="ШагиДлительность" id="95">
+						<InputField name="ШагиДлительность" id="162">
 							<DataPath>ШагиАгента.ДлительностьМс</DataPath>
 							<Title>
 								<v8:item>
@@ -671,19 +793,20 @@
 							<ReadOnly>true</ReadOnly>
 							<Width>9</Width>
 							<HorizontalAlign>Right</HorizontalAlign>
-							<ContextMenu name="ШагиДлительностьКонтекстноеМеню" id="96"/>
-							<ExtendedTooltip name="ШагиДлительностьРасширеннаяПодсказка" id="97"/>
+							<ContextMenu name="ШагиДлительностьКонтекстноеМеню" id="163"/>
+							<ExtendedTooltip name="ШагиДлительностьРасширеннаяПодсказка" id="164"/>
 						</InputField>
 					</ChildItems>
 					<Events>
 						<Event name="OnActivateRow">ШагиАгентаПриАктивизацииСтроки</Event>
 					</Events>
 				</Table>
-				<UsualGroup name="ПодробностиШага" id="98">
+				<UsualGroup name="ПодробностиШага" id="165">
 					<Group>HorizontalIfPossible</Group>
-					<ExtendedTooltip name="ПодробностиШагаРасширеннаяПодсказка" id="99"/>
+					<ShowTitle>false</ShowTitle>
+					<ExtendedTooltip name="ПодробностиШагаРасширеннаяПодсказка" id="166"/>
 					<ChildItems>
-						<InputField name="АргументыШага" id="100">
+						<InputField name="АргументыШага" id="167">
 							<DataPath>АргументыШага</DataPath>
 							<Title>
 								<v8:item>
@@ -697,10 +820,10 @@
 							<AutoMaxWidth>false</AutoMaxWidth>
 							<Height>5</Height>
 							<HorizontalStretch>true</HorizontalStretch>
-							<ContextMenu name="АргументыШагаКонтекстноеМеню" id="101"/>
-							<ExtendedTooltip name="АргументыШагаРасширеннаяПодсказка" id="102"/>
+							<ContextMenu name="АргументыШагаКонтекстноеМеню" id="168"/>
+							<ExtendedTooltip name="АргументыШагаРасширеннаяПодсказка" id="169"/>
 						</InputField>
-						<InputField name="РезультатШага" id="103">
+						<InputField name="РезультатШага" id="170">
 							<DataPath>РезультатШага</DataPath>
 							<Title>
 								<v8:item>
@@ -714,8 +837,8 @@
 							<AutoMaxWidth>false</AutoMaxWidth>
 							<Height>5</Height>
 							<HorizontalStretch>true</HorizontalStretch>
-							<ContextMenu name="РезультатШагаКонтекстноеМеню" id="104"/>
-							<ExtendedTooltip name="РезультатШагаРасширеннаяПодсказка" id="105"/>
+							<ContextMenu name="РезультатШагаКонтекстноеМеню" id="171"/>
+							<ExtendedTooltip name="РезультатШагаРасширеннаяПодсказка" id="172"/>
 						</InputField>
 					</ChildItems>
 				</UsualGroup>
@@ -723,13 +846,13 @@
 		</UsualGroup>
 	</ChildItems>
 	<Attributes>
-		<Attribute name="Объект" id="106">
+		<Attribute name="Объект" id="173">
 			<Type>
 				<v8:Type>cfg:DataProcessorObject.AI_ЧатПоДаннымБазы</v8:Type>
 			</Type>
 			<MainAttribute>true</MainAttribute>
 		</Attribute>
-		<Attribute name="Провайдер" id="107">
+		<Attribute name="Провайдер" id="174">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -741,7 +864,7 @@
 			</Type>
 			<SavedData>true</SavedData>
 		</Attribute>
-		<Attribute name="Модель" id="108">
+		<Attribute name="Модель" id="175">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -753,7 +876,7 @@
 			</Type>
 			<SavedData>true</SavedData>
 		</Attribute>
-		<Attribute name="Агент" id="109">
+		<Attribute name="Агент" id="176">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -765,7 +888,7 @@
 			</Type>
 			<SavedData>true</SavedData>
 		</Attribute>
-		<Attribute name="ТипAPI" id="110">
+		<Attribute name="ТипAPI" id="177">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -777,7 +900,7 @@
 			</Type>
 			<SavedData>true</SavedData>
 		</Attribute>
-		<Attribute name="СистемныйПромт" id="111">
+		<Attribute name="СистемныйПромт" id="178">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -793,7 +916,7 @@
 			</Type>
 			<SavedData>true</SavedData>
 		</Attribute>
-		<Attribute name="РежимДиалога" id="112">
+		<Attribute name="РежимДиалога" id="179">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -805,7 +928,7 @@
 			</Type>
 			<SavedData>true</SavedData>
 		</Attribute>
-		<Attribute name="ГлубинаДиалога" id="113">
+		<Attribute name="ГлубинаДиалога" id="180">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -822,7 +945,7 @@
 			</Type>
 			<SavedData>true</SavedData>
 		</Attribute>
-		<Attribute name="ДанныеКонтекста" id="114">
+		<Attribute name="ДанныеКонтекста" id="181">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -837,7 +960,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="НовоеСообщение" id="115">
+		<Attribute name="НовоеСообщение" id="182">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -852,7 +975,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="СтатусОперации" id="116">
+		<Attribute name="СтатусОперации" id="183">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -867,7 +990,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="СтатистикаТокенов" id="117">
+		<Attribute name="СтатистикаТокенов" id="184">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -882,7 +1005,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ИдентификаторОперации" id="118">
+		<Attribute name="ИдентификаторОперации" id="185">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -893,7 +1016,7 @@
 				<v8:Type>v8:UUID</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="ИдентификаторДиалога" id="119">
+		<Attribute name="ИдентификаторДиалога" id="186">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -905,7 +1028,7 @@
 			</Type>
 			<SavedData>true</SavedData>
 		</Attribute>
-		<Attribute name="ПредыдущийIDОтвета" id="120">
+		<Attribute name="ПредыдущийIDОтвета" id="187">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -921,7 +1044,7 @@
 			</Type>
 			<SavedData>true</SavedData>
 		</Attribute>
-		<Attribute name="ПоследнийПолученныйШаг" id="121">
+		<Attribute name="ПоследнийПолученныйШаг" id="188">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -937,7 +1060,7 @@
 				</v8:NumberQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ОперацияВыполняется" id="122">
+		<Attribute name="ОперацияВыполняется" id="189">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -948,7 +1071,7 @@
 				<v8:Type>xs:boolean</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="АргументыШага" id="123">
+		<Attribute name="АргументыШага" id="190">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -963,7 +1086,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="РезультатШага" id="124">
+		<Attribute name="РезультатШага" id="191">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -978,7 +1101,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="Сообщения" id="125">
+		<Attribute name="Сообщения" id="192">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -989,7 +1112,7 @@
 				<v8:Type>v8:ValueTable</v8:Type>
 			</Type>
 			<Columns>
-				<Column name="Время" id="126">
+				<Column name="Время" id="193">
 					<Type>
 						<v8:Type>xs:dateTime</v8:Type>
 						<v8:DateQualifiers>
@@ -997,7 +1120,7 @@
 						</v8:DateQualifiers>
 					</Type>
 				</Column>
-				<Column name="Роль" id="127">
+				<Column name="Роль" id="194">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1006,7 +1129,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="Сообщение" id="128">
+				<Column name="Сообщение" id="195">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1017,7 +1140,7 @@
 				</Column>
 			</Columns>
 		</Attribute>
-		<Attribute name="ШагиАгента" id="129">
+		<Attribute name="ШагиАгента" id="196">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1028,12 +1151,12 @@
 				<v8:Type>v8:ValueTable</v8:Type>
 			</Type>
 			<Columns>
-				<Column name="ИдентификаторШага" id="130">
+				<Column name="ИдентификаторШага" id="197">
 					<Type>
 						<v8:Type>v8:UUID</v8:Type>
 					</Type>
 				</Column>
-				<Column name="ПорядковыйНомер" id="131">
+				<Column name="ПорядковыйНомер" id="198">
 					<Type>
 						<v8:Type>xs:decimal</v8:Type>
 						<v8:NumberQualifiers>
@@ -1043,7 +1166,7 @@
 						</v8:NumberQualifiers>
 					</Type>
 				</Column>
-				<Column name="НомерШага" id="132">
+				<Column name="НомерШага" id="199">
 					<Type>
 						<v8:Type>xs:decimal</v8:Type>
 						<v8:NumberQualifiers>
@@ -1053,7 +1176,7 @@
 						</v8:NumberQualifiers>
 					</Type>
 				</Column>
-				<Column name="Инструмент" id="133">
+				<Column name="Инструмент" id="200">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1062,7 +1185,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="Статус" id="134">
+				<Column name="Статус" id="201">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1071,7 +1194,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="ДатаНачала" id="135">
+				<Column name="ДатаНачала" id="202">
 					<Type>
 						<v8:Type>xs:dateTime</v8:Type>
 						<v8:DateQualifiers>
@@ -1079,7 +1202,7 @@
 						</v8:DateQualifiers>
 					</Type>
 				</Column>
-				<Column name="ДатаОкончания" id="136">
+				<Column name="ДатаОкончания" id="203">
 					<Type>
 						<v8:Type>xs:dateTime</v8:Type>
 						<v8:DateQualifiers>
@@ -1087,7 +1210,7 @@
 						</v8:DateQualifiers>
 					</Type>
 				</Column>
-				<Column name="ДлительностьМс" id="137">
+				<Column name="ДлительностьМс" id="204">
 					<Type>
 						<v8:Type>xs:decimal</v8:Type>
 						<v8:NumberQualifiers>
@@ -1097,7 +1220,7 @@
 						</v8:NumberQualifiers>
 					</Type>
 				</Column>
-				<Column name="Аргументы" id="138">
+				<Column name="Аргументы" id="205">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1106,7 +1229,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="Результат" id="139">
+				<Column name="Результат" id="206">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1117,17 +1240,17 @@
 				</Column>
 			</Columns>
 		</Attribute>
-		<Attribute name="Вложения" id="140">
+		<Attribute name="Вложения" id="207">
 			<Type>
 				<v8:Type>v8:ValueTable</v8:Type>
 			</Type>
 			<Columns>
-				<Column name="Ссылка" id="1">
+				<Column name="Ссылка" id="208">
 					<Type>
 						<v8:Type>cfg:CatalogRef.AI_ВложенияДиалогов</v8:Type>
 					</Type>
 				</Column>
-				<Column name="ИмяФайла" id="2">
+				<Column name="ИмяФайла" id="209">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1136,7 +1259,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="MIMEТип" id="3">
+				<Column name="MIMEТип" id="210">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1145,7 +1268,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="РазмерБайт" id="4">
+				<Column name="РазмерБайт" id="211">
 					<Type>
 						<v8:Type>xs:decimal</v8:Type>
 						<v8:NumberQualifiers>
@@ -1155,7 +1278,7 @@
 						</v8:NumberQualifiers>
 					</Type>
 				</Column>
-				<Column name="Размер" id="5">
+				<Column name="Размер" id="212">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1164,7 +1287,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="Статус" id="6">
+				<Column name="Статус" id="213">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1175,7 +1298,7 @@
 				</Column>
 			</Columns>
 		</Attribute>
-		<Attribute name="HTMLДиалога" id="141">
+		<Attribute name="HTMLДиалога" id="214">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
@@ -1190,7 +1313,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ПоискДиалогов" id="142">
+		<Attribute name="ПоискДиалогов" id="215">
 			<Type>
 				<v8:Type>xs:string</v8:Type>
 				<v8:StringQualifiers>
@@ -1199,12 +1322,12 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ПоказыватьАрхивныеДиалоги" id="143">
+		<Attribute name="ПоказыватьАрхивныеДиалоги" id="216">
 			<Type>
 				<v8:Type>xs:boolean</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="НовыйЗаголовокДиалога" id="144">
+		<Attribute name="НовыйЗаголовокДиалога" id="217">
 			<Type>
 				<v8:Type>xs:string</v8:Type>
 				<v8:StringQualifiers>
@@ -1213,17 +1336,17 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ИсторияДиалогов" id="145">
+		<Attribute name="ИсторияДиалогов" id="218">
 			<Type>
 				<v8:Type>v8:ValueTable</v8:Type>
 			</Type>
 			<Columns>
-				<Column name="ИдентификаторДиалога" id="1">
+				<Column name="ИдентификаторДиалога" id="219">
 					<Type>
 						<v8:Type>v8:UUID</v8:Type>
 					</Type>
 				</Column>
-				<Column name="Заголовок" id="2">
+				<Column name="Заголовок" id="220">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1232,7 +1355,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="ДатаСоздания" id="3">
+				<Column name="ДатаСоздания" id="221">
 					<Type>
 						<v8:Type>xs:dateTime</v8:Type>
 						<v8:DateQualifiers>
@@ -1240,7 +1363,7 @@
 						</v8:DateQualifiers>
 					</Type>
 				</Column>
-				<Column name="ДатаИзменения" id="4">
+				<Column name="ДатаИзменения" id="222">
 					<Type>
 						<v8:Type>xs:dateTime</v8:Type>
 						<v8:DateQualifiers>
@@ -1248,12 +1371,12 @@
 						</v8:DateQualifiers>
 					</Type>
 				</Column>
-				<Column name="Агент" id="5">
+				<Column name="Агент" id="223">
 					<Type>
 						<v8:Type>cfg:CatalogRef.AI_Агенты</v8:Type>
 					</Type>
 				</Column>
-				<Column name="ПоследнееСообщение" id="6">
+				<Column name="ПоследнееСообщение" id="224">
 					<Type>
 						<v8:Type>xs:string</v8:Type>
 						<v8:StringQualifiers>
@@ -1262,7 +1385,7 @@
 						</v8:StringQualifiers>
 					</Type>
 				</Column>
-				<Column name="КоличествоСообщений" id="7">
+				<Column name="КоличествоСообщений" id="225">
 					<Type>
 						<v8:Type>xs:decimal</v8:Type>
 						<v8:NumberQualifiers>
@@ -1272,19 +1395,19 @@
 						</v8:NumberQualifiers>
 					</Type>
 				</Column>
-				<Column name="Архивирован" id="8">
+				<Column name="Архивирован" id="226">
 					<Type>
 						<v8:Type>xs:boolean</v8:Type>
 					</Type>
 				</Column>
 			</Columns>
 		</Attribute>
-		<Attribute name="Сценарий" id="146">
+		<Attribute name="Сценарий" id="227">
 			<Type>
 				<v8:Type>cfg:CatalogRef.AI_Сценарии</v8:Type>
 			</Type>
 		</Attribute>
-		<Attribute name="КонтекстJSON" id="147">
+		<Attribute name="КонтекстJSON" id="228">
 			<Type>
 				<v8:Type>xs:string</v8:Type>
 				<v8:StringQualifiers>
@@ -1293,7 +1416,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ВерсияКонтекста" id="148">
+		<Attribute name="ВерсияКонтекста" id="229">
 			<Type>
 				<v8:Type>xs:decimal</v8:Type>
 				<v8:NumberQualifiers>
@@ -1303,7 +1426,7 @@
 				</v8:NumberQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ТипИсточника" id="149">
+		<Attribute name="ТипИсточника" id="230">
 			<Type>
 				<v8:Type>xs:string</v8:Type>
 				<v8:StringQualifiers>
@@ -1312,7 +1435,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="КлючИсточника" id="150">
+		<Attribute name="КлючИсточника" id="231">
 			<Type>
 				<v8:Type>xs:string</v8:Type>
 				<v8:StringQualifiers>
@@ -1321,7 +1444,7 @@
 				</v8:StringQualifiers>
 			</Type>
 		</Attribute>
-		<Attribute name="ПредставлениеИсточника" id="151">
+		<Attribute name="ПредставлениеИсточника" id="232">
 			<Type>
 				<v8:Type>xs:string</v8:Type>
 				<v8:StringQualifiers>
@@ -1332,79 +1455,163 @@
 		</Attribute>
 	</Attributes>
 	<Commands>
-		<Command name="Отправить" id="140">
+		<Command name="Отправить" id="233">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Отправить</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Отправить сообщение (Ctrl+Enter). Ответ готовится в фоне; если закрыть форму, при следующем открытии ход восстановится.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ОтправитьОбработка</Action>
 			<Shortcut>Ctrl+Enter</Shortcut>
 		</Command>
-		<Command name="ОтменитьОперацию" id="141">
+		<Command name="ОтменитьОперацию" id="234">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Отменить</v8:content>
+					<v8:content>Отменить запрос</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Остановить запрос. Если он еще не начался — отменяется сразу, иначе — после текущего шага.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ОтменитьОперациюОбработка</Action>
 		</Command>
-		<Command name="НовыйДиалог" id="142">
+		<Command name="НовыйДиалог" id="235">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Новый диалог</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Начать новую беседу. Текущая остается в истории диалогов.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>НовыйДиалогОбработка</Action>
 		</Command>
-		<Command name="ОткрытьКонсоль" id="143">
+		<Command name="ОткрытьКонсоль" id="236">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Консоль запросов</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть консоль запросов: проверить запрос к базе и задать модели вопрос по его результату.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ОткрытьКонсольОбработка</Action>
 		</Command>
-		<Command name="ПрикрепитьФайлы" id="144">
+		<Command name="ПрикрепитьФайлы" id="237">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Прикрепить</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Приложить до 5 файлов: документы, картинки, текст, код. Картинки и текст — до 5 МБ, документы — до 20 МБ.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ПрикрепитьФайлыОбработка</Action>
 			<Picture>
 				<xr:Ref>StdPicture.OpenFile</xr:Ref>
 				<xr:LoadTransparent>true</xr:LoadTransparent>
 			</Picture>
 		</Command>
-		<Command name="УдалитьВложение" id="145">
+		<Command name="УдалитьВложение" id="238">
 			<Title>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
 					<v8:content>Удалить вложение</v8:content>
 				</v8:item>
 			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Убрать выбранный файл из сообщения и удалить его из базы.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>УдалитьВложениеОбработка</Action>
 			<Picture>
 				<xr:Ref>StdPicture.Delete</xr:Ref>
 				<xr:LoadTransparent>true</xr:LoadTransparent>
 			</Picture>
 		</Command>
-		<Command name="ОбновитьИсториюДиалогов" id="146">
+		<Command name="ОбновитьИсториюДиалогов" id="239">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Обновить</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Перечитать список диалогов с учетом поиска и флажка «Показывать архивные».</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ОбновитьИсториюДиалоговОбработка</Action>
 		</Command>
-		<Command name="ОткрытьДиалогИзИстории" id="147">
+		<Command name="ОткрытьДиалогИзИстории" id="240">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Открыть выбранный диалог: вернуть его настройки и последние сообщения, чтобы продолжить беседу.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ОткрытьДиалогИзИсторииОбработка</Action>
 		</Command>
-		<Command name="ПереименоватьДиалог" id="148">
+		<Command name="ПереименоватьДиалог" id="241">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Переименовать</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Задать выбранному диалогу название из поля «Название».</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>ПереименоватьДиалогОбработка</Action>
 		</Command>
-		<Command name="АрхивироватьДиалог" id="149">
+		<Command name="АрхивироватьДиалог" id="242">
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>В архив или из архива</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Убрать выбранный диалог в архив или вернуть. Архивный диалог скрыт из списка; продолжить его можно после возврата.</v8:content>
+				</v8:item>
+			</ToolTip>
 			<Action>АрхивироватьДиалогОбработка</Action>
 		</Command>
 	</Commands>
