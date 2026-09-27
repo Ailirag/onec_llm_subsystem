@@ -1,4 +1,4 @@
-﻿# Functional test environment
+# Functional test environment
 
 The local functional test environment is deliberately separate from production
 metadata and from a developer's working infobase.
@@ -80,7 +80,8 @@ This scenario opens the provider, model, and agent lists and verifies the
 sandbox and chat forms. It also opens the scheduled-jobs console, its schedule
 form, and the host universal data processor. The chat check includes its HTML
 document, attachment button, send button, and ready state. The script locates
-the newest installed `cc-1c-skills` web-test runner.
+the newest `cc-1c-skills` web-test runner installed for Codex or Claude Code
+(`tools/WebTestRunner.ps1`); pass `-WebTestRunner` to use another one.
 
 The local `.v8-project.json` entry is also generated and ignored by Git. Its
 database id and alias are `llm-functional-test` and `llm-test`.
@@ -89,7 +90,9 @@ database id and alias are `llm-functional-test` and `llm-test`.
 
 `ui/guides` — сценарии для сборки пользовательских инструкций. Это не тесты:
 они запускаются вручную этапом `tools\Build-UserGuide.ps1`, ходят в живую базу
-и обращаются к модели. Раннер тот же, что у UI-смоука. Подробности — в
+и обращаются к модели. По умолчанию ничего не записывают: шаг записи снимается
+без нажатия кнопки, а `-ApplyResults` — только для тестового стенда. Раннер
+тот же, что у UI-смоука. Подробности — в
 [Инструкции для пользователей](../docs/user-guides.md).
 
 ## Сценарии интерфейса вне смоука
