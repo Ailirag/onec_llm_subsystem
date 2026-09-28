@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Набор знаний</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<UsualGroup name="ГруппаШапка" id="1">
+			<Group>Vertical</Group>
+			<ExtendedTooltip name="ГруппаШапкаРасширеннаяПодсказка" id="2"/>
+			<ChildItems>
+				<UsualGroup name="ГруппаНаименование" id="3">
+					<Group>AlwaysHorizontal</Group>
+					<ExtendedTooltip name="ГруппаНаименованиеРасширеннаяПодсказка" id="4"/>
+					<ChildItems>
+						<InputField name="Наименование" id="5">
+							<DataPath>Объект.Description</DataPath>
+							<HorizontalStretch>true</HorizontalStretch>
+							<ContextMenu name="НаименованиеКонтекстноеМеню" id="6"/>
+							<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="7"/>
+						</InputField>
+						<CheckBoxField name="Активен" id="8">
+							<DataPath>Объект.Активен</DataPath>
+							<CheckBoxType>Auto</CheckBoxType>
+							<TitleLocation>Right</TitleLocation>
+							<ContextMenu name="АктивенКонтекстноеМеню" id="9"/>
+							<ExtendedTooltip name="АктивенРасширеннаяПодсказка" id="10"/>
+						</CheckBoxField>
+					</ChildItems>
+				</UsualGroup>
+				<InputField name="ИдентификаторДляЛогики" id="11">
+					<DataPath>Объект.ИдентификаторДляЛогики</DataPath>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="ИдентификаторДляЛогикиКонтекстноеМеню" id="12"/>
+					<ExtendedTooltip name="ИдентификаторДляЛогикиРасширеннаяПодсказка" id="13"/>
+				</InputField>
+				<InputField name="Описание" id="14">
+					<DataPath>Объект.Описание</DataPath>
+					<MultiLine>true</MultiLine>
+					<AutoMaxWidth>false</AutoMaxWidth>
+					<Height>3</Height>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="ОписаниеКонтекстноеМеню" id="15"/>
+					<ExtendedTooltip name="ОписаниеРасширеннаяПодсказка" id="16"/>
+				</InputField>
+				<UsualGroup name="ГруппаВерсия" id="17">
+					<Group>AlwaysHorizontal</Group>
+					<ExtendedTooltip name="ГруппаВерсияРасширеннаяПодсказка" id="18"/>
+					<ChildItems>
+						<InputField name="Версия" id="19">
+							<DataPath>Объект.Версия</DataPath>
+							<ContextMenu name="ВерсияКонтекстноеМеню" id="20"/>
+							<ExtendedTooltip name="ВерсияРасширеннаяПодсказка" id="21"/>
+						</InputField>
+						<InputField name="ДатаАктуальности" id="22">
+							<DataPath>Объект.ДатаАктуальности</DataPath>
+							<ContextMenu name="ДатаАктуальностиКонтекстноеМеню" id="23"/>
+							<ExtendedTooltip name="ДатаАктуальностиРасширеннаяПодсказка" id="24"/>
+						</InputField>
+					</ChildItems>
+				</UsualGroup>
+			</ChildItems>
+		</UsualGroup>
+		<LabelDecoration name="СоставОписание" id="25">
+			<Title formatted="false">
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Добавьте карточки контекста в том порядке, в котором они должны передаваться модели.</v8:content>
+				</v8:item>
+			</Title>
+			<ContextMenu name="СоставОписаниеКонтекстноеМеню" id="26"/>
+			<ExtendedTooltip name="СоставОписаниеРасширеннаяПодсказка" id="27"/>
+		</LabelDecoration>
+		<Table name="Состав" id="28">
+			<DataPath>Объект.Состав</DataPath>
+			<ChangeRowSet>true</ChangeRowSet>
+			<ChangeRowOrder>true</ChangeRowOrder>
+			<Height>12</Height>
+			<ContextMenu name="СоставКонтекстноеМеню" id="29"/>
+			<AutoCommandBar name="СоставКоманднаяПанель" id="30"/>
+			<ExtendedTooltip name="СоставРасширеннаяПодсказка" id="31"/>
+			<SearchStringAddition name="СоставСтрокаПоиска" id="32">
+				<AdditionSource>
+					<Item>Состав</Item>
+					<Type>SearchStringRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СоставСтрокаПоискаКонтекстноеМеню" id="33"/>
+				<ExtendedTooltip name="СоставСтрокаПоискаРасширеннаяПодсказка" id="34"/>
+			</SearchStringAddition>
+			<ViewStatusAddition name="СоставСостояниеПросмотра" id="35">
+				<AdditionSource>
+					<Item>Состав</Item>
+					<Type>ViewStatusRepresentation</Type>
+				</AdditionSource>
+				<ContextMenu name="СоставСостояниеПросмотраКонтекстноеМеню" id="36"/>
+				<ExtendedTooltip name="СоставСостояниеПросмотраРасширеннаяПодсказка" id="37"/>
+			</ViewStatusAddition>
+			<SearchControlAddition name="СоставУправлениеПоиском" id="38">
+				<AdditionSource>
+					<Item>Состав</Item>
+					<Type>SearchControl</Type>
+				</AdditionSource>
+				<ContextMenu name="СоставУправлениеПоискомКонтекстноеМеню" id="39"/>
+				<ExtendedTooltip name="СоставУправлениеПоискомРасширеннаяПодсказка" id="40"/>
+			</SearchControlAddition>
+			<ChildItems>
+				<LabelField name="СоставНомерСтроки" id="41">
+					<DataPath>Объект.Состав.LineNumber</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>№</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="СоставНомерСтрокиКонтекстноеМеню" id="42"/>
+					<ExtendedTooltip name="СоставНомерСтрокиРасширеннаяПодсказка" id="43"/>
+				</LabelField>
+				<InputField name="СоставКонтекст" id="44">
+					<DataPath>Объект.Состав.Контекст</DataPath>
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Карточка контекста</v8:content>
+						</v8:item>
+					</Title>
+					<ContextMenu name="СоставКонтекстКонтекстноеМеню" id="45"/>
+					<ExtendedTooltip name="СоставКонтекстРасширеннаяПодсказка" id="46"/>
+				</InputField>
+			</ChildItems>
+		</Table>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="47">
+			<Type>
+				<v8:Type>cfg:CatalogObject.AI_НаборыЗнаний</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+</Form>

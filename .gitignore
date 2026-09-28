@@ -32,3 +32,35 @@
 *.tmp
 Thumbs.db
 .DS_Store
+
+# ONEC_PROJECT_WORKFLOW_START
+.build/
+build/
+DumpFilesIndex.txt
+ConfigDumpInfo.xml
+*.1CD
+*.1CL
+*.lgf
+*.tmp
+*.epf
+*.erf
+*.log
+
+# Метка владельца базы/стенда: пишется внутрь каталога базы. При явном -BasePath
+# внутри репозитория не должна попадать в индекс.
+.onec-workflow-owner.json
+
+# Персональные конфиги агентов: генерируются фазой Start из шаблонов
+# .mcp.example.json / .zcode/config.example.json / .v8-project.example.json.
+# В Git хранятся только шаблоны.
+.v8-project.json
+.mcp.json
+.claude/settings.local.json
+.claude/*.local.json
+.claude/worktrees/
+.zcode/*
+!.zcode/config.example.json
+
+# Секреты: пароли баз, токены. В репозиторий не попадают.
+.env
+# ONEC_PROJECT_WORKFLOW_END

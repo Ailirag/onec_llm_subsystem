@@ -1,0 +1,39 @@
+{
+  "v8path": "C:\\Program Files\\1cv8\\8.3.27.2130\\bin",
+  "databases": [
+    {
+      "id": "dev",
+      "name": "LLM_Subsystem_test — персональная разработка",
+      "type": "file",
+      "path": "",
+      "user": "",
+      "password": "",
+      "aliases": [
+        "dev"
+      ],
+      "branches": [
+        "feature/*",
+        "fix/*",
+        "hotfix/*",
+        "codex/*",
+        "claude/*"
+      ],
+      "configSrc": "cf"
+    },
+    {
+      "id": "server",
+      "name": "LLM_Subsystem_test — серверная база",
+      "type": "server",
+      "server": "",
+      "ref": "",
+      "user": "",
+      "password": "",
+      "aliases": [
+        "srv"
+      ],
+      "branches": [],
+      "configSrc": "cf"
+    }
+  ],
+  "default": "dev"
+}

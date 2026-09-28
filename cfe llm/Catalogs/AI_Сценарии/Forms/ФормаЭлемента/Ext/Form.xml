@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcssch="http://v8.1c.ru/8.1/data-composition-system/schema" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.20">
+	<Title>
+		<v8:item>
+			<v8:lang>ru</v8:lang>
+			<v8:content>Сценарий</v8:content>
+		</v8:item>
+	</Title>
+	<AutoTitle>false</AutoTitle>
+	<AutoCommandBar name="ФормаКоманднаяПанель" id="-1"/>
+	<ChildItems>
+		<UsualGroup name="ГруппаШапка" id="1">
+			<Group>AlwaysHorizontal</Group>
+			<ExtendedTooltip name="ГруппаШапкаРасширеннаяПодсказка" id="2"/>
+			<ChildItems>
+				<InputField name="Наименование" id="3">
+					<DataPath>Объект.Description</DataPath>
+					<HorizontalStretch>true</HorizontalStretch>
+					<ContextMenu name="НаименованиеКонтекстноеМеню" id="4"/>
+					<ExtendedTooltip name="НаименованиеРасширеннаяПодсказка" id="5"/>
+				</InputField>
+				<InputField name="Код" id="6">
+					<DataPath>Объект.Code</DataPath>
+					<ContextMenu name="КодКонтекстноеМеню" id="7"/>
+					<ExtendedTooltip name="КодРасширеннаяПодсказка" id="8"/>
+				</InputField>
+				<CheckBoxField name="Активен" id="9">
+					<DataPath>Объект.Активен</DataPath>
+					<CheckBoxType>Auto</CheckBoxType>
+					<TitleLocation>Right</TitleLocation>
+					<ContextMenu name="АктивенКонтекстноеМеню" id="10"/>
+					<ExtendedTooltip name="АктивенРасширеннаяПодсказка" id="11"/>
+				</CheckBoxField>
+			</ChildItems>
+		</UsualGroup>
+		<Pages name="Страницы" id="12">
+			<ExtendedTooltip name="СтраницыРасширеннаяПодсказка" id="13"/>
+			<ChildItems>
+				<Page name="СтраницаВыполнение" id="14">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Выполнение</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СтраницаВыполнениеРасширеннаяПодсказка" id="15"/>
+					<ChildItems>
+						<InputField name="Агент" id="16">
+							<DataPath>Объект.Агент</DataPath>
+							<HorizontalStretch>true</HorizontalStretch>
+							<ContextMenu name="АгентКонтекстноеМеню" id="17"/>
+							<ExtendedTooltip name="АгентРасширеннаяПодсказка" id="18"/>
+						</InputField>
+						<InputField name="Провайдер" id="19">
+							<DataPath>Объект.Провайдер</DataPath>
+							<HorizontalStretch>true</HorizontalStretch>
+							<ContextMenu name="ПровайдерКонтекстноеМеню" id="20"/>
+							<ExtendedTooltip name="ПровайдерРасширеннаяПодсказка" id="21"/>
+						</InputField>
+						<InputField name="Модель" id="22">
+							<DataPath>Объект.Модель</DataPath>
+							<HorizontalStretch>true</HorizontalStretch>
+							<ContextMenu name="МодельКонтекстноеМеню" id="23"/>
+							<ExtendedTooltip name="МодельРасширеннаяПодсказка" id="24"/>
+						</InputField>
+						<InputField name="ТипAPI" id="25">
+							<DataPath>Объект.ТипAPI</DataPath>
+							<ContextMenu name="ТипAPIКонтекстноеМеню" id="26"/>
+							<ExtendedTooltip name="ТипAPIРасширеннаяПодсказка" id="27"/>
+						</InputField>
+						<InputField name="СпособРазбораВложений" id="28">
+							<DataPath>Объект.СпособРазбораВложений</DataPath>
+							<HorizontalStretch>true</HorizontalStretch>
+							<ContextMenu name="СпособРазбораВложенийКонтекстноеМеню" id="29"/>
+							<ExtendedTooltip name="СпособРазбораВложенийРасширеннаяПодсказка" id="30"/>
+						</InputField>
+					</ChildItems>
+				</Page>
+				<Page name="СтраницаРезультат" id="31">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Результат и повторы</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СтраницаРезультатРасширеннаяПодсказка" id="32"/>
+					<ChildItems>
+						<InputField name="ВерсияКонтракта" id="33">
+							<DataPath>Объект.ВерсияКонтракта</DataPath>
+							<ContextMenu name="ВерсияКонтрактаКонтекстноеМеню" id="34"/>
+							<ExtendedTooltip name="ВерсияКонтрактаРасширеннаяПодсказка" id="35"/>
+						</InputField>
+						<InputField name="СхемаОтветаJSON" id="36">
+							<DataPath>Объект.СхемаОтветаJSON</DataPath>
+							<MultiLine>true</MultiLine>
+							<AutoMaxWidth>false</AutoMaxWidth>
+							<Height>10</Height>
+							<HorizontalStretch>true</HorizontalStretch>
+							<ContextMenu name="СхемаОтветаJSONКонтекстноеМеню" id="37"/>
+							<ExtendedTooltip name="СхемаОтветаJSONРасширеннаяПодсказка" id="38"/>
+						</InputField>
+						<InputField name="КодОбработчика" id="39">
+							<DataPath>Объект.КодОбработчика</DataPath>
+							<HorizontalStretch>true</HorizontalStretch>
+							<ContextMenu name="КодОбработчикаКонтекстноеМеню" id="40"/>
+							<ExtendedTooltip name="КодОбработчикаРасширеннаяПодсказка" id="41"/>
+						</InputField>
+						<UsualGroup name="ГруппаПовторы" id="42">
+							<Group>AlwaysHorizontal</Group>
+							<ExtendedTooltip name="ГруппаПовторыРасширеннаяПодсказка" id="43"/>
+							<ChildItems>
+								<CheckBoxField name="РазрешитьПовтор" id="44">
+									<DataPath>Объект.РазрешитьПовтор</DataPath>
+									<CheckBoxType>Auto</CheckBoxType>
+									<TitleLocation>Right</TitleLocation>
+									<ContextMenu name="РазрешитьПовторКонтекстноеМеню" id="45"/>
+									<ExtendedTooltip name="РазрешитьПовторРасширеннаяПодсказка" id="46"/>
+								</CheckBoxField>
+								<InputField name="МаксимумПопыток" id="47">
+									<DataPath>Объект.МаксимумПопыток</DataPath>
+									<ContextMenu name="МаксимумПопытокКонтекстноеМеню" id="48"/>
+									<ExtendedTooltip name="МаксимумПопытокРасширеннаяПодсказка" id="49"/>
+								</InputField>
+								<CheckBoxField name="ИспользоватьДляСтаройОчереди" id="50">
+									<DataPath>Объект.ИспользоватьДляСтаройОчереди</DataPath>
+									<CheckBoxType>Auto</CheckBoxType>
+									<TitleLocation>Right</TitleLocation>
+									<ContextMenu name="ИспользоватьДляСтаройОчередиКонтекстноеМеню" id="51"/>
+									<ExtendedTooltip name="ИспользоватьДляСтаройОчередиРасширеннаяПодсказка" id="52"/>
+								</CheckBoxField>
+							</ChildItems>
+						</UsualGroup>
+					</ChildItems>
+				</Page>
+				<Page name="СтраницаЗнания" id="53">
+					<Title>
+						<v8:item>
+							<v8:lang>ru</v8:lang>
+							<v8:content>Знания</v8:content>
+						</v8:item>
+					</Title>
+					<ExtendedTooltip name="СтраницаЗнанияРасширеннаяПодсказка" id="54"/>
+					<ChildItems>
+						<LabelDecoration name="ЗнанияОписание" id="55">
+							<Title formatted="false">
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Эти наборы добавляются только при выполнении данного сценария и перекрывают одноимённые знания агента.</v8:content>
+								</v8:item>
+							</Title>
+							<ContextMenu name="ЗнанияОписаниеКонтекстноеМеню" id="56"/>
+							<ExtendedTooltip name="ЗнанияОписаниеРасширеннаяПодсказка" id="57"/>
+						</LabelDecoration>
+						<Table name="НаборыЗнаний" id="58">
+							<DataPath>Объект.НаборыЗнаний</DataPath>
+							<ChangeRowSet>true</ChangeRowSet>
+							<ChangeRowOrder>true</ChangeRowOrder>
+							<Height>10</Height>
+							<ContextMenu name="НаборыЗнанийКонтекстноеМеню" id="59"/>
+							<AutoCommandBar name="НаборыЗнанийКоманднаяПанель" id="60"/>
+							<ExtendedTooltip name="НаборыЗнанийРасширеннаяПодсказка" id="61"/>
+							<SearchStringAddition name="НаборыЗнанийСтрокаПоиска" id="62">
+								<AdditionSource>
+									<Item>НаборыЗнаний</Item>
+									<Type>SearchStringRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="НаборыЗнанийСтрокаПоискаКонтекстноеМеню" id="63"/>
+								<ExtendedTooltip name="НаборыЗнанийСтрокаПоискаРасширеннаяПодсказка" id="64"/>
+							</SearchStringAddition>
+							<ViewStatusAddition name="НаборыЗнанийСостояниеПросмотра" id="65">
+								<AdditionSource>
+									<Item>НаборыЗнаний</Item>
+									<Type>ViewStatusRepresentation</Type>
+								</AdditionSource>
+								<ContextMenu name="НаборыЗнанийСостояниеПросмотраКонтекстноеМеню" id="66"/>
+								<ExtendedTooltip name="НаборыЗнанийСостояниеПросмотраРасширеннаяПодсказка" id="67"/>
+							</ViewStatusAddition>
+							<SearchControlAddition name="НаборыЗнанийУправлениеПоиском" id="68">
+								<AdditionSource>
+									<Item>НаборыЗнаний</Item>
+									<Type>SearchControl</Type>
+								</AdditionSource>
+								<ContextMenu name="НаборыЗнанийУправлениеПоискомКонтекстноеМеню" id="69"/>
+								<ExtendedTooltip name="НаборыЗнанийУправлениеПоискомРасширеннаяПодсказка" id="70"/>
+							</SearchControlAddition>
+							<ChildItems>
+								<LabelField name="НаборыЗнанийНомерСтроки" id="71">
+									<DataPath>Объект.НаборыЗнаний.LineNumber</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>№</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="НаборыЗнанийНомерСтрокиКонтекстноеМеню" id="72"/>
+									<ExtendedTooltip name="НаборыЗнанийНомерСтрокиРасширеннаяПодсказка" id="73"/>
+								</LabelField>
+								<InputField name="НаборыЗнанийНаборЗнаний" id="74">
+									<DataPath>Объект.НаборыЗнаний.НаборЗнаний</DataPath>
+									<Title>
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Набор знаний</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="НаборыЗнанийНаборЗнанийКонтекстноеМеню" id="75"/>
+									<ExtendedTooltip name="НаборыЗнанийНаборЗнанийРасширеннаяПодсказка" id="76"/>
+								</InputField>
+							</ChildItems>
+						</Table>
+					</ChildItems>
+				</Page>
+			</ChildItems>
+		</Pages>
+	</ChildItems>
+	<Attributes>
+		<Attribute name="Объект" id="77">
+			<Type>
+				<v8:Type>cfg:CatalogObject.AI_Сценарии</v8:Type>
+			</Type>
+			<MainAttribute>true</MainAttribute>
+			<SavedData>true</SavedData>
+		</Attribute>
+	</Attributes>
+</Form>

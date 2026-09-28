@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$BasePath = (Join-Path $env:LOCALAPPDATA "Ailirag\onec_llm_subsystem\functional-test-base"),
     [int]$TimeoutSeconds = 180
@@ -80,6 +80,12 @@ try {
     $resultLines | ForEach-Object { Write-Host $_ }
     if ($resultLines[0] -ne "OK") {
         throw "Functional smoke tests failed. See $resultFile"
+    }
+    $knowledgeBundleResult = @(
+        $resultLines | Where-Object { $_ -like "PASS|knowledge_bundles|*" }
+    )
+    if ($knowledgeBundleResult.Count -ne 1) {
+        throw "Knowledge bundles test did not run exactly once. See $resultFile"
     }
 } finally {
     if ($ownsMockProcess -and $mockProcess -and -not $mockProcess.HasExited) {

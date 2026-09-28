@@ -4,6 +4,9 @@ param(
     [string]$V8Path = "",
     [int]$SeedTimeoutSeconds = 120,
     [switch]$Recreate,
+    # Новый workflow сохраняет и восстанавливает реестр вокруг прогона сам.
+    # Ключ не даёт адаптеру вносить промежуточную запись о временном стенде.
+    [switch]$SkipRegistryUpdate,
     # Цикл разработки: база уже поднята и засеяна, пересевать фикстуры не нужно.
     # Экономит COM-подключение и повторную запись тестовых данных на каждой итерации.
     [switch]$SkipSeed
@@ -196,7 +199,9 @@ Invoke-1C `
 
 if ($SkipSeed) {
     Write-Host "Пересев фикстур пропущен (-SkipSeed)."
-    Update-LocalDatabaseRegistry
+    if (-not $SkipRegistryUpdate) {
+        Update-LocalDatabaseRegistry
+    }
     Write-Host ""
     Write-Host "[OK] Функциональная база обновлена: $baseFullPath"
     return
@@ -229,7 +234,9 @@ if ($seedLines[0] -ne "OK") {
     throw "Fixture seeding failed. See $seedResult"
 }
 
-Update-LocalDatabaseRegistry
+if (-not $SkipRegistryUpdate) {
+    Update-LocalDatabaseRegistry
+}
 
 Write-Host ""
 Write-Host "[OK] Persistent functional test base is ready:"

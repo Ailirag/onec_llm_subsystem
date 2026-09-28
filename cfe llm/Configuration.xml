@@ -138,6 +138,7 @@
 			<CommonModule>AI_ПовторноеИспользование</CommonModule>
 			<CommonModule>AI_Инструкции</CommonModule>
 			<CommonModule>AI_ПакетыСценариев</CommonModule>
+			<CommonModule>AI_Знания</CommonModule>
 			<EventSubscription>AI_КонтрольУникальностиИдентификатораЛогики</EventSubscription>
 			<ScheduledJob>AI_ОбработкаОчередиЗапросов</ScheduledJob>
 			<ScheduledJob>AI_ОбработкаОчередиПодготовкиКВекторизации</ScheduledJob>
@@ -171,6 +172,7 @@
 			<Catalog>AI_Сценарии</Catalog>
 			<Catalog>AI_МестаЗапускаСценариев</Catalog>
 			<Catalog>AI_КартыИзвлечения</Catalog>
+			<Catalog>AI_НаборыЗнаний</Catalog>
 			<Enum>AI_ТипAPI</Enum>
 			<Enum>AI_ФорматыОтветов</Enum>
 			<Enum>AI_РольСообщения</Enum>

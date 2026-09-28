@@ -217,7 +217,7 @@
 							<Title>
 								<v8:item>
 									<v8:lang>ru</v8:lang>
-									<v8:content>Доп. контекст</v8:content>
+									<v8:content>Отдельные контексты</v8:content>
 								</v8:item>
 							</Title>
 							<ExtendedTooltip name="ГруппаДопКонтекстРасширеннаяПодсказка" id="72"/>
@@ -228,7 +228,7 @@
 									<Title formatted="false">
 										<v8:item>
 											<v8:lang>ru</v8:lang>
-											<v8:content>Выбранные сведения добавляются к запросам агента отдельными сообщениями: справка о компании, правила, термины. Большие объемы знаний подключайте на вкладке «База знаний (RAG)» — модель получит только подходящие фрагменты.</v8:content>
+											<v8:content>Для единичных карточек контекста. Переиспользуемые группы карточек назначайте на вкладке «Знания», большие коллекции документов — на вкладке «База знаний (RAG)».</v8:content>
 										</v8:item>
 									</Title>
 									<ContextMenu name="ДекорацияДопКонтекстКонтекстноеМеню" id="74"/>
@@ -700,6 +700,51 @@
 											<ContextMenu name="ДоступГруппАктивнаКонтекстноеМеню" id="218"/>
 											<ExtendedTooltip name="ДоступГруппАктивнаРасширеннаяПодсказка" id="219"/>
 										</CheckBoxField>
+									</ChildItems>
+								</Table>
+							</ChildItems>
+						</Page>
+						<Page name="СтраницаЗнания" id="220">
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Знания</v8:content>
+								</v8:item>
+							</Title>
+							<ExtendedTooltip name="СтраницаЗнанияРасширеннаяПодсказка" id="221"/>
+							<ChildItems>
+								<LabelDecoration name="ЗнанияОписание" id="222">
+									<Title formatted="false">
+										<v8:item>
+											<v8:lang>ru</v8:lang>
+											<v8:content>Выберите наборы постоянного контекста, которые будут доступны агенту при каждом запуске.</v8:content>
+										</v8:item>
+									</Title>
+									<ContextMenu name="ЗнанияОписаниеКонтекстноеМеню" id="223"/>
+									<ExtendedTooltip name="ЗнанияОписаниеРасширеннаяПодсказка" id="224"/>
+								</LabelDecoration>
+								<Table name="НаборыЗнаний" id="225">
+									<DataPath>Объект.НаборыЗнаний</DataPath>
+									<ChangeRowSet>true</ChangeRowSet>
+									<ChangeRowOrder>true</ChangeRowOrder>
+									<HeightInTableRows>8</HeightInTableRows>
+									<ContextMenu name="НаборыЗнанийКонтекстноеМеню" id="226"/>
+									<AutoCommandBar name="НаборыЗнанийКоманднаяПанель" id="227"/>
+									<SearchStringAddition name="НаборыЗнанийСтрокаПоиска" id="228"/>
+									<ViewStatusAddition name="НаборыЗнанийСостояниеПросмотра" id="229"/>
+									<SearchControlAddition name="НаборыЗнанийУправлениеПоиском" id="230"/>
+									<ChildItems>
+										<InputField name="НаборыЗнанийНаборЗнаний" id="231">
+											<DataPath>Объект.НаборыЗнаний.НаборЗнаний</DataPath>
+											<Title>
+												<v8:item>
+													<v8:lang>ru</v8:lang>
+													<v8:content>Набор знаний</v8:content>
+												</v8:item>
+											</Title>
+											<ContextMenu name="НаборыЗнанийНаборЗнанийКонтекстноеМеню" id="232"/>
+											<ExtendedTooltip name="НаборыЗнанийНаборЗнанийРасширеннаяПодсказка" id="233"/>
+										</InputField>
 									</ChildItems>
 								</Table>
 							</ChildItems>

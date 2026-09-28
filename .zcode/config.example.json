@@ -1,0 +1,15 @@
+{
+  "mcp": {
+    "servers": {
+      "onec-lite": {
+        "type": "http",
+        "url": "http://127.0.0.1:18010/mcp",
+        "headers": {
+          "X-Workspace": "${ONEC_LITE_WORKSPACE}"
+        },
+        "enabled": true,
+        "timeoutMs": 60000
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$Url = "http://localhost:8081/llm-functional-test",
     [string]$WebTestRunner = ""

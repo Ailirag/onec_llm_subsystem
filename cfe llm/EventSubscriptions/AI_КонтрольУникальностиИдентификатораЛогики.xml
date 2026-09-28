@@ -14,6 +14,7 @@
 				<v8:Type>cfg:CatalogObject.AI_Агенты</v8:Type>
 				<v8:Type>cfg:CatalogObject.AI_Модели</v8:Type>
 				<v8:Type>cfg:CatalogObject.AI_ДополнительныйКонтекст</v8:Type>
+				<v8:Type>cfg:CatalogObject.AI_НаборыЗнаний</v8:Type>
 			</Source>
 			<Event>BeforeWrite</Event>
 			<Handler>CommonModule.AI_ОбработкаСервер.AI_КонтрольУникальностиИдентификатораЛогикиПередЗаписью</Handler>

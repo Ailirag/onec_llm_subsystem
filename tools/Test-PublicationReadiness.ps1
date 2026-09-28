@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$RepositoryPath = (Split-Path $PSScriptRoot -Parent)
 )

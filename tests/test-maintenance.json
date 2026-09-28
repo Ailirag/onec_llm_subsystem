@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "baseRef": "origin/main",
+  "_semantics": "Внутри правила requiredTestPatterns означает ЛЮБОЙ ИЗ: достаточно одного совпадения. Между правилами - ВСЕ: каждое сработавшее правило обязано найти своё доказательство. Чтобы потребовать сразу две области, создайте два правила с одинаковыми changePatterns и разными requiredTestPatterns; перечисление двух областей в одном правиле, наоборот, ОСЛАБЛЯЕТ проверку.",
+  "_selection": "Эти же правила задают объём выборочного прогона: из requiredTestPatterns берётся буквальный префикс пути до первого метасимвола regex. Поэтому шаблон вида ^__WEBUI_SUITE__/.+\\.test\\.mjs$ обрезается до КОРНЯ сьюта и разворачивает выборочный прогон в полный. Указывайте конкретные каталоги областей - от этого напрямую зависит длина обязательного цикла.",
+  "_forms": "Правила по управляемым формам здесь намеренно ОТСУТСТВУЮТ, и добавлять их не нужно. Изменённые объекты открываются адресно тестом 00-interface/03-changed-objects.test.mjs: список выводится из diff скриптом Get-ChangedUiTargets.ps1, поэтому проверяется именно изменённое, без карты соответствий и без её поддержки руками. Карта задавала бы цель ПУТЁМ, а значит с точностью до каталога: правка одного отчёта тянула бы прогон всех отчётов. Чего эта проверка НЕ покрывает: поведение внутри формы. Для прикладной логики требование ставит business-logic, а клиентскую логику формы может проверить только сценарный UI-тест - его отсутствие правилами не компенсируется. Общие формы (CommonForms) остаются непокрытыми: открыть их навигационной ссылкой нельзя, они вызываются из других форм.",
+  "rules": [
+    {
+      "_note": "Управляемая форма — интерфейс, и её правка обязана проверяться ОТКРЫТИЕМ. Правило business-logic ловит форму заодно с объектом и требует функциональных тестов, а это не то же самое: форма может открыться с ошибкой при зелёных функциональных. Добавления формы при этом не видно и в Configuration.xml — он не меняется, поэтому command-interface тоже молчит.",
+      "id": "object-forms",
+      "description": "Изменение управляемой формы объекта требует актуализации UI-проверок интерфейса.",
+      "changePatterns": [
+        "^__WORKFLOW_COMPONENTS__/.+/Forms/"
+      ],
+      "requiredTestPatterns": [
+        "^__WEBUI_SUITE__/00-interface/"
+      ],
+      "_runNote": "requiredTestPatterns — что автор обязан обновить, runTestPatterns — что прогонять. Разные вещи: 03-changed-objects адаптивный, он читает diff и при правке формы не меняется, требовать его правку нельзя. А прогонять надо именно его — он открывает ровно изменённые объекты.",
+      "runTestPatterns": [
+        "^__WEBUI_SUITE__/00-interface/03-changed-objects\\.test\\.mjs$"
+      ]
+    },
+    {
+      "id": "command-interface",
+      "description": "Изменение командного интерфейса требует UI-проверки карты разделов и команд.",
+      "changePatterns": [
+        "^__WORKFLOW_COMPONENTS__/Configuration\\.xml$",
+        "^__WORKFLOW_COMPONENTS__/Subsystems/",
+        "^__WORKFLOW_COMPONENTS__/CommonCommands/",
+        "^__WORKFLOW_COMPONENTS__/.+/CommandInterface\\.xml$"
+      ],
+      "requiredTestPatterns": [
+        "^__WEBUI_SUITE__/00-interface/"
+      ],
+      "_runNote": "Прогоняется сверка карты разделов и адресное открытие изменённых объектов. Сплошной обход всех команд всех разделов сюда не входит: он в обязательный минимум не попадает и должен идти только полным прогоном на Release. Каталогом правило требовало весь 00-interface, и правка одной формы открывала полсотни посторонних команд.",
+      "runTestPatterns": [
+        "^__WEBUI_SUITE__/00-interface/01-sections\\.test\\.mjs$",
+        "^__WEBUI_SUITE__/00-interface/03-changed-objects\\.test\\.mjs$"
+      ]
+    },
+    {
+      "id": "reports",
+      "description": "Изменение отчета, формы отчета или СКД требует проверки формирования отчета.",
+      "changePatterns": [
+        "^__WORKFLOW_COMPONENTS__/Reports/"
+      ],
+      "requiredTestPatterns": [
+        "^__WEBUI_SUITE__/03-reports/"
+      ]
+    },
+    {
+      "id": "http-contract",
+      "description": "Изменение HTTP-сервиса требует позитивной и негативной проверки контракта.",
+      "changePatterns": [
+        "^__WORKFLOW_COMPONENTS__/HTTPServices/"
+      ],
+      "requiredTestPatterns": [
+        "^tests/functional/",
+        "^tools/Invoke-FunctionalSmokeTests\\.ps1$"
+      ]
+    },
+    {
+      "id": "business-logic",
+      "description": "Изменение прикладной логики или данных требует детерминированного функционального теста.",
+      "changePatterns": [
+        "^__WORKFLOW_COMPONENTS__/CommonModules/",
+        "^__WORKFLOW_COMPONENTS__/Catalogs/",
+        "^__WORKFLOW_COMPONENTS__/Documents/",
+        "^__WORKFLOW_COMPONENTS__/InformationRegisters/",
+        "^__WORKFLOW_COMPONENTS__/AccumulationRegisters/",
+        "^__WORKFLOW_COMPONENTS__/DataProcessors/"
+      ],
+      "requiredTestPatterns": [
+        "^tests/functional/",
+        "^tools/Initialize-FunctionalTestEnvironment\\.ps1$",
+        "^tools/Invoke-FunctionalSmokeTests\\.ps1$"
+      ]
+    },
+    {
+      "id": "access-rights",
+      "description": "Изменение роли требует позитивного и негативного сценария под соответствующими пользователями.",
+      "changePatterns": [
+        "^__WORKFLOW_COMPONENTS__/Roles/"
+      ],
+      "requiredTestPatterns": [
+        "^__WEBUI_SUITE__/04-access/"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "tasks": ["knowledge-bundles"],
+  "title": "Как настроить наборы знаний для агента и сценария",
+  "persona": "",
+  "seeds": [],
+  "help": [
+    "Catalog.AI_НаборыЗнаний",
+    "Catalog.AI_Агенты",
+    "Catalog.AI_Сценарии"
+  ],
+  "status": "draft"
+}

@@ -1,23 +1,154 @@
-* text=auto
+# Правила нормализации и хранения файлов репозитория 1С.
+#
+# ВАЖНО: для каждого атрибута выигрывает ПОСЛЕДНЕЕ совпавшее правило. Поэтому
+# общий catch-all идёт первым, а бинарные типы и LFS — после него.
 
-*.bsl text
-*.os text
-*.xml text
-*.json text
-*.md text eol=lf
-*.ps1 text eol=lf
-*.yml text eol=lf
-*.yaml text eol=lf
+# ── Общая нормализация переводов строк ────────────────────────────────────────
+# Выгрузка конфигурации 1С — UTF-8 с BOM и CRLF. Фиксируем LF в индексе и CRLF в
+# рабочем каталоге явно, чтобы результат не зависел от локального core.autocrlf
+# каждого разработчика. Без этого один и тот же файл у разных участников даёт
+# полнофайловый diff и ложные конфликты при параллельной работе.
+#
+# На момент введения правил весь индекс уже был в LF, поэтому ренормализация не
+# требуется. Если git ls-files --eol покажет i/crlf, выполнить один раз:
+#   git add --renormalize .
+* text=auto eol=crlf
 
-*.bin binary
-*.png binary
-*.jpg binary
-*.jpeg binary
-*.gif binary
-*.ico binary
-*.cf binary
-*.cfe binary
-*.epf binary
-*.erf binary
-*.dt binary
-*.1CD binary
+# ── Явные текстовые типы конфигурации и инструментария ────────────────────────
+*.bsl   text eol=crlf
+*.os    text eol=crlf
+*.xml   text eol=crlf
+*.html  text eol=crlf
+*.txt   text eol=crlf
+*.svg   text eol=crlf
+*.ps1   text eol=crlf
+*.psm1  text eol=crlf
+*.psd1  text eol=crlf
+*.cmd   text eol=crlf
+*.bat   text eol=crlf
+*.md    text eol=crlf
+*.json  text eol=crlf
+*.mjs   text eol=crlf
+*.js    text eol=crlf
+*.yaml  text eol=crlf
+*.yml   text eol=crlf
+*.toml  text eol=crlf
+
+# ── Бинарные типы выгрузки 1С без нормализации ────────────────────────────────
+# Табличные документы, графические схемы и геометрия хранятся как есть: любая
+# нормализация переводов строк повреждает содержимое.
+*.mxl   -text
+*.grs   -text
+*.geom  -text
+*.ico   -text
+
+# ── Git LFS: бинарные артефакты и ресурсы ─────────────────────────────────────
+*.cf   filter=lfs diff=lfs merge=lfs -text
+*.cfe  filter=lfs diff=lfs merge=lfs -text
+*.bin  filter=lfs diff=lfs merge=lfs -text
+*.png  filter=lfs diff=lfs merge=lfs -text
+*.gif  filter=lfs diff=lfs merge=lfs -text
+*.bmp  filter=lfs diff=lfs merge=lfs -text
+*.jpg  filter=lfs diff=lfs merge=lfs -text
+*.zip  filter=lfs diff=lfs merge=lfs -text
+*.emf  filter=lfs diff=lfs merge=lfs -text
+*.wmf  filter=lfs diff=lfs merge=lfs -text
+*.tif  filter=lfs diff=lfs merge=lfs -text
+*.tiff filter=lfs diff=lfs merge=lfs -text
+*.wav  filter=lfs diff=lfs merge=lfs -text
+
+# ── Подсказки для diff ────────────────────────────────────────────────────────
+# Модули 1С — обычный текст; включаем распознавание функций для читаемых
+# заголовков ханков в diff.
+*.bsl   diff
+
+# ONEC_PROJECT_WORKFLOW_START
+# Правила нормализации и хранения файлов репозитория 1С.
+#
+# ВАЖНО: для каждого атрибута выигрывает ПОСЛЕДНЕЕ совпавшее правило. Поэтому
+# общий catch-all идёт первым, а бинарные типы и LFS — после него.
+
+# ── Общая нормализация переводов строк ────────────────────────────────────────
+# Выгрузка конфигурации 1С — UTF-8 с BOM и CRLF. Фиксируем LF в индексе и CRLF в
+# рабочем каталоге явно, чтобы результат не зависел от локального core.autocrlf
+# каждого разработчика. Без этого один и тот же файл у разных участников даёт
+# полнофайловый diff и ложные конфликты при параллельной работе.
+#
+# Правило это касается ТОЛЬКО тех файлов, где перевод строки — разделитель строк.
+# Файлы выгрузки 1С исключены ниже: там он бывает данными, и нормализация их
+# портит. Поэтому «i/crlf в индексе» само по себе больше не дефект: проверка
+# смотрит на атрибут файла, а не на один лишь вид концов строк.
+#
+# Если git ls-files --eol покажет i/crlf у файла БЕЗ атрибута -text, выполнить
+# один раз: git add --renormalize .
+* text=auto eol=crlf
+
+# ── Явные текстовые типы конфигурации и инструментария ────────────────────────
+# Модуль 1С здесь ОСТАЁТСЯ нормализованным: перевод строки в нём всегда
+# разделитель строк и никогда не данные — строковые литералы продолжаются
+# через | и разбиты теми же разделителями. Проверено на живой конфигурации:
+# ни один .bsl не изменился после полного оборота через git.
+*.bsl   text eol=crlf
+*.os    text eol=crlf
+*.ps1   text eol=crlf
+*.psm1  text eol=crlf
+*.psd1  text eol=crlf
+*.cmd   text eol=crlf
+*.bat   text eol=crlf
+*.md    text eol=crlf
+*.json  text eol=crlf
+*.mjs   text eol=crlf
+*.js    text eol=crlf
+*.yaml  text eol=crlf
+*.yml   text eol=crlf
+*.toml  text eol=crlf
+
+# ── Выгрузка 1С: концы строк не трогаются ─────────────────────────────────────
+# В выгрузке перевод строки бывает ДАННЫМИ, а не разделителем строк:
+# двухстрочное представление колонки, картинка SVG, текстовый макет,
+# текст ограничения доступа в Rights.xml. Git этого не различает, и нормализация
+# портит данные в обе стороны:
+#   checkout LF→CRLF — рвёт перевод строки внутри значения;
+#   add      CRLF→LF — рвёт данные, где CRLF и есть содержимое.
+#
+# Замер 23.09.2026 на живой конфигурации (2859 файлов): cf, собранный из свежего
+# клона, расходился с той же конфигурацией в базе по 201 объекту при том, что
+# правок не было ни одной. 170 портились на checkout, 31 был уже потерян в
+# блобах. Конфигуратор показывал всю конфигурацию изменённой, и по такому
+# сравнению нельзя было отличить свою правку от чужого шума.
+#
+# diff и merge включены явно: без них git считает файл двоичным и вместо
+# построчного сравнения печатает «Binary files differ», а слияние делает
+# невозможным — это и есть обычная цена -text, и платить её здесь не нужно.
+*.xml   -text diff merge
+*.html  -text diff merge
+*.txt   -text diff merge
+*.svg   -text diff merge
+
+# Табличные документы, графические схемы и геометрия — то же самое, но эти
+# форматы двоичные целиком, построчное сравнение им не нужно.
+*.mxl   -text
+*.grs   -text
+*.geom  -text
+*.ico   -text
+
+# ── Git LFS: бинарные артефакты и ресурсы ─────────────────────────────────────
+*.cf   filter=lfs diff=lfs merge=lfs -text
+*.cfe  filter=lfs diff=lfs merge=lfs -text
+*.bin  filter=lfs diff=lfs merge=lfs -text
+*.png  filter=lfs diff=lfs merge=lfs -text
+*.gif  filter=lfs diff=lfs merge=lfs -text
+*.bmp  filter=lfs diff=lfs merge=lfs -text
+*.jpg  filter=lfs diff=lfs merge=lfs -text
+*.zip  filter=lfs diff=lfs merge=lfs -text
+*.emf  filter=lfs diff=lfs merge=lfs -text
+*.wmf  filter=lfs diff=lfs merge=lfs -text
+*.tif  filter=lfs diff=lfs merge=lfs -text
+*.tiff filter=lfs diff=lfs merge=lfs -text
+*.wav  filter=lfs diff=lfs merge=lfs -text
+
+# ── Подсказки для diff ────────────────────────────────────────────────────────
+# Модули 1С — обычный текст; включаем распознавание функций для читаемых
+# заголовков ханков в diff.
+*.bsl   diff
+# ONEC_PROJECT_WORKFLOW_END

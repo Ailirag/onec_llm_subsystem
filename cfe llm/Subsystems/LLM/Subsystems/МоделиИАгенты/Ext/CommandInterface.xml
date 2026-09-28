@@ -9,8 +9,10 @@
 	<Command name="InformationRegister.AI_ВозможностиМоделей.StandardCommand.OpenList"><Visibility><xr:Common>false</xr:Common></Visibility></Command>
 	<Command name="Catalog.AI_МестаЗапускаСценариев.StandardCommand.OpenList"><Visibility><xr:Common>true</xr:Common></Visibility></Command>
 	<Command name="DataProcessor.AI_НовоеДействие.StandardCommand.Open"><Visibility><xr:Common>true</xr:Common></Visibility></Command>
+	<Command name="Catalog.AI_НаборыЗнаний.StandardCommand.OpenList"><Visibility><xr:Common>true</xr:Common></Visibility></Command>
 	</CommandsVisibility><CommandsPlacement>
 	<Command name="DataProcessor.AI_НовоеДействие.StandardCommand.Open"><CommandGroup>ActionsPanelCreate</CommandGroup><Placement>Auto</Placement></Command>
+	<Command name="Catalog.AI_НаборыЗнаний.StandardCommand.OpenList"><CommandGroup>NavigationPanelOrdinary</CommandGroup><Placement>Auto</Placement></Command>
 	</CommandsPlacement>
 	
 	<CommandsOrder>

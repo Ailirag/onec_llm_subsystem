@@ -1,0 +1,193 @@
+{
+    "schemaVersion":  1,
+    "processVersion":  "0.63.5",
+    "mainBranch":  "main",
+    "localStateDir":  ".build/workflow",
+    "parallel":  {
+                     "enabled":  true,
+                     "perBranchStands":  true,
+                     "devBaseRoot":  "",
+                     "testBaseRoot":  "",
+                     "fallbackBaseRoot":  "",
+                     "portRangeStart":  8100,
+                     "portRangeEnd":  8399,
+                     "portsPerBranch":  4,
+                     "lockTimeoutSeconds":  3600,
+                     "agentConfigTemplates":  [
+                                                  {
+                                                      "template":  ".mcp.example.json",
+                                                      "target":  ".mcp.json"
+                                                  },
+                                                  {
+                                                      "template":  ".zcode/config.example.json",
+                                                      "target":  ".zcode/config.json"
+                                                  }
+                                              ]
+                 },
+    "onecLite":  {
+                     "enabled":  true,
+                     "transport":  "http",
+                     "url":  "http://127.0.0.1:18010/mcp",
+                     "workspacePrefix":  "llm_subsystem_test"
+                 },
+    "functionalTests":  {
+                            "enabled":  false,
+                            "initializeScript":  "tools/Initialize-FunctionalTestEnvironment.ps1",
+                            "seedScript":  "tools/Invoke-FunctionalSeed.ps1",
+                            "publishScript":  "tools/Publish-FunctionalTestEnvironment.ps1",
+                            "_fixturePathsNote":  "Чем готовятся данные стенда. Шаг gate new-objects-have-fixtures требует изменить это вместе с появлением нового отчёта, обработки, справочника или документа: без данных такой объект не на чем показать, и проверка «сформировалось без ошибки» пройдёт на пустом результате. Регистрам фикстуры не нужны: их пишет код, а проверяют тесты, создающие себе данные сами.",
+                            "fixturePaths":  [
+
+                                             ],
+                            "smokeScript":  "tools/Invoke-FunctionalSmokeTests.ps1",
+                            "defaultProfile":  "small",
+                            "httpRequired":  false,
+                            "httpServiceRoot":  ""
+                        },
+    "webUiTests":  {
+                       "enabled":  false,
+                       "script":  "tools/Invoke-WebUiTests.ps1",
+                       "publishScript":  "tools/Publish-WebTestStand.ps1",
+                       "suite":  "tests/web-ui",
+                       "requiredForReview":  true,
+                       "runOnFinish":  true,
+                       "_scopeNote":  "Лестница объёмов. selfcheck — цикл разработки, только затронутое правкой; package — сборка cf для проверки изменения, тот же объём; verify — перед MR, затронутое плюс обязательный минимум; release — полный регресс, и только он. Полный прогон стоит большую часть времени, поэтому запускается осознанно, отдельным сценарием.",
+                       "scope":  {
+                                     "selfcheck":  "affected",
+                                     "package":  "affected",
+                                     "verify":  "affected+smoke",
+                                     "release":  "full"
+                                 },
+                       "defaultPort":  8082,
+                       "defaultAppName":  "llm_subsystem_test-ui",
+                       "urlEnvironmentVariable":  "ONEC_WEB_UI_URL",
+                       "timeoutEnvironmentVariable":  "ONEC_UI_COMMAND_TIMEOUT_MS",
+                       "commandTimeoutSeconds":  360,
+                       "globalTimeoutSeconds":  7200
+                   },
+    "_userGuidesNote":  "Пользовательские инструкции снимаются с живой системы: этап прокликивает сценарий в веб-клиенте стенда и собирает HTML со снимками, стрелкой и курсором мыши. По умолчанию ВЫКЛЮЧЕНО — этап работает с настоящими данными стенда и с внешними сервисами, которые может дёргать конфигурация. Сценарии лежат рядом со сьютом Web UI, но тестами не являются и в обязательные фазы не входят: прогон стоит минуты и запускается осознанно. Снимки ужимаются на месте съёмки: инструкция самодостаточна, картинки лежат в ней строкой data:, и каждый килобайт растёт на треть от кодирования. scale=css снимает в css-пикселях — на экране с удвоенной плотностью это вчетверо меньше пикселей без потери читаемости; format=jpeg мельче ещё в разы, но мылит текст, поэтому умолчание png. minWidth запрещает публиковать кадр из случайно узкого окна Chromium. keepFiles=false не пишет отдельные файлы снимков: они дублируют то, что уже вставлено в документ. Явный локальный -Url сверяется с зарегистрированными публикациями текущей ветки, чтобы старый порт не привёл в чужую базу.",
+    "userGuides":  {
+                       "enabled":  false,
+                       "script":  "tools/Build-UserGuide.ps1",
+                       "scenarios":  "tests/web-ui/guides",
+                       "outputDir":  ".build/guides",
+                       "screenshot":  {
+                                          "format":  "png",
+                                          "quality":  72,
+                                          "scale":  "css",
+                                          "minWidth":  1280,
+                                          "keepFiles":  false
+                                      },
+                       "renderScript":  "",
+                       "template":  "",
+                       "templateFields":  [
+
+                                          ]
+                   },
+    "_standExecNote":  "Исполнитель кода стенда: расширение комплекта с HTTP-сервисом /hs/stand-exec, которое выполняет присланный текст BSL и возвращает значение переменной Результат в JSON. Нужен сидам (наполнение стенда данными) и агенту для экспериментов (режим rollback не оставляет следов). Ставится только на стенды, в поставку не входит, выполняет код только в базе с меткой стенда и только пользователю с правом «Администрирование». По умолчанию ВЫКЛЮЧЕНО: это выполнение произвольного кода, и включать его за проект молча неправильно. Включённый исполнитель делает сид отдельным шагом — нужен functionalTests.seedScript, как при расширениях. Клиент — tools/Invoke-StandExec.ps1. odata: при установке исполнителя опубликовать в стандартном интерфейсе OData все объекты конфигурации и расширений (по умолчанию да).",
+    "standExec":  {
+                      "enabled":  false,
+                      "odata":  true,
+                      "script":  "tools/Invoke-StandExec.ps1"
+                  },
+    "_standBaselineNote":  "Базовая подготовка стенда исполнителем кода (tools/stand-exec/stand-baseline.bsl) после публикации: стенд Web UI (tools/Invoke-WebUiTests.ps1, в цикле разработки и в фазе) и цикл инструкций по релизу. Блоки: предопределённые данные; решение БСП по внешним отчётам; предложение «Проверка контрагентов»; новости БИП; регламентные задания. Каждый блок проверяет, есть ли в конфигурации то, с чем он работает, и иначе пропускается. Требует standExec. disableScheduledJobs — выключать регламентные задания (в файловой базе их выполняет сеанс веб-клиента теста посреди шагов); keepScheduledJobs — имена заданий, которые не выключать: имя объекта метаданных, как в ScheduledJobs/\u003cИмя\u003e.xml; список не включает выключенное задание, опечатку называет протокол подготовки; подробно — docs/1c-development-workflow.md, «Какие задания оставить работать». Раздела нет — подготовка включена с этими значениями по умолчанию.",
+    "standBaseline":  {
+                          "enabled":  true,
+                          "disableScheduledJobs":  true,
+                          "keepScheduledJobs":  [
+
+                                                ]
+                      },
+    "_releaseGuidesNote":  "Цикл инструкций по релизу: план по задачам релиза, сборка инструкций по сценариям с паспортами *.guide.json, сводный отчёт. Запуск ручной: scripts/workflow/Invoke-ReleaseGuides.ps1 -Release \u003cимя\u003e. По умолчанию ВЫКЛЮЧЕН и требует включённого userGuides. sourceScript — адаптер проекта, отдающий манифест релиза (-Release, -OutputPath); без него манифест передаётся ключом -Manifest. seedScript — адаптер данных сценария (-BasePath, -Seed \u003cимена через запятую\u003e); нужен, если паспорта объявляют seeds.",
+    "releaseGuides":  {
+                          "enabled":  false,
+                          "script":  "scripts/workflow/Invoke-ReleaseGuides.ps1",
+                          "sourceScript":  "",
+                          "seedScript":  "",
+                          "outputDir":  ".build/releases"
+                      },
+    "_reviewNote":  "Независимое ревью правки отдельным сеансом. По умолчанию ВЫКЛЮЧЕНО: этап зовёт внешнего ревьюера, и включать его за проект молча неправильно. autoRun зовёт ревью прямо в конце Selfcheck — сразу после того, как правка закончена: этап, который надо вспомнить отдельной командой, выполняется реже всего. Команду можно не задавать: при agent=auto комплект соберёт запуск ТОГО ЖЕ агента, которым идёт разработка, и той же модели — ревьюер слабее автора находит меньше автора. Привязка к сеансу автора у ревьюера снимается: иначе он видел бы контекст правки и перестал быть вторым мнением. Круг ревью назначают только замечания из blockingSeverities, а maxRounds ограничивает число кругов: шлифовать можно бесконечно, и без предела цикл не сходится. Круги считаются по задаче и обнуляются фазой Start. Свой инструмент называется ключом command: список аргументов, input говорит, чем кормить (path | stdin | argument), output — откуда брать ответ (file | stdout). Подстановки: {packet} — путь к пакету, {packetText} — его текст, {report} — куда писать отчёт, {root} — корень репозитория. Отчёт привязан к отпечатку содержимого: правка кода делает прежний отчёт недействительным сама.",
+    "_reviewExamples":  {
+                            "агентский CLI, читает файл и пишет отчёт сам":  {
+                                                                                 "input":  "path",
+                                                                                 "output":  "file",
+                                                                                 "command":  [
+                                                                                                 "claude",
+                                                                                                 "-p",
+                                                                                                 "Выполни ревью по пакету {packet} и запиши отчёт в {report}"
+                                                                                             ]
+                                                                             },
+                            "codex, та же форма":  {
+                                                       "input":  "path",
+                                                       "output":  "file",
+                                                       "command":  [
+                                                                       "codex",
+                                                                       "exec",
+                                                                       "Выполни ревью по пакету {packet} и запиши отчёт в {report}"
+                                                                   ]
+                                                   },
+                            "обёртка над подпиской, печатает ответ":  {
+                                                                          "input":  "stdin",
+                                                                          "output":  "stdout",
+                                                                          "command":  [
+                                                                                          "glm",
+                                                                                          "chat",
+                                                                                          "--model",
+                                                                                          "glm-4.6"
+                                                                                      ]
+                                                                      }
+                        },
+    "_platformNeutralPathsNote":  "Пути ПРОЕКТА, правка которых не может изменить результат проверки платформой: инструменты, не участвующие ни в одной фазе. Задаются регулярными выражениями от корня репозитория. Комплект знает только свой белый список (документация, настройки редакторов), поэтому правка проектного скрипта сборки релиза стоила полного прогона, который о ней ничего не говорит. Путь, накрывающий исходники конфигурации или расширения, отклоняется: иначе этим ключом можно было бы молча отключить проверку самой конфигурации.",
+    "platformNeutralPaths":  [
+
+                             ],
+    "review":  {
+                   "enabled":  false,
+                   "agent":  "auto",
+                   "model":  "",
+                   "autoRun":  true,
+                   "maxRounds":  3,
+                   "blockingSeverities":  [
+                                              "blocker",
+                                              "major"
+                                          ],
+                   "command":  [
+
+                               ]
+               },
+    "testMaintenance":  {
+                            "enabled":  true,
+                            "script":  "scripts/workflow/Test-TestMaintenance.ps1",
+                            "policy":  "tests/test-maintenance.json"
+                        },
+    "artifacts":  {
+                      "storeInGit":  false,
+                      "versioned":  true,
+                      "cfTemplate":  "artifacts/cf/LLM_Subsystem_test_{version}.cf",
+                      "cfeTemplate":  "artifacts/cfe/{name}_{version}.cfe",
+                      "manifest":  "artifacts/manifest.json"
+                  },
+    "_routeNote":  "Классификация правки: простой маршрут или сложный. Сложный — тот, где вопрос «нужно ли это делать и где этому место» решается ДО кода: появился или изменился по составу объект, хранящий данные; затронут публичный контракт (HTTP, веб-сервисы, XDTO); изменены права; появилось регламентное задание; затронуто объектов больше objectThreshold. Форма и модуль структуру не меняют и сложным маршрут не делают. Сложному маршруту нужен записанный замысел в decisionDir, файл по имени ветки: он переживает ветку, читается людьми и едет в MR вместе с правкой. Проверяется наличие, а не качество — отличить продуманный замысел от переписанной задачи комплект не может, зато отсутствие означает, что вопрос не задавали. Понижение маршрута законно и делается явно: Verify -RouteDowngrade \"\u003cпричина\u003e\"; правило, из которого нет выхода, обходят молча.",
+    "route":  {
+                  "enabled":  true,
+                  "decisionDir":  "docs/decisions",
+                  "objectThreshold":  12
+              },
+    "_userHelpNote":  "Встроенная справка конфигурации — та, что открывается по F1 из формы. По умолчанию ВЫКЛЮЧЕНО: комплект не знает, есть ли у конфигурации пользователь, которому она нужна. Включённое требование поднимается на НОВЫХ объектах перечисленных видов — тех, что пользователь открывает и чем распоряжается; служебное (регистры, общие модули, подписки) справки не требует. Массовой дозаписи старым объектам правило не требует. Проверяется наличие непустого файла Ext/Help/\u003cязык\u003e.html: содержание проверить нечем, а пустая справка хуже отсутствующей — она обещает ответ и не даёт его. Править только навыком help-add из cc-1c-skills. Правило — docs/rules/user-help.md.",
+    "userHelp":  {
+                     "enabled":  false,
+                     "languages":  [
+                                       "ru"
+                                   ],
+                     "kinds":  [
+                                   "Catalogs",
+                                   "Documents",
+                                   "Reports",
+                                   "DataProcessors",
+                                   "BusinessProcesses",
+                                   "Tasks"
+                               ],
+                     "imagesDir":  "docs/help-images",
+                     "pageWarnKb":  400
+                 }
+}

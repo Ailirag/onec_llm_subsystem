@@ -1,0 +1,55 @@
+{
+    "schemaVersion":  1,
+    "project":  "LLM_Subsystem_test",
+    "sourceDir":  "cf",
+    "extensions":  [
+                       {
+                           "name":  "LLM",
+                           "sourceDir":  "cfe llm",
+                           "enabled":  true,
+                           "required":  true,
+                           "loadOrder":  100,
+                           "artifactTemplate":  "artifacts/cfe/LLM_{version}.cfe"
+                       }
+                   ],
+    "mainBranch":  "main",
+    "platformVersion":  "8.3.27.2130",
+    "cc1cSkillsVersion":  "2026.9.28+c9a551b",
+    "userGuides":  {
+                       "enabled":  true
+                   },
+    "releaseGuides":  {
+                          "enabled":  true
+                      },
+    "userHelp":  {
+                     "enabled":  true
+                 },
+    "webUiTests":  {
+                       "enabled":  false,
+                       "script":  "tools/Invoke-WebUiTests.ps1",
+                       "publishScript":  "tools/Publish-WebTestStand.ps1",
+                       "suite":  "tests/web-ui",
+                       "requiredForReview":  true,
+                       "runOnFinish":  false,
+                       "_scopeNote":  "Лестница объёмов. selfcheck — цикл разработки, только затронутое правкой; package — сборка cf для проверки изменения, тот же объём; verify — перед MR, затронутое плюс обязательный минимум; release — полный регресс, и только он. Полный прогон стоит большую часть времени, поэтому запускается осознанно, отдельным сценарием.",
+                       "scope":  {
+                                     "selfcheck":  "affected",
+                                     "package":  "affected",
+                                     "verify":  "affected+smoke",
+                                     "release":  "full"
+                                 },
+                       "defaultPort":  8082,
+                       "defaultAppName":  "llm_subsystem_test-ui",
+                       "urlEnvironmentVariable":  "ONEC_WEB_UI_URL",
+                       "timeoutEnvironmentVariable":  "ONEC_UI_COMMAND_TIMEOUT_MS",
+                       "commandTimeoutSeconds":  360,
+                       "globalTimeoutSeconds":  7200
+                   },
+    "_reviewNote":  "Независимое ревью правки. По умолчанию ВЫКЛЮЧЕНО: этап зовёт внешнего ревьюера, и включать его за проект молча неправильно. Комплект не привязан к инструменту: command — список аргументов, input говорит, чем кормить (path | stdin | argument), output — откуда брать ответ (file | stdout). Подстановки: {packet} — путь к пакету, {packetText} — его текст, {report} — куда писать отчёт, {root} — корень репозитория. Отчёт привязан к отпечатку содержимого: правка кода делает прежний отчёт недействительным сама.",
+    "review":  {
+                   "enabled":  false,
+                   "command":  [
+
+                               ]
+               }
+}

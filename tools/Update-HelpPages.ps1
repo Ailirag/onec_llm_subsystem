@@ -1,152 +1,176 @@
 ﻿[CmdletBinding()]
 param(
-    [string]$ExtensionPath = "",
-    [string]$ScreenshotsPath = "",
-    [string]$DiagramsPath = "",
-    [int]$MaxWidth = 1000,
-    [int]$JpegQuality = 82,
-    [int]$CropTop = 32,
-    [int]$CropBottom = 32
+    # Каталог выгрузки. По умолчанию — sourceDir из манифеста.
+    [string]$SourceDir = "",
+
+    # Где лежат картинки, на которые ссылаются страницы. По умолчанию —
+    # userHelp.imagesDir.
+    [string]$ImagesDir = "",
+
+    # Проверить и ничего не менять.
+    [switch]$WhatIfOnly
 )
 
-# Готовит встроенную справку расширения (F1) к веб-клиенту. Веб-клиент
-# обходится со справкой расширения иначе, чем со справкой конфигурации:
-#
-# 1. Картинки из папки _files справки расширения он не отдает (404), а
-#    картинку, встроенную в саму страницу адресом data:, показывает. Поэтому в
-#    страницах справки картинка задается тегом с именем файла:
-#
-#        <img data-file="place-main.png" alt="Место запуска">
-#
-#    а скрипт подставляет в тег src="data:...". Откуда берутся файлы:
-#      *.svg — схемы, исходники в docs/help-images;
-#      *.png — снимки экранов, их снимает tests/ui/help-screens.mjs в .build/help.
-#    Снимок веб-клиента обрезается сверху и снизу (заголовок окна и панель
-#    открытых форм), уменьшается до MaxWidth и кодируется в JPEG. Нет файла —
-#    тег остается как был: скрипт можно запускать и без снимков.
-#
-# 2. Страницу справки расширения он открывает только с параметрами сеанса, а
-#    ссылки на другие страницы («Catalog.X/Help») платформа строит без них — и
-#    по такой ссылке показывает «Указанная страница отсутствует». В конец
-#    каждой страницы вставляется короткий скрипт, который дописывает к таким
-#    ссылкам параметры из адреса текущей страницы. В тонком клиенте адрес
-#    страницы параметров не несет, и скрипт ничего не меняет.
-
 $ErrorActionPreference = "Stop"
-Add-Type -AssemblyName System.Drawing
+Set-StrictMode -Version Latest
 
-$repositoryPath = Split-Path $PSScriptRoot -Parent
-if (-not $ExtensionPath) { $ExtensionPath = Join-Path $repositoryPath "cfe llm" }
-if (-not $ScreenshotsPath) { $ScreenshotsPath = Join-Path $repositoryPath ".build\help" }
-if (-not $DiagramsPath) { $DiagramsPath = Join-Path $repositoryPath "docs\help-images" }
+. (Join-Path $PSScriptRoot "..\scripts\workflow\Workflow.Common.ps1")
 
-$jpegCodec = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() |
-    Where-Object { $_.MimeType -eq "image/jpeg" } | Select-Object -First 1
-$cache = @{}
+<#
+Готовит страницы встроенной справки к показу в веб-клиенте.
 
-function Get-ScreenshotDataUri {
-    param([string]$Path)
+Зачем это нужно. Тонкий клиент открывает справку как есть, а веб-клиент — нет, и
+ровно двумя способами:
 
-    $source = [System.Drawing.Image]::FromFile($Path)
-    try {
-        $height = $source.Height - $CropTop - $CropBottom
-        if ($height -le 0) { throw "Снимок меньше обрезки: $Path" }
-        $scale = [Math]::Min(1.0, $MaxWidth / $source.Width)
-        $width = [int][Math]::Round($source.Width * $scale)
-        $targetHeight = [int][Math]::Round($height * $scale)
-        $target = New-Object System.Drawing.Bitmap($width, $targetHeight)
-        try {
-            $graphics = [System.Drawing.Graphics]::FromImage($target)
-            $graphics.InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
-            $graphics.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::HighQuality
-            $graphics.PixelOffsetMode = [System.Drawing.Drawing2D.PixelOffsetMode]::HighQuality
-            $graphics.DrawImage($source,
-                (New-Object System.Drawing.Rectangle(0, 0, $width, $targetHeight)),
-                (New-Object System.Drawing.Rectangle(0, $CropTop, $source.Width, $height)),
-                [System.Drawing.GraphicsUnit]::Pixel)
-            $graphics.Dispose()
+  картинки — файлы из каталога _files веб-клиент не отдаёт. Страница, которая
+             ссылается на картинку файлом, показывается без неё, и виноватым
+             выглядит автор справки;
+  ссылки   — переход на соседнюю страницу веб-клиент открывает без параметров
+             сеанса и отвечает «страница отсутствует». Пользователь считает, что
+             справки нет.
 
-            $parameters = New-Object System.Drawing.Imaging.EncoderParameters(1)
-            $parameters.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter(
-                [System.Drawing.Imaging.Encoder]::Quality, [long]$JpegQuality)
-            $stream = New-Object System.IO.MemoryStream
-            $target.Save($stream, $jpegCodec, $parameters)
-            return "data:image/jpeg;base64," + [Convert]::ToBase64String($stream.ToArray())
-        } finally {
-            $target.Dispose()
-        }
-    } finally {
-        $source.Dispose()
-    }
+Обе поправки механические, поэтому их делает скрипт, а не человек при каждой
+правке. Скрипт ИДЕМПОТЕНТЕН: повторный запуск ничего не портит и не раздувает
+страницу — картинка узнаётся по data-file, скрипт ссылок по метке.
+
+Автор пишет <img data-file="имя.png"> и не думает про data:. Имя ищется в
+каталоге картинок справки.
+#>
+
+$repositoryRoot = Get-WorkflowRepositoryRoot -StartPath $PSScriptRoot
+$config = Get-WorkflowConfig -RepositoryRoot $repositoryRoot
+
+if (-not $SourceDir) {
+    $SourceDir = [string]$config.sourceDir
 }
+$sourcePath = Resolve-WorkflowPath -RepositoryRoot $repositoryRoot -Path $SourceDir
 
-function Get-DataUri {
-    param([string]$Name)
-
-    if ($cache.ContainsKey($Name)) { return $cache[$Name] }
-    $uri = $null
-    if ($Name -like "*.svg") {
-        $path = Join-Path $DiagramsPath $Name
-        if (Test-Path -LiteralPath $path) {
-            $uri = "data:image/svg+xml;base64," + [Convert]::ToBase64String([System.IO.File]::ReadAllBytes($path))
-        }
-    } else {
-        $path = Join-Path $ScreenshotsPath $Name
-        if (Test-Path -LiteralPath $path) {
-            $uri = Get-ScreenshotDataUri $path
-        }
-    }
-    $cache[$Name] = $uri
-    return $uri
+$helpSettings = Get-WorkflowUserHelpSettings -Config $config
+if (-not $ImagesDir) {
+    $ImagesDir = $helpSettings.ImagesDir
 }
+$imagesPath = Resolve-WorkflowPath -RepositoryRoot $repositoryRoot -Path $ImagesDir
 
-$encoding = New-Object System.Text.UTF8Encoding($true)
-$imagePattern = '(?s)<img\b[^>]*?\bdata-file="([^"]+)"[^>]*>'
-$linksPattern = '(?s)\s*<!--session-links-->.*?<!--/session-links-->'
-$linksBlock = @'
-<!--session-links-->
-<script type="text/javascript">
+$linkFixMarker = "onec-help-link-fix"
+$linkFixScript = @"
+<script data-mark="$linkFixMarker">
+// Веб-клиент открывает ссылку между страницами справки без параметров сеанса и
+// показывает «страница отсутствует». Параметры берутся из адреса самой страницы
+// и возвращаются ссылкам при клике: иначе каждая вторая ссылка справки ведёт в
+// пустоту, и пользователь решает, что справки нет.
 (function () {
-    var parameters = window.location.search;
-    if (!parameters) return;
-    for (var i = 0; i < document.links.length; i++) {
-        var link = document.links[i];
-        if (link.href.indexOf('/mdobject/') >= 0 && link.href.indexOf('?') < 0) {
-            link.href = link.href + parameters;
-        }
-    }
+  var query = window.location.search || "";
+  if (!query) { return; }
+  document.addEventListener("click", function (event) {
+    var link = event.target && event.target.closest ? event.target.closest("a[href]") : null;
+    if (!link) { return; }
+    var href = link.getAttribute("href") || "";
+    if (!href || href.charAt(0) === "#" || href.indexOf("?") >= 0 || /^[a-z]+:/i.test(href)) { return; }
+    link.setAttribute("href", href + query);
+  }, true);
 })();
 </script>
-<!--/session-links-->
-'@
-$pages = Get-ChildItem -LiteralPath $ExtensionPath -Recurse -Filter "ru.html" |
-    Where-Object { $_.FullName -match '\\Ext\\Help\\ru\.html$' }
+"@
 
-$missing = New-Object System.Collections.Generic.List[string]
+$mimeByExtension = @{
+    ".png" = "image/png"
+    ".jpg" = "image/jpeg"
+    ".jpeg" = "image/jpeg"
+    ".gif" = "image/gif"
+    ".svg" = "image/svg+xml"
+}
+
+$pages = @()
+if (Test-Path -LiteralPath $sourcePath -PathType Container) {
+    $pages = @(
+        Get-ChildItem -LiteralPath $sourcePath -Recurse -File -Filter "*.html" -ErrorAction SilentlyContinue |
+            Where-Object { $_.FullName.Replace([string][char]92, "/") -match "/Ext/Help/" }
+    )
+}
+
+if ($pages.Count -eq 0) {
+    Write-Host "Страниц справки не найдено в $sourcePath — править нечего."
+    return
+}
+
+Write-Host "Страниц справки: $($pages.Count)"
+Write-Host "Картинки: $imagesPath"
+Write-Host ""
+
+$missingImages = New-Object System.Collections.ArrayList
+$heavyPages = New-Object System.Collections.ArrayList
+$changed = 0
+
 foreach ($page in $pages) {
-    $text = [System.IO.File]::ReadAllText($page.FullName, $encoding)
-    $updated = [regex]::Replace($text, $imagePattern, {
-        param($match)
+    $text = Get-Content -Raw -LiteralPath $page.FullName -Encoding UTF8
+    $original = $text
+
+    # Картинка вставляется по data-file и ПЕРЕВСТАВЛЯЕТСЯ при повторном запуске:
+    # так обновлённый снимок доезжает до страницы, а не остаётся в каталоге.
+    foreach ($match in [regex]::Matches($text, '<img\b[^>]*data-file="([^"]+)"[^>]*>')) {
+        $fileName = $match.Groups[1].Value
+        $imageFile = Join-Path $imagesPath $fileName
+        if (-not (Test-Path -LiteralPath $imageFile -PathType Leaf)) {
+            [void]$missingImages.Add("$($page.Name): $fileName")
+            continue
+        }
+
+        $extension = [System.IO.Path]::GetExtension($fileName).ToLowerInvariant()
+        $mime = if ($mimeByExtension.ContainsKey($extension)) { $mimeByExtension[$extension] } else { "image/png" }
+        $data = [Convert]::ToBase64String([System.IO.File]::ReadAllBytes($imageFile))
+
         $tag = $match.Value
-        $uri = Get-DataUri $match.Groups[1].Value
-        if (-not $uri) {
-            $missing.Add($match.Groups[1].Value + " (" + $page.FullName.Substring($ExtensionPath.Length + 1) + ")")
-            return $tag
+        $withoutSrc = [regex]::Replace($tag, '\s+src="[^"]*"', "")
+        $updated = $withoutSrc -replace '<img\b', ('<img src="data:' + $mime + ';base64,' + $data + '"')
+        $text = $text.Replace($tag, $updated)
+    }
+
+    # Скрипт ссылок ставится один раз: метка отличает его от чужого скрипта на
+    # странице, а повторная вставка раздувала бы страницу с каждым запуском.
+    if ($text -notmatch [regex]::Escape($linkFixMarker)) {
+        if ($text -match "</body>") {
+            $text = $text -replace "</body>", ($linkFixScript + "</body>")
         }
-        if ($tag -match '\bsrc="[^"]*"') {
-            return [regex]::Replace($tag, '\bsrc="[^"]*"', 'src="' + $uri + '"')
+        else {
+            $text = $text + $linkFixScript
         }
-        return $tag -replace '^<img\b', ('<img src="' + $uri + '"')
-    })
-    $updated = [regex]::Replace($updated, $linksPattern, '')
-    $updated = $updated.Replace('</body>', $linksBlock + "`r`n</body>")
-    if ($updated -ne $text) {
-        [System.IO.File]::WriteAllText($page.FullName, $updated, $encoding)
-        Write-Host ("[OK] {0} — {1:N0} КБ" -f $page.FullName.Substring($ExtensionPath.Length + 1),
-            ($encoding.GetByteCount($updated) / 1KB))
+    }
+
+    if ($text -ne $original) {
+        $changed = $changed + 1
+        if (-not $WhatIfOnly) {
+            # Без BOM: 1С читает страницу справки как UTF-8, а метка порядка
+            # байтов выводится в начале страницы видимым мусором.
+            [System.IO.File]::WriteAllText($page.FullName, $text, (New-Object System.Text.UTF8Encoding($false)))
+        }
+    }
+
+    $sizeKb = [Math]::Round(([System.Text.Encoding]::UTF8.GetByteCount($text) / 1KB), 0)
+    if ($sizeKb -gt $helpSettings.PageWarnKb) {
+        [void]$heavyPages.Add("$($page.Directory.Parent.Parent.Name): $sizeKb КБ")
     }
 }
 
-foreach ($item in ($missing | Select-Object -Unique)) {
-    Write-Warning "Нет файла картинки, тег оставлен как был: $item"
+Write-Host "Обновлено страниц: $changed$(if ($WhatIfOnly) { ' (проверка, файлы не тронуты)' })"
+
+if ($missingImages.Count -gt 0) {
+    Write-Host ""
+    Write-Host "Картинки не найдены — страница покажется без них:"
+    foreach ($item in $missingImages) {
+        Write-Host "  $item"
+    }
+}
+
+if ($heavyPages.Count -gt 0) {
+    Write-Host ""
+    Write-Host "Тяжёлые страницы (больше $($helpSettings.PageWarnKb) КБ). Картинка внутри страницы"
+    Write-Host "растёт на треть от кодирования, и такую страницу неудобно читать и править:"
+    foreach ($item in $heavyPages) {
+        Write-Host "  $item"
+    }
+    Write-Host "Уменьшите снимок до ширины окна справки или снимите фрагмент, а не весь экран."
+}
+
+if ($missingImages.Count -gt 0) {
+    throw "Не найдено картинок: $($missingImages.Count). Страницы справки ссылаются на то, чего нет."
 }

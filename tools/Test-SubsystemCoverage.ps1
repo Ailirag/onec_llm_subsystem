@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$ManifestPath = (Join-Path (Split-Path $PSScriptRoot -Parent) "manifest\llm-subsystem.json")
 )
