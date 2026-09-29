@@ -523,24 +523,55 @@ function Resolve-WorkflowV8Path {
         [string]$V8Path = ""
     )
 
+    $version = [string]$Config.platformVersion
+    $candidates = New-Object System.Collections.ArrayList
+    $strictCandidate = ""
     if ($V8Path) {
-        $candidate = [System.IO.Path]::GetFullPath($V8Path)
+        $strictCandidate = $V8Path
+    }
+    elseif ([string]$env:ONEC_WORKFLOW_V8_PATH) {
+        $strictCandidate = [string]$env:ONEC_WORKFLOW_V8_PATH
+    }
+    if ($strictCandidate) {
+        [void]$candidates.Add($strictCandidate)
     }
     else {
-        $candidate = "C:\Program Files\1cv8\$($Config.platformVersion)\bin"
+        $machineCandidate = Get-WorkflowMachinePlatformPath -Version $version
+        if ($machineCandidate) {
+            [void]$candidates.Add($machineCandidate)
+        }
+    }
+    if (-not $strictCandidate) {
+        foreach ($programFiles in @($env:ProgramFiles, ${env:ProgramFiles(x86)})) {
+            if ($programFiles) {
+                [void]$candidates.Add((Join-Path (Join-Path (Join-Path $programFiles "1cv8") $version) "bin"))
+            }
+        }
     }
 
-    $executable = if (Test-Path -LiteralPath $candidate -PathType Container) {
-        Join-Path $candidate "1cv8.exe"
-    }
-    else {
-        $candidate
+    foreach ($candidateValue in @($candidates | Select-Object -Unique)) {
+        try {
+            $candidate = [System.IO.Path]::GetFullPath($candidateValue)
+        }
+        catch {
+            continue
+        }
+        $executable = if (Test-Path -LiteralPath $candidate -PathType Container) {
+            Join-Path $candidate "1cv8.exe"
+        }
+        else {
+            $candidate
+        }
+        if (Test-Path -LiteralPath $executable -PathType Leaf) {
+            return [System.IO.Path]::GetFullPath($executable)
+        }
     }
 
-    if (-not (Test-Path -LiteralPath $executable -PathType Leaf)) {
-        throw "Required 1C platform $($Config.platformVersion) was not found: $candidate"
-    }
-    return [System.IO.Path]::GetFullPath($executable)
+    $shown = @($candidates | Select-Object -Unique) -join "; "
+    throw (
+        "Required 1C platform $version was not found. Checked: $shown. " +
+        "Run Start once with -V8Path <path> or set ONEC_WORKFLOW_V8_PATH."
+    )
 }
 
 function Invoke-WorkflowPowerShell {
@@ -3809,6 +3840,217 @@ function Read-WorkflowMachineSettings {
     }
 }
 
+function Get-WorkflowMachinePlatformPath {
+    <#
+    .SYNOPSIS
+    Локальный каталог bin или 1cv8.exe для требуемой проектом версии платформы.
+    #>
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Version
+    )
+
+    $settings = Read-WorkflowMachineSettings
+    $platforms = Get-WorkflowSettingValue -Object $settings -Name "platforms" -Default $null
+    return [string](Get-WorkflowSettingValue -Object $platforms -Name $Version -Default "")
+}
+
+function Save-WorkflowMachinePlatformPath {
+    <#
+    .SYNOPSIS
+    Запоминает соответствие версии платформы и её локального каталога bin.
+    #>
+    param(
+        [Parameter(Mandatory = $true)][string]$Version,
+        [Parameter(Mandatory = $true)][string]$V8Path
+    )
+
+    $fullPath = [System.IO.Path]::GetFullPath($V8Path)
+    $executable = if (Test-Path -LiteralPath $fullPath -PathType Container) {
+        Join-Path $fullPath "1cv8.exe"
+    }
+    else {
+        $fullPath
+    }
+    if (-not (Test-Path -LiteralPath $executable -PathType Leaf)) {
+        throw "1C executable was not found: $executable"
+    }
+    $binPath = Split-Path ([System.IO.Path]::GetFullPath($executable)) -Parent
+
+    $path = Get-WorkflowMachineSettingsPath
+    [System.IO.Directory]::CreateDirectory((Split-Path $path -Parent)) | Out-Null
+    $settings = Read-WorkflowMachineSettings
+    $result = [ordered]@{}
+    if ($null -ne $settings) {
+        foreach ($property in @($settings.PSObject.Properties)) {
+            $result[$property.Name] = $property.Value
+        }
+    }
+    $result["schemaVersion"] = 2
+    if (-not $result.Contains("baseRoot")) { $result["baseRoot"] = "" }
+    if (-not $result.Contains("projects")) { $result["projects"] = [ordered]@{} }
+
+    $platforms = [ordered]@{}
+    $existing = Get-WorkflowSettingValue -Object $settings -Name "platforms" -Default $null
+    if ($null -ne $existing) {
+        foreach ($property in @($existing.PSObject.Properties)) {
+            $platforms[$property.Name] = $property.Value
+        }
+    }
+    $platforms[$Version] = $binPath
+    $result["platforms"] = [pscustomobject]$platforms
+    Write-WorkflowJson -Value ([pscustomobject]$result) -Path $path | Out-Null
+    return $path
+}
+
+function Test-WorkflowOnecLiteUrlProblem {
+    param([AllowEmptyString()][string]$Url)
+
+    $value = ([string]$Url).Trim()
+    if (-not $value) { return "адрес пустой" }
+    $uri = $null
+    if (-not [uri]::TryCreate($value, [System.UriKind]::Absolute, [ref]$uri)) {
+        return "адрес не является абсолютным URL"
+    }
+    if (@("http", "https") -notcontains $uri.Scheme) {
+        return "поддерживается только http или https"
+    }
+    if (-not $uri.AbsolutePath.TrimEnd('/').EndsWith("/mcp", [System.StringComparison]::OrdinalIgnoreCase)) {
+        return "адрес должен оканчиваться на /mcp"
+    }
+    return ""
+}
+
+function Get-WorkflowMachineOnecLiteUrl {
+    $settings = Read-WorkflowMachineSettings
+    $onecLite = Get-WorkflowSettingValue -Object $settings -Name "onecLite" -Default $null
+    return [string](Get-WorkflowSettingValue -Object $onecLite -Name "url" -Default "")
+}
+
+function Save-WorkflowMachineOnecLiteUrl {
+    param([Parameter(Mandatory = $true)][string]$Url)
+
+    $problem = Test-WorkflowOnecLiteUrlProblem -Url $Url
+    if ($problem) { throw "Некорректный URL onec-lite: $problem ($Url)" }
+    $normalized = ([string]$Url).Trim().TrimEnd('/')
+
+    $path = Get-WorkflowMachineSettingsPath
+    [System.IO.Directory]::CreateDirectory((Split-Path $path -Parent)) | Out-Null
+    $settings = Read-WorkflowMachineSettings
+    $result = [ordered]@{}
+    if ($null -ne $settings) {
+        foreach ($property in @($settings.PSObject.Properties)) {
+            $result[$property.Name] = $property.Value
+        }
+    }
+    $result["schemaVersion"] = 2
+    if (-not $result.Contains("baseRoot")) { $result["baseRoot"] = "" }
+    if (-not $result.Contains("projects")) { $result["projects"] = [ordered]@{} }
+
+    $onecLite = [ordered]@{}
+    $existing = Get-WorkflowSettingValue -Object $settings -Name "onecLite" -Default $null
+    if ($null -ne $existing) {
+        foreach ($property in @($existing.PSObject.Properties)) {
+            $onecLite[$property.Name] = $property.Value
+        }
+    }
+    $onecLite["url"] = $normalized
+    $result["onecLite"] = [pscustomobject]$onecLite
+    Write-WorkflowJson -Value ([pscustomobject]$result) -Path $path | Out-Null
+    return $path
+}
+
+function Resolve-WorkflowOnecLiteUrl {
+    param(
+        [Parameter(Mandatory = $true)][object]$Config,
+        [AllowEmptyString()][string]$Explicit = ""
+    )
+
+    $value = if ($Explicit) {
+        $Explicit
+    }
+    elseif ([string]$env:ONEC_LITE_URL) {
+        [string]$env:ONEC_LITE_URL
+    }
+    elseif (Get-WorkflowMachineOnecLiteUrl) {
+        Get-WorkflowMachineOnecLiteUrl
+    }
+    else {
+        [string](Get-WorkflowSettingValue -Object $Config.onecLite -Name "url" -Default "")
+    }
+    $problem = Test-WorkflowOnecLiteUrlProblem -Url $value
+    if ($problem) {
+        throw (
+            "Не удалось разрешить endpoint onec-lite: $problem. " +
+            "Передайте -OnecLiteUrl <url>, задайте ONEC_LITE_URL или настройте URL проекта."
+        )
+    }
+    return ([string]$value).Trim().TrimEnd('/')
+}
+
+function Get-WorkflowMachinePortRange {
+    param([Parameter(Mandatory = $true)][object]$Config)
+
+    $settings = Read-WorkflowMachineSettings
+    $projects = Get-WorkflowSettingValue -Object $settings -Name "projects" -Default $null
+    $projectName = [string](Get-WorkflowSettingValue -Object $Config -Name "project" -Default "")
+    $entry = Get-WorkflowSettingValue -Object $projects -Name $projectName -Default $null
+    $parallel = Get-WorkflowSettingValue -Object $entry -Name "parallel" -Default $null
+    $start = [int](Get-WorkflowSettingValue -Object $parallel -Name "portRangeStart" -Default 0)
+    $end = [int](Get-WorkflowSettingValue -Object $parallel -Name "portRangeEnd" -Default 0)
+    if ($start -le 0 -or $end -le 0) { return $null }
+    return [pscustomobject]@{ Start = $start; End = $end }
+}
+
+function Save-WorkflowMachinePortRange {
+    param(
+        [Parameter(Mandatory = $true)][object]$Config,
+        [Parameter(Mandatory = $true)][int]$Start,
+        [Parameter(Mandatory = $true)][int]$End
+    )
+
+    if ($Start -le 0 -or $End -lt $Start) {
+        throw "Некорректный диапазон портов этой машины: $Start..$End"
+    }
+    $projectName = [string](Get-WorkflowSettingValue -Object $Config -Name "project" -Default "")
+    if (-not $projectName) { throw "project is required to save a machine port range." }
+
+    $path = Get-WorkflowMachineSettingsPath
+    [System.IO.Directory]::CreateDirectory((Split-Path $path -Parent)) | Out-Null
+    $settings = Read-WorkflowMachineSettings
+    $result = [ordered]@{}
+    if ($null -ne $settings) {
+        foreach ($property in @($settings.PSObject.Properties)) {
+            $result[$property.Name] = $property.Value
+        }
+    }
+    $result["schemaVersion"] = 2
+    if (-not $result.Contains("baseRoot")) { $result["baseRoot"] = "" }
+
+    $projects = [ordered]@{}
+    $existingProjects = Get-WorkflowSettingValue -Object $settings -Name "projects" -Default $null
+    if ($null -ne $existingProjects) {
+        foreach ($property in @($existingProjects.PSObject.Properties)) {
+            $projects[$property.Name] = $property.Value
+        }
+    }
+    $entry = [ordered]@{}
+    $existingEntry = Get-WorkflowSettingValue -Object $existingProjects -Name $projectName -Default $null
+    if ($null -ne $existingEntry) {
+        foreach ($property in @($existingEntry.PSObject.Properties)) {
+            $entry[$property.Name] = $property.Value
+        }
+    }
+    $entry["parallel"] = [pscustomobject][ordered]@{
+        portRangeStart = $Start
+        portRangeEnd = $End
+    }
+    $projects[$projectName] = [pscustomobject]$entry
+    $result["projects"] = [pscustomobject]$projects
+    Write-WorkflowJson -Value ([pscustomobject]$result) -Path $path | Out-Null
+    return $path
+}
+
 function Get-WorkflowMachineBaseRoot {
     <#
     .SYNOPSIS
@@ -3866,7 +4108,7 @@ function Save-WorkflowMachineBaseRoot {
             $result[$property.Name] = $property.Value
         }
     }
-    $result["schemaVersion"] = 1
+    $result["schemaVersion"] = 2
     if (-not $result.Contains("baseRoot")) {
         $result["baseRoot"] = ""
     }
@@ -3952,7 +4194,7 @@ function Save-WorkflowMachineBspSourcePath {
             $result[$property.Name] = $property.Value
         }
     }
-    $result["schemaVersion"] = 1
+    $result["schemaVersion"] = 2
     if (-not $result.Contains("baseRoot")) {
         $result["baseRoot"] = ""
     }
@@ -4310,8 +4552,29 @@ function Get-WorkflowParallelSettings {
         [bool](Get-WorkflowSettingValue -Object $section -Name "perBranchStands" -Default $true)
     }
 
-    $portRangeStart = [int](Get-WorkflowSettingValue -Object $section -Name "portRangeStart" -Default 8100)
-    $portRangeEnd = [int](Get-WorkflowSettingValue -Object $section -Name "portRangeEnd" -Default 8399)
+    $manifestPortRangeStart = [int](Get-WorkflowSettingValue -Object $section -Name "portRangeStart" -Default 8100)
+    $manifestPortRangeEnd = [int](Get-WorkflowSettingValue -Object $section -Name "portRangeEnd" -Default 8399)
+    $envPortRangeStart = [int]([string]$env:ONEC_WORKFLOW_PORT_RANGE_START)
+    $envPortRangeEnd = [int]([string]$env:ONEC_WORKFLOW_PORT_RANGE_END)
+    if (($envPortRangeStart -gt 0) -xor ($envPortRangeEnd -gt 0)) {
+        throw "ONEC_WORKFLOW_PORT_RANGE_START and ONEC_WORKFLOW_PORT_RANGE_END must be set together."
+    }
+    $machinePortRange = Get-WorkflowMachinePortRange -Config $Config
+    if ($envPortRangeStart -gt 0) {
+        $portRangeStart = $envPortRangeStart
+        $portRangeEnd = $envPortRangeEnd
+        $portRangeSource = "переменные окружения"
+    }
+    elseif ($null -ne $machinePortRange) {
+        $portRangeStart = [int]$machinePortRange.Start
+        $portRangeEnd = [int]$machinePortRange.End
+        $portRangeSource = "машинные настройки $(Get-WorkflowMachineSettingsPath)"
+    }
+    else {
+        $portRangeStart = $manifestPortRangeStart
+        $portRangeEnd = $manifestPortRangeEnd
+        $portRangeSource = "манифест проекта"
+    }
     $portsPerBranch = [int](Get-WorkflowSettingValue -Object $section -Name "portsPerBranch" -Default 4)
     # Слот делится между видами стендов (web-ui и http). При portsPerBranch=1
     # подпредел http начинался бы за границей слота, то есть в слоте соседней
@@ -4338,6 +4601,7 @@ function Get-WorkflowParallelSettings {
         baseRootSource = $roots.Source
         portRangeStart = $portRangeStart
         portRangeEnd = $portRangeEnd
+        portRangeSource = $portRangeSource
         portsPerBranch = $portsPerBranch
         slotCount = [int][Math]::Floor((($portRangeEnd - $portRangeStart) + 1) / $portsPerBranch)
         lockTimeoutSeconds = [int](

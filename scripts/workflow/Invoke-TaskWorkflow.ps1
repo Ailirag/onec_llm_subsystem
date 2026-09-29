@@ -30,7 +30,10 @@ param(
     [string]$Database = "",
 
     [string]$V8Path = "",
+    [string]$OnecLiteUrl = "",
     [string]$BspSourcePath = "",
+    [int]$PortRangeStart = 0,
+    [int]$PortRangeEnd = 0,
     [string]$ReleaseOutputPath = "",
 
     # Перезалить базу исходниками из рабочей копии. Для файловой базы это
@@ -578,6 +581,17 @@ switch ($Phase) {
             Resolve-WorkflowPath -RepositoryRoot $repositoryRoot -Path ([string]$config.localStateDir)
         )
 
+        if (($PortRangeStart -gt 0) -xor ($PortRangeEnd -gt 0)) {
+            throw "-PortRangeStart and -PortRangeEnd must be specified together."
+        }
+        if ($PortRangeStart -gt 0) {
+            $savedPath = Save-WorkflowMachinePortRange `
+                -Config $config `
+                -Start $PortRangeStart `
+                -End $PortRangeEnd
+            Write-Host "Диапазон портов этой машины: $PortRangeStart..$PortRangeEnd ($savedPath)"
+        }
+
         # Вопрос задаётся ЗДЕСЬ, а не внутри Initialize-Developer: фаза запускает
         # скрипт дочерним процессом с перехватом вывода, и приглашение Read-Host
         # ушло бы в лог, а не на экран — человек увидел бы молчащую фазу.
@@ -609,6 +623,9 @@ switch ($Phase) {
         }
         if ($V8Path) {
             $arguments += @("-V8Path", $V8Path)
+        }
+        if ($OnecLiteUrl) {
+            $arguments += @("-OnecLiteUrl", $OnecLiteUrl)
         }
         if ($BspSourcePath) {
             $arguments += @("-BspSourcePath", $BspSourcePath)

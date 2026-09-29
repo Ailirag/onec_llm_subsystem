@@ -45,6 +45,14 @@
 - Корень, в котором машина держит базы и стенды, в репозитории НЕ хранится: `Start` спрашивает его у человека один раз и пишет в `%USERPROFILE%\.onec-workflow\machine.json`. Спросить некого (CI, агент, скрипт развёртывания) — задать ключом `-BaseRoot <путь>` или переменной `ONEC_WORKFLOW_BASE_ROOT`; отказ фазы называет оба выхода.
 - Персональные конфиги агентов (`.mcp.json`, `.zcode/config.json`, `.v8-project.json`) не коммитить и не править вручную: фаза `Start` генерирует их из шаблонов `*.example.json`. Перезапись — только `-ForceAgentConfig`.
 - Дополнительные корпуса `onec-lite` включать только проектно через `onecLite.platformDocs` и `onecLite.bspSources`. В Git хранить требование и версию, но не машинные пути: справка выводится из выбранного `1cv8.exe`, путь БСП `Start` берёт из `%USERPROFILE%\.onec-workflow\machine.json` по версии. Не добавлять справку или БСП глобально в общий workspace: проекты могут работать на разных версиях платформы и БСП.
+- Путь платформы, endpoint `onec-lite` и локальное исключение диапазона портов — привязки машины. `Start` сохраняет их в `%USERPROFILE%\.onec-workflow\machine.json`; в Git остаются версия платформы, требования к корпусам и рекомендуемый диапазон. Приоритет: явный ключ → переменная окружения → профиль машины → проектное умолчание/автопоиск.
+
+### Первая настройка машины агентом
+
+- До первого `Start` агент обязан проверить, а не предположить: `git lfs version`, `git lfs pull`, наличие версии `platformVersion` из `.1c-workflow.json`, доступность `cc-1c-skills` не ниже `cc1cSkillsVersion`, команды `uv` и HTTP `onec-lite`.
+- Если `onec-lite` не установлен: `uv tool install --from "git+https://github.com/Ailirag/onec-vecgraph.git" onec-vecgraph`. Для постоянной локальной службы запустить `onec-lite admin --port 18010`; иной endpoint передать первым `Start` через `-OnecLiteUrl` или `ONEC_LITE_URL`. Не публиковать незащищённую админку вне loopback.
+- Первый `Start` должен получить все известные машинные привязки одной командой: `-V8Path <bin или 1cv8.exe>`, `-BspSourcePath <корень БСП>`, `-OnecLiteUrl <.../mcp>`, при конфликте портов — пару `-PortRangeStart/-PortRangeEnd`. Неизвестный путь агент не придумывает: проверяет стандартное расположение, затем спрашивает человека. Успешный `Start` сохраняет ответы; в следующих клонах и worktree ключи не нужны.
+- После `Start` проверить созданные `.mcp.json`, `.zcode/config.json`, `.v8-project.json`, напечатанные endpoint/workspace/порты и `Invoke-TaskWorkflow.ps1 -Phase Status -Adoption`. Личные файлы и `%USERPROFILE%\.onec-workflow\machine.json` не добавлять в Git.
 
 ### Автомат задачи
 

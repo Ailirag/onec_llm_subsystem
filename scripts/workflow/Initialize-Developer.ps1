@@ -8,6 +8,7 @@ param(
     [string]$BaseRoot = "",
     [string]$Database = "",
     [string]$V8Path = "",
+    [string]$OnecLiteUrl = "",
     [string]$BspSourcePath = "",
     [switch]$Reload,
     # Прежнее имя ключа. Означало «удалить каталог базы и создать заново», что для
@@ -43,6 +44,9 @@ function Write-WorkflowAgentConfigs {
         [AllowEmptyString()]
         [string]$WorkspaceName,
 
+        [Parameter(Mandatory = $true)]
+        [string]$OnecLiteUrl,
+
         [switch]$Force
     )
 
@@ -67,10 +71,9 @@ function Write-WorkflowAgentConfigs {
             continue
         }
 
-        $rendered = (Get-Content -Raw -LiteralPath $templatePath -Encoding UTF8).Replace(
-            '${ONEC_LITE_WORKSPACE}',
-            $WorkspaceName
-        )
+        $rendered = (Get-Content -Raw -LiteralPath $templatePath -Encoding UTF8).
+            Replace('${ONEC_LITE_WORKSPACE}', $WorkspaceName).
+            Replace('${ONEC_LITE_URL}', $OnecLiteUrl)
         if ($rendered -match '\$\{[A-Z_]+\}') {
             throw "Agent config template '$templateRelative' still has unresolved placeholders after rendering."
         }
@@ -113,6 +116,7 @@ function Sync-WorkflowOnecLiteCorpora {
     #>
     param(
         [Parameter(Mandatory = $true)][object]$Config,
+        [Parameter(Mandatory = $true)][string]$OnecLiteUrl,
         [Parameter(Mandatory = $true)][string]$WorkspaceName,
         [Parameter(Mandatory = $true)][string]$SourceDirectory,
         [Parameter(Mandatory = $true)][AllowEmptyCollection()][object[]]$Extensions,
@@ -122,7 +126,7 @@ function Sync-WorkflowOnecLiteCorpora {
     if ([string]$Config.onecLite.transport -ne "http") {
         throw "Project corpora require onecLite.transport=http: a shared workspace must own their indexes."
     }
-    $mcpUrl = [string]$Config.onecLite.url
+    $mcpUrl = $OnecLiteUrl
     if (-not $mcpUrl) {
         throw "onecLite.url is required when project corpora are enabled."
     }
@@ -213,6 +217,30 @@ $reloadRequested = [bool]$Reload -or [bool]$Recreate
 $sourceDirectory = Resolve-WorkflowPath -RepositoryRoot $repositoryRoot -Path ([string]$config.sourceDir)
 $extensions = @(Get-WorkflowExtensions -RepositoryRoot $repositoryRoot -Config $config -AllowMissingOptional)
 $v8Executable = Resolve-WorkflowV8Path -Config $config -V8Path $V8Path
+$onecLiteEnabled = (
+    $null -ne $config.PSObject.Properties["onecLite"] -and
+    $null -ne $config.onecLite -and
+    (
+        $null -eq $config.onecLite.PSObject.Properties["enabled"] -or
+        [bool]$config.onecLite.enabled
+    )
+)
+$resolvedOnecLiteUrl = if ($onecLiteEnabled) {
+    Resolve-WorkflowOnecLiteUrl -Config $config -Explicit $OnecLiteUrl
+}
+else {
+    ""
+}
+if (-not $WhatIfPreference) {
+    $machineSettingsPath = Save-WorkflowMachinePlatformPath `
+        -Version ([string]$config.platformVersion) `
+        -V8Path $v8Executable
+    Write-Host "Платформа $($config.platformVersion): $v8Executable ($machineSettingsPath)"
+    if ($onecLiteEnabled) {
+        $machineSettingsPath = Save-WorkflowMachineOnecLiteUrl -Url $resolvedOnecLiteUrl
+        Write-Host "onec-lite endpoint: $resolvedOnecLiteUrl ($machineSettingsPath)"
+    }
+}
 $ccRoot = Resolve-Cc1CSkillsRoot -Config $config
 $statePath = Get-WorkflowStatePath -RepositoryRoot $repositoryRoot -Config $config
 $logDirectory = Join-Path (Split-Path $statePath -Parent) "logs"
@@ -376,14 +404,6 @@ if ($loadRequired) {
         -CompileOnly:$CompileOnly | Out-Null
 }
 $branchSlug = ConvertTo-WorkflowSlug -Value $branchName
-$onecLiteEnabled = (
-    $null -ne $config.PSObject.Properties["onecLite"] -and
-    $null -ne $config.onecLite -and
-    (
-        $null -eq $config.onecLite.PSObject.Properties["enabled"] -or
-        [bool]$config.onecLite.enabled
-    )
-)
 $workspaceName = if ($onecLiteEnabled) {
     "$($config.onecLite.workspacePrefix)_$branchSlug"
 }
@@ -409,6 +429,7 @@ $corporaPreviouslyManaged = (
 if ($onecLiteEnabled -and $workspaceName -and ($corporaRequested -or $corporaPreviouslyManaged)) {
     $syncResult = Sync-WorkflowOnecLiteCorpora `
         -Config $config `
+        -OnecLiteUrl $resolvedOnecLiteUrl `
         -WorkspaceName $workspaceName `
         -SourceDirectory $sourceDirectory `
         -Extensions $extensions `
@@ -473,7 +494,7 @@ if ($onecLiteEnabled) {
     $onecClientPath = Join-Path (Split-Path $statePath -Parent) "onec-lite-client.json"
     $onecClient = [pscustomobject]@{
         type = [string]$config.onecLite.transport
-        url = [string]$config.onecLite.url
+        url = $resolvedOnecLiteUrl
         headers = [pscustomobject]@{
             "X-Workspace" = $workspaceName
         }
@@ -486,6 +507,7 @@ $agentConfigs = @(
         -RepositoryRoot $repositoryRoot `
         -Config $config `
         -WorkspaceName $workspaceName `
+        -OnecLiteUrl $resolvedOnecLiteUrl `
         -Force:$ForceAgentConfig
 )
 
@@ -498,6 +520,7 @@ if ($extensions.Count -gt 0) {
 }
 if ($onecLiteEnabled) {
     Write-Host "onec-lite workspace: $workspaceName"
+    Write-Host "onec-lite URL:       $resolvedOnecLiteUrl"
     Write-Host "onec-lite client snippet: $onecClientPath"
 }
 else {
