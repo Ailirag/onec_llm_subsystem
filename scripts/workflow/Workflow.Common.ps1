@@ -2040,15 +2040,73 @@ function Get-WorkflowUserHelpSettings {
     }
 }
 
+function Test-WorkflowObjectHelpRegistration {
+    <#
+    .SYNOPSIS
+    Проверяет, что страница справки не только лежит на диске, но подключена к объекту.
+    #>
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$SourcePath,
+
+        [Parameter(Mandatory = $true)]
+        [string]$Object,
+
+        [Parameter(Mandatory = $true)]
+        [string]$Language
+    )
+
+    $parts = @(([string]$Object).Replace([string][char]92, "/").Split("/"))
+    if ($parts.Count -ne 2) {
+        return $false
+    }
+
+    $kindPath = Join-Path $SourcePath $parts[0]
+    $ownerPath = Join-Path $kindPath "$($parts[1]).xml"
+    $objectPath = Join-Path $kindPath $parts[1]
+    $descriptorPath = Join-Path (Join-Path $objectPath "Ext") "Help.xml"
+    $pagePath = Join-Path (Join-Path (Join-Path $objectPath "Ext") "Help") "$Language.html"
+
+    if (-not (Test-Path -LiteralPath $ownerPath -PathType Leaf) -or
+        -not (Test-Path -LiteralPath $descriptorPath -PathType Leaf) -or
+        -not (Test-Path -LiteralPath $pagePath -PathType Leaf)) {
+        return $false
+    }
+
+    try {
+        [xml]$owner = Get-Content -Raw -LiteralPath $ownerPath -Encoding UTF8
+        $include = $owner.SelectSingleNode(
+            "/*[local-name()='MetaDataObject']/*[1]/*[local-name()='Properties']/*[local-name()='IncludeHelpInContents']")
+        if ($null -eq $include -or ([string]$include.InnerText).Trim().ToLowerInvariant() -ne "true") {
+            return $false
+        }
+
+        [xml]$descriptor = Get-Content -Raw -LiteralPath $descriptorPath -Encoding UTF8
+        $pages = @($descriptor.SelectNodes("/*[local-name()='Help']/*[local-name()='Page']"))
+        if (-not @($pages | Where-Object { ([string]$_.InnerText).Trim() -eq $Language }).Count) {
+            return $false
+        }
+    }
+    catch {
+        return $false
+    }
+
+    $text = [string](Get-Content -Raw -LiteralPath $pagePath -Encoding UTF8)
+    # Разметка без текста справкой не является: <html></html> открывается
+    # пустым окном, и это ровно то же, что её отсутствие.
+    $plain = ($text -replace "<[^>]+>", "").Trim()
+    return ($plain.Length -gt 40)
+}
+
 function Find-WorkflowObjectsWithoutHelp {
     <#
     .SYNOPSIS
     Новые объекты, которые пользователь открывает, но справки по F1 у них нет.
 
     .DESCRIPTION
-    Проверяется НАЛИЧИЕ файла справки, а не его содержание: отличить полезный
-    текст от пересказа полей комплект не может и притворяться не должен. Зато
-    отсутствие означает ровно одно — пользователь нажмёт F1 и не получит ничего.
+    Проверяется минимальный исполнимый контракт справки: объект включает её в
+    состав, Help.xml объявляет язык, а непустая страница существует. Отличить
+    полезный текст от пересказа полей комплект не может и не притворяется.
 
     Пустой файл справкой не считается. Пустая справка хуже отсутствующей: она
     обещает ответ и не даёт его, а по составу конфигурации выглядит как готовая.
@@ -2072,15 +2130,10 @@ function Find-WorkflowObjectsWithoutHelp {
 
         $found = $false
         foreach ($language in @($Languages)) {
-            $helpPath = Join-Path (Join-Path (Join-Path (Join-Path $SourcePath $parts[0]) $parts[1]) "Ext\Help") "$language.html"
-            if (-not (Test-Path -LiteralPath $helpPath -PathType Leaf)) {
-                continue
-            }
-            $text = [string](Get-Content -Raw -LiteralPath $helpPath -Encoding UTF8)
-            # Разметка без текста справкой не является: <html></html> открывается
-            # пустым окном, и это ровно то же, что её отсутствие.
-            $plain = ($text -replace "<[^>]+>", "").Trim()
-            if ($plain.Length -gt 40) {
+            if (Test-WorkflowObjectHelpRegistration `
+                -SourcePath $SourcePath `
+                -Object $object `
+                -Language $language) {
                 $found = $true
                 break
             }
@@ -3649,6 +3702,64 @@ function Get-WorkflowSettingValue {
     return $property.Value
 }
 
+function Find-WorkflowMissingAdapterPaths {
+    <#
+    .SYNOPSIS
+    Возвращает объявленные проектные адаптеры, файлов которых нет на диске.
+
+    .DESCRIPTION
+    Путь в defaults — такой же исполнимый контракт, как включённый флаг. Раньше
+    комплект годами объявлял tools/Invoke-FunctionalSeed.ps1, которого никогда
+    не поставлял: дефект обнаруживался только при первом включении тестов.
+    Проверка не зависит от enabled намеренно — выключение прогона не превращает
+    битую ссылку в корректную установку.
+    #>
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$RepositoryRoot,
+
+        [Parameter(Mandatory = $true)]
+        [object]$Config
+    )
+
+    $contracts = @(
+        [pscustomobject]@{ Section = "functionalTests"; Property = "initializeScript" },
+        [pscustomobject]@{ Section = "functionalTests"; Property = "seedScript" },
+        [pscustomobject]@{ Section = "functionalTests"; Property = "publishScript" },
+        [pscustomobject]@{ Section = "functionalTests"; Property = "smokeScript" },
+        [pscustomobject]@{ Section = "webUiTests"; Property = "script" },
+        [pscustomobject]@{ Section = "webUiTests"; Property = "publishScript" },
+        [pscustomobject]@{ Section = "unitTests"; Property = "script" },
+        [pscustomobject]@{ Section = "userGuides"; Property = "script" },
+        [pscustomobject]@{ Section = "userGuides"; Property = "renderScript" },
+        [pscustomobject]@{ Section = "releaseGuides"; Property = "script" },
+        [pscustomobject]@{ Section = "releaseGuides"; Property = "sourceScript" },
+        [pscustomobject]@{ Section = "releaseGuides"; Property = "seedScript" }
+    )
+    $missing = New-Object System.Collections.ArrayList
+    foreach ($contract in $contracts) {
+        $sectionName = [string]$contract.Section
+        $propertyName = [string]$contract.Property
+        $section = Get-WorkflowSettingValue -Object $Config -Name $sectionName -Default $null
+        if ($null -eq $section) {
+            continue
+        }
+        $declared = [string](Get-WorkflowSettingValue -Object $section -Name $propertyName -Default "")
+        if ([string]::IsNullOrWhiteSpace($declared)) {
+            continue
+        }
+        $path = Resolve-WorkflowPath -RepositoryRoot $RepositoryRoot -Path $declared
+        if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
+            [void]$missing.Add([pscustomobject]@{
+                Setting = "$sectionName.$propertyName"
+                Declared = $declared
+                Path = $path
+            })
+        }
+    }
+    return @($missing)
+}
+
 function Get-WorkflowMachineSettingsPath {
     <#
     .SYNOPSIS
@@ -3749,28 +3860,175 @@ function Save-WorkflowMachineBaseRoot {
     [System.IO.Directory]::CreateDirectory((Split-Path $path -Parent)) | Out-Null
 
     $settings = Read-WorkflowMachineSettings
-    $result = [ordered]@{ schemaVersion = 1; baseRoot = ""; projects = [ordered]@{} }
+    $result = [ordered]@{}
     if ($null -ne $settings) {
-        $result.baseRoot = [string](Get-WorkflowSettingValue -Object $settings -Name "baseRoot" -Default "")
-        $existingProjects = Get-WorkflowSettingValue -Object $settings -Name "projects" -Default $null
-        if ($null -ne $existingProjects) {
-            foreach ($property in @($existingProjects.PSObject.Properties)) {
-                $result.projects[$property.Name] = $property.Value
-            }
+        foreach ($property in @($settings.PSObject.Properties)) {
+            $result[$property.Name] = $property.Value
         }
     }
+    $result["schemaVersion"] = 1
+    if (-not $result.Contains("baseRoot")) {
+        $result["baseRoot"] = ""
+    }
+    $projects = [ordered]@{}
+    $existingProjects = Get-WorkflowSettingValue -Object $settings -Name "projects" -Default $null
+    if ($null -ne $existingProjects) {
+        foreach ($property in @($existingProjects.PSObject.Properties)) {
+            $projects[$property.Name] = $property.Value
+        }
+    }
+    $result["projects"] = $projects
 
     $fullRoot = [System.IO.Path]::GetFullPath($BaseRoot)
     if ($ForThisProjectOnly) {
         $projectName = [string](Get-WorkflowSettingValue -Object $Config -Name "project" -Default "")
-        $result.projects[$projectName] = [ordered]@{ baseRoot = $fullRoot }
+        $entry = [ordered]@{}
+        $existingEntry = if ($projects.Contains($projectName)) { $projects[$projectName] } else { $null }
+        if ($null -ne $existingEntry) {
+            foreach ($property in @($existingEntry.PSObject.Properties)) {
+                $entry[$property.Name] = $property.Value
+            }
+        }
+        $entry["baseRoot"] = $fullRoot
+        $projects[$projectName] = [pscustomobject]$entry
     }
     else {
-        $result.baseRoot = $fullRoot
+        $result["baseRoot"] = $fullRoot
     }
 
     Write-WorkflowJson -Value ([pscustomobject]$result) -Path $path | Out-Null
     return $path
+}
+
+function Get-WorkflowMachineBspSourcePath {
+    <#
+    .SYNOPSIS
+    Локальный каталог исходников объявленной версии БСП.
+
+    .DESCRIPTION
+    Версия принадлежит проекту, путь — машине. Поэтому общий манифест хранит
+    только version, а соответствие version -> path лежит рядом с корнем баз в
+    `%USERPROFILE%\.onec-workflow\machine.json` и переиспользуется всеми клонами.
+    #>
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Version
+    )
+
+    $settings = Read-WorkflowMachineSettings
+    $onecLite = Get-WorkflowSettingValue -Object $settings -Name "onecLite" -Default $null
+    $sources = Get-WorkflowSettingValue -Object $onecLite -Name "bspSources" -Default $null
+    return [string](Get-WorkflowSettingValue -Object $sources -Name $Version -Default "")
+}
+
+function Save-WorkflowMachineBspSourcePath {
+    <#
+    .SYNOPSIS
+    Запоминает на этой машине каталог исходников конкретной версии БСП.
+
+    .DESCRIPTION
+    Сохраняет все неизвестные разделы machine.json: файл общий для процесса,
+    и настройка корпуса не должна стирать корни баз или будущие параметры.
+    #>
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Version,
+
+        [Parameter(Mandatory = $true)]
+        [string]$SourcePath
+    )
+
+    $fullPath = [System.IO.Path]::GetFullPath($SourcePath)
+    if (-not (Test-Path -LiteralPath $fullPath -PathType Container)) {
+        throw "Каталог исходников БСП $Version не существует: $fullPath"
+    }
+
+    $path = Get-WorkflowMachineSettingsPath
+    [System.IO.Directory]::CreateDirectory((Split-Path $path -Parent)) | Out-Null
+    $settings = Read-WorkflowMachineSettings
+    $result = [ordered]@{}
+    if ($null -ne $settings) {
+        foreach ($property in @($settings.PSObject.Properties)) {
+            $result[$property.Name] = $property.Value
+        }
+    }
+    $result["schemaVersion"] = 1
+    if (-not $result.Contains("baseRoot")) {
+        $result["baseRoot"] = ""
+    }
+    if (-not $result.Contains("projects")) {
+        $result["projects"] = [ordered]@{}
+    }
+
+    $onecLite = [ordered]@{}
+    $existingOnecLite = Get-WorkflowSettingValue -Object $settings -Name "onecLite" -Default $null
+    if ($null -ne $existingOnecLite) {
+        foreach ($property in @($existingOnecLite.PSObject.Properties)) {
+            $onecLite[$property.Name] = $property.Value
+        }
+    }
+    $sources = [ordered]@{}
+    $existingSources = Get-WorkflowSettingValue -Object $existingOnecLite -Name "bspSources" -Default $null
+    if ($null -ne $existingSources) {
+        foreach ($property in @($existingSources.PSObject.Properties)) {
+            $sources[$property.Name] = $property.Value
+        }
+    }
+    $sources[$Version] = $fullPath
+    $onecLite["bspSources"] = [pscustomobject]$sources
+    $result["onecLite"] = [pscustomobject]$onecLite
+
+    Write-WorkflowJson -Value ([pscustomobject]$result) -Path $path | Out-Null
+    return $path
+}
+
+function Test-WorkflowBspSourcePathProblem {
+    param(
+        [Parameter(Mandatory = $true)][string]$SourcePath
+    )
+
+    $value = ([string]$SourcePath).Trim()
+    if (-not $value) {
+        return "путь пустой"
+    }
+    if (-not [System.IO.Path]::IsPathRooted($value)) {
+        return "путь должен быть полным: локальная привязка не зависит от каталога запуска"
+    }
+    try {
+        $full = [System.IO.Path]::GetFullPath($value)
+    }
+    catch {
+        return "путь не разбирается: $($_.Exception.Message)"
+    }
+    if (-not (Test-Path -LiteralPath $full -PathType Container)) {
+        return "каталог не существует: $full"
+    }
+    return ""
+}
+
+function Request-WorkflowBspSourcePath {
+    <#
+    .SYNOPSIS
+    Один раз спрашивает локальный путь к требуемой проектом версии БСП.
+    #>
+    param(
+        [Parameter(Mandatory = $true)][string]$Version,
+        [int]$Attempts = 3
+    )
+
+    Write-Host ""
+    Write-Host "Проект использует корпус БСП $Version для onec-lite."
+    Write-Host "Укажите локальный корень XML-выгрузки Конфигуратора или EDT workspace."
+    Write-Host "Ответ сохранится в $(Get-WorkflowMachineSettingsPath) и в Git не попадёт."
+    for ($attempt = 1; $attempt -le $Attempts; $attempt++) {
+        $answer = Read-Host "Путь к БСП $Version"
+        $problem = Test-WorkflowBspSourcePathProblem -SourcePath $answer
+        if (-not $problem) {
+            return [System.IO.Path]::GetFullPath($answer)
+        }
+        Write-Warning "Путь не принят: $problem"
+    }
+    throw "Не удалось получить локальный путь к БСП $Version за $Attempts попытки."
 }
 
 function Test-WorkflowBaseRootProblem {
@@ -4089,6 +4347,98 @@ function Get-WorkflowParallelSettings {
             Get-WorkflowSettingValue -Object $section -Name "agentConfigTemplates" -Default @()
         )
     }
+}
+
+function Get-WorkflowOnecLiteCorpusSettings {
+    <#
+    .SYNOPSIS
+    Проверяет и разрешает проектные корпуса onec-lite на этой машине.
+
+    .DESCRIPTION
+    Проект хранит только намерение: нужна ли справка и какая версия БСП нужна.
+    Каталог справки выводится из реально выбранного 1cv8.exe, а путь к БСП берётся
+    из машинной привязки version -> path. Машинозависимые пути в Git не попадают.
+    #>
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$RepositoryRoot,
+
+        [Parameter(Mandatory = $true)]
+        [object]$Config,
+
+        [AllowEmptyString()]
+        [string]$V8Executable = "",
+
+        [AllowEmptyString()]
+        [string]$BspSourcePath = ""
+    )
+
+    $onecLite = Get-WorkflowSettingValue -Object $Config -Name "onecLite" -Default $null
+    $onecLiteEnabled = (
+        $null -ne $onecLite -and
+        [bool](Get-WorkflowSettingValue -Object $onecLite -Name "enabled" -Default $true)
+    )
+    $result = [ordered]@{
+        enabled = $onecLiteEnabled
+        platformDocsEnabled = $false
+        platformDocsPaths = @()
+        bspSourcesEnabled = $false
+        bspVersion = ""
+        bspSourcePaths = @()
+    }
+    if (-not $onecLiteEnabled) {
+        foreach ($name in @("platformDocs", "bspSources")) {
+            $child = Get-WorkflowSettingValue -Object $onecLite -Name $name -Default $null
+            if ($null -ne $child -and
+                [bool](Get-WorkflowSettingValue -Object $child -Name "enabled" -Default $false)) {
+                throw "onecLite.$name cannot be enabled while onecLite.enabled is false."
+            }
+        }
+        return [pscustomobject]$result
+    }
+
+    $platformDocs = Get-WorkflowSettingValue -Object $onecLite -Name "platformDocs" -Default $null
+    $result.platformDocsEnabled = (
+        $null -ne $platformDocs -and
+        [bool](Get-WorkflowSettingValue -Object $platformDocs -Name "enabled" -Default $false)
+    )
+    if ($result.platformDocsEnabled) {
+        if (-not $V8Executable) {
+            throw "onecLite.platformDocs is enabled, but the local 1cv8 executable was not resolved."
+        }
+        $fullExecutable = [System.IO.Path]::GetFullPath($V8Executable)
+        if (-not (Test-Path -LiteralPath $fullExecutable -PathType Leaf)) {
+            throw "onecLite.platformDocs cannot use a missing local 1cv8 executable: $fullExecutable"
+        }
+        $result.platformDocsPaths = @((Split-Path $fullExecutable -Parent))
+    }
+
+    $bspSources = Get-WorkflowSettingValue -Object $onecLite -Name "bspSources" -Default $null
+    $result.bspSourcesEnabled = (
+        $null -ne $bspSources -and
+        [bool](Get-WorkflowSettingValue -Object $bspSources -Name "enabled" -Default $false)
+    )
+    if ($result.bspSourcesEnabled) {
+        $version = [string](Get-WorkflowSettingValue -Object $bspSources -Name "version" -Default "")
+        if (-not $version) {
+            throw "onecLite.bspSources.enabled is true, but version is empty in .1c-workflow.json."
+        }
+        $result.bspVersion = $version
+        $resolvedBspPath = ([string]$BspSourcePath).Trim()
+        if (-not $resolvedBspPath) {
+            $resolvedBspPath = Get-WorkflowMachineBspSourcePath -Version $version
+        }
+        $problem = Test-WorkflowBspSourcePathProblem -SourcePath $resolvedBspPath
+        if ($problem) {
+            throw (
+                "Для БСП $version не настроен пригодный локальный каталог ($problem). " +
+                "Запустите Phase Start в интерактивном терминале, передайте -BspSourcePath <путь> " +
+                "или задайте ONEC_WORKFLOW_BSP_SOURCE_ROOT."
+            )
+        }
+        $result.bspSourcePaths = @([System.IO.Path]::GetFullPath($resolvedBspPath))
+    }
+    return [pscustomobject]$result
 }
 
 function Get-WorkflowHeadCommit {
@@ -4613,36 +4963,42 @@ function Connect([string]`$Name, [string]`$Secret) {
     `$suffix = if (`$Name) { 'Usr="' + `$Name + '";Pwd="' + `$Secret + '";' } else { '' }
     try { return ,(`$connector.Connect(`$base + `$suffix)) } catch { return `$null }
 }
-if (`$null -ne (Connect '$user' '$password')) { Write-Output 'stand-administrator:exists'; exit 0 }
-`$open = Connect '' ''
+`$open = Connect '$user' '$password'
+`$created = `$false
+if (`$null -eq `$open) {
+    `$open = Connect '' ''
+}
 if (`$null -eq `$open) {
     throw 'На стенде есть пользователи ИБ, но под администратором стенда $user (Get-WorkflowStandAdministrator) войти нельзя: его нет или у него задан пароль. Адаптер, заводящий пользователей, обязан первым завести именно его.'
 }
 `$metadata = Get-ComProperty `$open 'Метаданные'
 `$allRoles = Get-ComProperty `$metadata 'Роли'
 `$roles = @()
-foreach (`$name in @('ПолныеПрава', 'АдминистраторСистемы')) {
-    `$role = Invoke-ComMethod `$allRoles 'Найти' @(`$name)
-    if (`$null -ne `$role) { `$roles += ,`$role }
-}
-if (`$roles.Count -eq 0) {
-    `$count = Invoke-ComMethod `$allRoles 'Количество'
-    for (`$index = 0; `$index -lt `$count; `$index++) {
-        `$role = Invoke-ComMethod `$allRoles 'Получить' @(`$index)
-        if (Invoke-ComMethod `$open 'ПравоДоступа' @('Администрирование', `$metadata, `$role)) { `$roles += ,`$role }
+`$hasAdministratorRole = `$false
+`$count = Invoke-ComMethod `$allRoles 'Количество'
+for (`$index = 0; `$index -lt `$count; `$index++) {
+    `$role = Invoke-ComMethod `$allRoles 'Получить' @(`$index)
+    `$roles += ,`$role
+    if (Invoke-ComMethod `$open 'ПравоДоступа' @('Администрирование', `$metadata, `$role)) {
+        `$hasAdministratorRole = `$true
     }
 }
-if (`$roles.Count -eq 0) { throw 'В конфигурации нет роли с правом Администрирование: администратора стенда завести нечем.' }
+if (-not `$hasAdministratorRole) { throw 'В конфигурации нет роли с правом Администрирование: администратора стенда завести нечем.' }
 `$users = Get-ComProperty `$open 'ПользователиИнформационнойБазы'
-`$newUser = Invoke-ComMethod `$users 'СоздатьПользователя'
-Set-ComProperty `$newUser 'Имя' '$user'
-Set-ComProperty `$newUser 'ПолноеИмя' '$user'
-Set-ComProperty `$newUser 'АутентификацияСтандартная' `$true
-Set-ComProperty `$newUser 'ПоказыватьВСпискеВыбора' `$true
-`$userRoles = Get-ComProperty `$newUser 'Роли'
+`$standUser = Invoke-ComMethod `$users 'НайтиПоИмени' @('$user')
+if (`$null -eq `$standUser) {
+    `$standUser = Invoke-ComMethod `$users 'СоздатьПользователя'
+    Set-ComProperty `$standUser 'Имя' '$user'
+    Set-ComProperty `$standUser 'ПолноеИмя' '$user'
+    Set-ComProperty `$standUser 'АутентификацияСтандартная' `$true
+    Set-ComProperty `$standUser 'ПоказыватьВСпискеВыбора' `$true
+    `$created = `$true
+}
+`$userRoles = Get-ComProperty `$standUser 'Роли'
+[void](Invoke-ComMethod `$userRoles 'Очистить')
 foreach (`$role in `$roles) { [void](Invoke-ComMethod `$userRoles 'Добавить' @(`$role)) }
-[void](Invoke-ComMethod `$newUser 'Записать')
-Write-Output 'stand-administrator:created'
+[void](Invoke-ComMethod `$standUser 'Записать')
+if (`$created) { Write-Output 'stand-administrator:created' } else { Write-Output 'stand-administrator:exists' }
 "@
 }
 
@@ -7417,6 +7773,11 @@ function Invoke-WorkflowStandPreparation {
             -StateDirectory $stateDirectory `
             -LogPath (Join-Path $LogDirectory "stand-exec.log")
     }
+    # Расширения добавляют собственные роли уже ПОСЛЕ первого создания
+    # администратора. Перед сидом синхронизируем его повторно: иначе вход есть,
+    # но проектные объекты отвечают «Недостаточно прав».
+    $administratorOutcome = Initialize-WorkflowStandAdministrator -BasePath $BasePath
+    Write-Host "Stand administrator after extensions: $administratorOutcome"
     Invoke-WorkflowPowerShell `
         -ScriptPath $seedScript `
         -Arguments @("-BasePath", $BasePath) `

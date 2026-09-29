@@ -1,7 +1,10 @@
 ﻿[CmdletBinding()]
 param(
     [string]$BasePath = (Join-Path $env:LOCALAPPDATA "Ailirag\onec_llm_subsystem\functional-test-base"),
-    [int]$TimeoutSeconds = 180
+    [int]$TimeoutSeconds = 180,
+    # HTTP-публикация стенда этому набору не нужна: обращения к провайдеру идут
+    # из 1С к локальному mock-сервису. Ключ принимается по контракту workflow.
+    [switch]$SkipHttp
 )
 
 $ErrorActionPreference = "Stop"
@@ -11,6 +14,39 @@ $buildPath = Join-Path $repositoryPath ".build\functional-tests"
 $resultFile = Join-Path $buildPath "smoke-result.txt"
 $serverScript = Join-Path $repositoryPath "tests\mock-provider\server.mjs"
 $modeRunner = Join-Path $PSScriptRoot "Invoke-1CFunctionalTestMode.ps1"
+
+function Assert-KnowledgeBundleHelpRegistration {
+    $catalogRoot = Join-Path $repositoryPath "cfe llm\Catalogs"
+    $ownerPath = Join-Path $catalogRoot "AI_НаборыЗнаний.xml"
+    $helpRoot = Join-Path $catalogRoot "AI_НаборыЗнаний\Ext"
+    $descriptorPath = Join-Path $helpRoot "Help.xml"
+    $pagePath = Join-Path $helpRoot "Help\ru.html"
+
+    foreach ($path in @($ownerPath, $descriptorPath, $pagePath)) {
+        if (-not (Test-Path -LiteralPath $path -PathType Leaf)) {
+            throw "Knowledge bundles F1 help file is missing: $path"
+        }
+    }
+
+    [xml]$owner = Get-Content -Raw -LiteralPath $ownerPath -Encoding UTF8
+    $include = $owner.SelectSingleNode(
+        "/*[local-name()='MetaDataObject']/*[1]/*[local-name()='Properties']/*[local-name()='IncludeHelpInContents']")
+    if ($null -eq $include -or ([string]$include.InnerText).Trim().ToLowerInvariant() -ne "true") {
+        throw "Knowledge bundles F1 help is not enabled on the catalog owner."
+    }
+
+    [xml]$descriptor = Get-Content -Raw -LiteralPath $descriptorPath -Encoding UTF8
+    $ruPage = @($descriptor.SelectNodes("/*[local-name()='Help']/*[local-name()='Page']")) |
+        Where-Object { ([string]$_.InnerText).Trim() -eq "ru" }
+    if (@($ruPage).Count -ne 1) {
+        throw "Knowledge bundles F1 help descriptor does not declare the ru page exactly once."
+    }
+
+    $plainText = ((Get-Content -Raw -LiteralPath $pagePath -Encoding UTF8) -replace "<[^>]+>", "").Trim()
+    if ($plainText.Length -le 40) {
+        throw "Knowledge bundles F1 help page is empty."
+    }
+}
 
 function Wait-MockProvider {
     param([int]$Seconds)
@@ -30,6 +66,7 @@ function Wait-MockProvider {
 }
 
 $baseFullPath = [System.IO.Path]::GetFullPath($BasePath)
+Assert-KnowledgeBundleHelpRegistration
 if (-not (Test-Path -LiteralPath (Join-Path $baseFullPath "1Cv8.1CD"))) {
     throw "Functional test base does not exist. Run tools\Initialize-FunctionalTestEnvironment.ps1 first."
 }

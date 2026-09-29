@@ -8,6 +8,7 @@ param(
     [string]$BaseRoot = "",
     [string]$Database = "",
     [string]$V8Path = "",
+    [string]$BspSourcePath = "",
     [switch]$Reload,
     # Прежнее имя ключа. Означало «удалить каталог базы и создать заново», что для
     # серверной базы невыполнимо. Сохранено как синоним -Reload.
@@ -100,6 +101,68 @@ function Write-WorkflowAgentConfigs {
     return @($results)
 }
 
+function Sync-WorkflowOnecLiteCorpora {
+    <#
+    .SYNOPSIS
+    Регистрирует проектный workspace и его дополнительные корпуса в onec-lite.
+
+    .DESCRIPTION
+    Вызывается только когда проект явно включил platformDocs или bspSources. Старый
+    onec-lite без машинного endpoint не принимается молча: иначе Start завершился бы
+    успешно, а агент искал бы без обещанной документации или в глобальном чужом корпусе.
+    #>
+    param(
+        [Parameter(Mandatory = $true)][object]$Config,
+        [Parameter(Mandatory = $true)][string]$WorkspaceName,
+        [Parameter(Mandatory = $true)][string]$SourceDirectory,
+        [Parameter(Mandatory = $true)][AllowEmptyCollection()][object[]]$Extensions,
+        [Parameter(Mandatory = $true)][object]$Corpora
+    )
+
+    if ([string]$Config.onecLite.transport -ne "http") {
+        throw "Project corpora require onecLite.transport=http: a shared workspace must own their indexes."
+    }
+    $mcpUrl = [string]$Config.onecLite.url
+    if (-not $mcpUrl) {
+        throw "onecLite.url is required when project corpora are enabled."
+    }
+    $adminUrl = $mcpUrl -replace '/mcp/?$', '/admin/workspace'
+    if ($adminUrl -eq $mcpUrl) {
+        throw "onecLite.url must end with /mcp when project corpora are enabled: $mcpUrl"
+    }
+
+    $help = @()
+    foreach ($path in @($Corpora.platformDocsPaths)) {
+        $help += [ordered]@{ version = [string]$Config.platformVersion; path = [string]$path }
+    }
+    $payload = [ordered]@{
+        name = $WorkspaceName
+        root = $SourceDirectory
+        ext_roots = @($Extensions | ForEach-Object { [string]$_.sourcePath })
+        platform_help = $help
+        bsp_roots = @($Corpora.bspSourcePaths)
+        build = $false
+    }
+    try {
+        return Invoke-RestMethod `
+            -Method Post `
+            -Uri $adminUrl `
+            -ContentType "application/json; charset=utf-8" `
+            -Body ($payload | ConvertTo-Json -Depth 8) `
+            -TimeoutSec 30
+    }
+    catch {
+        throw (
+            "Не удалось настроить проектные корпуса onec-lite для workspace '$WorkspaceName' " +
+            "через $adminUrl. Нужен запущенный onec-lite с включённой админкой и поддержкой " +
+            "POST /admin/workspace. Установка: uv tool install --from " +
+            "'git+https://github.com/Ailirag/onec-vecgraph.git' onec-vecgraph; " +
+            "запуск для стандартного URL комплекта: onec-lite admin --port 18010. " +
+            "Ошибка подключения: $($_.Exception.Message)"
+        )
+    }
+}
+
 $repositoryRoot = Get-WorkflowRepositoryRoot -StartPath $PSScriptRoot
 $config = Get-WorkflowConfig -RepositoryRoot $repositoryRoot
 $branchName = Get-WorkflowBranchName -RepositoryRoot $repositoryRoot
@@ -153,6 +216,45 @@ $v8Executable = Resolve-WorkflowV8Path -Config $config -V8Path $V8Path
 $ccRoot = Resolve-Cc1CSkillsRoot -Config $config
 $statePath = Get-WorkflowStatePath -RepositoryRoot $repositoryRoot -Config $config
 $logDirectory = Join-Path (Split-Path $statePath -Parent) "logs"
+
+# Проект объявляет версию БСП, но физический каталог принадлежит машине. Явный
+# ключ и env нужны CI/агенту; живого разработчика спрашиваем один раз и сохраняем
+# соответствие версии пути в machine.json.
+$bspSection = Get-WorkflowSettingValue -Object $config.onecLite -Name "bspSources" -Default $null
+$bspEnabled = (
+    $null -ne $bspSection -and
+    [bool](Get-WorkflowSettingValue -Object $bspSection -Name "enabled" -Default $false)
+)
+$resolvedBspSourcePath = ""
+if ($bspEnabled) {
+    $bspVersion = [string](Get-WorkflowSettingValue -Object $bspSection -Name "version" -Default "")
+    if (-not $bspVersion) {
+        throw "onecLite.bspSources.enabled is true, but version is empty in .1c-workflow.json."
+    }
+    $resolvedBspSourcePath = if ($BspSourcePath) {
+        $BspSourcePath
+    }
+    elseif ([string]$env:ONEC_WORKFLOW_BSP_SOURCE_ROOT) {
+        [string]$env:ONEC_WORKFLOW_BSP_SOURCE_ROOT
+    }
+    else {
+        Get-WorkflowMachineBspSourcePath -Version $bspVersion
+    }
+    $bspProblem = Test-WorkflowBspSourcePathProblem -SourcePath $resolvedBspSourcePath
+    if ($bspProblem) {
+        if (-not (Test-WorkflowInteractiveHost)) {
+            throw (
+                "Для БСП $bspVersion не настроен локальный каталог ($bspProblem). " +
+                "Передайте -BspSourcePath <путь> или задайте ONEC_WORKFLOW_BSP_SOURCE_ROOT."
+            )
+        }
+        $resolvedBspSourcePath = Request-WorkflowBspSourcePath -Version $bspVersion
+    }
+    $machineSettingsPath = Save-WorkflowMachineBspSourcePath `
+        -Version $bspVersion `
+        -SourcePath $resolvedBspSourcePath
+    Write-Host "Исходники БСП ${bspVersion}: $resolvedBspSourcePath ($machineSettingsPath)"
+}
 
 # База закрепляется за этой рабочей копией ДО любых разрушительных действий.
 # Путь файловой базы выводится из слага ветки, а слаг не взаимно однозначен:
@@ -288,6 +390,35 @@ $workspaceName = if ($onecLiteEnabled) {
 else {
     ""
 }
+$onecLiteCorpora = Get-WorkflowOnecLiteCorpusSettings `
+    -RepositoryRoot $repositoryRoot `
+    -Config $config `
+    -V8Executable $v8Executable `
+    -BspSourcePath $resolvedBspSourcePath
+$previousWorkflowState = Read-WorkflowState -RepositoryRoot $repositoryRoot -Config $config
+$corporaRequested = (
+    [bool]$onecLiteCorpora.platformDocsEnabled -or [bool]$onecLiteCorpora.bspSourcesEnabled
+)
+$corporaPreviouslyManaged = (
+    $null -ne $previousWorkflowState -and
+    [bool](Get-WorkflowSettingValue `
+        -Object $previousWorkflowState `
+        -Name "onecLiteCorporaConfigured" `
+        -Default $false)
+)
+if ($onecLiteEnabled -and $workspaceName -and ($corporaRequested -or $corporaPreviouslyManaged)) {
+    $syncResult = Sync-WorkflowOnecLiteCorpora `
+        -Config $config `
+        -WorkspaceName $workspaceName `
+        -SourceDirectory $sourceDirectory `
+        -Extensions $extensions `
+        -Corpora $onecLiteCorpora
+    Write-Host (
+        "onec-lite corpora: platformDocs=$($onecLiteCorpora.platformDocsPaths.Count), " +
+        "bspSources=$($onecLiteCorpora.bspSourcePaths.Count) " +
+        $(if ($corporaRequested) { "(индексация запущена)" } else { "(корпуса отключены)" })
+    )
+}
 $state = [pscustomobject]@{
     project = [string]$config.project
     branch = $branchName
@@ -302,6 +433,7 @@ $state = [pscustomobject]@{
     compileOnly = [bool]$CompileOnly
     loadedExtensions = @($extensions | Select-Object -ExpandProperty name)
     onecLiteWorkspace = $workspaceName
+    onecLiteCorporaConfigured = $corporaRequested
     updatedAt = [DateTimeOffset]::Now.ToString("o")
 }
 Write-WorkflowState -RepositoryRoot $repositoryRoot -Config $config -State $state | Out-Null

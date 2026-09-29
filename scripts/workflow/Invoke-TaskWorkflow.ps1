@@ -30,6 +30,7 @@ param(
     [string]$Database = "",
 
     [string]$V8Path = "",
+    [string]$BspSourcePath = "",
     [string]$ReleaseOutputPath = "",
 
     # Перезалить базу исходниками из рабочей копии. Для файловой базы это
@@ -608,6 +609,9 @@ switch ($Phase) {
         }
         if ($V8Path) {
             $arguments += @("-V8Path", $V8Path)
+        }
+        if ($BspSourcePath) {
+            $arguments += @("-BspSourcePath", $BspSourcePath)
         }
         if ($Reload -or $Recreate) {
             $arguments += "-Reload"

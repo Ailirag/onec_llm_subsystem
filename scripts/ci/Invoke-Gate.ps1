@@ -659,6 +659,17 @@ Invoke-GateStep -Name "json-config-valid" -Action {
     Get-WorkflowParallelSettings -Config $config | Out-Null
 }
 
+Invoke-GateStep -Name "adapter-paths-exist" -Action {
+    $missingAdapters = @(Find-WorkflowMissingAdapterPaths `
+        -RepositoryRoot $repositoryRoot `
+        -Config $config)
+    if ($missingAdapters.Count -gt 0) {
+        $details = @($missingAdapters | ForEach-Object { "$($_.Setting)='$($_.Declared)'" })
+        throw "Declared project adapter files are missing: $($details -join ', '). Reinstall the workflow kit or add the project implementation."
+    }
+    Write-Host "    все объявленные адаптеры существуют"
+}
+
 # ── 7. Кодировка PowerShell-скриптов ──────────────────────────────────────────
 # Windows PowerShell 5.1 декодирует .ps1 БЕЗ BOM в системной ANSI-кодировке.
 # UTF-8 кириллица превращается в мусор, а отдельные последовательности — в

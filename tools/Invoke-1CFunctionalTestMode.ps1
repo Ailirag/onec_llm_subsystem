@@ -11,8 +11,13 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+$repositoryPath = Split-Path $PSScriptRoot -Parent
+. (Join-Path $repositoryPath "scripts\workflow\Workflow.Common.ps1")
+$administrator = Get-WorkflowStandAdministrator
+
 $connector = New-Object -ComObject "V83.COMConnector"
-$connectionString = "File=`"$([System.IO.Path]::GetFullPath($BasePath))`";"
+$connectionString = "File=`"$([System.IO.Path]::GetFullPath($BasePath))`";" +
+    "Usr=`"$([string]$administrator.UserName)`";"
 $connection = $connector.Connect($connectionString)
 $result = [string]$connection.Run($Mode)
 [System.IO.File]::WriteAllText(

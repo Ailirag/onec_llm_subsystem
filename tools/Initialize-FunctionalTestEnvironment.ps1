@@ -9,7 +9,10 @@ param(
     [switch]$SkipRegistryUpdate,
     # Цикл разработки: база уже поднята и засеяна, пересевать фикстуры не нужно.
     # Экономит COM-подключение и повторную запись тестовых данных на каждой итерации.
-    [switch]$SkipSeed
+    [switch]$SkipSeed,
+    # Workflow уже скопировал проверочную базу текущих исходников. В этом режиме
+    # адаптер не встраивает LLM повторно: расширение загрузит сам workflow.
+    [switch]$SkipConfigurationLoad
 )
 
 $ErrorActionPreference = "Stop"
@@ -17,7 +20,6 @@ $ErrorActionPreference = "Stop"
 $repositoryPath = Split-Path $PSScriptRoot -Parent
 $buildPath = Join-Path $repositoryPath ".build\functional-tests"
 $mergedConfigurationPath = Join-Path $buildPath "configuration"
-$modeRunner = Join-Path $PSScriptRoot "Invoke-1CFunctionalTestMode.ps1"
 
 function Resolve-V8Executable {
     param([string]$Path)
@@ -172,30 +174,35 @@ if ($Recreate -and (Test-Path -LiteralPath $baseFullPath)) {
     Remove-Item -LiteralPath $baseFullPath -Recurse -Force
 }
 
-$manifestPath = Join-Path $repositoryPath "manifest\llm-subsystem.json"
-& (Join-Path $PSScriptRoot "Build-EmbeddedConfiguration.ps1") `
-    -ManifestPath $manifestPath
-& (Join-Path $PSScriptRoot "Merge-EmbeddedConfiguration.ps1") `
-    -TargetConfigurationPath (Join-Path $repositoryPath "cf") `
-    -DonorConfigurationPath (Join-Path $repositoryPath "cf llm") `
-    -OutputDirectory $mergedConfigurationPath
-Set-TestDefaultRoles (Join-Path $mergedConfigurationPath "Configuration.xml")
-Copy-Item -LiteralPath (Join-Path $repositoryPath 'tests/fixtures/result-handler.bsl') `
-    -Destination (Join-Path $mergedConfigurationPath 'CommonModules/AI_ОбработчикиРезультатовПереопределяемый/Ext/Module.bsl') -Force
+if (-not $SkipConfigurationLoad) {
+    $manifestPath = Join-Path $repositoryPath "manifest\llm-subsystem.json"
+    & (Join-Path $PSScriptRoot "Build-EmbeddedConfiguration.ps1") `
+        -ManifestPath $manifestPath
+    & (Join-Path $PSScriptRoot "Merge-EmbeddedConfiguration.ps1") `
+        -TargetConfigurationPath (Join-Path $repositoryPath "cf") `
+        -DonorConfigurationPath (Join-Path $repositoryPath "cf llm") `
+        -OutputDirectory $mergedConfigurationPath
+    Set-TestDefaultRoles (Join-Path $mergedConfigurationPath "Configuration.xml")
+    Copy-Item -LiteralPath (Join-Path $repositoryPath 'tests/fixtures/result-handler.bsl') `
+        -Destination (Join-Path $mergedConfigurationPath 'CommonModules/AI_ОбработчикиРезультатовПереопределяемый/Ext/Module.bsl') -Force
 
-if (-not (Test-Path -LiteralPath (Join-Path $baseFullPath "1Cv8.1CD"))) {
-    New-Item -ItemType Directory -Path $baseFullPath -Force | Out-Null
+    if (-not (Test-Path -LiteralPath (Join-Path $baseFullPath "1Cv8.1CD"))) {
+        New-Item -ItemType Directory -Path $baseFullPath -Force | Out-Null
+        Invoke-1C `
+            -Arguments "CREATEINFOBASE `"File=$baseFullPath;`"" `
+            -LogName "create-base.log"
+    }
+
     Invoke-1C `
-        -Arguments "CREATEINFOBASE `"File=$baseFullPath;`"" `
-        -LogName "create-base.log"
+        -Arguments "DESIGNER /F`"$baseFullPath`" /LoadConfigFromFiles `"$mergedConfigurationPath`" -Format Hierarchical" `
+        -LogName "load-configuration.log"
+    Invoke-1C `
+        -Arguments "DESIGNER /F`"$baseFullPath`" /UpdateDBCfg" `
+        -LogName "update-database.log"
 }
-
-Invoke-1C `
-    -Arguments "DESIGNER /F`"$baseFullPath`" /LoadConfigFromFiles `"$mergedConfigurationPath`" -Format Hierarchical" `
-    -LogName "load-configuration.log"
-Invoke-1C `
-    -Arguments "DESIGNER /F`"$baseFullPath`" /UpdateDBCfg" `
-    -LogName "update-database.log"
+elseif (-not (Test-Path -LiteralPath (Join-Path $baseFullPath "1Cv8.1CD") -PathType Leaf)) {
+    throw "Workflow не передал готовую проверочную базу: $baseFullPath"
+}
 
 if ($SkipSeed) {
     Write-Host "Пересев фикстур пропущен (-SkipSeed)."
@@ -207,32 +214,9 @@ if ($SkipSeed) {
     return
 }
 
-$seedResult = Join-Path $buildPath "seed-result.txt"
-$seedOutput = Join-Path $buildPath "seed-com.stdout.log"
-$seedError = Join-Path $buildPath "seed-com.stderr.log"
-Remove-Item -LiteralPath $seedResult -Force -ErrorAction SilentlyContinue
-Remove-Item -LiteralPath $seedOutput,$seedError -Force -ErrorAction SilentlyContinue
-$seedArguments = "-NoProfile -ExecutionPolicy Bypass -File `"$modeRunner`" " +
-    "-BasePath `"$baseFullPath`" -Mode seed -ResultPath `"$seedResult`""
-$seedProcess = Start-Process -FilePath "powershell.exe" `
-    -ArgumentList $seedArguments `
-    -WindowStyle Hidden `
-    -RedirectStandardOutput $seedOutput `
-    -RedirectStandardError $seedError `
-    -PassThru
-if (-not $seedProcess.WaitForExit($SeedTimeoutSeconds * 1000)) {
-    Stop-Process -Id $seedProcess.Id -Force -ErrorAction SilentlyContinue
-    throw "Fixture seeding exceeded timeout of $SeedTimeoutSeconds seconds."
-}
-$seedProcess.WaitForExit()
-if (-not (Test-Path -LiteralPath $seedResult)) {
-    throw "Fixture seeding did not create result file. See $seedError"
-}
-$seedLines = Get-Content -LiteralPath $seedResult -Encoding UTF8
-$seedLines | ForEach-Object { Write-Host $_ }
-if ($seedLines[0] -ne "OK") {
-    throw "Fixture seeding failed. See $seedResult"
-}
+& (Join-Path $PSScriptRoot "Invoke-FunctionalSeed.ps1") `
+    -BasePath $baseFullPath `
+    -TimeoutSeconds $SeedTimeoutSeconds
 
 if (-not $SkipRegistryUpdate) {
     Update-LocalDatabaseRegistry
