@@ -36,6 +36,67 @@ $config = Get-WorkflowConfig -RepositoryRoot $repositoryRoot
 if (-not [bool]$config.webUiTests.enabled) {
     throw "Web UI tests are disabled in .1c-workflow.json."
 }
+
+function Get-WebUiRoleTestPublications {
+    param([Parameter(Mandatory = $true)][object]$Config)
+
+    $property = $Config.webUiTests.PSObject.Properties["roleTestPublications"]
+    if ($null -eq $property) {
+        return @()
+    }
+
+    $result = @()
+    $names = @{}
+    $variables = @{}
+    foreach ($entry in @($property.Value)) {
+        $name = ([string]$entry.name).Trim()
+        $userName = ([string]$entry.userName).Trim()
+        $urlVariable = ([string]$entry.urlEnvironmentVariable).Trim()
+        $passwordProperty = $entry.PSObject.Properties["passwordEnvironmentVariable"]
+        $passwordVariable = if ($null -ne $passwordProperty) {
+            ([string]$passwordProperty.Value).Trim()
+        }
+        else {
+            ""
+        }
+        if ($name -notmatch '^[a-z0-9][a-z0-9-]{0,31}$') {
+            throw "webUiTests.roleTestPublications.name must match ^[a-z0-9][a-z0-9-]{0,31}`$: '$name'."
+        }
+        if (-not $userName) {
+            throw "webUiTests.roleTestPublications[$name].userName is required."
+        }
+        if ($urlVariable -notmatch '^[A-Z_][A-Z0-9_]*$') {
+            throw "webUiTests.roleTestPublications[$name].urlEnvironmentVariable is invalid: '$urlVariable'."
+        }
+        if ($passwordVariable -and $passwordVariable -notmatch '^[A-Z_][A-Z0-9_]*$') {
+            throw "webUiTests.roleTestPublications[$name].passwordEnvironmentVariable is invalid: '$passwordVariable'."
+        }
+        if ($names.ContainsKey($name)) {
+            throw "Duplicate webUiTests.roleTestPublications name: '$name'."
+        }
+        if ($variables.ContainsKey($urlVariable)) {
+            throw "Duplicate webUiTests.roleTestPublications urlEnvironmentVariable: '$urlVariable'."
+        }
+        $names[$name] = $true
+        $variables[$urlVariable] = $true
+        $password = ""
+        if ($passwordVariable) {
+            $password = [Environment]::GetEnvironmentVariable($passwordVariable, "Process")
+            if ($null -eq $password) {
+                throw "Environment variable $passwordVariable is required for Web UI role publication '$name'."
+            }
+        }
+        $result += [pscustomobject]@{
+            Name = $name
+            UserName = $userName
+            Password = [string]$password
+            UrlEnvironmentVariable = $urlVariable
+        }
+    }
+    return $result
+}
+
+$roleTestPublications = @(Get-WebUiRoleTestPublications -Config $config)
 $ccRoot = Resolve-Cc1CSkillsRoot -Config $config
 $v8Executable = Resolve-WorkflowV8Path -Config $config -V8Path $V8Path
 $suitePath = Resolve-WorkflowPath `
@@ -224,7 +285,16 @@ try {
             -Kind "web-ui" `
             -BranchName $standBranch
         $apacheInstalled = Test-Path -LiteralPath (Join-Path $apachePath "bin\httpd.exe") -PathType Leaf
-        if ($savedPort -ne 0 -and $apacheInstalled -and (Test-WorkflowPortBusy -Port $savedPort)) {
+        $rolePublicationsReady = $true
+        foreach ($rolePublication in $roleTestPublications) {
+            $roleVrd = Join-Path $apachePath "publish\$AppName-$($rolePublication.Name)\default.vrd"
+            if (-not (Test-Path -LiteralPath $roleVrd -PathType Leaf)) {
+                $rolePublicationsReady = $false
+                break
+            }
+        }
+        if ($savedPort -ne 0 -and $apacheInstalled -and $rolePublicationsReady -and
+            (Test-WorkflowPortBusy -Port $savedPort)) {
             $reusedPort = $savedPort
             Write-Host "Web UI: переиспользуется опубликованный стенд на порту $reusedPort."
         }
@@ -253,7 +323,7 @@ try {
         # бессмысленно: чужой слушатель порт не отдаст, а полминуты уходит на
         # каждом прогоне Web UI.
         $ownHttpd = Join-Path $apachePath "bin\httpd.exe"
-        if (-not (Wait-WorkflowPortFullyFree -Port $Port -TimeoutSeconds 30 -OwnExecutablePath $ownHttpd)) {
+        if (-not (Wait-WorkflowPortFullyFree -Port $Port -TimeoutSeconds 5 -OwnExecutablePath $ownHttpd)) {
             Write-Warning "Порт $Port не освободился; публикация подберёт другой порт из диапазона."
         }
     }
@@ -295,8 +365,16 @@ try {
                 #
                 # Ожидание внутри блокировки: отпускать её и ждать снаружи нельзя, иначе
                 # другая ветка займёт освободившийся порт между ожиданием и публикацией.
-                if (-not (Wait-WorkflowPortFullyFree -Port $candidate -TimeoutSeconds 60)) {
-                    Write-Warning "Порт $candidate за 60 секунд не освободился полностью; публикация, скорее всего, откажет. Вероятная причина — чужой слушатель на этом порту."
+                while (-not (Wait-WorkflowPortFullyFree -Port $candidate -TimeoutSeconds 5)) {
+                    $nextPort = $candidate + 1
+                    if ($nextPort -gt $portRange.End) {
+                        throw "No fully free Web UI port in range $($portRange.Start)-$($portRange.End). Last checked: $candidate."
+                    }
+                    Write-Warning "Port $candidate is not fully free; trying the next port in the branch range."
+                    $candidate = Get-WorkflowFreePort `
+                        -Config $config `
+                        -StartPort $nextPort `
+                        -MaxPort $portRange.End
                 }
                 # Вывод дочернего процесса ОБЯЗАТЕЛЬНО перехватываем: иначе он попадает
                 # в поток успеха этого scriptblock, и блокировка возвращает массив
@@ -323,6 +401,30 @@ try {
                 $publishOutput | ForEach-Object { Write-Host ([string]$_) }
                 if ($publishExitCode -ne 0) {
                     throw "Functional stand publication failed with exit code $publishExitCode."
+                }
+
+                foreach ($rolePublication in $roleTestPublications) {
+                    $roleAppName = "$AppName-$($rolePublication.Name)"
+                    $roleArguments = @($publishArguments) + @(
+                        "-V8Path", $v8Executable,
+                        "-ApachePath", $apachePath,
+                        "-AppName", $roleAppName,
+                        "-Port", $candidate,
+                        "-UserName", $rolePublication.UserName,
+                        "-SkipLock"
+                    )
+                    if ($rolePublication.Password) {
+                        $roleArguments += @("-Password", $rolePublication.Password)
+                    }
+                    $ErrorActionPreference = "Continue"
+                    $roleOutput = & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $publish `
+                        @roleArguments 2>&1
+                    $roleExitCode = $LASTEXITCODE
+                    $ErrorActionPreference = $previousPublishErrorAction
+                    $roleOutput | ForEach-Object { Write-Host ([string]$_) }
+                    if ($roleExitCode -ne 0) {
+                        throw "Web UI role publication '$($rolePublication.Name)' failed with exit code $roleExitCode."
+                    }
                 }
                 return $candidate
             }
@@ -363,10 +465,12 @@ try {
         }
         $previousUrl = [Environment]::GetEnvironmentVariable($urlEnvironmentVariable, "Process")
         $previousCommandTimeout = [Environment]::GetEnvironmentVariable($timeoutEnvironmentVariable, "Process")
+        $previousRoleUrls = @{}
         try {
+            $currentWebUiUrl = "http://localhost:$actualPort/$AppName"
             [Environment]::SetEnvironmentVariable(
                 $urlEnvironmentVariable,
-                "http://localhost:$actualPort/$AppName",
+                $currentWebUiUrl,
                 "Process"
             )
             [Environment]::SetEnvironmentVariable(
@@ -374,6 +478,12 @@ try {
                 [string]($CommandTimeoutSeconds * 1000),
                 "Process"
             )
+            foreach ($rolePublication in $roleTestPublications) {
+                $roleVariable = $rolePublication.UrlEnvironmentVariable
+                $previousRoleUrls[$roleVariable] = [Environment]::GetEnvironmentVariable($roleVariable, "Process")
+                $roleUrl = "http://localhost:$actualPort/$AppName-$($rolePublication.Name)"
+                [Environment]::SetEnvironmentVariable($roleVariable, $roleUrl, "Process")
+            }
             $runnerPath = Join-Path $runtimeRoot "run.mjs"
             $runnerArguments = @($runnerPath, "test") + $testTargets + @(
                 "--report=$ReportPath",
@@ -413,7 +523,106 @@ try {
             )
             $runnerOutput | ForEach-Object { Write-Host ([string]$_) }
             if ($exitCode -ne 0) {
-                throw "Web UI regression failed with exit code $exitCode. Report: $ReportPath"
+                # Ранний отказ веб-клиента скрывает настоящую ошибку платформы за
+                # общим сообщением «вход невозможен». Пока Apache ещё поднят,
+                # повторно открываем тот же URL и раскрываем ТОЛЬКО безопасную
+                # ссылку «Показать подробности». Кнопки перезапуска и завершения
+                # сеансов пробник не нажимает.
+                $runStartupDiagnostic = $false
+                if (Test-Path -LiteralPath $ReportPath -PathType Leaf) {
+                    try {
+                        $runnerReport = Get-Content -LiteralPath $ReportPath -Raw -Encoding UTF8 | ConvertFrom-Json
+                        $reportState = [string]$runnerReport.state
+                        $reportTotal = if ($null -ne $runnerReport.summary) {
+                            [int]$runnerReport.summary.total
+                        }
+                        else {
+                            -1
+                        }
+                        $runStartupDiagnostic = ($reportState -eq "aborted" -and $reportTotal -eq 0)
+                    }
+                    catch {
+                        Write-Warning "Web UI report could not be read for startup diagnostics: $($_.Exception.Message)"
+                    }
+                }
+                if (-not $runStartupDiagnostic) {
+                    $runnerText = @($runnerOutput | ForEach-Object { [string]$_ }) -join "`n"
+                    $runStartupDiagnostic = [bool](
+                        $runnerText -match 'cannot open context|startup blocked before the web client loaded'
+                    )
+                }
+
+                $diagnosticSuffix = ""
+                if ($runStartupDiagnostic) {
+                    # Контекст с отдельной ролью может упасть раньше выполнения
+                    # теста. Диагностировать нужно именно его URL, а не основной
+                    # административный URL, иначе повторный вход будет зелёным и
+                    # скроет реальный отказ прав или запуска клиента.
+                    $diagnosticWebUiUrl = $currentWebUiUrl
+                    $runnerText = @($runnerOutput | ForEach-Object { [string]$_ }) -join "`n"
+                    $failedContextUrls = [regex]::Matches(
+                        $runnerText,
+                        '(?im)\bURL:\s*(https?://[^\s\)]+)'
+                    )
+                    if ($failedContextUrls.Count -gt 0) {
+                        $diagnosticWebUiUrl = $failedContextUrls[$failedContextUrls.Count - 1].Groups[1].Value
+                        Write-Host "Startup diagnostic target: failed Web UI context URL."
+                    }
+                    $diagnosticSource = Join-Path $PSScriptRoot "web-ui-startup-diagnostic.mjs"
+                    $diagnosticRunner = Join-Path $runtimeRoot "workflow-startup-diagnostic.mjs"
+                    $diagnosticJson = Join-Path $ArtifactsPath "startup-error-details.json"
+                    if (Test-Path -LiteralPath $diagnosticSource -PathType Leaf) {
+                        Copy-Item -LiteralPath $diagnosticSource -Destination $diagnosticRunner -Force
+                        $diagnosticArguments = @(
+                            $diagnosticRunner,
+                            "--url=$diagnosticWebUiUrl",
+                            "--artifact-dir=$ArtifactsPath",
+                            "--timeout-ms=15000"
+                        )
+                        $previousDiagnosticErrorAction = $ErrorActionPreference
+                        $ErrorActionPreference = "Continue"
+                        try {
+                            $diagnosticOutput = @(& node.exe @diagnosticArguments 2>&1)
+                            $diagnosticExitCode = $LASTEXITCODE
+                        }
+                        finally {
+                            $ErrorActionPreference = $previousDiagnosticErrorAction
+                        }
+                        $diagnosticLogLines = @("", "=== Workflow startup diagnostic ===") +
+                            @($diagnosticOutput | ForEach-Object { [string]$_ })
+                        [System.IO.File]::AppendAllText(
+                            $consoleLog,
+                            ($diagnosticLogLines -join [Environment]::NewLine) + [Environment]::NewLine,
+                            [System.Text.UTF8Encoding]::new($false)
+                        )
+                        $diagnosticOutput | ForEach-Object { Write-Host ([string]$_) }
+
+                        if (Test-Path -LiteralPath $diagnosticJson -PathType Leaf) {
+                            try {
+                                $diagnostic = Get-Content -LiteralPath $diagnosticJson -Raw -Encoding UTF8 | ConvertFrom-Json
+                                $diagnosticSuffix = " Startup diagnostic: $([string]$diagnostic.state). Artifact: $diagnosticJson."
+                                if ([string]$diagnostic.details) {
+                                    $diagnosticDetails = ([string]$diagnostic.details -replace '\s+', ' ').Trim()
+                                    if ($diagnosticDetails.Length -gt 500) {
+                                        $diagnosticDetails = $diagnosticDetails.Substring(0, 500) + "..."
+                                    }
+                                    $diagnosticSuffix += " Details: $diagnosticDetails"
+                                }
+                            }
+                            catch {
+                                $diagnosticSuffix = " Startup diagnostic artifact could not be read: $diagnosticJson."
+                            }
+                        }
+                        elseif ($diagnosticExitCode -ne 0) {
+                            $diagnosticSuffix = " Startup diagnostic failed with exit code $diagnosticExitCode; original failure is preserved."
+                        }
+                    }
+                    else {
+                        $diagnosticSuffix = " Startup diagnostic adapter is missing: $diagnosticSource."
+                    }
+                }
+
+                throw "Web UI regression failed with exit code $exitCode. Report: $ReportPath.$diagnosticSuffix"
             }
         }
         finally {
@@ -423,6 +632,13 @@ try {
                 $previousCommandTimeout,
                 "Process"
             )
+            foreach ($roleVariable in $previousRoleUrls.Keys) {
+                [Environment]::SetEnvironmentVariable(
+                    $roleVariable,
+                    $previousRoleUrls[$roleVariable],
+                    "Process"
+                )
+            }
         }
     }
     finally {

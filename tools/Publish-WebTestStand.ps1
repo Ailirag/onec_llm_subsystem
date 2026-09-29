@@ -10,6 +10,8 @@ param(
     [string]$ApachePath = "",
     [string]$AppName = "",
     [int]$Port = 0,
+    [string]$UserName = "",
+    [string]$Password = "",
     [switch]$SkipLock
 )
 
@@ -55,6 +57,11 @@ else {
     # Файловый стенд публикуется под администратором стенда: без учётных данных
     # публикация на базе с пользователями поднимается, а вход в неё отказан.
     ConvertTo-WorkflowStandInfoBase -BasePath ([System.IO.Path]::GetFullPath($BasePath))
+}
+if ($UserName) {
+    $standInfoBase.UserName = $UserName
+    $standInfoBase.Password = $Password
+    $standInfoBase.Source = "web-ui-role-test"
 }
 # Наличие проверяется только у файлового стенда: серверный отвечает кластер.
 if ([string]$standInfoBase.Kind -ne "server" -and -not (Test-Path -LiteralPath (Join-Path $BasePath "1Cv8.1CD"))) {

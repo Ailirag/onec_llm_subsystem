@@ -13,6 +13,7 @@ const qdrantApiKey = "mock-qdrant-key";
 const slowEmbeddingDelayMs = 6000;
 const qdrantCollections = new Map();
 let qdrantOperationSequence = 0;
+let mcpSessionSequence = 0;
 
 function json(res, statusCode, body) {
   const payload = JSON.stringify(body);
@@ -21,6 +22,160 @@ function json(res, statusCode, body) {
     "content-length": Buffer.byteLength(payload),
   });
   res.end(payload);
+}
+
+function mcpResult(res, id, result, headers = {}) {
+  const payload = JSON.stringify({ jsonrpc: "2.0", id, result });
+  res.writeHead(200, {
+    "content-type": "application/json; charset=utf-8",
+    "content-length": Buffer.byteLength(payload),
+    ...headers,
+  });
+  res.end(payload);
+}
+
+function mcpError(res, statusCode, id, code, message) {
+  json(res, statusCode, { jsonrpc: "2.0", id, error: { code, message } });
+}
+
+function mcpTools(cursor) {
+  if (!cursor) {
+    return {
+      resultType: "complete",
+      tools: [{
+        name: "secure_echo",
+        title: "Secure echo",
+        description: "Returns a deterministic marker and the supplied message.",
+        inputSchema: {
+          type: "object",
+          $defs: { message: { type: "string" } },
+          properties: { message: { $ref: "#/$defs/message" } },
+          required: ["message"],
+        },
+      }],
+      nextCursor: "page-2",
+    };
+  }
+  return {
+    resultType: "complete",
+    tools: [{
+      name: "approval_required",
+      title: "Approval required",
+      description: "Requests additional user input to verify fail-closed handling.",
+      inputSchema: { type: "object", properties: {} },
+    }],
+  };
+}
+
+function validateModernMcp(req, body) {
+  const meta = body?.params?._meta;
+  return req.headers["mcp-protocol-version"] === "2026-07-28"
+    && req.headers["mcp-method"] === body?.method
+    && meta?.["io.modelcontextprotocol/protocolVersion"] === "2026-07-28"
+    && typeof meta?.["io.modelcontextprotocol/clientCapabilities"] === "object";
+}
+
+function handleMcp(req, res, url, body) {
+  const legacy = url.pathname === "/mcp-legacy";
+  const authorizationIsValid =
+    url.pathname !== "/mcp-auth"
+      || req.headers.authorization === "Bearer mcp-secret-token";
+  const basicAuthorizationIsValid =
+    url.pathname !== "/mcp-basic"
+      || req.headers.authorization === `Basic ${Buffer.from("mcp-user:mcp-password").toString("base64")}`;
+  const customHeaderIsValid =
+    url.pathname !== "/mcp-header"
+      || req.headers["x-mcp-key"] === "mcp-custom-secret";
+  if (!authorizationIsValid || !basicAuthorizationIsValid || !customHeaderIsValid) {
+    mcpError(res, 401, body.id, -32001, "invalid_mcp_token");
+    return;
+  }
+  // A 401 on the modern probe is not evidence of a legacy server. If a client
+  // incorrectly retries initialize, this endpoint deliberately accepts it so
+  // the functional test turns green only when no downgrade is attempted.
+  if (url.pathname === "/mcp-auth-no-downgrade" && body.method === "server/discover") {
+    mcpError(res, 401, body.id, -32001, "authentication_required");
+    return;
+  }
+  if (url.pathname === "/mcp-auth-no-downgrade" && body.method === "initialize") {
+    mcpResult(res, body.id, {
+      protocolVersion: "2025-11-25",
+      capabilities: { tools: { listChanged: false } },
+      serverInfo: { name: "incorrect-auth-downgrade", version: "1.0.0" },
+    }, { "mcp-session-id": "incorrect-auth-downgrade" });
+    return;
+  }
+  if (req.method === "DELETE") {
+    res.writeHead(204);
+    res.end();
+    return;
+  }
+  if (req.method !== "POST") {
+    mcpError(res, 405, body.id, -32600, "method_not_allowed");
+    return;
+  }
+  if (!legacy && !validateModernMcp(req, body)) {
+    mcpError(res, 400, body.id, -32600, "modern_mcp_headers_or_meta_missing");
+    return;
+  }
+  if (legacy && body.method === "server/discover") {
+    mcpError(res, 400, body.id, -32601, "method_not_found");
+    return;
+  }
+  if (body.method === "server/discover") {
+    mcpResult(res, body.id, {
+      resultType: "complete",
+      supportedVersions: ["2026-07-28"],
+      capabilities: { tools: { listChanged: false } },
+      ttlMs: 0,
+      cacheScope: "private",
+      _meta: { "io.modelcontextprotocol/serverInfo": { name: "llm-mock-mcp", version: "1.0.0" } },
+    });
+    return;
+  }
+  if (body.method === "initialize" && legacy) {
+    const sessionId = `mock-session-${++mcpSessionSequence}`;
+    mcpResult(res, body.id, {
+      protocolVersion: "2025-11-25",
+      capabilities: { tools: { listChanged: false } },
+      serverInfo: { name: "llm-mock-mcp-legacy", version: "1.0.0" },
+    }, { "mcp-session-id": sessionId });
+    return;
+  }
+  if (body.method === "notifications/initialized" && legacy) {
+    res.writeHead(202);
+    res.end();
+    return;
+  }
+  if (body.method === "tools/list") {
+    mcpResult(res, body.id, mcpTools(body.params?.cursor));
+    return;
+  }
+  if (body.method === "tools/call") {
+    if (!legacy && req.headers["mcp-name"] !== body.params?.name) {
+      mcpError(res, 400, body.id, -32600, "mcp_name_header_mismatch");
+      return;
+    }
+    if (body.params?.name === "approval_required") {
+      mcpResult(res, body.id, {
+        resultType: "input_required",
+        requestState: "approval-state",
+        inputRequests: {},
+      });
+      return;
+    }
+    if (body.params?.name === "secure_echo") {
+      const message = String(body.params?.arguments?.message ?? "");
+      mcpResult(res, body.id, {
+        resultType: "complete",
+        content: [{ type: "text", text: `MCP_ECHO_OK:${message}` }],
+        structuredContent: { echoed: message, source: "mock-mcp" },
+        isError: false,
+      });
+      return;
+    }
+  }
+  mcpError(res, 200, body.id, -32601, `unknown_mcp_method:${body.method}`);
 }
 
 function readBody(req) {
@@ -348,7 +503,7 @@ function handleResponses(res, body) {
       object: "response",
       status: "completed",
       model: body.model,
-      output: [outputMessage("MOCK_AGENT_OK")],
+      output: [outputMessage(hasText("MCP_ECHO_OK") ? "MOCK_MCP_AGENT_OK" : "MOCK_AGENT_OK")],
       usage: responsesUsage(),
     });
     return;
@@ -369,6 +524,11 @@ function handleResponses(res, body) {
   }
 
   if (Array.isArray(body.tools) && body.tools.length > 0) {
+    const mcpTool = body.tools.find((tool) => String(tool?.name ?? "").startsWith("mcp_"));
+    const toolName = hasText("MCP_SMOKE") && mcpTool ? mcpTool.name : "catalog_record_counts";
+    const toolArguments = toolName.startsWith("mcp_")
+      ? { message: "from-responses-agent" }
+      : { objects: ["Справочник.Контрагенты"], top: 5, include_empty: true };
     json(res, 200, {
       id,
       object: "response",
@@ -379,12 +539,8 @@ function handleResponses(res, body) {
           type: "function_call",
           id: "fc_mock_1",
           call_id: "call_mock_1",
-          name: "catalog_record_counts",
-          arguments: JSON.stringify({
-            objects: ["Справочник.Контрагенты"],
-            top: 5,
-            include_empty: true,
-          }),
+          name: toolName,
+          arguments: JSON.stringify(toolArguments),
         },
       ],
       usage: responsesUsage(),
@@ -440,7 +596,10 @@ function handleChatCompletions(res, body) {
         {
           index: 0,
           finish_reason: "stop",
-          message: { role: "assistant", content: "MOCK_AGENT_OK" },
+          message: {
+            role: "assistant",
+            content: hasText("MCP_ECHO_OK") ? "MOCK_MCP_AGENT_OK" : "MOCK_AGENT_OK",
+          },
         },
       ],
       usage: chatUsage(),
@@ -449,6 +608,15 @@ function handleChatCompletions(res, body) {
   }
 
   if (Array.isArray(body.tools) && body.tools.length > 0) {
+    const mcpTool = body.tools.find(
+      (tool) => String(tool?.function?.name ?? "").startsWith("mcp_"),
+    );
+    const toolName = hasText("MCP_SMOKE") && mcpTool
+      ? mcpTool.function.name
+      : "catalog_record_counts";
+    const toolArguments = toolName.startsWith("mcp_")
+      ? { message: "from-chat-agent" }
+      : { objects: ["Справочник.Контрагенты"], top: 5, include_empty: true };
     json(res, 200, {
       id: `chatcmpl_mock_${++responseSequence}`,
       object: "chat.completion",
@@ -465,12 +633,8 @@ function handleChatCompletions(res, body) {
                 id: "call_mock_1",
                 type: "function",
                 function: {
-                  name: "catalog_record_counts",
-                  arguments: JSON.stringify({
-                    objects: ["Справочник.Контрагенты"],
-                    top: 5,
-                    include_empty: true,
-                  }),
+                  name: toolName,
+                  arguments: JSON.stringify(toolArguments),
                 },
               },
             ],
@@ -561,6 +725,18 @@ const server = http.createServer(async (req, res) => {
 
   if (req.method === "POST" && url.pathname === "/v1/embeddings") {
     await handleEmbeddings(req, res, body);
+    return;
+  }
+
+  if ([
+    "/mcp",
+    "/mcp-auth",
+    "/mcp-basic",
+    "/mcp-header",
+    "/mcp-auth-no-downgrade",
+    "/mcp-legacy",
+  ].includes(url.pathname)) {
+    handleMcp(req, res, url, body);
     return;
   }
 

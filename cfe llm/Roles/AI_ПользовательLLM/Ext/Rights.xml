@@ -429,13 +429,6 @@
         </right>
     </object>
     <object>
-        <name>InformationRegister.AI_СекретыMCP</name>
-        <right>
-            <name>Read</name>
-            <value>true</value>
-        </right>
-    </object>
-    <object>
         <name>Catalog.AI_КартыИзвлечения</name>
         <right>
             <name>Read</name>

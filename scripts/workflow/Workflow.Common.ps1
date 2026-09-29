@@ -7518,11 +7518,13 @@ function New-WorkflowStandExecSource {
     Готовит исходники расширения-исполнителя к загрузке в стенд проекта.
 
     .DESCRIPTION
-    Шаблон расширения нейтрален, а два его свойства обязаны совпадать с основной
+    Шаблон расширения нейтрален, а его контролируемые свойства обязаны совпадать с основной
     конфигурацией проекта:
 
     - режим совместимости: расширение с режимом выше, чем у конфигурации, к ней
       не применяется;
+    - режим совместимости интерфейса: несовпадение запрещает применение
+      расширения даже при одинаковом режиме совместимости платформы;
     - язык: язык расширения заимствован из конфигурации и ссылается на неё по
       UUID. С чужим UUID загрузка отказывает.
 
@@ -7558,6 +7560,9 @@ function New-WorkflowStandExecSource {
     $utf8 = [System.Text.UTF8Encoding]::new($false)
     $projectText = [System.IO.File]::ReadAllText($projectConfiguration, $utf8)
     $mode = [regex]::Match($projectText, '<CompatibilityMode>([^<]+)</CompatibilityMode>').Groups[1].Value
+    $interfaceMode = [regex]::Match(
+        $projectText,
+        '<InterfaceCompatibilityMode>([^<]+)</InterfaceCompatibilityMode>').Groups[1].Value
     $languageName = [regex]::Match($projectText, '<DefaultLanguage>Language\.([^<]+)</DefaultLanguage>').Groups[1].Value
     if (-not $languageName) {
         throw "В $projectConfiguration не найден основной язык (DefaultLanguage)."
@@ -7588,6 +7593,12 @@ function New-WorkflowStandExecSource {
                     $text,
                     '<ConfigurationExtensionCompatibilityMode>[^<]+</ConfigurationExtensionCompatibilityMode>',
                     "<ConfigurationExtensionCompatibilityMode>$mode</ConfigurationExtensionCompatibilityMode>")
+            }
+            if ($interfaceMode) {
+                $text = [regex]::Replace(
+                    $text,
+                    '<InterfaceCompatibilityMode>[^<]+</InterfaceCompatibilityMode>',
+                    "<InterfaceCompatibilityMode>$interfaceMode</InterfaceCompatibilityMode>")
             }
             $text = $text.Replace("<DefaultLanguage>Language.Русский</DefaultLanguage>", "<DefaultLanguage>Language.$languageName</DefaultLanguage>")
             $text = $text.Replace("<Language>Русский</Language>", "<Language>$languageName</Language>")

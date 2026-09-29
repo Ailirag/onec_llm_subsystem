@@ -595,6 +595,40 @@ scripts\workflow\Get-ChangedUiTargets.ps1
 
 После этого включите `functionalTests.enabled` и `webUiTests.enabled`. UI-конфигурация должна читать URL и timeout из имен переменных, указанных в `.1c-workflow.json`.
 
+Для проверки прав под отдельным пользователем одной второй вкладки недостаточно:
+основная публикация в `default.vrd` подключается к базе как администратор стенда,
+поэтому параметры `N/P` в URL уже не меняют пользователя. Объявите отдельную
+публикацию той же базы:
+
+```json
+"webUiTests": {
+  "roleTestPublications": [
+    {
+      "name": "operator",
+      "userName": "Тестовый оператор",
+      "urlEnvironmentVariable": "ONEC_WEB_UI_URL_OPERATOR"
+    }
+  ]
+}
+```
+
+Пользователя до публикации создаёт повторяемый `functionalTests.seedScript`.
+Обёртка публикует приложение `<defaultAppName>-operator` на том же Apache и
+передаёт его URL в указанной переменной. В `webtest.config.mjs` контекст читает
+эту переменную и использует `isolation: 'window'`: режим `tab` делит cookies и
+снова превращает ограниченный контекст в административный. Если пароль непустой,
+его имя задаётся полем `passwordEnvironmentVariable`; значение берётся только из
+окружения и не попадает в `.1c-workflow.json`.
+
+Если Web UI раннер завершился до первого теста (`state=aborted`, `total=0`),
+`tools/Invoke-WebUiTests.ps1` до остановки Apache повторно открывает тот же URL
+коротким диагностическим пробником. Он не нажимает кнопки перезапуска и завершения
+сеансов, а раскрывает только «Показать подробности». Результат лежит рядом с
+обычными артефактами: `startup-error-details.json`, `.txt` и `.png`. Диагностика
+не заменяет исходный отказ: её собственная ошибка дописывается в лог, а код и
+отчёт первоначального прогона сохраняются. Состояния `healthy-on-retry` и
+`not-reproduced` означают, что повторный сеанс не подтвердил исходный симптом.
+
 Контракты адаптеров:
 
 Заготовки четырёх адаптеров `functionalTests` устанавливает комплект. Они
@@ -614,7 +648,7 @@ scripts\workflow\Get-ChangedUiTargets.ps1
 | `unitTests.script` | `-BasePath`, `-ReportPath`; необязательные `-Tests`, `-Modules`, `-Tags` |
 | `functionalTests.publishScript` | `-BasePath`, `-V8Path` |
 | `webUiTests.script` | параметры готового `tools/Invoke-WebUiTests.ps1`; preflight передает `-SkipStandInitialization` |
-| `webUiTests.publishScript` | `-BasePath`, `-V8Path`, `-ApachePath`, `-AppName`, `-Port` |
+| `webUiTests.publishScript` | `-BasePath`, `-V8Path`, `-ApachePath`, `-AppName`, `-Port`; для `roleTestPublications` также `-UserName`, необязательно `-Password` |
 | `releaseGuides.sourceScript` | `-Release`, `-OutputPath` — записать манифест релиза, см. «Инструкции по релизу» |
 | `releaseGuides.seedScript` | `-BasePath`, `-Seed` — имена сидов через запятую; залить данные сценария. `-Mode commit\|rollback` (по умолчанию commit) — для пробы сидов `-ProbeSeeds` |
 

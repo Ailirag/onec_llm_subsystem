@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "processVersion": "0.65.1",
+  "processVersion": "0.66.0",
   "mainBranch": "main",
   "localStateDir": ".build/workflow",
   "parallel": {
@@ -66,6 +66,8 @@
     "defaultPort": 8082,
     "defaultAppName": "llm_subsystem_test-ui",
     "urlEnvironmentVariable": "ONEC_WEB_UI_URL",
+    "_roleTestPublicationsNote": "Дополнительные публикации той же тестовой базы под ограниченными пользователями для ролевых Web UI сценариев. Пользователей до публикации создаёт повторяемый functionalTests.seedScript. name входит в URL и допускает только строчные латинские буквы, цифры и дефис; urlEnvironmentVariable читает webtest.config.mjs. Пароль в Git не хранится: для непустого пароля укажите passwordEnvironmentVariable.",
+    "roleTestPublications": [],
     "timeoutEnvironmentVariable": "ONEC_UI_COMMAND_TIMEOUT_MS",
     "commandTimeoutSeconds": 360,
     "globalTimeoutSeconds": 7200

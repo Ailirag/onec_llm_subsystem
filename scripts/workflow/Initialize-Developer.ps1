@@ -339,6 +339,25 @@ if ($isFileBase -and -not (Test-Path -LiteralPath (Join-Path $baseFullPath "1Cv8
     }
 }
 
+# Повторный Start приходит в уже настроенную файловую базу. Как только проектный
+# seed завёл пользователей, анонимный DESIGNER больше не входит и полная загрузка
+# падает до компиляции. Свежая либо оставшаяся после прерванного создания пустая
+# база административных ролей ещё не содержит - её первый раз грузим анонимно.
+$operationInfoBase = $infoBase
+if ($isFileBase -and -not $baseCreated) {
+    try {
+        $administratorOutcome = Initialize-WorkflowStandAdministrator -BasePath $baseFullPath
+        Write-Host "Developer base administrator before load: $administratorOutcome"
+        $operationInfoBase = ConvertTo-WorkflowStandInfoBase -BasePath $baseFullPath
+    }
+    catch {
+        if ($_.Exception.Message -notmatch 'В конфигурации нет роли с правом Администрирование') {
+            throw
+        }
+        Write-Host "Developer base has no administrative role yet; the first configuration load stays anonymous."
+    }
+}
+
 # Пустая база исходников не содержит, сколько бы ни совпадали отметки.
 $loadRequired = $reloadRequested -or $baseCreated -or $baseDecision.Reload
 
@@ -347,7 +366,7 @@ $loadScript = Resolve-CcSkillScript `
     -SkillName "db-load-xml" `
     -ScriptName "db-load-xml.ps1"
 $loadArguments = @("-V8Path", $v8Executable) +
-    (Get-WorkflowInfoBaseSkillArguments -InfoBase $infoBase) +
+    (Get-WorkflowInfoBaseSkillArguments -InfoBase $operationInfoBase) +
     @("-ConfigDir", $sourceDirectory, "-Mode", "Full")
 if (-not $CompileOnly) {
     $loadArguments += "-UpdateDB"
@@ -364,12 +383,20 @@ elseif ($PSCmdlet.ShouldProcess($infoBase.Display, "Load the complete Git config
 }
 
 if ($loadRequired) {
+    # После первой загрузки конфигурация уже содержит административные роли.
+    # Администратор нужен до загрузки расширений: дальше каждое подключение к
+    # файловой базе с пользователями обязано представляться по имени.
+    if ($isFileBase -and -not $CompileOnly) {
+        $administratorOutcome = Initialize-WorkflowStandAdministrator -BasePath $baseFullPath
+        Write-Host "Developer base administrator after configuration load: $administratorOutcome"
+        $operationInfoBase = ConvertTo-WorkflowStandInfoBase -BasePath $baseFullPath
+    }
     foreach ($extension in $extensions) {
         if ($PSCmdlet.ShouldProcess($infoBase.Display, "Load extension '$($extension.name)' from Git")) {
             Invoke-WorkflowLoadExtension `
                 -Cc1CSkillsRoot $ccRoot `
                 -V8Executable $v8Executable `
-                -InfoBase $infoBase `
+                -InfoBase $operationInfoBase `
                 -Extension $extension `
                 -UpdateDB:(-not $CompileOnly) `
                 -LogPath (Join-Path $logDirectory "initialize-extension-$($extension.name).log") | Out-Null
@@ -378,9 +405,13 @@ if ($loadRequired) {
     if (-not $CompileOnly -and $extensions.Count -gt 0 -and $PSCmdlet.ShouldProcess($infoBase.Display, "Check extension applicability")) {
         Invoke-WorkflowCheckExtensions `
             -V8Executable $v8Executable `
-            -InfoBase $infoBase `
+            -InfoBase $operationInfoBase `
             -Extensions $extensions `
             -LogPath (Join-Path $logDirectory "initialize-extensions-applicability.log") | Out-Null
+    }
+    if ($isFileBase -and -not $CompileOnly -and $extensions.Count -gt 0) {
+        $administratorOutcome = Initialize-WorkflowStandAdministrator -BasePath $baseFullPath
+        Write-Host "Developer base administrator after extensions: $administratorOutcome"
     }
 }
 

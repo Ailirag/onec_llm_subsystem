@@ -616,6 +616,10 @@ $dirty = $false
 # заново на том же порту. Признак нужен, чтобы убрать стенд, если фаза упала между
 # прогонами и штатного второго шага не случилось.
 $webUiApacheKept = $false
+# План строится значительно позже, уже после сборки стенда. Ранний отказ обязан
+# всё равно сформировать отчёт с исходной причиной, а не упасть при чтении ещё
+# не созданного плана в полях статистики Web UI.
+$webUiPlan = $null
 $headCommit = [string](
     (Invoke-WorkflowGit -RepositoryRoot $repositoryRoot -Arguments @("rev-parse", "HEAD")).Output |
         Select-Object -First 1
@@ -1164,6 +1168,17 @@ try {
                         -StateDirectory $stateDirectory `
                         -LogPath $functionalStandExecLog
                 }
+
+            # Роль исполнителя появляется только после загрузки его расширения.
+            # Администратор, созданный выше, не получает её автоматически и
+            # HTTP-сервис отвечает 403, хотя само расширение применимо.
+            Invoke-PreflightStep `
+                -Steps $steps `
+                -Name "functional-stand-administrator-after-exec" `
+                -Action {
+                    $outcome = Initialize-WorkflowStandAdministrator -BasePath $functionalBasePath
+                    Write-Host "Администратор стенда после исполнителя: $outcome"
+                }
         }
 
         if ($separateSeed -and -not $standRestored) {
@@ -1534,8 +1549,8 @@ $report = [pscustomobject]@{
     # Сколько сценариев зачтено прошлыми прогонами и по каким отчётам. Без этих
     # полей `webUiScope: full` не отличить от полного прогона, выполненного здесь
     # и сейчас, — а это разные утверждения, даже когда объём совпадает.
-    webUiReusedFiles = if ($runWebUi) { @($webUiPlan.Reused).Count } else { 0 }
-    webUiReusedFrom = if ($runWebUi) { @($webUiPlan.ReusedFrom) } else { @() }
+    webUiReusedFiles = if ($runWebUi -and $null -ne $webUiPlan) { @($webUiPlan.Reused).Count } else { 0 }
+    webUiReusedFrom = if ($runWebUi -and $null -ne $webUiPlan) { @($webUiPlan.ReusedFrom) } else { @() }
     webUiReport = if ($runWebUi) { $webUiReportPath } else { "" }
     # Отчёт первого прогона указывается отдельно и только когда он выполнялся.
     # Пустая строка здесь значит «затронутого по политике не нашлось», а не

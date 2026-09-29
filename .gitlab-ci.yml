@@ -1,0 +1,91 @@
+# Серверный gate для параллельной разработки 1С.
+#
+# ОБЛАСТЬ ДЕЙСТВИЯ. Здесь выполняются только проверки, не требующие платформы 1С:
+# целостность выгрузки, политика актуализации тестов, валидность конфигурации и
+# разбор скриптов. Компиляция конфигурации, UpdateDBCfg, применимость расширений,
+# functional smoke и Web UI регрессия остаются локальными фазами Check/Finish/
+# Review — их результат приносит автор и повторяет reviewer.
+#
+# ТРЕБОВАНИЯ К РАННЕРУ. Нужен runner с тегом `windows-1c`, executor `shell`,
+# Windows PowerShell 5.1+ и Git. Git LFS не обязателен: gate не читает артефакты,
+# поэтому LFS-объекты не скачиваются (GIT_LFS_SKIP_SMUDGE=1).
+#
+# ПАЙПЛАЙНЫ ВЫКЛЮЧЕНЫ ПО УМОЛЧАНИЮ. Включаются переменной проекта
+# ONEC_CI_ENABLED = true (Settings → CI/CD → Variables) ПОСЛЕ регистрации раннера.
+#
+# Почему выключены, а не просто ждут раннера: задание, которое никто не может взять,
+# GitLab примерно через час помечает не как pending, а как FAILED, и рассылает письма
+# о падении. Свежеустановленный проект без раннера начал бы с потока писем о
+# несуществующих поломках, и команда научилась бы игнорировать письма от CI. Это
+# дороже отсутствия CI: настоящее падение потом утонет в том же потоке.
+#
+# Сами проверки при этом не теряются: тот же скрипт запускает фаза Verify до
+# preflight. Теряется невозможность их пропустить — фазу можно не выполнить, и
+# тогда не проверит никто. Поэтому раннер остаётся нужным, но не блокирует работу.
+#
+# ПОЧЕМУ НЕ LINUX/DOCKER. Проверки вызывают Windows PowerShell 5.1 и обращаются к
+# Get-NetTCPConnection, а сам процесс разработки завязан на платформу 1С и
+# cc-1c-skills, которые существуют только под Windows. Портировать gate на pwsh в
+# контейнере технически возможно (целостность выгрузки, EOL, JSON и merge-коммиты
+# от платформы не зависят), но это отдельная задача. Пока Windows-раннера нет,
+# честнее считать серверный контроль отсутствующим и усилить требования к
+# повторной локальной проверке reviewer'ом, чем имитировать зелёный pipeline.
+
+workflow:
+  rules:
+    - if: $ONEC_CI_ENABLED != "true"
+      when: never
+    - when: always
+
+stages:
+  - gate
+
+variables:
+  # Политика актуализации тестов сравнивает diff с origin/main — нужна полная
+  # история, а не shallow clone.
+  GIT_DEPTH: "0"
+  GIT_LFS_SKIP_SMUDGE: "1"
+  GIT_SUBMODULE_STRATEGY: none
+
+default:
+  tags:
+    - windows-1c
+
+.gate_base:
+  stage: gate
+  before_script:
+    # Локальный core.autocrlf раннера не должен влиять на проверку EOL: правила
+    # задаёт .gitattributes, и gate падает, если в индексе появился CRLF.
+    - git config --local core.autocrlf input
+    - git fetch --no-tags origin "+refs/heads/$CI_DEFAULT_BRANCH:refs/remotes/origin/$CI_DEFAULT_BRANCH"
+  artifacts:
+    when: always
+    expire_in: 2 weeks
+    paths:
+      - .build/workflow/reports/
+      - .build/workflow/logs/ci-gate/
+
+# Основной gate для merge request: сравнение с целевой веткой обязательно.
+gate:merge-request:
+  extends: .gate_base
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\ci\Invoke-Gate.ps1 -BaseRef "origin/$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+
+# Gate на защищённых ветках: политику тестов сравнивать не с чем, поэтому она
+# пропускается, а целостность выгрузки проверяется всегда.
+gate:default-branch:
+  extends: .gate_base
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\ci\Invoke-Gate.ps1 -SkipTestMaintenance
+
+# Gate на обычных push в задачные ветки без открытого MR.
+gate:branch:
+  extends: .gate_base
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+  script:
+    - powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\ci\Invoke-Gate.ps1 -BaseRef "origin/$CI_DEFAULT_BRANCH"

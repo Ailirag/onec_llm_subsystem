@@ -48,6 +48,47 @@ function Assert-KnowledgeBundleHelpRegistration {
     }
 }
 
+function Assert-McpSecretAccessContract {
+    $restrictedRoles = @("AI_ПользовательLLM", "AI_АнализДанныхАгентом")
+    foreach ($role in $restrictedRoles) {
+        $rightsPath = Join-Path $repositoryPath "cfe llm\Roles\$role\Ext\Rights.xml"
+        [xml]$rights = Get-Content -Raw -LiteralPath $rightsPath -Encoding UTF8
+        $secretRight = $rights.SelectSingleNode(
+            "//*[local-name()='object'][*[local-name()='name']='InformationRegister.AI_СекретыMCP']")
+        if ($null -ne $secretRight) {
+            throw "Role $role must not read the MCP secret register: $rightsPath"
+        }
+    }
+
+    $administratorRightsPath = Join-Path $repositoryPath `
+        "cfe llm\Roles\AI_АдминистраторMCP\Ext\Rights.xml"
+    [xml]$administratorRights = Get-Content -Raw -LiteralPath $administratorRightsPath -Encoding UTF8
+    $administratorSecretRight = $administratorRights.SelectSingleNode(
+        "//*[local-name()='object'][*[local-name()='name']='InformationRegister.AI_СекретыMCP']")
+    if ($null -eq $administratorSecretRight) {
+        throw "MCP administrator has no access to the MCP secret register."
+    }
+
+    $modulePath = Join-Path $repositoryPath "cfe llm\CommonModules\AI_MCPСекреты.xml"
+    [xml]$module = Get-Content -Raw -LiteralPath $modulePath -Encoding UTF8
+    $properties = $module.SelectSingleNode(
+        "//*[local-name()='CommonModule']/*[local-name()='Properties']")
+    $server = $properties.SelectSingleNode("*[local-name()='Server']").InnerText.Trim().ToLowerInvariant()
+    $serverCall = $properties.SelectSingleNode("*[local-name()='ServerCall']").InnerText.Trim().ToLowerInvariant()
+    $privileged = $properties.SelectSingleNode("*[local-name()='Privileged']").InnerText.Trim().ToLowerInvariant()
+    if ($server -ne "true" -or $serverCall -ne "false" -or $privileged -ne "false") {
+        throw "AI_MCPСекреты must be server-only, unavailable for client server calls, and not metadata-privileged."
+    }
+
+    $moduleSourcePath = Join-Path $repositoryPath `
+        "cfe llm\CommonModules\AI_MCPСекреты\Ext\Module.bsl"
+    $moduleSource = Get-Content -Raw -LiteralPath $moduleSourcePath -Encoding UTF8
+    if ($moduleSource -notmatch 'УстановитьПривилегированныйРежим\(Истина\)' -or
+        $moduleSource -notmatch 'УстановитьПривилегированныйРежим\(ИсходныйРежим\)') {
+        throw "AI_MCPСекреты must bracket secret storage access with a restored privileged mode."
+    }
+}
+
 function Wait-MockProvider {
     param([int]$Seconds)
 
@@ -67,6 +108,7 @@ function Wait-MockProvider {
 
 $baseFullPath = [System.IO.Path]::GetFullPath($BasePath)
 Assert-KnowledgeBundleHelpRegistration
+Assert-McpSecretAccessContract
 if (-not (Test-Path -LiteralPath (Join-Path $baseFullPath "1Cv8.1CD"))) {
     throw "Functional test base does not exist. Run tools\Initialize-FunctionalTestEnvironment.ps1 first."
 }
@@ -123,6 +165,10 @@ try {
     )
     if ($knowledgeBundleResult.Count -ne 1) {
         throw "Knowledge bundles test did not run exactly once. See $resultFile"
+    }
+    $mcpResult = @($resultLines | Where-Object { $_ -like "PASS|mcp_integration|*" })
+    if ($mcpResult.Count -ne 1) {
+        throw "MCP integration test did not run exactly once. See $resultFile"
     }
 } finally {
     if ($ownsMockProcess -and $mockProcess -and -not $mockProcess.HasExited) {

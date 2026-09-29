@@ -63,6 +63,7 @@
 		</Properties>
 		<ChildObjects>
 			<Language>Русский</Language>
+			<Role>ИС_ИспользованиеИсполнителяСтенда</Role>
 			<CommonModule>ИС_Исполнитель</CommonModule>
 			<CommonModule>ИС_МеткаСтенда</CommonModule>
 			<CommonModule>ИС_ODataСтенда</CommonModule>

@@ -28,16 +28,21 @@
       "tools/Invoke-FunctionalSeed.ps1"
     ]
   },
+  "standExec": {
+    "enabled": true,
+    "odata": true,
+    "script": "tools/Invoke-StandExec.ps1"
+  },
   "userHelp": {
     "enabled": true
   },
   "webUiTests": {
-    "enabled": false,
+    "enabled": true,
     "script": "tools/Invoke-WebUiTests.ps1",
     "publishScript": "tools/Publish-WebTestStand.ps1",
     "suite": "tests/web-ui",
     "requiredForReview": true,
-    "runOnFinish": false,
+    "runOnFinish": true,
     "_scopeNote": "Лестница объёмов. selfcheck — цикл разработки, только затронутое правкой; package — сборка cf для проверки изменения, тот же объём; verify — перед MR, затронутое плюс обязательный минимум; release — полный регресс, и только он. Полный прогон стоит большую часть времени, поэтому запускается осознанно, отдельным сценарием.",
     "scope": {
       "selfcheck": "affected",
@@ -48,6 +53,13 @@
     "defaultPort": 8082,
     "defaultAppName": "llm_subsystem_test-ui",
     "urlEnvironmentVariable": "ONEC_WEB_UI_URL",
+    "roleTestPublications": [
+      {
+        "name": "llm-user",
+        "userName": "Тест MCP Пользователь",
+        "urlEnvironmentVariable": "ONEC_WEB_UI_URL_LLM_USER"
+      }
+    ],
     "timeoutEnvironmentVariable": "ONEC_UI_COMMAND_TIMEOUT_MS",
     "commandTimeoutSeconds": 360,
     "globalTimeoutSeconds": 7200
