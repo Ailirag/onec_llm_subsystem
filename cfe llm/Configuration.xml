@@ -40,7 +40,7 @@
 					<v8:content>LLM</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment />
+			<Comment/>
 			<ConfigurationExtensionPurpose>AddOn</ConfigurationExtensionPurpose>
 			<KeepMappingToExtendedConfigurationObjectsByIDs>true</KeepMappingToExtendedConfigurationObjectsByIDs>
 			<NamePrefix>Нейро_</NamePrefix>
@@ -54,10 +54,10 @@
 				<xr:Item xsi:type="xr:MDObjectRef">Role.AI_ПолныеПрава</xr:Item>
 			</DefaultRoles>
 			<Vendor>Ailirag</Vendor>
-			<Version>1.0.0.0</Version>
+			<Version>1.1.0.0</Version>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
-			<BriefInformation />
-			<DetailedInformation />
+			<BriefInformation/>
+			<DetailedInformation/>
 			<Copyright>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
